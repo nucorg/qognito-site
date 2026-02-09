@@ -1,16 +1,13 @@
-site_name: Qognito.io
-site_description: L'Ingénierie de l'Intelligence Physique pour systèmes critiques.
-
 theme:
   name: material
   language: fr
+  logo: assets/logo.png
+  favicon: assets/favicon.png
   palette:
-    # Mode sombre (Navy profond)
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: custom
       accent: amber
-    # Mode clair
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: custom
@@ -18,16 +15,17 @@ theme:
   features:
     - navigation.sections
     - navigation.top
-    - content.code.copy
-
-extra_css:
-  - stylesheets/extra.css
 
 nav:
   - Accueil: index.md
-
-# Configuration des couleurs personnalisées (Titanium & Navy)
-extra:
-  colors:
-    primary: "#0A1628" 
-    accent: "#D4850F"
+  - "L'Ingénierie Physique":
+    - "La Thèse": index.md#la-these
+    - "Les Principes": index.md#les-principes
+  - "Preuves & POC":
+    - "Pipeline EDF (DDP)": index.md#poc-1-pipeline-de-donnees-de-procedes-ddp
+    - "Assistant Expert (V360)": index.md#poc-2-assistant-expert-nucleaire-v360-coeur-combustibles
+  - "R&D":
+    - "PI-VAE": index.md#la-rd-en-cours-pi-vae-physics-informed-variational-auto-encoder
+  - "Expertise":
+    - "L'Offre": index.md#loffre
+    - "Stack Technique": index.md#le-stack-technique
