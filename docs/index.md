@@ -1,5 +1,12 @@
 # Qognito.io — L'Ingénierie de l'Intelligence Physique
 
+<figure markdown>
+  ![City skyline during night time](assets/city_night.jpg)
+  <figcaption>
+    Photo by <a href="https://unsplash.com/@nhippert?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nicolas HIPPERT</a> on <a href="https://unsplash.com/photos/city-skyline-with-lights-turned-on-during-night-time-C82jAEQkfE0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
 ## La Thèse
 
 **La physique valide l'IA — pas l'inverse.**
