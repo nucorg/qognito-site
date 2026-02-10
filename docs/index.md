@@ -1,5 +1,12 @@
 # Qognito.io — L'Ingénierie de l'Intelligence Physique
 
+![City skyline during night time](assets/city_night.jpg)
+<p align="center">
+  <small>
+    Photo by <a href="https://unsplash.com/@nhippert?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nicolas HIPPERT</a> on <a href="https://unsplash.com/photos/city-skyline-with-lights-turned-on-during-night-time-C82jAEQkfE0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </small>
+</p>
+
 <figure markdown>
   ![City skyline during night time](assets/city_night.jpg)
   <figcaption>
