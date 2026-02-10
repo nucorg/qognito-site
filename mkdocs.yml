@@ -38,8 +38,8 @@ nav:
     - "La Thèse": "#la-these"
     - "Les Principes": "#les-principes"
   - "Preuves & POC":
-    - "Pipeline EDF (DDP)": "#poc-1-pipeline-de-donnees-de-procedes"
-    - "Assistant Expert (V360)": "#poc-2-assistant-expert-nucleaire-coeur-combustibles"
+    - "Data Pipeline": "#poc-1-pipeline-de-donnees-de-procedes"
+    - "Assistant Expert": "#poc-2-assistant-expert-nucleaire-coeur-combustibles"
   - "R&D":
     - "PI-VAE": "#la-rd-en-cours-pi-vae-physics-informed-variational-auto-encoder"
   - "Expertise":
