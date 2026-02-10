@@ -23,25 +23,38 @@ Depuis mi-2024, je conçois et livre des architectures de données pour la surve
 Plateforme de visualisation temps réel haute performance avec assistant virtuel expert pour la surveillance des données nucléaires.
 
 **Ce que j'ai construit :**
+
 - **Data Lake Medallion** (Bronze → Silver → Gold) sur Apache Arrow partitionné, avec moteur analytique DuckDB zero-copy — des millions de points de données capteur traités en sub-seconde, 32 threads, 32 GB RAM
+
 - **3 règles de validation physique** codées et testées :
+
   - *Règle 1 — Aberrations statistiques :* Puissance bornée à 110% PN (protection AAR), bore >= 0 ppm
+
   - *Règle 2 — Impossibilité neutronique :* Le réacteur ne peut pas être en puissance si les grappes sont chutées
+
   - *Règle 3 — Cohérence chimique :* Écart boremètre/chimiste > 50 ppm = capteur défaillant
+
 - **4 modules d'imputation physique** — chaque variable est imputée selon sa physique propre : LOCF pour les grappes (mouvement discret par crans), spline cubique pour la puissance (dynamique continue), redondance spatiale pour les températures (4 boucles corrélées), interpolation linéaire pour le bore (cinétique lente)
+
 - **Filtrage Kalman** calibré par phase opérationnelle : ordre 0 (random walk, p_factor=4.0) pour la stabilité thermique EPN, ordre 1 (linear growth, p_factor=1.5) pour le suivi de rampes en montée en puissance
+
 - **Arbre de décision physique** classifiant automatiquement 7 phases opérationnelles (INVALID, EPN, SHUTDOWN, STRETCH, TRANSIENT, MEP, CYCLE) à partir des constantes REP 900 MWe
+
 - **270+ tests unitaires** couvrant chaque règle, chaque module, chaque edge case
 
 **Résultat :** Pipeline opérationnel traitant les données de 11 unités du parc nucléaire (GR1, GR2, CN2, TN3, FL3, PA4, CH2, BU5, BE1, CI1, CR1), 3 paliers (900, 1300, 1450 MWe). Taux de correction physique : 96.4% des incohérences résolues automatiquement.
+
 
 #### POC 2 — Assistant Expert Nucléaire - Coeur Combustibles
 
 Système d'IA conversationnelle spécialisé dans le domaine nucléaire, capable d'interroger les données de surveillance en langage naturel *sans halluciner* sur la physique.
 
 **Ce que j'ai construit :**
+
 - **Knowledge Graph Neo4j** modélisant l'ontologie nucléaire complète : 11 réacteurs, 10 paramètres physiques, 9+ capteurs par unité, 5 règles physiques, corrélations inter-paramètres avec force quantifiée
+
 - **3 outils de Tool Calling** (Claude Haiku) : recherche sémantique de capteurs via le graphe, extraction haute performance de séries temporelles via DuckDB, diagnostic d'anomalies via les règles physiques du Knowledge Graph
+
 - **Intelligence métier intégrée** : substitution automatique des capteurs selon la phase (neutronique privilégiée en EPN), recommandation de capteurs corrélés pour le diagnostic (Kalman dérivée de puissance pour instabilité thermique), adaptation au palier (3 boucles / 4 boucles)
 
 **Résultat :** Un ingénieur pose une question en français ("Diagnostique RCP104MT, la température semble instable"), l'assistant interroge le Knowledge Graph, identifie la règle physique applicable, extrait les données, et recommande le capteur corrélé — en moins de 2 secondes.
@@ -69,7 +82,9 @@ Une mauvaise architecture de données est une dette énergétique et cognitive. 
 Avoir raison en théorie ne suffit pas. Avant chaque projet, j'applique le filtre "3S" — trois questions impitoyables :
 
 1. **Sizeable** (Considérable) — Le problème a-t-il un impact vital sur vos opérations ?
+
 2. **Overlooked** (Négligé) — Est-ce un sujet technique "aride" que les autres ignorent, là où réside la valeur réelle ?
+
 3. **Solvable** (Soluble) — Avez-vous la physique et la donnée pour le résoudre ?
 
 Si un projet ne passe pas ces trois filtres — manque de données, latence trop élevée, contrainte physique non modélisable — je le tue immédiatement. Je livre des systèmes qui marchent dans le monde réel, pas des POC éternels.
@@ -106,8 +121,11 @@ Au-delà des pipelines de validation, je développe un **générateur de donnée
 **Le problème :** Les données nucléaires sont sensibles, restreintes, et les phases opérationnelles rares (transitoires, EPN) sont sous-représentées. Entraîner des modèles ML sur ces données est soit impossible (compliance), soit biaisé (déséquilibre de classes).
 
 **L'approche :** Un Variational Auto-Encoder informé par la physique (PI-VAE) avec :
+
 - **Encodeur GRU** capturant les dépendances temporelles longues (cycle de combustible) et courtes (transitoires, suivi de charge)
+
 - **Échantillonnage MCMC** dans l'espace latent pour garantir la continuité physique entre séquences générées (pas de saut "arrêt à chaud → pleine puissance")
+
 - **Validation physique de la génération** : le modèle n'est pas évalué sur l'erreur de reconstruction (MSE) mais sur la conservation des corrélations physiques — si une baisse de puissance est générée sans la perturbation d'Axial Offset associée, le modèle a échoué
 
 **Le statut :** Stade VAE (architecture de base). Prochaine étape : intégration des contraintes physiques dans la loss function et validation sur données Gold du pipeline EDF.
