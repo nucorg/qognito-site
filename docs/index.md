@@ -21,9 +21,9 @@ Qognito.io conçoit des architectures de données industrielles où les lois de 
 
 ## La Preuve
 
-### 19 mois dans le nucléaire français — Cadrage Data & IA pour un exploitant majeur
+### Dans le nucléaire français depuis mi-2024 — Cadrage Data & IA pour un exploitant majeur
 
-Depuis mi-2024, j'interviens en cadrage (Discovery) de produits numériques pour la surveillance des réacteurs nucléaires du parc français. Mon rôle : concevoir et livrer des **prototypes fonctionnels** qui valident l'approche Data & IA *avant* l'investissement d'industrialisation — de-risquer par la preuve, pas par le slide.
+J'interviens en cadrage (Discovery) de produits numériques pour la surveillance des réacteurs nucléaires du parc français. Mon rôle : concevoir et livrer des **prototypes fonctionnels** qui valident l'approche Data & IA *avant* l'investissement d'industrialisation — de-risquer par la preuve, pas par le slide.
 
 Chaque prototype est conçu avec une exigence de production (tests, validation physique, architecture pérenne) pour que l'équipe de Delivery qui l'intègre dans le produit final parte d'une base solide, pas d'un démonstrateur jetable.
 
