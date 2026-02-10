@@ -1,6 +1,7 @@
 site_name: "Qognito.io"
 site_description: "L'Ingénierie de l'Intelligence Physique"
 
+# Fichiers CSS personnalisés pour le logo et l'aération
 extra_css:
   - stylesheets/extra.css
 
@@ -10,10 +11,12 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.png
   palette:
+    # Mode sombre (Navy Qognito)
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: custom
       accent: amber
+    # Mode clair
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: custom
@@ -22,21 +25,23 @@ theme:
     - navigation.sections
     - navigation.top
 
+# Couleurs personnalisées pour l'identité de marque
 extra:
   colors:
-    primary: "#0A1628"  # Navy
-    accent: "#D4850F"   # Ambre
+    primary: "#0A1628"  # Bleu Navy profond
+    accent: "#D4850F"   # Ambre de sécurité
 
+# Navigation corrigée pour un site "Single Page" (One-Page)
 nav:
   - Accueil: index.md
   - "L'Ingénierie Physique":
-    - "La Thèse": "index.md#la-these"
-    - "Les Principes": "index.md#les-principes"
+    - "La Thèse": "#la-these"
+    - "Les Principes": "#les-principes"
   - "Preuves & POC":
-    - "Pipeline EDF (DDP)": "index.md#poc-1-pipeline-de-donnees-de-procedes-ddp"
-    - "Assistant Expert (V360)": "index.md#poc-2-assistant-expert-nucleaire-v360-coeur-combustibles"
+    - "Pipeline EDF (DDP)": "#poc-1-pipeline-de-donnees-de-procedes"
+    - "Assistant Expert (V360)": "#poc-2-assistant-expert-nucleaire-coeur-combustibles"
   - "R&D":
-    - "PI-VAE": "index.md#la-rd-en-cours-pi-vae-physics-informed-variational-auto-encoder"
+    - "PI-VAE": "#la-rd-en-cours-pi-vae-physics-informed-variational-auto-encoder"
   - "Expertise":
-    - "L'Offre": "index.md#loffre"
-    - "Stack Technique": "index.md#le-stack-technique"
+    - "L'Offre": "#loffre"
+    - "Stack Technique": "#le-stack-technique"
