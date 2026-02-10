@@ -24,19 +24,19 @@ theme:
 
 extra:
   colors:
-    primary: "#0A1628"
-    accent: "#D4850F"
+    primary: "#0A1628"  # Navy
+    accent: "#D4850F"   # Ambre
 
 nav:
   - Accueil: index.md
   - "L'Ingénierie Physique":
-    - "La Thèse": index.md#la-these
-    - "Les Principes": index.md#les-principes
+    - "La Thèse": "index.md#la-these"
+    - "Les Principes": "index.md#les-principes"
   - "Preuves & POC":
-    - "Pipeline EDF (DDP)": index.md#poc-1-pipeline-de-donnees-de-procedes-ddp
-    - "Assistant Expert (V360)": index.md#poc-2-assistant-expert-nucleaire-v360-coeur-combustibles
+    - "Pipeline EDF (DDP)": "index.md#poc-1-pipeline-de-donnees-de-procedes-ddp"
+    - "Assistant Expert (V360)": "index.md#poc-2-assistant-expert-nucleaire-v360-coeur-combustibles"
   - "R&D":
-    - "PI-VAE": index.md#la-rd-en-cours-pi-vae-physics-informed-variational-auto-encoder
+    - "PI-VAE": "index.md#la-rd-en-cours-pi-vae-physics-informed-variational-auto-encoder"
   - "Expertise":
-    - "L'Offre": index.md#loffre
-    - "Stack Technique": index.md#le-stack-technique
+    - "L'Offre": "index.md#loffre"
+    - "Stack Technique": "index.md#le-stack-technique"

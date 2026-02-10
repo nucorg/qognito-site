@@ -17,3 +17,25 @@
 .md-logo {
     background-color: transparent !important;
 }
+
+/* Augmenter l'espacement du texte pour la lecture technique */
+.md-typeset {
+    font-size: 0.85rem;
+    line-height: 1.7; /* Plus d'air entre les lignes */
+}
+
+.md-typeset p {
+    margin-bottom: 1.2em; /* Plus d'espace entre les paragraphes */
+}
+
+/* Forcer le Navy Qognito sur l'entête */
+.md-header {
+    background-color: #0A1628 !important;
+}
+
+/* Améliorer la visibilité des séparateurs --- */
+.md-typeset hr {
+    margin: 3em 0;
+    border-bottom: 0.05rem solid #6B7B8D; /* Gris titane */
+    opacity: 0.3;
+}
