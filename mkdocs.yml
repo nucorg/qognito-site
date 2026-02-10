@@ -1,3 +1,6 @@
+site_name: "Qognito.io"
+site_description: "L'Ingénierie de l'Intelligence Physique"
+
 theme:
   name: material
   language: fr
@@ -15,6 +18,11 @@ theme:
   features:
     - navigation.sections
     - navigation.top
+
+extra:
+  colors:
+    primary: "#0A1628"
+    accent: "#D4850F"
 
 nav:
   - Accueil: index.md
