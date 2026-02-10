@@ -67,7 +67,7 @@ Système d'IA conversationnelle spécialisé dans le domaine nucléaire, capable
 
 ## Les Principes
 
-Ces principes ne sont pas des slogans. Ce sont les règles de conception que j'applique depuis 19 mois. Chacune est adossée à un choix technique vérifiable.
+Ces principes ne sont pas des slogans. Ce sont les règles de conception que j'applique depuis plusieurs années. Chacune est adossée à un choix technique vérifiable.
 
 <figure class="photo-img">
   <img src="assets/physics-first.jpg" alt="Physics First formula">
