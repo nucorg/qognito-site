@@ -1,13 +1,11 @@
 # Qognito.io — L'Ingénierie de l'Intelligence Physique
 
-![City skyline during night time](assets/city_night.jpg)
-<p align="center">
-  <small>
+<figure class="photo-img">
+  <img src="assets/city_night.jpg" alt="City skyline at night">
+  <figcaption>
     Photo by <a href="https://unsplash.com/@nhippert?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nicolas HIPPERT</a> on <a href="https://unsplash.com/photos/city-skyline-with-lights-turned-on-during-night-time-C82jAEQkfE0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  </small>
-</p>
-
-
+  </figcaption>
+</figure>
 
 ## La Thèse
 
@@ -71,6 +69,13 @@ Système d'IA conversationnelle spécialisé dans le domaine nucléaire, capable
 
 Ces principes ne sont pas des slogans. Ce sont les règles de conception que j'applique depuis 19 mois. Chacune est adossée à un choix technique vérifiable.
 
+<figure class="photo-img">
+  <img src="assets/physics-first.jpg" alt="Physics First formula">
+  <figcaption>
+    Photo by <a href="https://unsplash.com/@bkaraivanov?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bozhin Karaivanov</a> on <a href="https://unsplash.com/photos/a-close-up-of-a-piece-of-paper-with-writing-on-it-dvMJR9-Drbs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
 ### La Physique avant le Verbe (Physics First)
 
 L'IA actuelle est probabiliste ; l'industrie est déterministe. Pour les systèmes critiques, la statistique ne suffit pas.
@@ -123,6 +128,11 @@ Avoir raison en théorie ne suffit pas. Avant chaque engagement, je pose trois q
 ## La R&D en cours — PI-VAE (Physics-Informed Variational Auto-Encoder)
 
 Au-delà des pipelines de validation, je développe un **générateur de données synthétiques de réacteur nucléaire** physiquement cohérent.
+
+<figure class="scientific-img">
+  <img src="assets/pi-vae.png" alt="Architecture PI-VAE">
+  <figcaption>Scientific Reports (Sci Rep) ISSN 2045-2322 (online)</figcaption>
+</figure>
 
 **Le problème :** Les données nucléaires sont sensibles, restreintes, et les phases opérationnelles rares (transitoires, EPN) sont sous-représentées. Entraîner des modèles ML sur ces données est soit impossible (compliance), soit biaisé (déséquilibre de classes).
 

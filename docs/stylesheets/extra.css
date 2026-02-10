@@ -1,56 +1,66 @@
-/* Ajustement du logo dans la barre de navigation */
+/* ==========================================
+   1. NAVIGATION & LOGO
+   ========================================== */
+.md-header {
+    background-color: #0A1628 !important; /* Navy Qognito */
+}
+
 .md-header__button.md-logo img {
-    height: 2.4rem; /* Hauteur optimale pour la lisibilité sur desktop */
-    width: auto;    /* Conserve le ratio de votre PNG */
-    margin: 0.2rem; /* Légère marge pour l'alignement visuel */
+    height: 2.4rem;
+    width: auto;
+    margin: 0.2rem;
 }
 
-/* Ajustement pour mobile (écrans < 1220px) */
 @media screen and (max-width: 76.1875em) {
-    .md-header__button.md-logo img {
-        height: 2.0rem;
-    }
+    .md-header__button.md-logo img { height: 2.0rem; }
 }
 
-/* Correction de la couleur de fond du logo si nécessaire */
-/* Utile si votre PNG n'a pas une transparence parfaite */
-.md-logo {
-    background-color: transparent !important;
-}
-
-/* Augmenter l'espacement du texte pour la lecture technique */
+/* ==========================================
+   2. TYPOGRAPHIE ET ESPACEMENT (AÉRATION)
+   ========================================== */
 .md-typeset {
     font-size: 0.85rem;
-    line-height: 1.7; /* Plus d'air entre les lignes */
+    line-height: 1.7; /* Plus d'air pour la lecture technique */
 }
 
 .md-typeset p {
-    margin-bottom: 1.2em; /* Plus d'espace entre les paragraphes */
+    margin-bottom: 1.2em;
 }
 
-/* Forcer le Navy Qognito sur l'entête */
-.md-header {
-    background-color: #0A1628 !important;
-}
-
-/* Améliorer la visibilité des séparateurs --- */
 .md-typeset hr {
     margin: 3em 0;
     border-bottom: 0.05rem solid #6B7B8D; /* Gris titane */
     opacity: 0.3;
 }
 
-/* Style pour les légendes d'images */
+/* ==========================================
+   3. IMAGES ET LÉGENDES (NETTOYÉ)
+   ========================================== */
+/* Style de base pour toutes les légendes */
 figcaption {
     font-size: 0.7rem;
-    color: #6B7B8D; /* Votre Gris Titane */
-    font-style: italic;
-    margin-top: 0.5rem;
+    color: #6B7B8D;
     text-align: center;
+    margin-top: 0.5rem;
 }
 
-/* Optionnel : ajouter une bordure fine ou un arrondi à l'image */
-.md-typeset figure img {
+/* Style de base pour toutes les images avec légende */
+figure img {
+    display: block;
+    margin: 0 auto;
     border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* CLASSE SPÉCIFIQUE : Image Scientifique (PI-VAE) */
+.scientific-img img {
+    border: 1px solid #e0e0e0; /* Bordure fine grise */
+}
+.scientific-img figcaption {
+    font-family: monospace; /* Look "données/labo" */
+    font-style: normal;
+}
+
+/* CLASSE SPÉCIFIQUE : Image Photo (Unsplash) */
+.photo-img figcaption {
+    font-style: italic; /* Italique pour les crédits photo */
 }
