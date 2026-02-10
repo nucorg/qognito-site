@@ -1,6 +1,9 @@
 site_name: "Qognito.io"
 site_description: "L'Ingénierie de l'Intelligence Physique"
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   language: fr
