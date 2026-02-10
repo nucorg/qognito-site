@@ -14,20 +14,20 @@ Qognito.io conçoit des architectures de données industrielles où les lois de 
 
 ## La Preuve
 
-### 19 mois chez EDF — 2 systèmes opérationnels
+### 19 mois dans le nucléaire français — Cadrage Data & IA pour un exploitant majeur
 
-Depuis mi-2024, je conçois et livre des architectures de données pour la surveillance des réacteurs nucléaires du parc EDF. Ce n'est pas du conseil. Ce sont des systèmes qui tournent.
+Depuis mi-2024, j'interviens en cadrage (Discovery) de produits numériques pour la surveillance des réacteurs nucléaires du parc français. Mon rôle : concevoir et livrer des **prototypes fonctionnels** qui valident l'approche Data & IA *avant* l'investissement d'industrialisation — de-risquer par la preuve, pas par le slide.
 
-#### POC 1 — Pipeline de Données de Procédés
+Chaque prototype est conçu avec une exigence de production (tests, validation physique, architecture pérenne) pour que l'équipe de Delivery qui l'intègre dans le produit final parte d'une base solide, pas d'un démonstrateur jetable.
 
-Plateforme de visualisation temps réel haute performance avec assistant virtuel expert pour la surveillance des données nucléaires.
+#### Prototype 1 — Pipeline de Données de Procédés
 
-**Ce que j'ai construit :**
+Pipeline de validation physique et de visualisation temps réel haute performance pour les données de capteurs nucléaires.
 
+**Ce que j'ai conçu et livré :**
 - **Data Lake Medallion** (Bronze → Silver → Gold) sur Apache Arrow partitionné, avec moteur analytique DuckDB zero-copy — des millions de points de données capteur traités en sub-seconde, 32 threads, 32 GB RAM
 
 - **3 règles de validation physique** codées et testées :
-
   - *Règle 1 — Aberrations statistiques :* Puissance bornée à 110% PN (protection AAR), bore >= 0 ppm
 
   - *Règle 2 — Impossibilité neutronique :* Le réacteur ne peut pas être en puissance si les grappes sont chutées
@@ -42,22 +42,21 @@ Plateforme de visualisation temps réel haute performance avec assistant virtuel
 
 - **270+ tests unitaires** couvrant chaque règle, chaque module, chaque edge case
 
-**Résultat :** Pipeline opérationnel traitant les données de 11 unités du parc nucléaire (GR1, GR2, CN2, TN3, FL3, PA4, CH2, BU5, BE1, CI1, CR1), 3 paliers (900, 1300, 1450 MWe). Taux de correction physique : 96.4% des incohérences résolues automatiquement.
+**Résultat :** Pipeline validé sur les données de 11 unités du parc, 3 paliers (900, 1300, 1450 MWe). Taux de correction physique : 96.4% des incohérences résolues automatiquement. Architecture prête à être intégrée dans le produit numérique cible.
 
-
-#### POC 2 — Assistant Expert Nucléaire - Coeur Combustibles
+#### Prototype 2 — Assistant Expert Nucléaire
 
 Système d'IA conversationnelle spécialisé dans le domaine nucléaire, capable d'interroger les données de surveillance en langage naturel *sans halluciner* sur la physique.
 
-**Ce que j'ai construit :**
+**Ce que j'ai conçu et livré :**
 
-- **Knowledge Graph Neo4j** modélisant l'ontologie nucléaire complète : 11 réacteurs, 10 paramètres physiques, 9+ capteurs par unité, 5 règles physiques, corrélations inter-paramètres avec force quantifiée
+- **Knowledge Graph Neo4j** modélisant l'ontologie nucléaire : réacteurs, paramètres physiques, capteurs, règles physiques, corrélations inter-paramètres avec force quantifiée
 
 - **3 outils de Tool Calling** (Claude Haiku) : recherche sémantique de capteurs via le graphe, extraction haute performance de séries temporelles via DuckDB, diagnostic d'anomalies via les règles physiques du Knowledge Graph
 
 - **Intelligence métier intégrée** : substitution automatique des capteurs selon la phase (neutronique privilégiée en EPN), recommandation de capteurs corrélés pour le diagnostic (Kalman dérivée de puissance pour instabilité thermique), adaptation au palier (3 boucles / 4 boucles)
 
-**Résultat :** Un ingénieur pose une question en français ("Diagnostique RCP104MT, la température semble instable"), l'assistant interroge le Knowledge Graph, identifie la règle physique applicable, extrait les données, et recommande le capteur corrélé — en moins de 2 secondes.
+**Résultat :** Un ingénieur pose une question en français ("Diagnostique la température primaire, elle semble instable"), l'assistant interroge le Knowledge Graph, identifie la règle physique applicable, extrait les données, et recommande le capteur corrélé — en moins de 2 secondes. Prototype validé, en attente d'intégration produit.
 
 ---
 
@@ -75,37 +74,37 @@ L'IA actuelle est probabiliste ; l'industrie est déterministe. Pour les systèm
 
 Une mauvaise architecture de données est une dette énergétique et cognitive. Les détails arides — nettoyage de logs, optimisation de flux, structures de partitionnement — sont là où se trouve l'impact réel.
 
-*En pratique :* Architecture zero-copy (Arrow + DuckDB) traitant des téraoctets sans duplication mémoire. Partitionnement Bigramme/Trigramme pour un pruning automatique qui réduit les données scannées d'un facteur 10 à 100x. Sub-seconde pour 1 million de points. Pas de GPU, pas de cluster — un seul serveur bien architecturé.
+*En pratique :* Architecture zero-copy (Arrow + DuckDB) traitant des téraoctets sans duplication mémoire. Partitionnement intelligent pour un pruning automatique qui réduit les données scannées d'un facteur 10 à 100x. Sub-seconde pour 1 million de points. Pas de GPU, pas de cluster — un seul serveur bien architecturé.
 
 ### Le Critère de Solvabilité (Pragmatisme de Combat)
 
 Avoir raison en théorie ne suffit pas. Avant chaque projet, j'applique le filtre "3S" — trois questions impitoyables :
 
 1. **Sizeable** (Considérable) — Le problème a-t-il un impact vital sur vos opérations ?
-
 2. **Overlooked** (Négligé) — Est-ce un sujet technique "aride" que les autres ignorent, là où réside la valeur réelle ?
-
 3. **Solvable** (Soluble) — Avez-vous la physique et la donnée pour le résoudre ?
 
-Si un projet ne passe pas ces trois filtres — manque de données, latence trop élevée, contrainte physique non modélisable — je le tue immédiatement. Je livre des systèmes qui marchent dans le monde réel, pas des POC éternels.
+Si un projet ne passe pas ces trois filtres — manque de données, latence trop élevée, contrainte physique non modélisable — je le tue immédiatement. Je livre des prototypes qui prouvent la faisabilité dans le monde réel, pas des slides qui la promettent.
 
 ---
 
 ## L'Offre
 
-### Architecture de Données Industrielles sous Contrainte Physique
+### Cadrage & Prototypage Data/IA sous Contrainte Physique
 
-**Ce que je livre :** Des pipelines de données de procédés (séries temporelles capteurs) avec validation physique intégrée, Knowledge Graphs métier, et assistants IA contraints par les règles de votre domaine.
+**Mon métier :** Je de-risque vos projets Data & IA industriels. Je conçois l'architecture, je construis un prototype fonctionnel qui valide l'approche par la preuve, et je vous livre une base solide pour l'industrialisation — pas un démonstrateur jetable.
 
 **Concrètement :**
 
-- **Pipeline Medallion (Bronze → Silver → Gold)** — Ingestion, nettoyage, imputation physique, validation, enrichissement. Chaque étape est traçable, testée, auditable. Les règles physiques de votre domaine sont codées comme contraintes de premier rang, pas comme post-traitements.
+- **Cadrage "First Principles"** — Avant de construire, je passe votre projet au filtre 3S. Si le problème n'est pas Sizeable, Overlooked et Solvable, je vous le dis avant de facturer. Objectif : tuer les faux projets, accélérer les vrais.
+
+- **Pipeline Medallion (Bronze → Silver → Gold)** — Ingestion, nettoyage, imputation physique, validation, enrichissement. Chaque étape est traçable, testée, auditable. Les règles physiques de votre domaine sont codées comme contraintes de premier rang, pas comme post-traitements. Le prototype est conçu avec une exigence de production (tests unitaires, architecture pérenne) pour faciliter l'intégration par votre équipe de Delivery.
 
 - **Knowledge Graph Métier** — Modélisation de l'ontologie de votre installation : équipements, capteurs, paramètres physiques, règles de cohérence, corrélations. Ce graphe devient le socle de vérité qui contraint tout raisonnement IA en aval.
 
 - **Assistant IA Expert** — Interface conversationnelle où un LLM interroge vos données *à travers* le Knowledge Graph. L'assistant ne peut pas halluciner sur votre métier : il n'a accès qu'aux faits validés par le graphe et les outils de Tool Calling. Il diagnostique, recommande, extrait — en langage naturel, en temps réel.
 
-- **Audit & Cadrage "First Principles"** — Avant de construire, je passe votre projet au filtre 3S. Si le problème n'est pas Sizeable, Overlooked et Solvable, je vous le dis avant de facturer. Objectif : tuer les faux projets pour accélérer les vrais, et livrer une preuve de valeur en moins de 3 mois.
+**Ce que vous obtenez :** Un prototype fonctionnel validé, une architecture documentée, et la preuve mesurable que l'approche tient *avant* d'investir dans l'industrialisation. Délai : preuve de valeur en moins de 3 mois.
 
 **Pour qui :**
 - Exploitants de systèmes critiques (nucléaire, énergie, chimie, aéronautique)
@@ -128,7 +127,7 @@ Au-delà des pipelines de validation, je développe un **générateur de donnée
 
 - **Validation physique de la génération** : le modèle n'est pas évalué sur l'erreur de reconstruction (MSE) mais sur la conservation des corrélations physiques — si une baisse de puissance est générée sans la perturbation d'Axial Offset associée, le modèle a échoué
 
-**Le statut :** Stade VAE (architecture de base). Prochaine étape : intégration des contraintes physiques dans la loss function et validation sur données Gold du pipeline EDF.
+**Le statut :** Stade VAE (architecture de base). Prochaine étape : intégration des contraintes physiques dans la loss function et validation sur données Gold du pipeline nucléaire.
 
 **La valeur :** Un générateur synthétique validé physiquement ouvre la porte à l'entraînement de modèles ML sans accès aux données réelles (export, formation), à la simulation de scénarios opérationnels (stress tests), et à l'augmentation de datasets pour les phases rares.
 
@@ -136,11 +135,11 @@ Au-delà des pipelines de validation, je développe un **générateur de donnée
 
 ## La Feuille de Route
 
-**2024–2026 (en cours)** — Mission EDF. Livraison des POC pour le Programme Vision 2035. Construction du pipeline de validation physique et du Knowledge Graph nucléaire. Développement du PI-VAE.
+**2024–2026 (en cours)** — Mission de cadrage Data & IA dans le nucléaire français. Conception et livraison de prototypes fonctionnels (pipeline de validation physique, Knowledge Graph, assistant expert). Développement du PI-VAE.
 
-**Fin 2026** — Sortie du portage ESN. Facturation directe. Capitalisation sur 2+ ans de relation prouvée avec EDF.
+**Fin 2026** — Sortie du portage ESN. Facturation directe. Capitalisation sur 2+ ans de relation prouvée dans le secteur.
 
-**2027+** — Industrialisation de l'architecture (pipeline + Knowledge Graph + assistant) comme solution reproductible pour d'autres exploitants de systèmes critiques. Poursuite de la R&D PI-VAE vers un générateur synthétique industrialisable.
+**2027+** — Extension de l'architecture (pipeline + Knowledge Graph + assistant) comme solution reproductible pour d'autres exploitants de systèmes critiques. Poursuite de la R&D PI-VAE vers un générateur synthétique industrialisable.
 
 ---
 
@@ -155,16 +154,16 @@ Au-delà des pipelines de validation, je développe un **générateur de donnée
 | **Deep Learning** | VAE / PI-VAE (GRU encoder-decoder, MCMC latent sampling) — R&D en cours |
 | **Visualisation** | Shiny Dashboard, dygraphs (séries temporelles interactives), Plotly |
 | **Qualité** | testthat (270+ tests), renv (reproductibilité), validation anti-injection SQL |
-| **Langage** | R | Python
+| **Langage** | R |
 
 ---
 
 ## Qui je suis
 
-Boris Guarisma. Expert IA/Data spécialisé dans l'IA sous contrainte physique pour les systèmes critiques.
+Boris Guarisma. Ingénieur data spécialisé dans l'IA sous contrainte physique pour les systèmes critiques.
 
-19 mois chez EDF. 2 POC opérationnels. 270+ tests. 11 réacteurs. 3 règles physiques. 1 PI-VAE en cours.
+19 mois dans le nucléaire français. 2 prototypes validés. 270+ tests. 3 règles physiques. 1 PI-VAE en cours.
 
-Je ne suis pas une ESN. Je ne vends pas du temps. Je conçois des architectures où la physique empêche l'IA de mentir.
+Je ne suis pas une ESN. Je ne vends pas du temps. Je conçois des architectures où la physique empêche l'IA de mentir — et je le prouve par un prototype fonctionnel avant que vous n'investissiez.
 
 **Contact :** bguarisma@qognito.io
