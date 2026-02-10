@@ -28,17 +28,15 @@ Pipeline de validation physique et de visualisation temps réel haute performanc
 - **Data Lake Medallion** (Bronze → Silver → Gold) sur Apache Arrow partitionné, avec moteur analytique DuckDB zero-copy — des millions de points de données capteur traités en sub-seconde, 32 threads, 32 GB RAM
 
 - **3 règles de validation physique** codées et testées :
-  - *Règle 1 — Aberrations statistiques :* Puissance bornée à 110% PN (protection AAR), bore >= 0 ppm
-
-  - *Règle 2 — Impossibilité neutronique :* Le réacteur ne peut pas être en puissance si les grappes sont chutées
-
-  - *Règle 3 — Cohérence chimique :* Écart boremètre/chimiste > 50 ppm = capteur défaillant
-
+  - *Règle 1 — Aberrations statistiques*
+  - *Règle 2 — Impossibilité neutronique*
+  - *Règle 3 — Cohérence chimique*
+  
 - **4 modules d'imputation physique** — chaque variable est imputée selon sa physique propre : LOCF pour les grappes (mouvement discret par crans), spline cubique pour la puissance (dynamique continue), redondance spatiale pour les températures (4 boucles corrélées), interpolation linéaire pour le bore (cinétique lente)
 
 - **Filtrage Kalman** calibré par phase opérationnelle : ordre 0 (random walk, p_factor=4.0) pour la stabilité thermique EPN, ordre 1 (linear growth, p_factor=1.5) pour le suivi de rampes en montée en puissance
 
-- **Arbre de décision physique** classifiant automatiquement 7 phases opérationnelles (INVALID, EPN, SHUTDOWN, STRETCH, TRANSIENT, MEP, CYCLE) à partir des constantes REP 900 MWe
+- **Arbre de décision physique** classifiant automatiquement 7 phases opérationnelles du cycle d'exploitation du coeur  à partir des constantes REP 900 MWe
 
 - **270+ tests unitaires** couvrant chaque règle, chaque module, chaque edge case
 
@@ -76,15 +74,15 @@ Une mauvaise architecture de données est une dette énergétique et cognitive. 
 
 *En pratique :* Architecture zero-copy (Arrow + DuckDB) traitant des téraoctets sans duplication mémoire. Partitionnement intelligent pour un pruning automatique qui réduit les données scannées d'un facteur 10 à 100x. Sub-seconde pour 1 million de points. Pas de GPU, pas de cluster — un seul serveur bien architecturé.
 
-### Le Critère de Solvabilité (Pragmatisme de Combat)
+### Le Filtre CAP (Pragmatisme de Combat)
 
-Avoir raison en théorie ne suffit pas. Avant chaque projet, j'applique le filtre "3S" — trois questions impitoyables :
+Avoir raison en théorie ne suffit pas. Avant chaque engagement, je pose trois questions. Si le projet ne passe pas les trois, je le tue.
 
-1. **Sizeable** (Considérable) — Le problème a-t-il un impact vital sur vos opérations ?
-2. **Overlooked** (Négligé) — Est-ce un sujet technique "aride" que les autres ignorent, là où réside la valeur réelle ?
-3. **Solvable** (Soluble) — Avez-vous la physique et la donnée pour le résoudre ?
+1. **Contraint** — Le problème est-il borné par une loi physique ? Thermodynamique, neutronique, cinétique chimique, mécanique — si la réalité impose une borne que l'algorithme ne peut pas ignorer, c'est mon terrain. Si le problème est purement narratif, l'IA générique suffit.
 
-Si un projet ne passe pas ces trois filtres — manque de données, latence trop élevée, contrainte physique non modélisable — je le tue immédiatement. Je livre des prototypes qui prouvent la faisabilité dans le monde réel, pas des slides qui la promettent.
+2. **Aride** — Le sujet est-il techniquement "ennuyeux" au point que personne ne s'y attaque ? La valeur réelle se cache dans les problèmes ingrats : nettoyage de séries temporelles, recalage de capteurs, validation de cohérence physique. Si tout le monde s'y précipite, c'est déjà commoditisé.
+
+3. **Prouvable** — Puis-je démontrer la faisabilité par un prototype fonctionnel en moins de 3 mois ? Si la donnée existe et la physique est modélisable, je livre une preuve — pas une promesse.
 
 ---
 
@@ -96,7 +94,7 @@ Si un projet ne passe pas ces trois filtres — manque de données, latence trop
 
 **Concrètement :**
 
-- **Cadrage "First Principles"** — Avant de construire, je passe votre projet au filtre 3S. Si le problème n'est pas Sizeable, Overlooked et Solvable, je vous le dis avant de facturer. Objectif : tuer les faux projets, accélérer les vrais.
+- **Cadrage "First Principles"** — Avant de construire, je passe votre projet au filtre CAP. Si le problème n'est pas Contraint (par la physique), Aride (techniquement négligé) et Prouvable (par prototype en <3 mois), je vous le dis avant de facturer. Objectif : tuer les faux projets, accélérer les vrais.
 
 - **Pipeline Medallion (Bronze → Silver → Gold)** — Ingestion, nettoyage, imputation physique, validation, enrichissement. Chaque étape est traçable, testée, auditable. Les règles physiques de votre domaine sont codées comme contraintes de premier rang, pas comme post-traitements. Le prototype est conçu avec une exigence de production (tests unitaires, architecture pérenne) pour faciliter l'intégration par votre équipe de Delivery.
 
@@ -154,7 +152,7 @@ Au-delà des pipelines de validation, je développe un **générateur de donnée
 | **Deep Learning** | VAE / PI-VAE (GRU encoder-decoder, MCMC latent sampling) — R&D en cours |
 | **Visualisation** | Shiny Dashboard, dygraphs (séries temporelles interactives), Plotly |
 | **Qualité** | testthat (270+ tests), renv (reproductibilité), validation anti-injection SQL |
-| **Langage** | R |
+| **Langages** | R, Python (reticulate) |
 
 ---
 
