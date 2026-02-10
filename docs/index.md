@@ -158,8 +158,8 @@ Au-delà des pipelines de validation, je développe un **générateur de donnée
 
 ## Qui je suis
 
-    - **Boris Guarisma**. Ingénieur data spécialisé dans l'IA sous contrainte physique pour les systèmes critiques.
-    - **Dans le nucléaire français depuis mi-2024**.
-    - **Je ne suis pas une ESN. Je ne vends pas du temps**. Je conçois des architectures où la physique empêche l'IA de mentir — et je le prouve par un prototype fonctionnel avant que vous n'investissiez.
+- **Boris Guarisma** — Expert Data & AI spécialisé dans l'IA sous contrainte physique pour les systèmes critiques.
+- **Dans le nucléaire français depuis mi-2024**
+- **Je ne suis pas une ESN. Je ne vends pas du temps** — e conçois des architectures où la physique empêche l'IA de mentir — et je le prouve par un prototype fonctionnel avant que vous n'investissiez.
 
 **Contact :** bguarisma@qognito.io
