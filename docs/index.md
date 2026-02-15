@@ -82,7 +82,7 @@ Je dé-risque vos projets Data & IA industriels. Je conçois l'architecture, je 
 
 ## Qui je suis
 
-**Boris Guarisma** — Ingénieur data, micro-entreprise Qognito.io.
+**Boris Guarisma** — Ingénieur Data & AI, micro-entreprise Qognito.io.
 
 Mon parcours m'a placé à l'intersection de la physique nucléaire, du data engineering haute performance et de l'IA cognitive — un croisement que peu de profils couvrent. C'est cette position qui me permet de parler au neutronicien, au data architect et au product owner dans leur langue respective, et de traduire entre eux.
 
