@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-<!-- Collez ici les 4 blocs <script type="application/ld+json"> 
-     du fichier schema-jsonld.html que je vous ai fourni -->
+
 <!-- 1. Person + Organization -->
 <script type="application/ld+json">
 {
@@ -96,7 +95,7 @@
         "itemOffered": {
           "@type": "Service",
           "name": "Pipeline de validation physique",
-          "description": "Ingestion, nettoyage, imputation et validation de données capteurs. Règles physiques codées comme contraintes de premier rang. Architecture Medallion Bronze→Silver→Gold."
+          "description": "Ingestion, nettoyage, imputation et validation de données capteurs. Règles physiques codées comme contraintes de premier rang. Architecture Medallion Bronze, Silver, Gold."
         }
       },
       {
@@ -163,7 +162,7 @@
       "name": "Comment valider physiquement des données de capteurs nucléaires ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La validation physique des données capteurs nucléaires passe par un pipeline ETL structuré en couches (Bronze → Silver → Gold). Chaque transformation est contrainte par la physique du réacteur : bornage des valeurs selon les limites physiques connues, détection d'impossibilités neutroniques, vérification de cohérence chimique, recalage du boremètre par assimilation de données chimistes. L'imputation respecte la dynamique propre de chaque variable : inertie thermique pour les températures, cinétique lente pour le bore, mouvement discret par crans pour les grappes de contrôle. Chez Qognito.io, cette approche a résolu automatiquement 96,4 % des incohérences physiques sur 11 réacteurs du parc français."
+        "text": "La validation physique des données capteurs nucléaires passe par un pipeline ETL structuré en couches (Bronze, Silver, Gold). Chaque transformation est contrainte par la physique du réacteur : bornage des valeurs selon les limites physiques connues, détection d'impossibilités neutroniques, vérification de cohérence chimique, recalage du boremètre par assimilation de données chimistes. L'imputation respecte la dynamique propre de chaque variable : inertie thermique pour les températures, cinétique lente pour le bore, mouvement discret par crans pour les grappes de contrôle. Chez Qognito.io, cette approche a résolu automatiquement 96,4 % des incohérences physiques sur 11 réacteurs du parc français."
       }
     },
     {
@@ -212,13 +211,4 @@
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    ...
-  ]
-}
-</script>
-<!-- etc. pour les 4 blocs -->
 {% endblock %}
