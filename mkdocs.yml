@@ -46,3 +46,4 @@ nav:
   - "Expertise":
     - "L'Offre": "#loffre"
     - "Stack Technique": "#le-stack-technique"
+  - FAQ: faq.md
