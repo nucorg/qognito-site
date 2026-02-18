@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<!-- Collez ici les 4 blocs <script type="application/ld+json"> 
+     du fichier schema-jsonld.html que je vous ai fourni -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    ...
+  ]
+}
+</script>
+<!-- etc. pour les 4 blocs -->
+{% endblock %}
