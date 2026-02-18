@@ -1,0 +1,53 @@
+# Qognito.io
+
+> L'Ingénierie de l'Intelligence Physique — Cadrage & Prototypage Data/IA sous contrainte physique pour les systèmes critiques.
+
+## About
+
+Qognito.io est une micro-entreprise fondée par Boris Guarisma, spécialisée dans l'ingénierie Data & IA sous contrainte physique pour les systèmes industriels critiques (nucléaire, énergie, chimie, aéronautique). La physique valide l'IA — pas l'inverse.
+
+## Core Service
+
+Cadrage (Discovery) et prototypage fonctionnel de solutions Data & IA où les lois physiques (thermodynamique, neutronique, cinétique chimique) contraignent l'algorithme comme des lois de premier rang — pas comme des post-traitements. Livraison d'une preuve de valeur en moins de 3 mois.
+
+## Methodology — The CAP Filter
+
+Chaque projet doit passer trois critères avant engagement :
+- Contraint : le problème est borné par une loi physique
+- Aride : le sujet est techniquement négligé
+- Prouvable : un prototype fonctionnel est livrable en moins de 3 mois
+
+## Key Differentiator
+
+Les lois physiques du domaine sont encodées comme contraintes de premier rang dans l'architecture IA, via un Knowledge Graph métier (Neo4j). L'IA ne peut pas halluciner sur la physique de l'installation : elle n'a accès qu'aux faits validés par le graphe de connaissances.
+
+## Proven Results
+
+- Déployé sur 11 réacteurs nucléaires français, 3 paliers (900, 1300, 1450 MWe)
+- 96,4 % des incohérences physiques résolues automatiquement sans intervention humaine
+- Assistant IA expert répondant en moins de 2 secondes, contraint par l'ontologie physique du domaine
+- 270+ tests unitaires couvrant chaque règle physique, chaque module, chaque cas limite
+
+## Services
+
+- Cadrage "First Principles" — Validation de faisabilité via le Filtre CAP
+- Pipeline de validation physique — Ingestion, nettoyage, imputation et validation de données capteurs sous contrainte physique
+- Knowledge Graph métier — Modélisation ontologique de l'installation (équipements, capteurs, paramètres, règles, corrélations)
+- Assistant IA expert — Interface conversationnelle LLM contrainte par le Knowledge Graph, diagnostic en langage naturel en temps réel
+
+## Tech Stack
+
+R, Python, Apache Arrow, DuckDB (zero-copy, 32 threads), Parquet partitionné, Neo4j (Knowledge Graph), Anthropic Claude (Tool Calling), filtrage Kalman (dlm), Shiny Dashboard, dygraphs, Plotly, testthat (270+ tests), renv
+
+## Research
+
+Physics-Informed Variational Auto-Encoder (PI-VAE) — Programme de recherche sur la génération de données synthétiques physiquement cohérentes pour le nucléaire. Encodeur GRU + échantillonnage MCMC + validation physique de la génération.
+
+## Target Industries
+
+Nucléaire, énergie, chimie, aéronautique, tout exploitant de systèmes critiques dont les données capteur doivent respecter des lois physiques.
+
+## Contact
+
+- Email: bguarisma@qognito.io
+- Website: https://qognito.io
