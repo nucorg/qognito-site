@@ -3,6 +3,214 @@
 {% block extrahead %}
 <!-- Collez ici les 4 blocs <script type="application/ld+json"> 
      du fichier schema-jsonld.html que je vous ai fourni -->
+<!-- 1. Person + Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://qognito.io/#boris-guarisma",
+      "name": "Boris Guarisma",
+      "jobTitle": "Ingénieur Data & AI",
+      "description": "Ingénieur spécialisé dans le cadrage et prototypage Data/IA sous contrainte physique pour les systèmes critiques. Intervient à l'intersection de la physique nucléaire, du data engineering haute performance et de l'IA cognitive.",
+      "email": "bguarisma@qognito.io",
+      "url": "https://qognito.io",
+      "knowsAbout": [
+        "Physics-Informed AI",
+        "Nuclear reactor data engineering",
+        "Knowledge Graphs",
+        "Kalman filtering",
+        "Time series validation",
+        "Physics-constrained machine learning",
+        "Neutronics",
+        "Chemical kinetics",
+        "Thermodynamics",
+        "Data pipeline architecture"
+      ],
+      "worksFor": {
+        "@id": "https://qognito.io/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://qognito.io/#organization",
+      "name": "Qognito.io",
+      "url": "https://qognito.io",
+      "email": "bguarisma@qognito.io",
+      "description": "Micro-entreprise spécialisée dans l'ingénierie Data & IA sous contrainte physique pour les systèmes industriels critiques (nucléaire, énergie, chimie, aéronautique).",
+      "founder": {
+        "@id": "https://qognito.io/#boris-guarisma"
+      },
+      "areaServed": "France",
+      "knowsAbout": [
+        "Physics-constrained AI",
+        "Nuclear data engineering",
+        "Knowledge Graph engineering",
+        "Critical systems AI prototyping"
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- 2. ProfessionalService -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://qognito.io/#service",
+  "name": "Cadrage & Prototypage Data/IA sous Contrainte Physique",
+  "provider": {
+    "@id": "https://qognito.io/#organization"
+  },
+  "description": "Conception d'architectures Data & IA où les lois physiques contraignent l'algorithme comme des lois de premier rang. Livraison de prototypes fonctionnels validés en moins de 3 mois pour dé-risquer les projets avant industrialisation.",
+  "serviceType": [
+    "Cadrage First Principles (Filtre CAP)",
+    "Pipeline de validation physique de données capteurs",
+    "Knowledge Graph métier (ontologie industrielle)",
+    "Assistant IA expert contraint par graphe de connaissances"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "France"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Exploitants de systèmes critiques : nucléaire, énergie, chimie, aéronautique"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services Qognito.io",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cadrage First Principles",
+          "description": "Validation de faisabilité via le Filtre CAP (Contraint, Aride, Prouvable) avant tout engagement."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pipeline de validation physique",
+          "description": "Ingestion, nettoyage, imputation et validation de données capteurs. Règles physiques codées comme contraintes de premier rang. Architecture Medallion Bronze→Silver→Gold."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Knowledge Graph métier",
+          "description": "Modélisation Neo4j de l'ontologie de l'installation : équipements, capteurs, paramètres physiques, règles de cohérence, corrélations quantifiées."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Assistant IA expert",
+          "description": "Interface conversationnelle LLM contrainte par le Knowledge Graph. Diagnostic en langage naturel en moins de 2 secondes. L'IA ne peut halluciner : accès uniquement aux faits validés par la physique."
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- 3. FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que l'IA sous contrainte physique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'IA sous contrainte physique est une approche où les lois de la physique (thermodynamique, neutronique, cinétique chimique) sont encodées comme des contraintes de premier rang dans l'architecture de l'algorithme — et non comme de simples post-traitements. L'IA ne peut pas proposer de résultat qui viole les lois physiques du domaine. Chez Qognito.io, cela se traduit par un Knowledge Graph métier qui encode l'ontologie physique de l'installation et contraint tout raisonnement IA en aval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi les LLM hallucinent-ils dans l'industrie critique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les LLM généralistes sont des modèles probabilistes entraînés sur du langage. Ils ne connaissent pas les lois physiques d'une installation spécifique : ils ne savent pas quel capteur correspond à quel paramètre, quelle règle de cohérence s'applique, ni quelles corrélations physiques sont pertinentes. Sans contrainte métier, ils produisent des réponses plausibles linguistiquement mais fausses physiquement. La solution : contraindre le LLM par un graphe de connaissances qui encode la physique du domaine, de sorte que l'IA n'ait accès qu'aux faits validés."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que le Filtre CAP ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le Filtre CAP est une méthodologie de qualification de projets Data & IA développée par Qognito.io. Chaque projet doit satisfaire trois critères avant engagement : Contraint (le problème est borné par une loi physique), Aride (le sujet est techniquement négligé et pas encore commoditisé), Prouvable (un prototype fonctionnel est livrable en moins de 3 mois). Si le projet ne passe pas les trois critères, il n'est pas pris."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce qu'un Knowledge Graph métier pour l'industrie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un Knowledge Graph métier est un graphe de connaissances qui modélise l'ontologie d'une installation industrielle : équipements, capteurs, paramètres physiques, règles de cohérence, corrélations quantifiées entre variables. Chez Qognito.io, ce graphe est implémenté sur Neo4j et sert de socle de vérité qui contraint tout raisonnement IA. Par exemple, pour le nucléaire : 11 réacteurs, 10 paramètres physiques, 9+ capteurs par réacteur, 5 règles physiques, 5 corrélations quantifiées, avec des requêtes en moins de 100 ms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment valider physiquement des données de capteurs nucléaires ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La validation physique des données capteurs nucléaires passe par un pipeline ETL structuré en couches (Bronze → Silver → Gold). Chaque transformation est contrainte par la physique du réacteur : bornage des valeurs selon les limites physiques connues, détection d'impossibilités neutroniques, vérification de cohérence chimique, recalage du boremètre par assimilation de données chimistes. L'imputation respecte la dynamique propre de chaque variable : inertie thermique pour les températures, cinétique lente pour le bore, mouvement discret par crans pour les grappes de contrôle. Chez Qognito.io, cette approche a résolu automatiquement 96,4 % des incohérences physiques sur 11 réacteurs du parc français."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la différence entre un prototype fonctionnel et un démonstrateur ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un démonstrateur prouve un concept mais n'est généralement pas conçu pour être intégré en production. Un prototype fonctionnel selon l'approche Qognito.io est conçu avec une exigence de production dès le départ : tests unitaires (270+), validation physique systématique, architecture pérenne et documentée. L'objectif est que l'équipe de delivery qui l'intègre dans le produit final parte d'une base solide — pas d'un démonstrateur jetable. C'est une preuve de valeur mesurable livrée en moins de 3 mois."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce qu'un Physics-Informed VAE (PI-VAE) ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un Physics-Informed Variational Auto-Encoder (PI-VAE) est un modèle génératif qui produit des données synthétiques en respectant les contraintes physiques du domaine. Contrairement à un VAE classique évalué sur l'erreur de reconstruction, un PI-VAE est évalué sur la conservation des corrélations physiques dans les données générées. L'architecture combine un encodeur GRU (pour capturer les dépendances temporelles longues et courtes), un échantillonnage MCMC dans l'espace latent (pour la continuité physique), et une validation physique de la génération. L'application visée : générer des données nucléaires synthétiques pour l'entraînement de modèles ML sans accès aux données réelles sensibles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pour quelles industries l'IA sous contrainte physique est-elle pertinente ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'IA sous contrainte physique est pertinente pour tout secteur où l'erreur algorithmique a un coût physique réel : le nucléaire (surveillance de réacteurs, données de capteurs), l'énergie (réseaux électriques, optimisation de production), la chimie (procédés, cinétique de réaction), l'aéronautique (systèmes embarqués critiques), et plus largement toute industrie dont les données capteur doivent respecter des lois physiques avant d'alimenter un modèle prédictif ou un outil d'aide à la décision."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- 4. WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Qognito.io",
+  "url": "https://qognito.io",
+  "description": "L'Ingénierie de l'Intelligence Physique — Cadrage & Prototypage Data/IA sous contrainte physique pour les systèmes critiques.",
+  "author": {
+    "@id": "https://qognito.io/#boris-guarisma"
+  },
+  "publisher": {
+    "@id": "https://qognito.io/#organization"
+  },
+  "inLanguage": "fr"
+}
+</script>
 
 <script type="application/ld+json">
 {
