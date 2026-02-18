@@ -9,7 +9,7 @@ theme:
   name: material
   custom_dir: overrides
   language: fr
-  logo: assets/logo.png
+  logo: assets/Qognito_entier_blanc_transp3.png
   favicon: assets/favicon.png
   palette:
     # Mode sombre (Navy Qognito)
