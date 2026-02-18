@@ -1,5 +1,3 @@
-# L'Ingénierie de l'Intelligence Physique
-
 <figure class="photo-img">
   <img src="assets/city_night.jpg" alt="City skyline at night">
   <figcaption>
