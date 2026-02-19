@@ -26,7 +26,7 @@ Si le projet ne passe pas les trois, il n'est pas pris.
 
 Un graphe de connaissances qui modélise l'ontologie d'une installation industrielle : équipements, capteurs, paramètres physiques, règles de cohérence, corrélations quantifiées. Il encode explicitement les relations entre les éléments de votre domaine. C'est ce graphe qui contraint l'assistant IA : le LLM ne raisonne pas seul, il interroge le graphe — et ne peut accéder qu'aux faits physiquement validés.
 
-→ Pour approfondir la méthodologie de conception : [Quand l'IA rencontre la physique (et perd)](https://blog.bguarisma.com/quand-ia-rencontre-physique-knowledge-graph)
+→ Pour approfondir la méthodologie de conception : [Quand l'IA rencontre la physique (et perd)](https://blog.bguarisma.com/quand-ia-rencontre-physique-et-perd)
 
 ---
 
