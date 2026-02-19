@@ -152,7 +152,7 @@ Un assistant conversationnel où le LLM ne raisonne pas seul — il interroge un
 
 L'ingénieur pose une question en français, l'assistant identifie le capteur, applique la règle physique, extrait les données, recommande le capteur corrélé — **en moins de 2 secondes**. L'assistant ne peut pas halluciner : il n'a accès qu'aux faits validés par le graphe. Prototype validé, en attente d'intégration produit.
 
-→ Méthodologie de conception du Knowledge Graph : [[lire l'article complet](https://blog.bguarisma.com/quand-ia-rencontre-physique-et-perd)
+→ Méthodologie de conception du Knowledge Graph : [lire l'article complet](https://blog.bguarisma.com/quand-ia-rencontre-physique-et-perd)
 
 ### Détails techniques
 
