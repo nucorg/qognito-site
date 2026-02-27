@@ -45,6 +45,7 @@ nav:
   - "R&D":
     - "PI-VAE": "#pi-vae-donnees-synthetiques-physiquement-coherentes"
   - "Expertise":
+    - "Ce que vous vivez": "#ce-que-vous-vivez"
     - "L'Offre": "#loffre-cadrage-prototypage-dataia-sous-contrainte-physique"
     - "Stack Technique": "#stack-technique"
   - FAQ: faq.md

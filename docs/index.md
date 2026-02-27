@@ -5,31 +5,67 @@
   </figcaption>
 </figure>
 
-## La physique valide l'IA — pas l'inverse.
+## Un interlocuteur qui parle physique, données et produit.
 
-Votre industrie génère des millions de points de données par jour. L'IA promet de les exploiter. Mais quand l'erreur a un coût physique réel — un réacteur nucléaire, un réseau électrique, un procédé chimique — qui s'assure que l'algorithme respecte les lois de votre métier avant de raisonner ?
+Vos projets Data & IA croisent trois mondes qui communiquent mal : la physique de votre installation, l'ingénierie des données et l'intelligence artificielle. Le physicien parle en phénomènes, le data engineer en flux, le product owner en valeur. Personne ne traduit.
 
-C'est ce que je fais.
-
----
-
-## Le Problème
-
-L'IA générative maîtrise le langage. Elle ignore la physique.
-
-Elle hallucine — et dans votre domaine, l'hallucination a un coût réel. La statistique ne suffit pas quand la thermodynamique, la neutronique ou la cinétique chimique imposent des lois non négociables.
-
-Votre enjeu n'est pas "faire de l'IA." C'est faire de l'IA qui respecte la physique de votre installation — et le prouver avant d'investir.
+Je suis ce traducteur. Ingénieur Data & IA spécialisé dans les systèmes critiques, je conçois des prototypes fonctionnels où la physique contraint l'algorithme — et je fais le pont entre vos experts métier, vos architectes données et vos product owners.
 
 ---
 
-## Ce que je fais
+## Ce que vous vivez
 
-Je travaille à la croisée de trois mondes qui communiquent mal : **la physique industrielle**, **l'ingénierie des données** et **l'intelligence artificielle**.
+### La réunion cours de rattrapage
 
-Je conçois des architectures Data & IA où les lois physiques contraignent l'algorithme comme des lois de premier rang — pas comme des post-traitements. Et je fais le pont entre l'expert métier, l'architecte solution et le product owner pour que le prototype devienne un produit.
+L'équipe data qualité impute les trous de toutes les séries temporelles avec la même méthode. Sauf qu'un trou dans le bore (cinétique lente) et un trou dans la puissance (dynamique rapide) ne se comblent pas de la même façon. Le data engineer ne le sait pas. Le physicien ne sait pas l'expliquer en termes de pipeline. La réunion tourne en rond.
 
-**Mon métier : cadrage et prototypage Data/IA sous contrainte physique pour les systèmes critiques.**
+### Le prototype techniquement correct mais physiquement faux
+
+Le data scientist livre un modèle performant sur les métriques ML. Sauf qu'il prédit de la puissance quand les grappes sont chutées. Personne dans l'équipe n'a vu le problème avant la recette métier.
+
+### Le turnover qui remet le compteur à zéro
+
+Le consultant data part au bout de 6 mois. Le suivant passe 3 mois à comprendre le domaine. L'expertise métier repart à zéro à chaque rotation — et c'est le client qui paie la montée en compétence.
+
+### Les trois langues qui ne se parlent pas
+
+Le physicien parle en phénomènes. Le data engineer parle en flux. Le product owner parle en valeur. Personne ne traduit — le projet avance en silos et converge trop tard.
+
+---
+
+## Pourquoi ça échoue
+
+Ce n'est pas un problème de compétence. C'est un problème de structure.
+
+L'expertise est distribuée sur une chaîne de sous-traitance où chaque maillon couvre un domaine. Le consultant data n'a pas de formation en physique des réacteurs. Le physicien métier n'a pas le vocabulaire des pipelines de données. Chacun excelle dans sa langue — mais personne ne traduit entre les trois.
+
+La physique est traitée comme un post-traitement : on construit le pipeline, on entraîne le modèle, puis on vérifie "si ça colle" avec le métier. Quand ça ne colle pas, on itère — à la charge du client.
+
+Le vrai levier n'est pas un outil de plus. C'est un profil qui couvre les trois mondes — physique industrielle, ingénierie des données, IA — et qui sait traduire entre eux dès la conception.
+
+---
+
+## Ce que je fais différemment
+
+### La traduction
+
+Je parle au neutronicien, au data architect et au product owner dans leur langue respective. Ce n'est pas une métaphore : j'ai conçu des pipelines où chaque variable est imputée selon sa dynamique physique propre, des Knowledge Graphs qui encodent l'ontologie métier, et des assistants IA contraints par ces graphes — en dialogue constant avec les experts de chaque domaine.
+
+### Les trois mondes
+
+Je travaille à la croisée de **la physique industrielle**, **l'ingénierie des données** et **l'intelligence artificielle**. Mon métier : cadrage et prototypage Data/IA sous contrainte physique pour les systèmes critiques.
+
+### Le Filtre CAP
+
+Avant chaque engagement, le projet passe trois questions. Si le projet ne passe pas les trois, je ne le prends pas.
+
+1. **Contraint** — Le problème est-il borné par une loi physique ?
+2. **Aride** — Le sujet est-il techniquement négligé ?
+3. **Prouvable** — Puis-je livrer un prototype fonctionnel en moins de 3 mois ?
+
+### Le livrable
+
+Un prototype fonctionnel validé, pas un rapport de cadrage. Conçu avec une exigence de production pour que l'équipe de delivery qui l'intègre parte d'une base solide — pas d'un démonstrateur jetable.
 
 ---
 
@@ -47,19 +83,9 @@ Depuis mi-2024, j'interviens en cadrage Data & IA pour la surveillance des réac
 
 ---
 
-## Le Filtre CAP
-
-Avant chaque engagement, le projet passe trois questions. Si le projet ne passe pas les trois, je ne le prends pas.
-
-1. **Contraint** — Le problème est-il borné par une loi physique ?
-2. **Aride** — Le sujet est-il techniquement négligé ?
-3. **Prouvable** — Puis-je livrer un prototype fonctionnel en moins de 3 mois ?
-
----
-
 ## L'Offre — Cadrage & Prototypage Data/IA sous Contrainte Physique
 
-Je dé-risque vos projets Data & IA industriels. Je conçois l'architecture, je construis un prototype fonctionnel qui valide l'approche par la preuve, et je vous livre une base solide pour l'industrialisation — pas un démonstrateur jetable.
+Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé-risque vos projets Data & IA industriels en livrant un prototype fonctionnel qui valide l'approche par la preuve, pas par le slide.
 
 - **Cadrage "First Principles"** — Je passe votre projet au Filtre CAP. Si le problème n'est pas contraint par la physique, négligé techniquement et prouvable en < 3 mois, je vous le dis avant de facturer.
 
