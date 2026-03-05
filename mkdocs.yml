@@ -47,6 +47,7 @@ nav:
   - "Expertise":
     - "Ce que vous vivez": "#ce-que-vous-vivez"
     - "L'Offre": "#loffre-cadrage-prototypage-dataia-sous-contrainte-physique"
+    - "L'Encodeur de Contraintes": encodeur.md
     - "Stack Technique": "#stack-technique"
   - FAQ: faq.md
   - Blog: blog.md
