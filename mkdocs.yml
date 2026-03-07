@@ -5,6 +5,9 @@ site_description: "L'Ingénierie de l'Intelligence Physique"
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/nav-anchors.js
+
 theme:
   name: material
   custom_dir: overrides
