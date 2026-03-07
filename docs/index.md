@@ -9,7 +9,7 @@
 
 Vos projets Data & IA croisent trois mondes qui communiquent mal : la physique de votre installation, l'ingénierie des données et l'intelligence artificielle. Le physicien parle en phénomènes, le data engineer en flux, le product owner en valeur. Personne ne traduit.
 
-Je suis ce traducteur. Ingénieur Data & IA spécialisé dans les systèmes critiques, je conçois des prototypes fonctionnels où la physique contraint l'algorithme — et je fais le pont entre vos experts métier, vos architectes données et vos product owners.
+Je suis ce traducteur. Ingénieur Data & IA spécialisé dans les domaines contraints, je cadre et prototype des solutions où la physique et les règles métier contraignent l'algorithme — et je fais le pont entre vos experts métier, vos architectes données et vos product owners.
 
 ---
 
@@ -53,19 +53,19 @@ Je parle au neutronicien, au data architect et au product owner dans leur langue
 
 ### Les trois mondes
 
-Je travaille à la croisée de **la physique industrielle**, **l'ingénierie des données** et **l'intelligence artificielle**. Mon métier : cadrage et prototypage Data/IA sous contrainte physique pour les systèmes critiques.
+Je travaille à la croisée de **la physique industrielle**, **l'ingénierie des données** et **l'intelligence artificielle**. Mon métier : cadrage stratégique et prototypage Data/IA sous contrainte — physique, réglementaire ou métier — pour les domaines critiques.
 
 ### Le Filtre CAP
 
 Avant chaque engagement, le projet passe trois questions. Si le projet ne passe pas les trois, je ne le prends pas.
 
-1. **Contraint** — Le problème est-il borné par une loi physique ?
+1. **Contraint** — Le problème est-il borné par une loi physique, une réglementation ou un domaine de règles formelles ?
 2. **Aride** — Le sujet est-il techniquement négligé ?
-3. **Prouvable** — Puis-je livrer un prototype fonctionnel en moins de 3 mois ?
+3. **Prouvable** — Puis-je livrer un prototype fonctionnel ou un livrable actionnable en moins de 3 mois ?
 
 ### Le livrable
 
-Un prototype fonctionnel validé, pas un rapport de cadrage. Conçu avec une exigence de production pour que l'équipe de delivery qui l'intègre parte d'une base solide — pas d'un démonstrateur jetable.
+Un cadrage stratégique actionnable ou un prototype fonctionnel validé — pas un slide deck ni un démonstrateur jetable. Chaque livrable est conçu pour que l'équipe qui prend la suite parte d'une base solide.
 
 ---
 
@@ -85,9 +85,11 @@ Depuis mi-2024, j'interviens en cadrage Data & IA pour la surveillance des réac
 
 ## L'Offre — Cadrage & Prototypage Data/IA sous Contrainte Physique
 
-Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé-risque vos projets Data & IA industriels en livrant un prototype fonctionnel qui valide l'approche par la preuve, pas par le slide.
+Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé-risque vos projets Data & IA en livrant un cadrage stratégique actionnable et/ou un prototype fonctionnel qui valide l'approche par la preuve, pas par le slide.
 
-- **Cadrage "First Principles"** — Je passe votre projet au Filtre CAP. Si le problème n'est pas contraint par la physique, négligé techniquement et prouvable en < 3 mois, je vous le dis avant de facturer.
+- **Cadrage "First Principles"** — Je passe votre projet au Filtre CAP. Si le problème n'est pas contraint (physique, réglementation, règles formelles), négligé techniquement et prouvable en < 3 mois, je vous le dis avant de facturer.
+
+- **Cadrage Stratégique IA** — Votre produit intègre (ou veut intégrer) de l'IA, mais vous n'avez pas d'architecture cible, pas de roadmap, et le risque de faux départ est élevé. Je produis un livrable de cadrage complet : diagnostic du gap entre ambition et réalité, analyse build vs buy, recommandation architecturale (Knowledge Graph, RAG, agents), roadmap en 3 horizons avec critères go/no-go, estimation des coûts et des compétences requises. Le cadrage protège de 10 à 20 fois son prix en erreurs évitées.
 
 - **Pipeline de validation physique** — Ingestion, nettoyage, imputation et validation de vos données de capteurs. Les règles physiques de votre domaine sont codées comme contraintes de premier rang. Le prototype est conçu avec une exigence de production pour faciliter l'intégration par votre équipe de delivery.
 
@@ -95,12 +97,15 @@ Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé
 
 - **Assistant IA expert** — Interface conversationnelle où un LLM interroge vos données *à travers* le Knowledge Graph. L'assistant ne peut pas halluciner sur votre domaine : il n'a accès qu'aux faits validés par la physique. Il diagnostique, recommande, extrait — en langage naturel, en temps réel.
 
-**Ce que vous obtenez :** Un prototype fonctionnel validé, une architecture documentée, et la preuve mesurable que l'approche tient — avant d'investir dans l'industrialisation. Preuve de valeur en moins de 3 mois.
+**Ce que vous obtenez :** Un livrable actionnable — cadrage stratégique, prototype fonctionnel ou les deux — et la preuve mesurable que l'approche tient avant d'investir dans l'industrialisation. Preuve de valeur en moins de 3 mois.
+
+**Forfait au livrable, pas au temps passé.** Je facture la valeur du cadrage et du prototype, pas les heures passées à les produire. Chaque engagement est un forfait ancré dans le résultat livré.
 
 **Pour qui :**
 - Exploitants de systèmes critiques (nucléaire, énergie, chimie, aéronautique)
 - Ingénieries et bureaux d'études avec des données de procédés en séries temporelles
-- Tout industriel dont les données capteur doivent respecter des lois physiques avant d'alimenter un modèle
+- Startups et éditeurs SaaS dont le produit opère dans un domaine réglementé ou contraint par des règles formelles
+- Tout acteur dont les données ou les décisions doivent respecter des lois physiques ou réglementaires avant d'alimenter un modèle IA
 
 ---
 
@@ -110,7 +115,7 @@ Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé
 
 Mon parcours m'a placé à l'intersection de la physique nucléaire, du data engineering haute performance et de l'IA cognitive — un croisement que peu de profils couvrent. C'est cette position qui me permet de parler au neutronicien, au data architect et au product owner dans leur langue respective, et de traduire entre eux.
 
-Ma conviction : dans l'industrie critique, la physique doit valider l'IA — pas l'inverse. Je ne vends pas du temps. Je livre de la preuve — un prototype fonctionnel qui démontre la valeur avant que vous n'investissiez.
+Ma conviction : dans les domaines contraints — industrie critique, réglementation, règles formelles — la physique et les règles doivent valider l'IA, pas l'inverse. Je ne vends pas du temps. Je facture la valeur du cadrage et du prototype, pas les heures passées à les produire. Chaque livrable protège de 10 à 20 fois son prix en erreurs architecturales, réglementaires ou techniques évitées.
 
 Dans le nucléaire français depuis mi-2024.
 
@@ -192,6 +197,33 @@ L'ingénieur pose une question en français, l'assistant identifie le capteur, a
 
 ---
 
+## Cas d'Étude — Cadrage Stratégique IA
+
+### Le contexte
+
+Une startup SaaS RH opère dans un domaine réglementé (droit social, conventions collectives). Son produit gère les arrêts de travail pour des entreprises clientes. L'équipe fondatrice veut intégrer de l'IA pour automatiser le parcours, mais n'a ni architecture IA cible, ni compétence interne, ni visibilité sur les risques techniques.
+
+Le gap : l'équipe se positionne comme une "app IA native" alors que le produit repose sur un moteur de règles statique. Sans cadrage, le risque de faux départ technique est élevé — mauvaise architecture, mauvais modèle, mauvais séquencement.
+
+### L'approche
+
+Le projet passe le Filtre CAP : **Contraint** (droit social, RGPD données de santé), **Aride** (pas de solution IA sur étagère pour ce domaine), **Prouvable** (livrable actionnable en 3 semaines).
+
+Mission de cadrage complet :
+
+- **Diagnostic** du gap aspirationnel : ce que l'équipe dit être vs ce qu'elle a réellement construit
+- **Analyse SWOT** build vs buy : IA propriétaire (Knowledge Graph + LLM) vs solutions SaaS génériques, avec 8 critères de décision
+- **Recommandation architecturale** : Knowledge Graph plutôt que RAG — le domaine est régi par des règles formelles à chaînage conditionnel, pas par des documents à rechercher
+- **Arbitrage souveraineté LLM** : données de santé RGPD Art. 9 → recommandation d'un LLM souverain européen
+- **Ontologie de référence** : modélisation complète du domaine (7 types de nœuds, 9 relations, exemples instanciés)
+- **Roadmap 3 horizons** avec critères go/no-go entre chaque étape — du premier assistant simple à l'architecture multi-agents
+
+### Le résultat
+
+Livrable de cadrage complet livré en 3 semaines. L'équipe fondatrice dispose d'une architecture cible validée, d'une roadmap séquencée avec estimation des coûts par horizon, et d'une ontologie de référence prête à être implémentée. Le cadrage protège la startup d'un estimé de 80 à 160 k€ de risque sur 12-18 mois (mauvaise architecture, embauche prématurée, perte de différenciation).
+
+---
+
 ## Les Principes de Conception
 
 Ces principes ne sont pas des slogans. Ce sont les règles de conception que j'applique. Chacune est adossée à un choix technique vérifiable.
@@ -221,11 +253,11 @@ Une mauvaise architecture de données est une dette énergétique et cognitive. 
 
 Avant chaque engagement, trois questions.
 
-1. **Contraint** — Le problème est-il borné par une loi physique ? Thermodynamique, neutronique, cinétique chimique, mécanique — si la réalité impose une borne que l'algorithme ne peut pas ignorer, c'est mon terrain. Si le problème est purement narratif, l'IA générique suffit.
+1. **Contraint** — Le problème est-il borné par une loi physique, une réglementation ou un domaine de règles formelles ? Thermodynamique, neutronique, droit social, cinétique chimique — si la réalité impose une borne que l'algorithme ne peut pas ignorer, c'est mon terrain. Si le problème est purement narratif, l'IA générique suffit.
 
-2. **Aride** — Le sujet est-il techniquement négligé ? La valeur réelle se cache dans les problèmes ingrats : nettoyage de séries temporelles, recalage de capteurs, validation de cohérence physique. Si tout le monde s'y précipite, c'est déjà commoditisé.
+2. **Aride** — Le sujet est-il techniquement négligé ? La valeur réelle se cache dans les problèmes ingrats : nettoyage de séries temporelles, recalage de capteurs, validation de cohérence physique, encodage de règles métier. Si tout le monde s'y précipite, c'est déjà commoditisé.
 
-3. **Prouvable** — Puis-je démontrer la faisabilité par un prototype fonctionnel en moins de 3 mois ? Si la donnée existe et la physique est modélisable, je livre une preuve — pas une promesse.
+3. **Prouvable** — Puis-je démontrer la faisabilité par un prototype fonctionnel ou un livrable actionnable en moins de 3 mois ? Si la donnée existe et le domaine est modélisable, je livre une preuve — pas une promesse.
 
 ---
 
@@ -280,8 +312,8 @@ Un générateur synthétique validé physiquement ouvre la porte à l'entraînem
 
 ## Vision
 
-**En cours** — Mission de cadrage Data & IA dans le nucléaire français. Conception et livraison de prototypes fonctionnels. Développement du PI-VAE.
+**En cours** — Mission de cadrage Data & IA dans le nucléaire français. Cadrage stratégique IA pour des startups et éditeurs SaaS en domaine réglementé. Développement du PI-VAE.
 
-**À terme** — Extension de l'architecture (pipeline + Knowledge Graph + assistant) comme solution reproductible pour d'autres exploitants de systèmes critiques. Poursuite de la R&D vers un générateur synthétique industrialisable.
+**À terme** — Extension de l'offre (cadrage stratégique + pipeline + Knowledge Graph + assistant) comme solution reproductible pour d'autres domaines contraints. Poursuite de la R&D vers un générateur synthétique industrialisable.
 
 

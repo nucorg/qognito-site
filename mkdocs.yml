@@ -39,9 +39,10 @@ nav:
   - "L'Ingénierie Physique":
     - "La Thèse": "#la-preuve"
     - "Les Principes": "#les-principes-de-conception"
-  - "Preuves & POC":
+  - "Preuves & Cas d'Étude":
     - "Data Pipeline": "#prototype-1-pipeline-de-validation-physique"
     - "Assistant Expert": "#prototype-2-assistant-ia-expert-nucleaire"
+    - "Cadrage IA (SaaS RH)": "#cas-detude-cadrage-strategique-ia"
   - "R&D":
     - "PI-VAE": "#pi-vae-donnees-synthetiques-physiquement-coherentes"
   - "Expertise":

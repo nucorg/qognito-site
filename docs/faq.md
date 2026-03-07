@@ -14,9 +14,9 @@ Une approche d'ingénierie où les lois physiques du domaine — thermodynamique
 
 Ma méthodologie de qualification avant chaque engagement. Trois critères, simultanément :
 
-- **C — Contraint.** Le problème est borné par une loi physique.
+- **C — Contraint.** Le problème est borné par une loi physique, une réglementation ou un domaine de règles formelles.
 - **A — Aride.** Le sujet est techniquement négligé (pas commoditisé).
-- **P — Prouvable.** Un prototype fonctionnel est livrable en moins de 3 mois.
+- **P — Prouvable.** Un prototype fonctionnel ou un livrable actionnable est livrable en moins de 3 mois.
 
 Si le projet ne passe pas les trois, il n'est pas pris.
 
@@ -46,11 +46,11 @@ Le Filtre CAP donne un go/no-go en quelques jours. Si le projet passe, le protot
 
 ---
 
-### Que se passe-t-il après le prototype ?
+### Que se passe-t-il après le cadrage ou le prototype ?
 
-Le prototype est conçu avec une exigence de production dès le départ : tests systématiques, validation physique, architecture documentée. L'objectif est que votre équipe de delivery (ou votre intégrateur) parte d'une base solide pour l'industrialisation — pas d'un démonstrateur jetable.
+Le livrable — qu'il s'agisse d'un cadrage stratégique ou d'un prototype — est conçu pour être actionnable immédiatement. Le cadrage produit une architecture cible, une roadmap et des critères go/no-go. Le prototype est conçu avec une exigence de production dès le départ : tests systématiques, validation physique, architecture documentée.
 
-Je livre : le prototype fonctionnel, l'architecture documentée, et la preuve mesurable que l'approche tient. Je peux accompagner la transition vers l'équipe produit si nécessaire, mais l'objectif est votre autonomie.
+L'objectif est que votre équipe parte d'une base solide — pas d'un slide deck ni d'un démonstrateur jetable. Je peux accompagner la mise en œuvre si nécessaire, mais l'objectif est votre autonomie.
 
 ---
 
@@ -58,7 +58,7 @@ Je livre : le prototype fonctionnel, l'architecture documentée, et la preuve me
 
 Quatre différences structurelles :
 
-**L'engagement porte sur un livrable, pas sur du temps.** Je livre un prototype fonctionnel avec une preuve mesurable — pas un rapport de cadrage ni des jours de régie.
+**L'engagement porte sur un livrable, pas sur du temps.** Je livre un cadrage stratégique actionnable ou un prototype fonctionnel avec une preuve mesurable — pas des jours de régie. Forfait au livrable.
 
 **La qualification est en amont.** Le Filtre CAP évalue le projet avant l'engagement. Si le problème ne passe pas les trois critères, je vous le dis avant de facturer.
 
@@ -68,9 +68,14 @@ Quatre différences structurelles :
 
 ---
 
-### Peut-on commencer par un diagnostic avant de s'engager sur un prototype ?
+### Peut-on commencer par un cadrage stratégique avant un prototype ?
 
-Oui. Le Filtre CAP est lui-même un diagnostic. La première étape consiste à évaluer si votre problème est Contraint, Aride et Prouvable. Si ce n'est pas le cas, vous le savez rapidement et sans engagement. Si ça l'est, le diagnostic alimente directement la spécification du prototype — rien n'est perdu.
+Oui. Le Filtre CAP donne un premier go/no-go. Ensuite, deux chemins possibles :
+
+- **Cadrage Stratégique IA** — Si votre projet nécessite d'abord une architecture cible, un arbitrage build vs buy et une roadmap avant de construire. Le cadrage est un livrable autonome : vous pouvez vous arrêter là ou poursuivre avec un prototype.
+- **Prototype direct** — Si le problème est déjà clair et que la preuve technique est le premier besoin.
+
+Dans les deux cas, le livrable est un forfait ancré dans le résultat, pas dans le temps passé.
 
 ---
 
