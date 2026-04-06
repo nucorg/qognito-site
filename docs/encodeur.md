@@ -1,10 +1,43 @@
 ## L'Encodeur de Contraintes
 
-### Le problème que personne ne résout
+### Le "Pont" de l'Intelligence Physique
 
 L'IA généraliste ne connaît pas les lois de votre domaine. Votre expert métier ne sait pas les écrire dans un pipeline. Le data engineer sait construire le pipeline, mais pas quelles règles y mettre. Trois compétences nécessaires — zéro profil qui les couvre simultanément.
 
-Résultat : l'IA est déployée sans contrainte physique, puis corrigée en boucle quand la recette métier échoue. Ou pire : elle est déployée avec des contraintes approximatives que personne n'a validées.
+```mermaid
+graph TD
+    subgraph "Savoir Tacite (Expert Métier)"
+        A[Neutronique / Thermique]
+        B[Expérience Terrain]
+        C[Réglementation]
+    end
+
+    subgraph "L'ENCODEUR (Traducteur)"
+        D{Identification des Contraintes}
+        E[Modélisation Ontologique]
+        F[Tests de Cohérence]
+    end
+
+    subgraph "Système IA Contraint (Produit)"
+        G[Pipeline de Validation]
+        H[Knowledge Graph]
+        I[Assistant IA Expert]
+    end
+
+    A & B & C --> D
+    D --> E --> H
+    D --> F --> G
+    H & G --> I
+    
+    style D fill:#D4850F,color:#fff,stroke-width:2px
+    style I fill:#0A1628,color:#fff,stroke-width:2px
+```
+
+!!! abstract "Visualisation de l'Ontologie Métier (Interactive)"
+    <div style="margin: 20px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid rgba(107, 123, 141, 0.1);">
+        <iframe src="../assets/knowledge_graph.html" width="100%" height="500px" frameborder="0"></iframe>
+    </div>
+    *Note : Manipulez le graphe pour explorer les relations entre réacteurs, capteurs et règles physiques encodées.*
 
 ---
 
@@ -12,15 +45,13 @@ Résultat : l'IA est déployée sans contrainte physique, puis corrigée en bouc
 
 Je prends le savoir tacite de vos experts métier et je l'encode dans des systèmes qui contraignent l'IA. Concrètement :
 
-| Ce que votre expert sait | Ce que j'en fais |
-|---|---|
-| "Cette concentration est physiquement impossible" | Règle de bornage dans le pipeline de validation |
-| "Dans cette phase, le comportement change" | Arbre de décision des phases opérationnelles, constantes calibrées par état |
-| "Ce capteur dérive par rapport à la référence" | Recalage par assimilation de données dans la couche de nettoyage |
-| "Quand cet équipement est à l'arrêt, cette mesure est un artefact" | Règle de cohérence physique codée comme contrainte de premier rang |
-| "Ce signal est corrélé à celui-là dans cette configuration" | Corrélations quantifiées dans le Knowledge Graph |
-
-L'expert ne sait pas écrire ces règles dans un pipeline. Le data engineer ne sait pas quelles règles écrire. L'IA ne sait pas qu'il y a des règles à écrire. **Mon rôle est le pont entre les trois.**
+| Domaine | Ce que votre expert sait | Ce que j'en fais | Status |
+|---|---|---|---|
+| **Physique** | "Cette concentration est impossible" | Règle de bornage dans le pipeline | `VALIDATED` |
+| **Phases** | "Le comportement change ici" | Arbre de décision opérationnel | `VALIDATED` |
+| **Capteurs** | "Ce signal dérive de la référence" | Recalage par assimilation | `VALIDATED` |
+| **Artefacts** | "À l'arrêt, cette mesure est fausse" | Règle de cohérence premier rang | `VALIDATED` |
+| **Sémantique** | "Ces signaux sont corrélés" | Corrélations dans le Knowledge Graph | `VALIDATED` |
 
 ---
 
@@ -30,25 +61,26 @@ Ce n'est pas une compétence unique — c'est une intersection.
 
 La traduction entre physique industrielle, ingénierie des données et IA cognitive est elle-même tacite, contextuelle, forgée par l'expérience. On ne forme pas un traducteur physique-data-IA en bootcamp.
 
-Chacun des trois domaines a ses experts. Mais l'expert en neutronique ne parle pas en DataFrames. Le data engineer ne parle pas en phénomènes. Le spécialiste IA ne parle pas en bornes physiques. Le travail de traduction — savoir *quoi* encoder, *comment* l'encoder, et *pourquoi* cette contrainte est non négociable — c'est une compétence de niveau architecte qui ne s'apprend que par la pratique sur des systèmes réels.
+!!! info "Le Filtre CAP — Pourquoi choisir cette approche ?"
+    - **Contraint** : La réalité impose une borne que l'IA ne peut pas ignorer.
+    - **Aride** : La valeur se cache dans le nettoyage et la validation "ingrate".
+    - **Prouvable** : Faisabilité démontrée par un prototype en moins de 3 mois.
 
 ---
 
 ### Ce que ça change pour le client
 
-**Sans encodage de contraintes :**
+??? example "SANS Encodage (Risque Architectural)"
+    - L'IA produit des résultats statistiquement corrects mais physiquement faux.
+    - L'expert métier valide manuellement chaque sortie — le gain d'automatisation disparaît.
+    - Le turnover consultant remet le compteur à zéro à chaque rotation.
 
-- L'IA produit des résultats statistiquement corrects mais physiquement faux
-- L'expert métier valide manuellement chaque sortie — le gain d'automatisation disparaît
-- Le turnover consultant remet le compteur à zéro : chaque nouveau profil redécouvre les règles du domaine
+??? success "AVEC Encodage (Actif Technique)"
+    - Les lois physiques sont codées dans l'architecture — l'IA ne peut pas les violer.
+    - L'expert métier supervise le système, il ne le compense plus.
+    - Les règles survivent au turnover : elles sont dans le code, pas dans la tête.
 
-**Avec encodage de contraintes :**
-
-- Les lois physiques sont codées dans l'architecture — l'IA ne peut pas les violer
-- L'expert métier supervise le système, il ne le compense plus
-- Les règles survivent au turnover : elles sont dans le code, pas dans la tête du consultant
-
-> L'encodage de contraintes est une forme d'investissement : le savoir tacite de vos experts devient un actif technique transférable. Ce que je livre — prototype fonctionnel, architecture documentée, tests — reste exploitable après mon départ.
+> L'encodage de contraintes est une forme d'investissement : le savoir tacite de vos experts devient un **actif technique transférable**. Ce que je livre — prototype fonctionnel, architecture documentée, tests — reste exploitable après mon départ.
 
 ---
 
@@ -56,29 +88,12 @@ Chacun des trois domaines a ses experts. Mais l'expert en neutronique ne parle p
 
 Depuis mi-2024, j'applique cette approche sur la surveillance des réacteurs nucléaires du parc français :
 
-- **55 constantes physiques** encodées comme bornes inviolables dans le pipeline de validation
-- **3 règles de cohérence** (bornage, impossibilité neutronique, cohérence chimique) automatisant 96,4 % des validations
-- **7 phases opérationnelles** classifiées par arbre de décision calibré — pas par heuristique statistique
-- **1 Knowledge Graph** encodant l'ontologie métier : réacteurs, capteurs, paramètres, règles, corrélations quantifiées
-- **1 assistant IA** qui ne peut répondre qu'à travers les faits validés par le graphe — zéro hallucination sur le domaine
-
-Chaque règle, chaque constante, chaque corrélation a été extraite d'un dialogue avec les experts métier, puis encodée dans un système testable (270+ tests unitaires).
+- **55 constantes physiques** encodées comme bornes inviolables.
+- **96,4 % des incohérences** résolues automatiquement via 3 règles de cohérence.
+- **1 Knowledge Graph** encodant l'ontologie métier complète.
+- **270+ tests unitaires** couvrant chaque règle physique encodée.
 
 → Résultats détaillés : voir [La Preuve](index.md#la-preuve)
-
----
-
-### Pour qui
-
-Ce positionnement est pertinent si votre projet coche trois cases :
-
-1. **Contraint** — Le problème est borné par une loi physique. Thermodynamique, neutronique, cinétique chimique, mécanique des fluides — si la réalité impose une borne que l'algorithme ne peut pas ignorer.
-
-2. **Aride** — Le sujet est techniquement négligé. La valeur se cache dans les problèmes ingrats : nettoyage de séries temporelles, recalage de capteurs, validation de cohérence physique.
-
-3. **Prouvable** — La faisabilité est démontrable par un prototype fonctionnel en moins de 3 mois.
-
-C'est le [Filtre CAP](index.md#le-filtre-cap-pragmatisme-de-combat). Si le projet ne passe pas les trois, je ne le prends pas.
 
 ---
 

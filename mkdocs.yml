@@ -1,6 +1,22 @@
 site_name: "Qognito.io | L'Ingénierie de l'Intelligence Physique"
 site_description: "L'Ingénierie de l'Intelligence Physique"
 
+# Extensions Markdown pour la Physique, l'IA et les schémas
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+
 # Fichiers CSS personnalisés pour le logo et l'aération
 extra_css:
   - stylesheets/extra.css

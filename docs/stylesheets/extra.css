@@ -3,64 +3,105 @@
    ========================================== */
 .md-header {
     background-color: #0A1628 !important; /* Navy Qognito */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .md-header__button.md-logo img {
     height: 2.4rem;
     width: auto;
     margin: 0.2rem;
+    filter: drop-shadow(0 0 5px rgba(212, 133, 15, 0.3)); /* Glow ambre discret sur le logo */
 }
 
-@media screen and (max-width: 76.1875em) {
-    .md-header__button.md-logo img { height: 2.0rem; }
+/* Accent ambre sur les liens actifs */
+.md-nav__link--active {
+    color: #D4850F !important;
+    font-weight: 700;
 }
 
 /* ==========================================
    2. TYPOGRAPHIE ET ESPACEMENT (AÉRATION)
    ========================================== */
 .md-typeset {
-    font-size: 0.85rem;
-    line-height: 1.7; /* Plus d'air pour la lecture technique */
+    font-size: 0.9rem;
+    line-height: 1.8;
 }
 
-.md-typeset p {
-    margin-bottom: 1.2em;
+.md-typeset h1, .md-typeset h2 {
+    color: #0A1628;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
-.md-typeset hr {
-    margin: 3em 0;
-    border-bottom: 0.05rem solid #6B7B8D; /* Gris titane */
-    opacity: 0.3;
+[data-md-color-scheme="slate"] .md-typeset h1, 
+[data-md-color-scheme="slate"] .md-typeset h2 {
+    color: #f8f9fa;
+}
+
+/* Style Monospace pour les détails techniques */
+blockquote {
+    border-left: 0.2rem solid #D4850F !important;
+    background-color: rgba(212, 133, 15, 0.05);
+    font-family: "Roboto Mono", "Courier New", monospace;
+    font-size: 0.8rem !important;
+    color: #6B7B8D !important;
 }
 
 /* ==========================================
-   3. IMAGES ET LÉGENDES (NETTOYÉ)
+   3. CARTES DE RÉSULTATS & WIDGETS
    ========================================== */
-/* Style de base pour toutes les légendes */
-figcaption {
-    font-size: 0.7rem;
-    color: #6B7B8D;
-    text-align: center;
-    margin-top: 0.5rem;
+/* Tableaux de résultats plus "Tech" */
+.md-typeset table:not([class]) {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(107, 123, 141, 0.1);
 }
 
-/* Style de base pour toutes les images avec légende */
+.md-typeset table:not([class]) th {
+    background-color: #0A1628;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+}
+
+/* Glow sur les chiffres clés */
+.md-typeset strong {
+    color: #D4850F;
+    text-shadow: 0 0 10px rgba(212, 133, 15, 0.1);
+}
+
+/* ==========================================
+   4. IMAGES ET LÉGENDES
+   ========================================== */
+figure {
+    margin: 2em 0;
+}
+
+figcaption {
+    font-size: 0.75rem;
+    color: #6B7B8D;
+    text-align: center;
+    margin-top: 0.8rem;
+    letter-spacing: 0.02em;
+}
+
 figure img {
     display: block;
     margin: 0 auto;
-    border-radius: 4px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
-/* CLASSE SPÉCIFIQUE : Image Scientifique (PI-VAE) */
+figure img:hover {
+    transform: scale(1.01);
+}
+
 .scientific-img img {
-    border: 1px solid #e0e0e0; /* Bordure fine grise */
-}
-.scientific-img figcaption {
-    font-family: monospace; /* Look "données/labo" */
-    font-style: normal;
+    border: 1px solid rgba(10, 22, 40, 0.1);
 }
 
-/* CLASSE SPÉCIFIQUE : Image Photo (Unsplash) */
-.photo-img figcaption {
-    font-style: italic; /* Italique pour les crédits photo */
+[data-md-color-scheme="slate"] .scientific-img img {
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
