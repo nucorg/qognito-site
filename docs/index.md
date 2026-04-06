@@ -31,6 +31,10 @@ Le consultant data part au bout de 6 mois. Le suivant passe 3 mois à comprendre
 
 Le physicien parle en phénomènes. Le data engineer parle en flux. Le product owner parle en valeur. Personne ne traduit — le projet avance en silos et converge trop tard.
 
+### L'IA déployée qui déçoit
+
+Votre organisation a investi sur un outil LLM ou un pipeline Data. Les résultats ne sont pas au niveau attendu. Les équipes l'utilisent "pour ne pas faire d'histoires" mais ne font plus confiance aux sorties. Le problème n'était pas l'outil — c'était l'absence de contexte organisationnel autour de l'outil. L'IA produit des résultats statistiquement corrects. Mais dans votre domaine, correct ne suffit pas.
+
 ---
 
 ## Pourquoi ça échoue
@@ -42,6 +46,8 @@ L'expertise est distribuée sur une chaîne de sous-traitance où chaque maillon
 La physique est traitée comme un post-traitement : on construit le pipeline, on entraîne le modèle, puis on vérifie "si ça colle" avec le métier. Quand ça ne colle pas, on itère — à la charge du client.
 
 Le vrai levier n'est pas un outil de plus. C'est un profil qui couvre les trois mondes — physique industrielle, ingénierie des données, IA — et qui sait traduire entre eux dès la conception.
+
+Un test de terrain le confirme : soumis à 240 commandes clients réelles — l'équivalent de 143 000 $ de travail — le meilleur agent autonome disponible produit un résultat acceptable sur 6 projets seulement. **3 % de réussite sans pilote humain.** Quand le même agent reçoit un brief complet avec les contraintes explicites du domaine, il frôle le niveau expert. Cet écart — 3 % vers expert — ne se comble pas avec un meilleur outil. Il se comble avec le contexte que l'outil n'a pas.
 
 ---
 
@@ -84,6 +90,8 @@ Depuis mi-2024, j'interviens en cadrage Data & IA pour la surveillance des réac
 ---
 
 ## L'Offre — Cadrage & Prototypage Data/IA sous Contrainte Physique
+
+**Je ne vends pas du temps. Je livre un résultat.**
 
 Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé-risque vos projets Data & IA en livrant un cadrage stratégique actionnable et/ou un prototype fonctionnel qui valide l'approche par la preuve, pas par le slide.
 

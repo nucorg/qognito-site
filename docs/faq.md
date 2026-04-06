@@ -62,7 +62,7 @@ Quatre différences structurelles :
 
 **La qualification est en amont.** Le Filtre CAP évalue le projet avant l'engagement. Si le problème ne passe pas les trois critères, je vous le dis avant de facturer.
 
-**L'expertise est intégrée, pas distribuée.** Physique nucléaire, data engineering haute performance et IA cognitive dans un seul interlocuteur. Pas de chaîne de sous-traitance, pas de consultant junior qui monte en compétence sur votre budget.
+**L'expertise est intégrée, pas distribuée.** Une ESN répartit l'expertise sur une chaîne de sous-traitance : chaque maillon va plus vite grâce à ses outils IA, mais sa logique d'analyse n'a pas muté. Le data engineer IA-augmenté produit le même pipeline qu'avant, plus rapidement. Ce qui change le résultat, c'est d'encoder les règles physiques dès la conception — pas d'accélérer leur absence. Physique industrielle, data engineering et IA cognitive dans un seul interlocuteur, sans consultant junior qui monte en compétence sur votre budget.
 
 **Le délai est court.** Preuve de valeur en moins de 3 mois, parce que le format (pipeline + Knowledge Graph + assistant) est déjà éprouvé.
 
