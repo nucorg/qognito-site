@@ -69,5 +69,6 @@ nav:
     - "L'Offre": "#loffre-cadrage-prototypage-dataia-sous-contrainte-physique"
     - "L'Encodeur de Contraintes": encodeur.md
     - "Stack Technique": "#stack-technique"
+  - Parcours: parcours.md
   - FAQ: faq.md
   - Blog: blog.md
