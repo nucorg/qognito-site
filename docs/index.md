@@ -5,11 +5,15 @@
   </figcaption>
 </figure>
 
-## Un interlocuteur qui parle physique, données et produit.
+## Vos données ont de l'accès. Pas forcément de la compréhension.
 
-Vos projets Data & IA croisent trois mondes qui communiquent mal : la physique de votre installation, l'ingénierie des données et l'intelligence artificielle. Le physicien parle en phénomènes, le data engineer en flux, le product owner en valeur. Personne ne traduit.
+Une organisation accumule des données sur ses systèmes, ses processus, ses équipements. Elles sont stockées, requêtables, parfois gouvernées. Mais elles ne savent pas ce qu'elles représentent.
 
-Je suis ce traducteur. Ingénieur Data & IA spécialisé dans les domaines contraints, je cadre et prototype des solutions où la physique et les règles métier contraignent l'algorithme — et je fais le pont entre vos experts métier, vos architectes données et vos product owners.
+Les relations entre les concepts de votre domaine — ce que chaque mesure signifie, dans quel contexte elle est valide, quelles règles s'appliquent, quels phénomènes sont liés — ne sont pas dans vos tables. Elles sont dans la tête de vos experts. Un outil extérieur qui interroge vos données peut les lire. Il ne peut pas raisonner dessus.
+
+C'est le problème de la couche sémantique manquante.
+
+Je construis cette couche : modélisation ontologique du domaine, Knowledge Graph encodant les concepts, les règles et les relations — une fondation structurelle qui donne à vos données le sens qu'elles n'ont pas encore. Pas une brique de plus sur votre architecture. La brique qui rend les autres utiles.
 
 ---
 
@@ -34,6 +38,10 @@ Le physicien parle en phénomènes. Le data engineer parle en flux. Le product o
 ### L'IA déployée qui déçoit
 
 Votre organisation a investi sur un outil LLM ou un pipeline Data. Les résultats ne sont pas au niveau attendu. Les équipes l'utilisent "pour ne pas faire d'histoires" mais ne font plus confiance aux sorties. Le problème n'était pas l'outil — c'était l'absence de contexte organisationnel autour de l'outil. L'IA produit des résultats statistiquement corrects. Mais dans votre domaine, correct ne suffit pas.
+
+### Les données qui existent mais ne se comprennent pas
+
+Vos capteurs tournent depuis des années. Vous avez des téraoctets de séries temporelles, des journaux d'exploitation, des historiques d'événements. Mais si votre expert phare part demain, votre système peut-il encore raisonner sur ces données ? Ce que chaque signal représente, quelles règles s'appliquent dans quel régime, quels phénomènes sont corrélés — ce savoir n'est écrit nulle part. Vos données ont de l'accès. Pas de la structure.
 
 ---
 
@@ -97,11 +105,11 @@ Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé
 
 - **Cadrage "First Principles"** — Je passe votre projet au Filtre CAP. Si le problème n'est pas contraint (physique, réglementation, règles formelles), négligé techniquement et prouvable en < 3 mois, je vous le dis avant de facturer.
 
-- **Cadrage Stratégique IA** — Votre produit intègre (ou veut intégrer) de l'IA, mais vous n'avez pas d'architecture cible, pas de roadmap, et le risque de faux départ est élevé. Je produis un livrable de cadrage complet : diagnostic du gap entre ambition et réalité, analyse build vs buy, recommandation architecturale (Knowledge Graph, RAG, agents), roadmap en 3 horizons avec critères go/no-go, estimation des coûts et des compétences requises. Le cadrage protège de 10 à 20 fois son prix en erreurs évitées.
+- **Cadrage Stratégique IA** — Votre produit intègre (ou veut intégrer) de l'IA, mais vous n'avez pas d'architecture cible, pas de roadmap, et le risque de faux départ est élevé. Question de diagnostic préalable : *vos règles métier sont-elles encodées quelque part — ou dans la tête de vos experts ?* Si votre expert phare quitte l'équipe demain, votre système peut-il encore raisonner correctement ? La réponse conditionne toute l'architecture. Je produis un livrable de cadrage complet : diagnostic du gap entre ambition et réalité, analyse build vs buy, recommandation architecturale (Knowledge Graph, RAG, agents), roadmap en 3 horizons avec critères go/no-go, estimation des coûts et des compétences requises. Le cadrage protège de 10 à 20 fois son prix en erreurs évitées.
 
 - **Pipeline de validation physique** — Ingestion, nettoyage, imputation et validation de vos données de capteurs. Les règles physiques de votre domaine sont codées comme contraintes de premier rang. Le prototype est conçu avec une exigence de production pour faciliter l'intégration par votre équipe de delivery.
 
-- **Knowledge Graph métier** — Modélisation de l'ontologie de votre installation : équipements, capteurs, paramètres physiques, règles de cohérence, corrélations. Ce graphe devient le socle de vérité qui contraint tout raisonnement IA en aval.
+- **Knowledge Graph métier** — Modélisation de l'ontologie de votre domaine : équipements, paramètres, règles de cohérence, corrélations. Un outil connecté à vos données brutes sait où chercher — il ne sait pas ce que les données signifient. Le Knowledge Graph encode ce que vos experts ont dans la tête : quel concept correspond à quel phénomène, quelle règle s'applique dans quel régime, quelles relations sont physiquement valides. L'accès devient compréhension.
 
 - **Assistant IA expert** — Interface conversationnelle où un LLM interroge vos données *à travers* le Knowledge Graph. L'assistant ne peut pas halluciner sur votre domaine : il n'a accès qu'aux faits validés par la physique. Il diagnostique, recommande, extrait — en langage naturel, en temps réel.
 
