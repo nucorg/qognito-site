@@ -127,6 +127,8 @@ Chaque situation décrite ci-dessus, je l'ai rencontrée — et résolue. Je dé
 
 ## Qui je suis
 
+<img src="assets/boris.png" alt="Boris Guarisma" class="profile-photo">
+
 **Boris Guarisma** — Ingénieur Data & AI, micro-entreprise Qognito.io.
 
 Mon parcours m'a placé à l'intersection de la physique nucléaire, du data engineering haute performance et de l'IA cognitive — un croisement que peu de profils couvrent. C'est cette position qui me permet de parler au neutronicien, au data architect et au product owner dans leur langue respective, et de traduire entre eux.

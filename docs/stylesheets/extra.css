@@ -107,7 +107,19 @@ figure img:hover {
 }
 
 /* ==========================================
-   5. PARCOURS — TIMELINE ENTREPRISES
+   5. PHOTO DE PROFIL
+   ========================================== */
+.profile-photo {
+    width: 130px;
+    border-radius: 8px;
+    border: 2px solid #D4850F;
+    float: right;
+    margin: 0 0 1.5em 1.8em;
+    box-shadow: 0 4px 15px rgba(10, 22, 40, 0.15);
+}
+
+/* ==========================================
+   6. PARCOURS — TIMELINE ENTREPRISES
    ========================================== */
 
 .timeline-entry {
