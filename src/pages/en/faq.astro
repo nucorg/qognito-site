@@ -1,0 +1,196 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// FAQ Items Data Structure for English version
+const faqItems = [
+  {
+    category: "Concepts & Methodology",
+    qas: [
+      {
+        q: "What is semantic alignment for enterprise AI?",
+        a: "It is the methodological approach of constraining the probabilistic behavior of AI (LLMs, autonomous agents) with a deterministic, semantic data model (Business Object Model / BOM and Knowledge Graphs) extracted from the tacit knowledge of your business experts (sachants). This eliminates operational hallucinations and guarantees reliable, explainable, and auditable answers aligned with the physical reality of your processes."
+      },
+      {
+        q: "What is the CAP Filter (Scoped, Aligned, Ready)?",
+        a: "It is my upstream qualification matrix to evaluate the industrial viability of an AI MVP before launching any build or development. A project is only approved and engaged if it simultaneously meets these three criteria:<br /><br />• <strong>C — Scoped (Scoped & Secured) :</strong> Technical architecture, cybersecurity (sensitive data, Export Control), and sovereign hosting constraints are resolved on day one.<br />• <strong>A — Aligned (Business Aligned) :</strong> The use case answers a measurable business value (KPIs/OKRs) and anchors on the semantics of your real processes.<br />• <strong>P — Ready (Delivery Ready) :</strong> The technical handover is formalized by a 7-section Feasibility Study validated by your architects, guaranteeing a zero-loss build startup by your digital factory."
+      },
+      {
+        q: "What is an enterprise Knowledge Graph?",
+        a: "It is a model that maps the ontology of your business domain: equipment, process flows, operational parameters, consistency rules, and quantified business correlations. This graph acts as a guardrail for the AI: the cognitive agent or LLM does not reason in a vacuum; it queries the Knowledge Graph, which provides structured and verified facts."
+      }
+    ]
+  },
+  {
+    category: "Practical Questions & Organization",
+    qas: [
+      {
+        q: "Our data is highly sensitive or subject to strict regulatory constraints (safety, classification, Export Control)—how do you handle this?",
+        a: "Operating for nearly two years in highly critical and confidential industrial environments, security is not an afterthought—it is a design constraint. From the Discovery phase, I conduct rigorous regulatory and cyber alignment analyses on your data flows and design architectures adapted to your sovereign hosting requirements (S3NS, Bleu, AWS ESC, On-Premise) in consensus with your security teams, CISOs, and architect networks."
+      },
+      {
+        q: "What is the 7-section Feasibility Study you deliver?",
+        a: "It is our flagship technical handover deliverable. This consensus document, co-designed and validated by your architects (Data, Solutions, Security) and your cyber team, details exactly how the AI opportunities will be implemented for the MVP in the digital factory. It covers OKR alignment, multi-dimensional feasibility, AI visibility levels, BOM, regulatory and cyber alignment, skills gap analysis, and the delivery RACI matrix."
+      },
+      {
+        q: "How long does a scoping cycle take?",
+        a: "A rigorous, methodical scoping cycle typically takes 3 to 4 months. It is structured to transform the technological uncertainty of AI into a stable, industrial roadmap with clear decision milestones. The initial CAP Filter, on the other hand, provides a viability diagnosis (Go/No-Go) in just a few days."
+      },
+      {
+        q: "What is the difference between Qognito and a traditional IT consulting firm or agency?",
+        a: "My approach is defined by three fundamental pillars:<br /><br />1. <strong>Engagement is based on rigorous deliverables, not time spent.</strong> I bill per deliverable or by scoping package—never by daily body-leasing.<br />2. **A unique transition expertise (The Architect-Plumber).** Many consulting firms limit themselves to high-level strategic slide decks. I combine product vision with architectural rigor to deliver real implementation specifications (BOM, vector schemas, graphs) that are immediately actionable by your build teams.<br />3. <strong>Co-construction in a Triade.</strong> I do not work in isolation. I drive permanent synergy with your Product (Product Coach) and Design (UX Research/Design Coach) teams to place user value at the core of the system."
+      }
+    ]
+  }
+];
+---
+
+<Layout title="Qognito.io | FAQ" lang="en">
+  <!-- Title section -->
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Reassurance & Rigor</span>
+      <h1 class="intro-title text-glow">Frequently Asked Questions</h1>
+      <p class="intro-subtitle">
+        Clear, methodological answers on our AI scoping philosophy, technical handovers, and managing critical constraints.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Content section -->
+  <section class="section section-faq">
+    <div class="container faq-container">
+      {faqItems.map((category) => (
+        <div class="faq-category-block">
+          <h2 class="category-title text-glow">{category.category}</h2>
+          <div class="accordion">
+            {category.qas.map((qa, index) => (
+              <details class="accordion-item">
+                <summary class="accordion-header">
+                  <span class="accordion-num">{(index + 1).toString().padStart(2, '0')}</span>
+                  <span class="accordion-title">{qa.q}</span>
+                </summary>
+                <div class="accordion-content">
+                  <p class="faq-answer-text" set:html={qa.a}></p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Layout Styles */
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .monospace-label {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Intro Section */
+  .section-intro {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+  .container intro-container {
+    max-width: 800px;
+    text-align: left;
+  }
+  .intro-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .intro-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* FAQ Content Blocks */
+  .faq-container {
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #FFFFFF;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  /* Accordion Styles (FAQ) */
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .accordion-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  
+  .accordion-item[open] {
+    border-color: rgba(var(--color-primary-rgb), 0.35);
+    box-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.05);
+  }
+  
+  .accordion-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #FFFFFF;
+    list-style: none; /* removes standard details arrow */
+  }
+  .accordion-header::-webkit-details-marker {
+    display: none; /* removes Safari details arrow */
+  }
+  
+  .accordion-num {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 0.95rem;
+  }
+  
+  .accordion-content {
+    padding: 0 1.5rem 1.5rem 3.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  
+  .faq-answer-text {
+    margin-bottom: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .intro-title {
+      font-size: 2.25rem;
+    }
+  }
+</style>

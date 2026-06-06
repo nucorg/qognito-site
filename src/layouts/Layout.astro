@@ -1,0 +1,264 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'fr' | 'en';
+}
+
+const { 
+  title, 
+  description = "Qognito.io — L'Ingénierie de l'Intelligence Physique", 
+  lang = 'fr' 
+} = Astro.props;
+
+// Bilingual Dictionaries for the Layout Header and Footer
+const menus = {
+  fr: {
+    home: "Accueil",
+    expertise: "Expertise",
+    feasibility: "Faisabilité (7 Sections)",
+    cases: "Réalisations",
+    blog: "Blog",
+    faq: "FAQ",
+    contact: "Me Contacter",
+    footerDesc: "Lead AI Product Manager. Expert en cadrage de solutions IA d'entreprise, hautement réglementées et souveraines.",
+    copyright: "Tous droits réservés."
+  },
+  en: {
+    home: "Home",
+    expertise: "Expertise",
+    feasibility: "Feasibility (7 Sections)",
+    cases: "Case Studies",
+    blog: "Blog",
+    faq: "FAQ",
+    contact: "Contact Me",
+    footerDesc: "Lead AI Product Manager. Scoping Expert for highly regulated, sovereign and industrial enterprise AI solutions.",
+    copyright: "All rights reserved."
+  }
+};
+
+const t = menus[lang];
+
+// Navigation links with translation paths
+const prefix = lang === 'en' ? '/en' : '';
+const togglePath = lang === 'en' ? '/' : '/en/';
+const toggleLabel = lang === 'en' ? 'FR' : 'EN';
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/assets/Qognito_lettre_entier.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- Sticky Semi-Transparent Header -->
+    <header class="header">
+      <div class="container header-container">
+        <a href={`${prefix}/`} class="logo">
+          Qognito<span class="logo-dot">.io</span>
+        </a>
+        
+        <nav class="nav">
+          <a href={`${prefix}/#accueil`} class="nav-link">{t.home}</a>
+          <a href={`${prefix}/#expertise`} class="nav-link">{t.expertise}</a>
+          <a href={`${prefix}/#faisabilite`} class="nav-link">{t.feasibility}</a>
+          <a href={`${prefix}/#realisations`} class="nav-link">{t.cases}</a>
+          <a href={`${prefix}/faq`} class="nav-link">{t.faq}</a>
+          <a href={`${prefix}/blog`} class="nav-link">{t.blog}</a>
+        </nav>
+        
+        <div class="actions">
+          <!-- Language Toggle Button -->
+          <a href={togglePath} class="lang-toggle btn-secondary" title={lang === 'fr' ? "Switch to English" : "Passer en Français"}>
+            {toggleLabel}
+          </a>
+          <a href="mailto:bguarisma@qognito.io" class="btn-primary btn-sm">{t.contact}</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content Slot -->
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a href={`${prefix}/`} class="logo footer-logo">Qognito<span>.io</span></a>
+          <p class="footer-desc">{t.footerDesc}</p>
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/qognito-io/" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+          <a href="mailto:bguarisma@qognito.io" class="social-link">Email</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Qognito.io. {t.copyright}</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  /* Header & Navigation Styles */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(10, 22, 40, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+  
+  .logo {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+  }
+  .logo-dot {
+    color: var(--color-primary);
+    text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.5);
+  }
+  
+  .nav {
+    display: flex;
+    gap: 1.75rem;
+  }
+  
+  .nav-link {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: #FFFFFF;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .lang-toggle {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lang-toggle:hover {
+    border-color: var(--color-primary);
+    color: #FFFFFF;
+    box-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.2);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 70px - 220px); /* accounting for header + footer */
+  }
+  
+  /* Footer Styles */
+  .footer {
+    background-color: var(--color-bg-darker);
+    border-top: 1px solid var(--color-border);
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .footer-brand {
+    max-width: 450px;
+  }
+  
+  .footer-logo {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+  
+  .footer-socials {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .social-link {
+    font-family: var(--font-title);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+  .social-link:hover {
+    color: var(--color-primary);
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(30, 41, 59, 0.3);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .nav {
+      display: none; /* simple mobile fallback, can be expanded later to responsive menu */
+    }
+    .footer-container {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+</style>

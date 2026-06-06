@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Foundations Series 4 Layers Data Structure
+const layers = [
+  {
+    num: "01",
+    title: "Couche 1 — Les Données",
+    subtitle: "Data Pipelines & Sémantique",
+    desc: "Pipelines de données, Knowledge Graphs et architecture data de confiance pour l'IA d'entreprise. Ce qu'il faut construire et valider méthodiquement avant de brancher le moindre modèle probabiliste.",
+    link: "https://blog.bguarisma.com/series/couche-1-les-donnees",
+    cta: "Explorer la Couche 1"
+  },
+  {
+    num: "02",
+    title: "Couche 2 — L'Optimisation",
+    subtitle: "Algorithmes & Optimisation Avancée",
+    desc: "Intelligence en essaim, contraintes multi-objectifs, optimisation mathématique et logique complexe. L'algorithme confronté aux problèmes d'envergure que la force brute ne résout pas.",
+    link: "https://blog.bguarisma.com/series/couche-2-optimisation",
+    cta: "Explorer la Couche 2"
+  },
+  {
+    num: "03",
+    title: "Couche 3 — La Physique",
+    subtitle: "Machine Learning & Systèmes Réels",
+    desc: "Machine Learning appliqué aux phénomènes physiques et à la sûreté. La théorie derrière la pratique : pourquoi un pipeline de nettoyage de capteurs fonctionne, quelles lois physiques et mathématiques le gouvernent.",
+    link: "https://blog.bguarisma.com/series/couche-3-la-physique",
+    cta: "Explorer la Couche 3"
+  },
+  {
+    num: "04",
+    title: "Couche 4 — La Lucidité",
+    subtitle: "Analyse Critique, Limites & AGI",
+    desc: "Analyse critique de la course à l'AGI. Fractures physiques, financières et opérationnelles de l'IA générative. Ce que l'expérience opérationnelle en industrie critique révèle sur les limites réelles de l'IA d'entreprise.",
+    link: "https://blog.bguarisma.com/series/couche-4-la-lucidite",
+    cta: "Explorer la Couche 4"
+  }
+];
+---
+
+<Layout title="Qognito.io | Blog Foundations" lang="fr">
+  <!-- Header Hero / Title Section -->
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Publications & Réflexions</span>
+      <h1 class="intro-title text-glow">Foundations</h1>
+      <p class="intro-subtitle">
+        Une déconstruction méthodique et sans jargon de l'intelligence artificielle en quatre couches d'expertises indépendantes, forgée par l'expérience terrain sous contraintes critiques.
+      </p>
+    </div>
+  </section>
+
+  <!-- Foundations Grid Section -->
+  <section class="section section-layers">
+    <div class="container">
+      <div class="grid-2">
+        {layers.map((layer) => (
+          <div class="glow-card layer-card">
+            <div class="layer-header">
+              <span class="layer-num">{layer.num}</span>
+              <div class="layer-title-block">
+                <h3 class="layer-title">{layer.title}</h3>
+                <span class="monospace-label layer-subtitle">{layer.subtitle}</span>
+              </div>
+            </div>
+            <p class="layer-desc">{layer.desc}</p>
+            <a href={layer.link} target="_blank" rel="noopener noreferrer" class="btn-primary layer-btn">
+              {layer.cta} ➔
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- External Blog Promotion Section -->
+  <section class="section section-blog-promo">
+    <div class="container promo-container glow-card">
+      <h2 class="promo-title text-glow">Rejoignez la Veille Stratégique</h2>
+      <p class="promo-desc">
+        Je publie régulièrement des fiches de distillation technologique, des retours d'expérience (REX) de cadrage et des analyses critiques de l'état de l'art de l'IA industrielle sur mon espace de publication externe.
+      </p>
+      <a href="https://blog.bguarisma.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Visiter blog.bguarisma.com
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Layout Styles */
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .monospace-label {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Intro Section */
+  .section-intro {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+  .intro-container {
+    max-width: 800px;
+    text-align: left;
+  }
+  .intro-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .intro-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Layers Grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .layer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+    padding: 2.5rem !important;
+  }
+  
+  .layer-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .layer-num {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+  }
+  
+  .layer-title-block {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .layer-title {
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    margin-bottom: 0.25rem;
+  }
+  
+  .layer-subtitle {
+    margin-bottom: 0;
+  }
+  
+  .layer-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .layer-btn {
+    align-self: flex-start;
+    padding: 0.65rem 1.25rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* External Blog Promo Section */
+  .section-blog-promo {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    text-align: center;
+  }
+  
+  .promo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem !important;
+    background-image: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-darker) 100%);
+  }
+  
+  .promo-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .promo-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+    .intro-title {
+      font-size: 2.25rem;
+    }
+    .layer-card {
+      padding: 1.5rem !important;
+    }
+  }
+</style>

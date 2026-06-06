@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// FAQ Items Data Structure for French version
+const faqItems = [
+  {
+    category: "Concepts & Méthodologie",
+    qas: [
+      {
+        q: "Qu'est-ce que l'alignement sémantique pour l'IA d'entreprise ?",
+        a: "C'est l'approche méthodologique qui consiste à contraindre le comportement probabiliste de l'IA (LLMs, agents autonomes) par un modèle de données déterministe et sémantique (Modèle d'Objets Métier / MOM et Graphes de connaissances) issu du savoir de vos experts métiers (les sachants). Cela élimine les hallucinations opérationnelles et garantit des réponses fiables, explicables et auditables, conformes à la réalité physique de vos processus."
+      },
+      {
+        q: "Qu'est-ce que le Filtre CAP (Cadré, Aligné, Prêt) ?",
+        a: "C'est ma grille de qualification amont pour évaluer la viabilité industrielle d'un MVP IA avant de lancer tout développement. Un projet n'est validé et engagé que s'il répond simultanément à ces trois critères :<br /><br />• <strong>C — Cadré (Scoped & Secured) :</strong> Les contraintes d'architecture technique, de cybersécurité (données sensibles, Export Control) et d'hébergement souverain sont résolues dès le premier jour.<br />• <strong>A — Aligné (Business Aligned) :</strong> Le cas d'usage répond à une valeur métier mesurable (KPIs/OKRs) et s'ancre sur la sémantique de vos processus réels.<br />• <strong>P — Prêt (Delivery Ready) :</strong> Le handover technique est formalisé par une Étude de Faisabilité en 7 sections validée par vos architectes, garantissant un démarrage du build sans perte d'information par votre usine digitale."
+      },
+      {
+        q: "Qu'est-ce qu'un Knowledge Graph (Graphe de Connaissances) métier ?",
+        a: "C'est un modèle qui cartographie l'ontologie de votre domaine d'activité : équipements, flux de processus, paramètres opérationnels, règles de cohérence et corrélations métiers. C'est ce graphe qui sert de garde-fou à l'IA : l'agent cognitif ou le LLM ne raisonne pas dans le vide, il interroge le graphe de connaissances qui lui fournit des faits structurés et vérifiés."
+      }
+    ]
+  },
+  {
+    category: "Questions Pratiques & Organisation",
+    qas: [
+      {
+        q: "Nos données sont hautement sensibles ou soumises à des contraintes réglementaires (sûreté, classification, Export Control) — comment gérez-vous cela ?",
+        a: "Opérant depuis près de deux ans dans des environnements industriels critiques et confidentiels, la sécurité n'est pas une option ajoutée après coup, c'est une contrainte de conception. Je réalise dès la phase de Discovery des analyses d'alignement réglementaire et cyber rigoureuses sur vos flux de données et conçois des architectures adaptées à vos exigences de souveraineté d'hébergement (S3NS, Bleu, AWS ESC, On-Premise) en consensus avec vos pôles cybersécurité, RSSI et votre réseau d'architectes."
+      },
+      {
+        q: "Qu'est-ce que l'Étude de Faisabilité en 7 sections que vous livrez ?",
+        a: "C'est le livrable phare de passation technique (Handover). Ce document de consensus co-construit et validé par vos architectes (Données, Solutions, Sécurité) et votre pôle cyber explique comment les opportunités IA seront implémentées pour le MVP en usine digitale. Il couvre l'alignement OKRs, la faisabilité multi-dimensionnelle, les niveaux de visibilité IA, le MOM, l'alignement réglementaire et cyber, la Gap Analysis de compétences et la matrice RACI de livraison."
+      },
+      {
+        q: "Combien de temps prend un cycle de cadrage ?",
+        a: "Un cycle de cadrage méthodique de rigueur prend généralement de 3 à 4 mois. Il est structuré pour transformer l'incertitude technologique de l'IA en une roadmap industrielle stable avec des jalons d'arbitrage clairs. Le Filtre CAP initial, quant à lui, permet de donner un diagnostic de viabilité (Go/No-Go) en seulement quelques jours."
+      },
+      {
+        q: "Quelle est la différence avec une ESN classique ou un cabinet de conseil ?",
+        a: "Mon approche se distingue par trois forces fondamentales :<br /><br />1. <strong>L'engagement porte sur des livrables de rigueur, pas sur du temps passé.</strong> Je facture au livrable ou au forfait de cadrage stratégique — pas à la journée de régie.<br />2. <strong>Une expertise de transition unique (L'Architecte-Plombier).</strong> Beaucoup de cabinets se limitent à des slides de conviction politique. Je combine la vision produit d'affaires et la rigueur technique de l'architecte pour livrer des spécifications d'implémentation réelles (MOM, spécifications vectorielles, graphes) exploitables immédiatement par vos usines de build.<br />3. <strong>La co-construction en Triade.</strong> Je ne travaille pas en silo isolé. J'anime une synergie permanente avec vos équipes Produit (Coach Produit) et Design (UX Research/Coach Design) pour placer la valeur utilisateur au cœur du système."
+      }
+    ]
+  }
+];
+---
+
+<Layout title="Qognito.io | FAQ" lang="fr">
+  <!-- Title section -->
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Réassurance & Rigueur</span>
+      <h1 class="intro-title text-glow">Foire Aux Questions</h1>
+      <p class="intro-subtitle">
+        Des réponses claires et méthodologiques sur la philosophie de cadrage IA, les livrables de passation et la gestion des contraintes critiques.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Content section -->
+  <section class="section section-faq">
+    <div class="container faq-container">
+      {faqItems.map((category) => (
+        <div class="faq-category-block">
+          <h2 class="category-title text-glow">{category.category}</h2>
+          <div class="accordion">
+            {category.qas.map((qa, index) => (
+              <details class="accordion-item">
+                <summary class="accordion-header">
+                  <span class="accordion-num">{(index + 1).toString().padStart(2, '0')}</span>
+                  <span class="accordion-title">{qa.q}</span>
+                </summary>
+                <div class="accordion-content">
+                  <p class="faq-answer-text" set:html={qa.a}></p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Layout Styles */
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .monospace-label {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Intro Section */
+  .section-intro {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+  .container intro-container {
+    max-width: 800px;
+    text-align: left;
+  }
+  .intro-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .intro-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* FAQ Content Blocks */
+  .faq-container {
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #FFFFFF;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  /* Accordion Styles (FAQ) */
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .accordion-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  
+  .accordion-item[open] {
+    border-color: rgba(var(--color-primary-rgb), 0.35);
+    box-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.05);
+  }
+  
+  .accordion-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #FFFFFF;
+    list-style: none; /* removes standard details arrow */
+  }
+  .accordion-header::-webkit-details-marker {
+    display: none; /* removes Safari details arrow */
+  }
+  
+  .accordion-num {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 0.95rem;
+  }
+  
+  .accordion-content {
+    padding: 0 1.5rem 1.5rem 3.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  
+  .faq-answer-text {
+    margin-bottom: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .intro-title {
+      font-size: 2.25rem;
+    }
+  }
+</style>

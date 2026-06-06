@@ -1,0 +1,232 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Foundations Series 4 Layers Data Structure (English)
+const layers = [
+  {
+    num: "01",
+    title: "Layer 1 — Data",
+    subtitle: "Data Pipelines & Semantics",
+    desc: "Data pipelines, Knowledge Graphs, and trusted data architecture for enterprise AI. What you must methodically build and validate before plugging in any probabilistic model.",
+    link: "https://blog.bguarisma.com/series/couche-1-les-donnees",
+    cta: "Explore Layer 1"
+  },
+  {
+    num: "02",
+    title: "Layer 2 — Optimization",
+    subtitle: "Algorithms & Advanced Optimization",
+    desc: "Swarm intelligence, multi-objective constraints, mathematical and complex logical optimization. The algorithm confronted with large-scale problems that brute force cannot solve.",
+    link: "https://blog.bguarisma.com/series/couche-2-optimisation",
+    cta: "Explore Layer 2"
+  },
+  {
+    num: "03",
+    title: "Layer 3 — Physics",
+    subtitle: "Machine Learning & Real Systems",
+    desc: "Machine Learning applied to physical phenomena and system safety. The theory behind the practice: why a sensor data cleaning pipeline works, and what physical and mathematical laws govern it.",
+    link: "https://blog.bguarisma.com/series/couche-3-la-physique",
+    cta: "Explore Layer 3"
+  },
+  {
+    num: "04",
+    title: "Layer 4 — Lucidity",
+    subtitle: "Critical Analysis, Limits & AGI",
+    desc: "Critical analysis of the race to AGI. Physical, financial, and operational fractures of generative AI. What operational experience in critical industries reveals about the real-world limits of enterprise AI.",
+    link: "https://blog.bguarisma.com/series/couche-4-la-lucidite",
+    cta: "Explore Layer 4"
+  }
+];
+---
+
+<Layout title="Qognito.io | Foundations Blog" lang="en">
+  <!-- Header Hero / Title Section -->
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Publications & Insights</span>
+      <h1 class="intro-title text-glow">Foundations</h1>
+      <p class="intro-subtitle">
+        A methodical, jargon-free deconstruction of Artificial Intelligence across four layers of independent expertise, forged by real-world field experience under critical constraints.
+      </p>
+    </div>
+  </section>
+
+  <!-- Foundations Grid Section -->
+  <section class="section section-layers">
+    <div class="container">
+      <div class="grid-2">
+        {layers.map((layer) => (
+          <div class="glow-card layer-card">
+            <div class="layer-header">
+              <span class="layer-num">{layer.num}</span>
+              <div class="layer-title-block">
+                <h3 class="layer-title">{layer.title}</h3>
+                <span class="monospace-label layer-subtitle">{layer.subtitle}</span>
+              </div>
+            </div>
+            <p class="layer-desc">{layer.desc}</p>
+            <a href={layer.link} target="_blank" rel="noopener noreferrer" class="btn-primary layer-btn">
+              {layer.cta} ➔
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- External Blog Promotion Section -->
+  <section class="section section-blog-promo">
+    <div class="container promo-container glow-card">
+      <h2 class="promo-title text-glow">Join the Strategic Watch</h2>
+      <p class="promo-desc">
+        I regularly publish technical distillation papers, scoping case studies, and critical analyses of the AI state of the art on my external publication space.
+      </p>
+      <a href="https://blog.bguarisma.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Visit blog.bguarisma.com
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Layout Styles */
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .monospace-label {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Intro Section */
+  .section-intro {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+  .intro-container {
+    max-width: 800px;
+    text-align: left;
+  }
+  .intro-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .intro-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Layers Grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .layer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+    padding: 2.5rem !important;
+  }
+  
+  .layer-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .layer-num {
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+  }
+  
+  .layer-title-block {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .layer-title {
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    margin-bottom: 0.25rem;
+  }
+  
+  .layer-subtitle {
+    margin-bottom: 0;
+  }
+  
+  .layer-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .layer-btn {
+    align-self: flex-start;
+    padding: 0.65rem 1.25rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* External Blog Promo Section */
+  .section-blog-promo {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    text-align: center;
+  }
+  
+  .promo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem !important;
+    background-image: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-darker) 100%);
+  }
+  
+  .promo-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .promo-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+    .intro-title {
+      font-size: 2.25rem;
+    }
+    .layer-card {
+      padding: 1.5rem !important;
+    }
+  }
+</style>
