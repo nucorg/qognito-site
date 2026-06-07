@@ -64,6 +64,14 @@ const toggleLabel = lang === 'en' ? 'FR' : 'EN';
           Qognito<span class="logo-dot">.io</span>
         </a>
         
+        <!-- Hamburger Menu Toggle (Pure CSS) -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+        <label for="menu-toggle" class="hamburger" aria-label="Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </label>
+        
         <nav class="nav">
           <a href={`${prefix}/#accueil`} class="nav-link">{t.home}</a>
           <a href={`${prefix}/#expertise`} class="nav-link">{t.expertise}</a>
@@ -104,6 +112,20 @@ const toggleLabel = lang === 'en' ? 'FR' : 'EN';
         <p>&copy; {new Date().getFullYear()} Qognito.io. {t.copyright}</p>
       </div>
     </footer>
+    
+    <!-- Script block for mobile menu link interaction auto-collapse -->
+    <script>
+      const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (menuToggle && menuToggle.checked) {
+            menuToggle.checked = false;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 
@@ -251,11 +273,71 @@ const toggleLabel = lang === 'en' ? 'FR' : 'EN';
     margin-bottom: 0;
   }
 
+  /* Menu Toggle Checkbox & Hamburger Styles */
+  .menu-toggle {
+    display: none;
+  }
+  
+  .hamburger {
+    display: none;
+  }
+
   /* Responsive Design */
   @media (max-width: 768px) {
-    .nav {
-      display: none; /* simple mobile fallback, can be expanded later to responsive menu */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1010;
+      padding: 0.5rem;
     }
+    
+    .bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: #FFFFFF;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    /* Nav bar on mobile wraps into a full-width sliding drawer */
+    .nav {
+      display: none;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: rgba(10, 22, 40, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      gap: 1.25rem;
+      z-index: 1005;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Toggle active state */
+    .menu-toggle:checked ~ .nav {
+      display: flex;
+    }
+    
+    /* Hamburger icon to X animations */
+    .menu-toggle:checked ~ .hamburger .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    
+    .menu-toggle:checked ~ .hamburger .bar:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle:checked ~ .hamburger .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     .footer-container {
       flex-direction: column;
       gap: 1.5rem;
