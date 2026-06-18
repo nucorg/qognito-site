@@ -1,0 +1,616 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Qognito.io | Parcours professionnel" lang="fr">
+  <!-- Title / Intro Section -->
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <div class="intro-flex">
+        <div class="intro-text">
+          <span class="monospace-label">Rigueur & Transmissibilité</span>
+          <h1 class="intro-title text-glow">Parcours</h1>
+          <p class="intro-subtitle">
+            Plus de <strong>25 ans d'expérience</strong> à l'intersection de l'ingénierie, de la Data Science et de l'Intelligence Artificielle. Un parcours construit dans les environnements les plus contraints — télécoms, finance, institutions internationales, nucléaire.
+          </p>
+        </div>
+        <div class="intro-photo-wrapper">
+          <img src="/assets/PHOTO.jpg" alt="Boris Guarisma" class="profile-photo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Experience Timeline -->
+  <section class="section section-experience">
+    <div class="container experience-container">
+      <h2 class="section-title text-glow">Expérience professionnelle</h2>
+      
+      <div class="timeline">
+        <!-- Qognito.io -->
+        <div class="timeline-entry">
+          <div class="timeline-logo">
+            <img src="/assets/Qognito_lettre_entier.png" alt="Qognito.io" class="company-logo" />
+          </div>
+          <div class="timeline-content">
+            <h3 class="experience-title">Fondateur & Consultant IA</h3>
+            <div class="experience-meta">
+              <strong>Qognito.io</strong> · <span class="timeline-date">juillet 2025 – présent · Puteaux (92)</span>
+            </div>
+            <p class="experience-desc">
+              Conseil indépendant en Data & IA, spécialisé dans le cadrage et le prototypage sous contrainte physique et réglementaire pour les systèmes critiques.
+            </p>
+            
+            <div class="mission-block">
+              <strong class="mission-title">Mission principale — Appui Technique IA :</strong>
+              <span class="mission-subtitle">Équipe multi-disciplinaire de cadrage produit · un acteur majeur de la filière nucléaire française</span>
+              <ul class="experience-bullets">
+                <li>Identification et priorisation des opportunités IA sur <strong>4 domaines métier simultanément</strong> (25+ opportunités évaluées)</li>
+                <li>Études de faisabilité formelles : architecture, gouvernance des données, conformité (Export Control, EU AI Act, sûreté nucléaire)</li>
+                <li>Design d'architectures IA spécialisées : Knowledge Graphs, modèles physiques (PINN, Filtre de Kalman), e-monitoring multi-échelles, agents LLM</li>
+                <li>Prototypage (POC) et passation vers les équipes delivery (blueprints phasés POC → MVP → Pilote)</li>
+                <li>Acculturation des équipes produit à l'IA : formation, transition paradigmatique déterministe → probabiliste</li>
+              </ul>
+            </div>
+            
+            <div class="stack-block">
+              <span class="monospace-label stack-label">Stack technique :</span>
+              <p class="stack-text">Mistral / LLM locaux, Neo4j, Dataiku DSS, Kafka, Apache Spark, Azure OpenAI</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ippon Technologies -->
+        <div class="timeline-entry">
+          <div class="timeline-logo">
+            <img src="/assets/logos/ippon.png" alt="Ippon Technologies" class="company-logo" />
+          </div>
+          <div class="timeline-content">
+            <h3 class="experience-title">CTO Agence Paris</h3>
+            <div class="experience-meta">
+              <strong>Ippon Technologies</strong> · <span class="timeline-date">juin 2024 – juin 2025 · Paris</span>
+            </div>
+            <p class="experience-desc">
+              Direction technique de l'agence parisienne d'une ESN spécialisée Data & IA.
+            </p>
+            <ul class="experience-bullets">
+              <li>Pilotage de la stratégie commerciale et technique de l'agence</li>
+              <li>Encadrement de managers seniors et de leurs équipes techniques</li>
+              <li>Définition de la vision et des <strong>OKR trimestriels de la Practice IA</strong></li>
+              <li>Recrutement, intégration et fidélisation des talents</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Avanade -->
+        <div class="timeline-entry">
+          <div class="timeline-logo">
+            <img src="/assets/logos/avanade.png" alt="Avanade" class="company-logo" />
+          </div>
+          <div class="timeline-content">
+            <h3 class="experience-title">Practice Lead France — Intelligence Artificielle</h3>
+            <div class="experience-meta">
+              <strong>Avanade</strong> <em>(JV Accenture × Microsoft)</em> · <span class="timeline-date">mars 2019 – mai 2024 (5 ans) · Paris</span>
+            </div>
+            <p class="experience-desc">
+              Structuration et pilotage de la Practice IA France, <strong>de 4 à 32 consultants</strong>.
+            </p>
+            <ul class="experience-bullets">
+              <li>Projets IA pour un acteur majeur de l'énergie : NLP (LegalBERT), veille de risques (Knowledge Graph Neo4j), Knowledge Mining</li>
+              <li>Projet GenAI pour la <strong>Cour Pénale Internationale</strong> : RAG pour détection d'incohérences factuelles</li>
+              <li>Développement d'accélérateurs : MLOps Accelerator, Prompt Injection Tests, Swarm Portfolio Optimizer</li>
+              <li>Formations prompt engineering et IA pour des grands comptes (énergie, assurance)</li>
+            </ul>
+            <div class="stack-block">
+              <span class="monospace-label stack-label">Stack technique :</span>
+              <p class="stack-text">Microsoft Azure, Azure Databricks, Azure OpenAI, Neo4j, LegalBERT, Doccano</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Capgemini -->
+        <div class="timeline-entry">
+          <div class="timeline-logo">
+            <img src="/assets/logos/capgemini.png" alt="Capgemini" class="company-logo" />
+          </div>
+          <div class="timeline-content">
+            <h3 class="experience-title">Senior Data Scientist</h3>
+            <div class="experience-meta">
+              <strong>Capgemini</strong> <em>(Service Insights & Data)</em> · <span class="timeline-date">septembre 2016 – février 2019 · Suresnes (92)</span>
+            </div>
+            <p class="experience-desc">
+              Conception et déploiement de solutions IA pour la détection de fraude et l'innovation industrielle.
+            </p>
+            <ul class="experience-bullets">
+              <li><strong>CNAF</strong> : détection de connexions suspectes (graphe Neo4j), prédiction de l'indu (réseaux bayésiens, clustering Spark)</li>
+              <li><strong>Douanes françaises</strong> : détection d'anomalies sur les déclarations de marchandises, benchmark de recherche approchante</li>
+              <li><strong>Projets CIR</strong> (Lead Data Scientist) : détection d'anomalies aéronautique, optimisation de portefeuille par Swarm Intelligence (MOPSO), maintenance prédictive industrielle</li>
+              <li>Contribution aux objectifs Crédit d'Impôt Recherche — <strong>atteints deux années consécutives</strong></li>
+            </ul>
+            <div class="stack-block">
+              <span class="monospace-label stack-label">Stack technique :</span>
+              <p class="stack-text">R / sparklyr / Shiny, H2O, Spark, Hadoop, Neo4j</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Musicovery -->
+        <div class="timeline-entry">
+          <div class="timeline-logo">
+            <img src="/assets/logos/musicovery.png" alt="Musicovery" class="company-logo" />
+          </div>
+          <div class="timeline-content">
+            <h3 class="experience-title">Data Scientist & Consultant Big Data</h3>
+            <div class="experience-meta">
+              <strong>Musicovery</strong> · <span class="timeline-date">avril 2014 – août 2016 · Paris</span>
+            </div>
+            <p class="experience-desc">
+              Mission freelance pour un service de streaming musical — machine learning appliqué à la recommandation musicale.
+            </p>
+            <ul class="experience-bullets">
+              <li>Segmentation comportementale des utilisateurs (clustering, variables de découverte musicale)</li>
+              <li>Knowledge Graph Neo4j + API Java : solution haute performance pour la recommandation en temps réel</li>
+              <li>Formalisation d'un test A/B (approches fréquentiste et bayésienne)</li>
+            </ul>
+            <div class="stack-block">
+              <span class="monospace-label stack-label">Stack technique :</span>
+              <p class="stack-text">AWS EC2, Hadoop, Spark, R, Shiny, Neo4j</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telecom Engineer -->
+        <div class="timeline-entry">
+          <div class="timeline-logo logo-grid">
+            <img src="/assets/logos/nokia.png" alt="Nokia" class="company-logo" />
+            <img src="/assets/logos/nortel.png" alt="Nortel" class="company-logo" />
+            <img src="/assets/logos/anite.png" alt="Anite" class="company-logo" />
+            <img src="/assets/logos/steria.png" alt="Steria" class="company-logo" />
+          </div>
+          <div class="timeline-content">
+            <h3 class="experience-title">Ingénieur Télécommunications</h3>
+            <div class="experience-meta">
+              <strong>Nokia · Nortel · Anite · NET2S · Steria</strong> · <span class="timeline-date">octobre 1998 – septembre 2013 (15 ans) · Région parisienne & Toulouse</span>
+            </div>
+            <p class="experience-desc">
+              Quinze ans d'ingénierie réseau dans les environnements les plus exigeants d'Europe — avant la data, la physique des signaux.
+            </p>
+            <ul class="experience-bullets">
+              <li><strong>Nokia</strong> <em>(2008–2013)</em> — Senior Network Architect : design du testbed ayant remporté l'appel d'offre <strong>Free Mobile</strong> ; avant-vente grands comptes en Europe</li>
+              <li><strong>Nortel</strong> <em>(2004–2008)</em> — Ingénieur VoIP & GSM-R : introduction de la technologie <strong>GSM-Railways en France</strong> ; spécifications techniques commutateur et base d'abonnés</li>
+              <li><strong>Anite / Delta Partners</strong> <em>(2001–2003)</em> — Avant-vente : progiciel de planification réseaux, succès chez British Telecom et Alcatel</li>
+              <li><strong>NET2S / Steria</strong> <em>(1998–2001)</em> — Formateur certifié GSM/2G (français, anglais, espagnol) ; intégration de plateformes de gestion de performance réseau</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section section-education">
+    <div class="container education-container">
+      <h2 class="section-title text-glow">Formation</h2>
+      <div class="table-container glow-card">
+        <table class="formation-table">
+          <thead>
+            <tr>
+              <th style="width: 15%;">Année</th>
+              <th>Diplôme</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2004</strong></td>
+              <td>
+                <strong>DEA Traitement des Images et du Signal</strong> — ENSEA, Cergy
+                <br /><span class="table-subtext">Réseaux de neurones, réseaux bayésiens, théorie de l'information.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2014</strong></td>
+              <td>
+                <strong>Parcours certifiant Data Science & Big Data</strong> — CNAM Paris
+                <br /><span class="table-subtext">Certifications Cloudera (Hadoop Developer & Admin) et MOOCs Coursera.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1998</strong></td>
+              <td>
+                <strong>DESS Nouvelles Technologies et Aide à la décision</strong> — Université de la Méditerranée, Marseille
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1997</strong></td>
+              <td>
+                <strong>Maîtrise Systèmes de Télécommunications et Réseaux Informatiques</strong> — Université Toulouse III
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages Section -->
+  <section class="section section-languages">
+    <div class="container languages-container glow-card text-center">
+      <h2 class="section-title text-glow" style="margin-bottom: 1rem;">Langues</h2>
+      <p class="languages-text">
+        <strong>Trilingue</strong> — Français (courant) · Anglais (courant) · Espagnol (langue maternelle)
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="section section-cv-cta">
+    <div class="container text-center">
+      <p class="cv-cta-text">
+        <em>CV complet disponible sur demande — <a href="mailto:bguarisma@qognito.io" class="cv-email">bguarisma@qognito.io</a></em>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Layout Styles */
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  /* Intro Section */
+  .section-intro {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+  .intro-container {
+    max-width: 850px;
+    text-align: left;
+  }
+  .intro-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+  .intro-text {
+    flex: 1;
+  }
+  .intro-photo-wrapper {
+    flex-shrink: 0;
+  }
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.2);
+    transition: all 0.3s ease;
+  }
+  .profile-photo:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.4);
+    border-color: #FFFFFF;
+  }
+  .intro-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .intro-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Experience Section & Timeline */
+  .experience-container {
+    max-width: 900px;
+  }
+  
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .timeline-entry {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    border-left: 3px solid var(--color-primary);
+    border-radius: 0 8px 8px 0;
+    background: var(--color-bg-card);
+    border-top: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    align-items: flex-start;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .timeline-entry:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--color-primary-rgb), 0.4);
+    box-shadow: 
+      0 10px 30px -10px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  .timeline-logo {
+    flex-shrink: 0;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 0.25rem;
+  }
+  
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    width: 110px;
+  }
+
+  .company-logo {
+    display: block;
+    max-width: 100%;
+    max-height: 45px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  
+  .timeline-entry:hover .company-logo {
+    opacity: 1;
+  }
+  
+  .timeline-content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .experience-title {
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    margin-bottom: 0.25rem;
+  }
+  
+  .experience-meta {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+  
+  .experience-meta strong {
+    color: #FFFFFF;
+  }
+  
+  .timeline-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    letter-spacing: 0.02em;
+  }
+  
+  .experience-desc {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+  
+  .mission-block {
+    background: rgba(10, 22, 40, 0.4);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .mission-title {
+    display: block;
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .mission-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .experience-bullets {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .experience-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+  
+  .experience-bullets li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+  
+  .experience-bullets li strong {
+    color: #FFFFFF;
+  }
+  
+  .stack-block {
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .stack-label {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    background: rgba(212, 133, 15, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(212, 133, 15, 0.2);
+  }
+  
+  .stack-text {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: #FFFFFF;
+    margin-bottom: 0;
+  }
+
+  /* Education Section & Table */
+  .education-container {
+    max-width: 900px;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    padding: 0 !important;
+  }
+  
+  .formation-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  
+  .formation-table th, .formation-table td {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .formation-table th {
+    background-color: rgba(15, 32, 53, 0.6);
+    color: #FFFFFF;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .formation-table td {
+    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  
+  .formation-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .formation-table td strong {
+    color: #FFFFFF;
+  }
+  
+  .table-subtext {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+
+  /* Languages Section */
+  .languages-container {
+    max-width: 900px;
+    padding: 2rem;
+  }
+  
+  .languages-text {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+  
+  .languages-text strong {
+    color: #FFFFFF;
+  }
+
+  /* CV CTA Section */
+  .section-cv-cta {
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+  }
+  
+  .cv-cta-text {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+  
+  .cv-email {
+    color: var(--color-primary);
+    border-bottom: 1px dashed var(--color-primary);
+  }
+  
+  .cv-email:hover {
+    color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .intro-flex {
+      flex-direction: column-reverse;
+      gap: 1.5rem;
+    }
+    
+    .profile-photo {
+      width: 130px;
+      height: 130px;
+    }
+    
+    .intro-title {
+      font-size: 2.25rem;
+    }
+    
+    .timeline-entry {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    
+    .timeline-logo {
+      width: auto;
+      align-items: flex-start;
+    }
+    
+    .logo-grid {
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+      max-width: 240px;
+    }
+    
+    .company-logo {
+      max-height: 35px;
+    }
+    
+    .formation-table th, .formation-table td {
+      padding: 1rem;
+    }
+  }
+</style>
