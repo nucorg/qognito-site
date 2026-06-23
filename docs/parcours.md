@@ -26,7 +26,10 @@ Conseil indépendant en Data & IA, spécialisé dans le cadrage et le prototypag
 - Prototypage (POC) et passation vers les équipes delivery (blueprints phasés POC → MVP → Pilote)
 - Acculturation des équipes produit à l'IA : formation, transition paradigmatique déterministe → probabiliste
 
-*Stack : Mistral / LLM locaux, Neo4j, Dataiku DSS, Kafka, Apache Spark, Azure OpenAI*
+*Stack (production) :*  
+*Dataiku DSS, AWS, GCP, Open Source (on-premise)*
+
+*Stack (prototype/POC) : Posit Shiny (packages R/Python), Claude 3.5 Haiku, DuckDB, Neo4j*
 </div>
 </div>
 

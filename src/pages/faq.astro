@@ -11,6 +11,18 @@ const faqItems = [
         a: "C'est l'approche méthodologique qui consiste à contraindre le comportement probabiliste de l'IA (LLMs, agents autonomes) par un modèle de données déterministe et sémantique (Modèle d'Objets Métier / MOM et Graphes de connaissances) issu du savoir de vos experts métiers (les sachants). Cela élimine les hallucinations opérationnelles et garantit des réponses fiables, explicables et auditables, conformes à la réalité physique de vos processus."
       },
       {
+        q: "Quelle est la différence entre un RAG vectoriel naïf et votre architecture GraphRAG ?",
+        a: "Le savoir d'une entreprise ne réside pas dans du texte empilé ou découpé en tranches isolées (le RAG classique). Il réside dans les liens sémantiques et les transitions logiques entre ces textes. Un RAG vectoriel classique est aveugle aux connexions sémantiques profondes. Notre architecture <strong>GraphRAG</strong> permet aux agents d'IA de naviguer physiquement dans la géométrie de votre pensée d'entreprise pour détecter des dépendances stratégiques ou des contradictions logiques qu'un moteur classique ratera systématiquement."
+      },
+      {
+        q: "Pourquoi privilégiez-vous des architectures d'agents contraintes plutôt que des agents pleinement autonomes ?",
+        a: "L'autonomie non contrôlée est le pire ennemi de la sûreté opérationnelle dans un système critique ou d'entreprise. Nous ne concevons pas des agents dans l'espoir qu'ils comprennent intuitivement vos règles ; nous concevons des <strong>architectures contraintes</strong> où les agents sont limités par des rôles et des barrières strictes (ex : l'agent documentaliste cherche mais n'écrit pas ; l'agent rédacteur structure mais ne cherche pas). Nous divisons la charge cognitive et le risque d'hallucination par un protocole d'orchestration robuste."
+      },
+      {
+        q: "Votre objectif est-il de remplacer mes experts métiers par de l'IA ?",
+        a: "Absolument pas. L'objectif est de décharger vos experts de 90 % de leur plomberie mentale (rechercher des fichiers hétérogènes, structurer la forme, peaufiner l'écriture). Avec le Cockpit Cognitif, votre expert passe du statut d'ouvrier du texte à celui de <strong>Directeur de Publication</strong> : il configure des lentilles de pensée en amont (THINKING) et valide une matière hautement structurée et sourcée en aval. La responsabilité et l'intelligence critique restent 100 % humaines."
+      },
+      {
         q: "Qu'est-ce que le Filtre CAP (Cadré, Aligné, Prêt) ?",
         a: "C'est ma grille de qualification amont pour évaluer la viabilité industrielle d'un MVP IA avant de lancer tout développement. Un projet n'est validé et engagé que s'il répond simultanément à ces trois critères :<br /><br />• <strong>C — Cadré (Scoped & Secured) :</strong> Les contraintes d'architecture technique, de cybersécurité (données sensibles, Export Control) et d'hébergement souverain sont résolues dès le premier jour.<br />• <strong>A — Aligné (Business Aligned) :</strong> Le cas d'usage répond à une valeur métier mesurable (KPIs/OKRs) et s'ancre sur la sémantique de vos processus réels.<br />• <strong>P — Prêt (Delivery Ready) :</strong> Le handover technique est formalisé par une Étude de Faisabilité en 7 sections validée par vos architectes, garantissant un démarrage du build sans perte d'information par votre usine digitale."
       },

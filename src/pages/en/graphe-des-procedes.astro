@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Qognito.io | Process Graph" lang="en">
+  <!-- Header Hero / Title Section -->
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Interactive Visualization</span>
+      <h1 class="intro-title text-glow">The Process Graph</h1>
+      <p class="intro-subtitle">
+        Explore the real-time semantic mapping of our physical ontology and safety engine. This deterministic knowledge graph acts as the truth layer that restricts and guides our AI Assistant to guarantee zero hallucinations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Interactive Graph Section -->
+  <section class="section section-graph">
+    <div class="container">
+      <div class="graph-window glow-card">
+        <div class="window-header">
+          <div class="window-buttons">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="window-title">knowledge_graph.html (Interactive: drag to move, scroll to zoom)</span>
+        </div>
+        <div class="iframe-wrapper">
+          <iframe src="/assets/knowledge_graph.html" class="graph-iframe" title="Interactive Knowledge Graph from Qognito.io"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Context Section -->
+  <section class="section section-legend">
+    <div class="container">
+      <span class="monospace-label">Understanding the Structure</span>
+      <h2 class="section-title">Anatomy of the Process Graph</h2>
+      <p class="section-subtitle">
+        Our graph links real physical dimensions from industrial assets to safety logic constraints, enabling 100% auditable AI reasoning:
+      </p>
+
+      <div class="grid-3">
+        <div class="glow-card legend-card">
+          <div class="legend-color-tag physique"></div>
+          <h3 class="card-title">Physical System</h3>
+          <p class="card-text">
+            Represents real-world infrastructure components (e.g., N4 Reactor, Palier 1300). These nodes define the stable structural components upon which all measurements are anchored.
+          </p>
+        </div>
+
+        <div class="glow-card legend-card">
+          <div class="legend-color-tag capteur"></div>
+          <h3 class="card-title">Sensor Measurements</h3>
+          <p class="card-text">
+            Raw data stream nodes (RPN power, RCP temperature, REN chemical bore, RGL mechanical assemblies). They represent real-time analyzed and cleaned time-series.
+          </p>
+        </div>
+
+        <div class="glow-card legend-card">
+          <div class="legend-color-tag regle"></div>
+          <h3 class="card-title">Consistency Rules</h3>
+          <p class="card-text">
+            Physics-based equations and safety limits (bounding rules or cross-consistency formulas). The AI invents nothing: it formally evaluates these geometric and logical relations.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-4">
+        <div class="glow-card legend-card">
+          <div class="legend-color-tag phase"></div>
+          <h3 class="card-title">Operational Phases</h3>
+          <p class="card-text">
+            Operating regimes of the physical system (e.g., EPN Phase). They provide the essential context required to dynamically adapt tolerance thresholds and computation formulas.
+          </p>
+        </div>
+
+        <div class="glow-card legend-card">
+          <div class="legend-color-tag ia"></div>
+          <h3 class="card-title">AI Assistant & Cognitive Engine</h3>
+          <p class="card-text">
+            The semantic user interface. The AI Assistant never directly queries raw sensor data: it communicates exclusively through this relational graph of constraints, guaranteeing total traceability.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section-graph {
+    padding-top: 0;
+  }
+
+  .graph-window {
+    background-color: #0A1628;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(212, 133, 15, 0.15);
+  }
+
+  .window-header {
+    background-color: rgba(15, 32, 53, 0.8);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .window-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot.red { background-color: #ef4444; }
+  .dot.yellow { background-color: #eab308; }
+  .dot.green { background-color: #22c55e; }
+
+  .window-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .iframe-wrapper {
+    position: relative;
+    width: 100%;
+    height: 550px;
+  }
+
+  .graph-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #0A1628;
+  }
+
+  .legend-card {
+    position: relative;
+    padding-top: 2rem;
+  }
+
+  .legend-color-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .legend-color-tag.physique { background-color: #0A1628; border-color: #FFFFFF; }
+  .legend-color-tag.capteur { background-color: #6B7B8D; }
+  .legend-color-tag.regle { background-color: #D4850F; }
+  .legend-color-tag.phase { background-color: #add8e6; }
+  .legend-color-tag.ia { background-color: #0A1628; box-shadow: 0 0 10px #D4850F; }
+
+  .mt-4 {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .iframe-wrapper {
+      height: 400px;
+    }
+    .mt-4 {
+      margin-top: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

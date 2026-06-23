@@ -14,7 +14,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../faq/">
+        <link rel="next" href="../parcours/">
       
       
         
@@ -990,10 +990,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#le-probleme-que-personne-ne-resout" class="md-nav__link">
+  <a href="#le-pont-de-lintelligence-physique" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le problème que personne ne résout
+        Le "Pont" de l'Intelligence Physique
       
     </span>
   </a>
@@ -1038,17 +1038,6 @@
     <span class="md-ellipsis">
       
         La preuve par l'exemple
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pour-qui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pour qui
       
     </span>
   </a>
@@ -1100,6 +1089,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parcours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parcours
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1195,10 +1211,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#le-probleme-que-personne-ne-resout" class="md-nav__link">
+  <a href="#le-pont-de-lintelligence-physique" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le problème que personne ne résout
+        Le "Pont" de l'Intelligence Physique
       
     </span>
   </a>
@@ -1249,17 +1265,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pour-qui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pour qui
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1285,92 +1290,129 @@
   <h1>L'Encodeur de Contraintes</h1>
 
 <h2 id="lencodeur-de-contraintes">L'Encodeur de Contraintes</h2>
-<h3 id="le-probleme-que-personne-ne-resout">Le problème que personne ne résout</h3>
+<h3 id="le-pont-de-lintelligence-physique">Le "Pont" de l'Intelligence Physique</h3>
 <p>L'IA généraliste ne connaît pas les lois de votre domaine. Votre expert métier ne sait pas les écrire dans un pipeline. Le data engineer sait construire le pipeline, mais pas quelles règles y mettre. Trois compétences nécessaires — zéro profil qui les couvre simultanément.</p>
-<p>Résultat : l'IA est déployée sans contrainte physique, puis corrigée en boucle quand la recette métier échoue. Ou pire : elle est déployée avec des contraintes approximatives que personne n'a validées.</p>
+<pre class="mermaid"><code>graph TD
+    subgraph "Savoir Tacite (Expert Métier)"
+        A[Neutronique / Thermique]
+        B[Expérience Terrain]
+        C[Réglementation]
+    end
+
+    subgraph "L'ENCODEUR (Traducteur)"
+        D{Identification des Contraintes}
+        E[Modélisation Ontologique]
+        F[Tests de Cohérence]
+    end
+
+    subgraph "Système IA Contraint (Produit)"
+        G[Pipeline de Validation]
+        H[Knowledge Graph]
+        I[Assistant IA Expert]
+    end
+
+    A &amp; B &amp; C --&gt; D
+    D --&gt; E --&gt; H
+    D --&gt; F --&gt; G
+    H &amp; G --&gt; I
+
+    style D fill:#D4850F,color:#fff,stroke-width:2px
+    style I fill:#0A1628,color:#fff,stroke-width:2px</code></pre>
+<div class="admonition abstract">
+<p class="admonition-title">Visualisation de l'Ontologie Métier (Interactive)</p>
+<p><div style="margin: 20px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid rgba(107, 123, 141, 0.1);">
+    <iframe src="../assets/knowledge_graph.html" width="100%" height="500px" frameborder="0"></iframe>
+</div>
+<em>Note : Manipulez le graphe pour explorer les relations entre réacteurs, capteurs et règles physiques encodées.</em></p>
+</div>
 <hr />
 <h3 id="ce-que-fait-lencodeur-de-contraintes">Ce que fait l'Encodeur de Contraintes</h3>
 <p>Je prends le savoir tacite de vos experts métier et je l'encode dans des systèmes qui contraignent l'IA. Concrètement :</p>
 <table>
 <thead>
 <tr>
+<th>Domaine</th>
 <th>Ce que votre expert sait</th>
 <th>Ce que j'en fais</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>"Cette concentration est physiquement impossible"</td>
-<td>Règle de bornage dans le pipeline de validation</td>
+<td><strong>Physique</strong></td>
+<td>"Cette concentration est impossible"</td>
+<td>Règle de bornage dans le pipeline</td>
+<td><code>VALIDATED</code></td>
 </tr>
 <tr>
-<td>"Dans cette phase, le comportement change"</td>
-<td>Arbre de décision des phases opérationnelles, constantes calibrées par état</td>
+<td><strong>Phases</strong></td>
+<td>"Le comportement change ici"</td>
+<td>Arbre de décision opérationnel</td>
+<td><code>VALIDATED</code></td>
 </tr>
 <tr>
-<td>"Ce capteur dérive par rapport à la référence"</td>
-<td>Recalage par assimilation de données dans la couche de nettoyage</td>
+<td><strong>Capteurs</strong></td>
+<td>"Ce signal dérive de la référence"</td>
+<td>Recalage par assimilation</td>
+<td><code>VALIDATED</code></td>
 </tr>
 <tr>
-<td>"Quand cet équipement est à l'arrêt, cette mesure est un artefact"</td>
-<td>Règle de cohérence physique codée comme contrainte de premier rang</td>
+<td><strong>Artefacts</strong></td>
+<td>"À l'arrêt, cette mesure est fausse"</td>
+<td>Règle de cohérence premier rang</td>
+<td><code>VALIDATED</code></td>
 </tr>
 <tr>
-<td>"Ce signal est corrélé à celui-là dans cette configuration"</td>
-<td>Corrélations quantifiées dans le Knowledge Graph</td>
+<td><strong>Sémantique</strong></td>
+<td>"Ces signaux sont corrélés"</td>
+<td>Corrélations dans le Knowledge Graph</td>
+<td><code>VALIDATED</code></td>
 </tr>
 </tbody>
 </table>
-<p>L'expert ne sait pas écrire ces règles dans un pipeline. Le data engineer ne sait pas quelles règles écrire. L'IA ne sait pas qu'il y a des règles à écrire. <strong>Mon rôle est le pont entre les trois.</strong></p>
 <hr />
 <h3 id="pourquoi-ce-profil-est-rare">Pourquoi ce profil est rare</h3>
 <p>Ce n'est pas une compétence unique — c'est une intersection.</p>
 <p>La traduction entre physique industrielle, ingénierie des données et IA cognitive est elle-même tacite, contextuelle, forgée par l'expérience. On ne forme pas un traducteur physique-data-IA en bootcamp.</p>
-<p>Chacun des trois domaines a ses experts. Mais l'expert en neutronique ne parle pas en DataFrames. Le data engineer ne parle pas en phénomènes. Le spécialiste IA ne parle pas en bornes physiques. Le travail de traduction — savoir <em>quoi</em> encoder, <em>comment</em> l'encoder, et <em>pourquoi</em> cette contrainte est non négociable — c'est une compétence de niveau architecte qui ne s'apprend que par la pratique sur des systèmes réels.</p>
+<div class="admonition info">
+<p class="admonition-title">Le Filtre CAP — Pourquoi choisir cette approche ?</p>
+<ul>
+<li><strong>Contraint</strong> : La réalité impose une borne que l'IA ne peut pas ignorer.</li>
+<li><strong>Aride</strong> : La valeur se cache dans le nettoyage et la validation "ingrate".</li>
+<li><strong>Prouvable</strong> : Faisabilité démontrée par un prototype en moins de 3 mois.</li>
+</ul>
+</div>
 <hr />
 <h3 id="ce-que-ca-change-pour-le-client">Ce que ça change pour le client</h3>
-<p><strong>Sans encodage de contraintes :</strong></p>
+<details class="example">
+<summary>SANS Encodage (Risque Architectural)</summary>
 <ul>
-<li>L'IA produit des résultats statistiquement corrects mais physiquement faux</li>
-<li>L'expert métier valide manuellement chaque sortie — le gain d'automatisation disparaît</li>
-<li>Le turnover consultant remet le compteur à zéro : chaque nouveau profil redécouvre les règles du domaine</li>
+<li>L'IA produit des résultats statistiquement corrects mais physiquement faux.</li>
+<li>L'expert métier valide manuellement chaque sortie — le gain d'automatisation disparaît.</li>
+<li>Le turnover consultant remet le compteur à zéro à chaque rotation.</li>
 </ul>
-<p><strong>Avec encodage de contraintes :</strong></p>
+</details>
+<details class="success">
+<summary>AVEC Encodage (Actif Technique)</summary>
 <ul>
-<li>Les lois physiques sont codées dans l'architecture — l'IA ne peut pas les violer</li>
-<li>L'expert métier supervise le système, il ne le compense plus</li>
-<li>Les règles survivent au turnover : elles sont dans le code, pas dans la tête du consultant</li>
+<li>Les lois physiques sont codées dans l'architecture — l'IA ne peut pas les violer.</li>
+<li>L'expert métier supervise le système, il ne le compense plus.</li>
+<li>Les règles survivent au turnover : elles sont dans le code, pas dans la tête.</li>
 </ul>
+</details>
 <blockquote>
-<p>L'encodage de contraintes est une forme d'investissement : le savoir tacite de vos experts devient un actif technique transférable. Ce que je livre — prototype fonctionnel, architecture documentée, tests — reste exploitable après mon départ.</p>
+<p>L'encodage de contraintes est une forme d'investissement : le savoir tacite de vos experts devient un <strong>actif technique transférable</strong>. Ce que je livre — prototype fonctionnel, architecture documentée, tests — reste exploitable après mon départ.</p>
 </blockquote>
 <hr />
 <h3 id="la-preuve-par-lexemple">La preuve par l'exemple</h3>
 <p>Depuis mi-2024, j'applique cette approche sur la surveillance des réacteurs nucléaires du parc français :</p>
 <ul>
-<li><strong>55 constantes physiques</strong> encodées comme bornes inviolables dans le pipeline de validation</li>
-<li><strong>3 règles de cohérence</strong> (bornage, impossibilité neutronique, cohérence chimique) automatisant 96,4 % des validations</li>
-<li><strong>7 phases opérationnelles</strong> classifiées par arbre de décision calibré — pas par heuristique statistique</li>
-<li><strong>1 Knowledge Graph</strong> encodant l'ontologie métier : réacteurs, capteurs, paramètres, règles, corrélations quantifiées</li>
-<li><strong>1 assistant IA</strong> qui ne peut répondre qu'à travers les faits validés par le graphe — zéro hallucination sur le domaine</li>
+<li><strong>55 constantes physiques</strong> encodées comme bornes inviolables.</li>
+<li><strong>96,4 % des incohérences</strong> résolues automatiquement via 3 règles de cohérence.</li>
+<li><strong>1 Knowledge Graph</strong> encodant l'ontologie métier complète.</li>
+<li><strong>270+ tests unitaires</strong> couvrant chaque règle physique encodée.</li>
 </ul>
-<p>Chaque règle, chaque constante, chaque corrélation a été extraite d'un dialogue avec les experts métier, puis encodée dans un système testable (270+ tests unitaires).</p>
 <p>→ Résultats détaillés : voir <a href="../#la-preuve">La Preuve</a></p>
-<hr />
-<h3 id="pour-qui">Pour qui</h3>
-<p>Ce positionnement est pertinent si votre projet coche trois cases :</p>
-<ol>
-<li>
-<p><strong>Contraint</strong> — Le problème est borné par une loi physique. Thermodynamique, neutronique, cinétique chimique, mécanique des fluides — si la réalité impose une borne que l'algorithme ne peut pas ignorer.</p>
-</li>
-<li>
-<p><strong>Aride</strong> — Le sujet est techniquement négligé. La valeur se cache dans les problèmes ingrats : nettoyage de séries temporelles, recalage de capteurs, validation de cohérence physique.</p>
-</li>
-<li>
-<p><strong>Prouvable</strong> — La faisabilité est démontrable par un prototype fonctionnel en moins de 3 mois.</p>
-</li>
-</ol>
-<p>C'est le <a href="../#le-filtre-cap-pragmatisme-de-combat">Filtre CAP</a>. Si le projet ne passe pas les trois, je ne le prends pas.</p>
 <hr />
 <p><strong>Un système critique où l'IA doit respecter la physique de votre domaine ?</strong>
 → bguarisma@qognito.io</p>
