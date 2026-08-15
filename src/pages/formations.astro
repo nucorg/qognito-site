@@ -1,0 +1,504 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Qognito.io | Catalogue des 3 Formations Officielles : BOOTAG-IA, SAGA-IA & REASON-IA" lang="fr">
+  <!-- Header Page Formations -->
+  <section class="hero-section" style="padding-bottom: 30px;">
+    <div class="container hero-container">
+      <span class="monospace-label">ACADÉMIE & CATALOGUE DE FORMATION</span>
+      <h1 class="hero-title text-glow">
+        Les 3 Formations Officielles d'Ingénierie Agentique<span class="logo-dot">.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Des modules d'ingénierie certifiants conçus pour les écoles d'ingénieurs, universités et écoles de commerce souhaitant former aux architectures d'agents autonomes, à leur gouvernance et au raisonnement avancé.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section Catalogue des 3 Formations -->
+  <section id="catalogue" class="section">
+    <div class="container">
+      <span class="monospace-label">Catalogue Officiel</span>
+      <h2 class="section-title">La Triade des Formations Qognito.io</h2>
+      <p class="section-subtitle">
+        Une approche orientée "Principes Premiers" : plomberie d'API, typage strict, gouvernance FinOps (C<sub>task</sub>) et apprentissage par renforcement (RLVR).
+      </p>
+
+      <div class="grid-3" style="margin-top: 30px;">
+        <!-- Formation 1 : BOOTAG-IA -->
+        <div class="glow-card" style="border: 1px solid #D4850F; background-color: #1E293B; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 5px;">
+              <span style="background-color: #D4850F; color: #0A1628; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">DISPONIBLE</span>
+              <span style="color: #38bdf8; font-family: monospace; font-size: 0.9rem;">28h (4 Jours)</span>
+            </div>
+            <h3 class="card-title" style="color: #f8fafc; font-size: 1.4rem; margin-bottom: 5px;">BOOTAG-IA</h3>
+            <p style="color: #94a3b8; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;">Building an AI Agent</p>
+            <p class="card-text" style="color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.5;">
+              Architectures d'agents autonomes from scratch, résilience POO (R ou Python), plomberie REST/JSON Schemas, télémétrie FinOps et auditabilité conforme EU AI Act (<code>LLM-as-a-Judge</code>).
+            </p>
+          </div>
+          <a href="#fiche-bootag-ia" class="btn-secondary" style="display: inline-block; width: 100%; text-align: center; font-size: 0.9rem;">Consulter la Fiche BOOTAG-IA ↓</a>
+        </div>
+
+        <!-- Formation 2 : SAGA-IA -->
+        <div class="glow-card" style="border: 1px solid #38bdf8; background-color: #1E293B; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 5px;">
+              <span style="background-color: #38bdf8; color: #0A1628; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">DISPONIBLE</span>
+              <span style="color: #38bdf8; font-family: monospace; font-size: 0.9rem;">14h à 21h</span>
+            </div>
+            <h3 class="card-title" style="color: #f8fafc; font-size: 1.4rem; margin-bottom: 5px;">SAGA-IA</h3>
+            <p style="color: #94a3b8; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;">Stratège en Architecture & Gouvernance des Agents IA</p>
+            <p class="card-text" style="color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.5;">
+              Cadrage macro-architectural, gouvernance FinOps (C<sub>task</sub>), Spec-Driven Development (SDD), harnais Zero-Trust et mise en conformité aux exigences de l'EU AI Act (Art. 14).
+            </p>
+          </div>
+          <a href="#fiche-saga-ia" class="btn-secondary" style="display: inline-block; width: 100%; text-align: center; font-size: 0.9rem;">Consulter la Fiche SAGA-IA ↓</a>
+        </div>
+
+        <!-- Formation 3 : REASON-IA -->
+        <div class="glow-card" style="border: 1px solid #10b981; background-color: #1E293B; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 5px;">
+              <span style="background-color: #10b981; color: #0A1628; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">DISPONIBLE</span>
+              <span style="color: #10b981; font-family: monospace; font-size: 0.9rem;">40h (5 Jours)</span>
+            </div>
+            <h3 class="card-title" style="color: #f8fafc; font-size: 1.4rem; margin-bottom: 5px;">REASON-IA</h3>
+            <p style="color: #94a3b8; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;">Raisonnement, Émergence & Apprentissage par Renforcement</p>
+            <p class="card-text" style="color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.5;">
+              Deep Tech : Inférence stochastique, KV Cache from scratch, apprentissage par renforcement RLVR (GRPO), Self-Consistency et distillation vers modèles embarqués sobres.
+            </p>
+          </div>
+          <a href="#fiche-reason-ia" class="btn-secondary" style="display: inline-block; width: 100%; text-align: center; font-size: 0.9rem;">Consulter la Fiche REASON-IA ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Solutions par Cursus pour l'Enseignement Supérieur -->
+  <section id="programmes-solutions" class="section" style="background-color: #0d1B2A; padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B;">
+    <div class="container">
+      <span class="monospace-label">Partenariat & Déclinaisons</span>
+      <h2 class="section-title">La Triade pour l'Enseignement Supérieur & Grandes Écoles</h2>
+      <p class="section-subtitle">
+        Trois programmes complémentaires conçus pour s'intégrer dans vos M1, M2, Écoles d'Ingénieurs, Écoles de Commerce et Doctorats :
+      </p>
+
+      <div class="grid-3" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <!-- Programme 1 : BOOTAG-IA -->
+        <div class="glow-card" style="border-left: 4px solid #D4850F; background-color: #1E293B;">
+          <span style="color: #D4850F; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">BOOTCAMP IMMERSIF (28H)</span>
+          <h3 style="color: #f8fafc; font-size: 1.3rem; margin: 10px 0;">BOOTAG-IA : Building an AI Agent</h3>
+          <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 20px;">
+            Pour M2 Informatique, Élèves-Ingénieurs, Data Engineers et Développeurs. Construction d'agents autonomes No-Framework from scratch.
+          </p>
+          <a href="#fiche-bootag-ia" class="btn-secondary" style="font-size: 0.85rem;">Fiche Partenariale BOOTAG-IA ↓</a>
+        </div>
+
+        <!-- Programme 2 : SAGA-IA -->
+        <div class="glow-card" style="border-left: 4px solid #38bdf8; background-color: #1E293B;">
+          <span style="color: #38bdf8; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">CADRAGE & GOUVERNANCE (14H-21H)</span>
+          <h3 style="color: #f8fafc; font-size: 1.3rem; margin: 10px 0;">SAGA-IA : Stratège en Architecture</h3>
+          <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 20px;">
+            Pour M1/M2 Management, Executive Ed, Consultants & DSI Juniors. Cadrage macro-architectural, formule C<sub>task</sub>, SDD et EU AI Act.
+          </p>
+          <a href="#fiche-saga-ia" class="btn-secondary" style="font-size: 0.85rem;">Fiche Partenariale SAGA-IA ↓</a>
+        </div>
+
+        <!-- Programme 3 : REASON-IA -->
+        <div class="glow-card" style="border-left: 4px solid #10b981; background-color: #1E293B;">
+          <span style="color: #10b981; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">DEEP TECH & R&D (40H)</span>
+          <h3 style="color: #f8fafc; font-size: 1.3rem; margin: 10px 0;">REASON-IA : Raisonnement & RLVR</h3>
+          <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 20px;">
+            Pour M2 IA/MLOps, Élèves-Ingénieurs Recherche, Doctorants (PhD) & Data Labs. Inférence autoregressive, RLVR (GRPO) et Sober AI.
+          </p>
+          <a href="#fiche-reason-ia" class="btn-secondary" style="font-size: 0.85rem;">Fiche Partenariale REASON-IA ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fiches Partenariales Institutionnelles Détaillées -->
+  <div id="fiches-institutionnelles">
+    <!-- FICHE 1 : BOOTAG-IA -->
+    <section id="fiche-bootag-ia" class="section" style="padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B;">
+      <div class="container">
+        <div style="background-color: #1E293B; border: 1px solid #D4850F; padding: 35px; border-radius: 8px;">
+          <span style="background-color: #D4850F; color: #0A1628; padding: 4px 12px; border-radius: 16px; font-size: 0.8rem; font-weight: bold;">FICHE PARTENARIALE INSTITUTIONNELLE — PROGRAMME 1</span>
+          <h2 style="color: #f8fafc; font-size: 1.8rem; margin-top: 15px;">BOOTAG-IA : Building an AI Agent (28h)</h2>
+          <p style="color: #38bdf8; font-size: 1.1rem; margin-bottom: 25px;">
+            Partenariat Enseignement Supérieur & Grandes Écoles d'Ingénieurs (CTI/CGE).
+          </p>
+
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #D4850F; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">1. Diagnostic & Apports Pédagogiques du Bootcamp BOOTAG-IA</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Ingénierie "No-Framework" :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Construction d'agents autonomes from scratch (POO R ou Python) interagissant directement avec les API REST HTTP.</p>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Encapsulation & État Immuable :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Classes d'exécution (<code>ExecutionContext</code>) et sous-agents hermétiques (pattern <em>Agent-as-a-Tool</em>).</p>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Évaluation Automated :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Génération d'un <em>Evidence Pack</em> certifiant le comportement déterministe via la suite <code>LLM-as-a-Judge</code>.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stack Technique & Plomberie R-Native BOOTAG-IA -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #D4850F; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">2. Stack Technique & Plomberie Agentique R-Native (From Scratch)</h3>
+            <div style="background-color: #0A1628; padding: 22px; border-left: 4px solid #D4850F; border-radius: 6px; margin-top: 15px;">
+              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 18px;">
+                Contrairement aux approches sur-simplifiées basées sur des frameworks lourds, BOOTAG-IA enseigne la construction d'un harnais agentique <strong>from scratch</strong> en R. Cette approche garantit une maîtrise absolue de la plomberie réseau, une sobriété mémoire maximale et une isolation industrielle sans boîtes noires.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                <div style="background-color: #1E293B; padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                  <strong style="color: #D4850F; font-size: 0.95rem;">1. Plomberie REST & Élimination des "Boîtes Noires"</strong>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 6px; line-height: 1.5;">
+                    Utilisation de <code>{"{httr2}"}</code> pour interroger directement l'API REST officielle Gemini. Contrôle total du réseau : gestion native du backoff exponentiel (<code>req_retry</code>), traitement des erreurs HTTP 429/500/503 et basculement fallback transparent sans dépendre des frameworks Python lourds (LangChain, LlamaIndex).
+                  </p>
+                </div>
+
+                <div style="background-color: #1E293B; padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                  <strong style="color: #D4850F; font-size: 0.95rem;">2. Sorties Structurées & JSON Schema Direct</strong>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 6px; line-height: 1.5;">
+                    Définition native de la spécification JSON Schema via des listes nommées R imbriquées transmises à <code>generationConfig$responseSchema</code>. Parsing de retour garanti et sécurisé sans Pydantic via <code>jsonlite::fromJSON</code>.
+                  </p>
+                </div>
+
+                <div style="background-color: #1E293B; padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                  <strong style="color: #D4850F; font-size: 0.95rem;">3. POO R6 & Encapsulation Stricte</strong>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 6px; line-height: 1.5;">
+                    L'architecture R6 distingue la vérité (<code>ExecutionContext</code> R6 immuable : historique, métadonnées, budget jetons) de la vue éphémère (<code>LlmRequest</code>). Les sous-agents (<code>Agent-as-a-Tool</code>) possèdent un contexte étanche prévenant l'empoisonnement de contexte.
+                  </p>
+                </div>
+
+                <div style="background-color: #1E293B; padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                  <strong style="color: #D4850F; font-size: 0.95rem;">4. Sobriété Data & Tidyverse Native</strong>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 6px; line-height: 1.5;">
+                    Mise en œuvre du RAG et de la mémoire par le <code>tidyverse</code> (<code>dplyr</code>, <code>purrr</code>) : chunking, embeddings via <code>embedContent</code> et calcul manuel de similarité cosinus from scratch, sans bases vectorielles lourdes comme ChromaDB.
+                  </p>
+                </div>
+
+                <div style="background-color: #1E293B; padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                  <strong style="color: #D4850F; font-size: 0.95rem;">5. Client Léger Agnostique via MCP</strong>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 6px; line-height: 1.5;">
+                    L'agent R agit comme un client universel via le Model Context Protocol (MCP). Il orchestre dynamiquement des serveurs d'outils distants écrits indifféremment en Node.js, Python ou Go.
+                  </p>
+                </div>
+
+                <div style="background-color: #1E293B; padding: 15px; border-radius: 6px; border: 1px solid #334155;">
+                  <strong style="color: #D4850F; font-size: 0.95rem;">6. Usine Logicielle Hermétique (<code>{"{renv}"}</code>)</strong>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 6px; line-height: 1.5;">
+                    Isolation industrielle garantie par <code>{"{renv}"}</code> et son fichier de verrouillage <code>renv.lock</code>, éliminant les conflits de dépendances fréquemment observés dans l'écosystème Python (Conda, Poetry, Pyenv).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Part 3: Sommaire Pédagogique BOOTAG-IA -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #D4850F; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">3. Sommaire Pédagogique & Programme Détaillé (16 Modules / 28h)</h3>
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-top: 10px; margin-bottom: 15px;">
+              Parcours structuré en 4 sections d'ingénierie progressive. Chaque module livre un nouvel outil ou classe R6 dans la boîte à outils de l'apprenant :
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #D4850F;">
+                <strong style="color: #D4850F; font-size: 0.95rem;">Section 1 : Fondations LLM & Structuration</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 1.1 :</strong> Modélisation, REST & Résilience Réseau</li>
+                  <li><strong>Mod. 1.2 :</strong> Prompt Système d'Autorité & SessionManager</li>
+                  <li><strong>Mod. 1.3 :</strong> Sorties Structurées (JSON Schema)</li>
+                  <li><strong>Mod. 1.4 :</strong> Séquentialité & Benchmark GAIA</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #D4850F;">
+                <strong style="color: #D4850F; font-size: 0.95rem;">Section 2 : Protocoles MCP & Boucle ReAct</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 2.1 :</strong> Découverte d'Outils & Protocoles REST</li>
+                  <li><strong>Mod. 2.2 :</strong> Standardisation Outils POO & MCP</li>
+                  <li><strong>Mod. 2.3 :</strong> ExecutionContext Centralisé & Interfaces</li>
+                  <li><strong>Mod. 2.4 :</strong> Moteur ReAct Autonome (Think-Act-Observe)</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #D4850F;">
+                <strong style="color: #D4850F; font-size: 0.95rem;">Section 3 : RAG, Exploration & Mémoire</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 3.1 :</strong> RAG & VectorStore In-Memory (768d)</li>
+                  <li><strong>Mod. 3.2 :</strong> Exploration Autonome de Structure</li>
+                  <li><strong>Mod. 3.3 :</strong> Mémoire Long Terme & Compaction Multi-Run</li>
+                  <li><strong>Mod. 3.4 :</strong> Discovery & Agent Skills (YAML/SKILL.md)</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #D4850F;">
+                <strong style="color: #D4850F; font-size: 0.95rem;">Section 4 : Multi-Agents, Télémétrie & CI/CD</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 4.1 :</strong> Métacognition, Planification & Réflexion</li>
+                  <li><strong>Mod. 4.2 :</strong> Orchestration Multi-Agents (Agent-as-a-Tool)</li>
+                  <li><strong>Mod. 4.3 :</strong> Télémétrie & Observabilité (Trace ID)</li>
+                  <li><strong>Mod. 4.4 :</strong> Volant de Qualité (LLM-as-a-Judge) & CI/CD</li>
+                </ul>
+              </div>
+            </div>
+            <div style="margin-top: 15px; text-align: right;">
+              <a href="mailto:bguarisma@qognito.io?subject=Demande%20Syllabus%20Detaille%20BOOTAG-IA" style="color: #38bdf8; font-size: 0.85rem; text-decoration: underline;">Demander la Fiche Programme Détaillée par Module (Syllabus BOOTAG-IA) →</a>
+            </div>
+          </div>
+
+          <div style="background-color: #0A1628; padding: 20px; border-radius: 6px; border: 1px solid #D4850F; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+              <h4 style="color: #f8fafc; margin: 0;">Inscrire le Bootcamp BOOTAG-IA (28h) dans votre Maquette</h4>
+            </div>
+            <a href="mailto:bguarisma@qognito.io?subject=Partenariat%20BOOTAG-IA" class="btn-primary" style="font-size: 0.85rem;">Échanger avec Boris Guarisma →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FICHE 2 : SAGA-IA -->
+    <section id="fiche-saga-ia" class="section" style="padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B;">
+      <div class="container">
+        <div style="background-color: #1E293B; border: 1px solid #38bdf8; padding: 35px; border-radius: 8px;">
+          <span style="background-color: #38bdf8; color: #0A1628; padding: 4px 12px; border-radius: 16px; font-size: 0.8rem; font-weight: bold;">FICHE PARTENARIALE INSTITUTIONNELLE — PROGRAMME 2</span>
+          <h2 style="color: #f8fafc; font-size: 1.8rem; margin-top: 15px;">SAGA-IA : Stratège en Architecture & Gouvernance des Agents IA (14h à 21h)</h2>
+          <p style="color: #38bdf8; font-size: 1.1rem; margin-bottom: 25px;">
+            Module Modulaire pour Écoles de Commerce, Executive Education, Masters Management & DSI.
+          </p>
+
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #38bdf8; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">1. Diagnostic & Apports Pédagogiques de la Formation SAGA-IA</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Gouvernance FinOps & C<sub>task</sub> :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Sondes de mesure de tokens en temps réel et coupe-circuits financiers (<em>Circuit Breakers</em>).</p>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Spec-Driven Development (SDD) :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Rédaction de contrats de workflows structurés éliminant la pourriture de contexte (<em>Context Rot</em>).</p>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Zero-Trust & EU AI Act (Art. 14) :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Harnais anti-injection, protocoles <em>Human-In-The-Loop</em> (HITL) et bouton d'arrêt d'urgence.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2 Stack / Méthodologie SAGA-IA -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #38bdf8; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">2. Modalités, Durée & Publics Cibles</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+              <div style="background-color: #0A1628; padding: 18px; border-left: 3px solid #38bdf8; border-radius: 4px;">
+                <strong style="color: #38bdf8; font-size: 1rem;">Format Modulaire Souple (7h à 21h) :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">
+                  Adaptable selon les cibles : 7h (Décideurs & DSI), 14h (Delivery & Chef de Projet), 21h (Consultants Tech & Master Management/ExecEd).
+                </p>
+              </div>
+              <div style="background-color: #0A1628; padding: 18px; border-left: 3px solid #38bdf8; border-radius: 4px;">
+                <strong style="color: #38bdf8; font-size: 1rem;">Stack & Standards :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">
+                  S'appuie sur la hiérarchie Google Gemini (<code>3.5-flash-lite</code> pour évals, <code>3.5-flash</code> pour l'exécution, <code>3.5-pro</code> pour le raisonnement), Spec-Driven Development (SDD) et contrats XML/Markdown.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Part 3: Sommaire SAGA-IA -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #38bdf8; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">3. Sommaire Pédagogique & Programme Détaillé (5 Sections / 10 Modules)</h3>
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-top: 10px; margin-bottom: 15px;">
+              Structure macro-architecturale en 5 axes de cadrage, de raccordement et de gouvernance industrielle :
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+                <strong style="color: #38bdf8; font-size: 0.95rem;">Section 1 : Transition FDE & Arbitrage</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 1.1 :</strong> Arbitrage comptable (Coût complet C<sub>task</sub>)</li>
+                  <li><strong>Mod. 1.2 :</strong> Le dernier kilomètre du raccordement physique</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+                <strong style="color: #38bdf8; font-size: 0.95rem;">Section 2 : Anatomie & Gouvernance Harnais</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 2.1 :</strong> Les 5 briques agentiques & Benchmark GAIA</li>
+                  <li><strong>Mod. 2.2 :</strong> Harnais privé vs EU AI Act (Art. 14)</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+                <strong style="color: #38bdf8; font-size: 0.95rem;">Section 3 : Spec-Driven & Context Eng.</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 3.1 :</strong> Fenêtre infinie & Compaction multi-modèles</li>
+                  <li><strong>Mod. 3.2 :</strong> Spec-Driven Development (SDD contrats XML)</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+                <strong style="color: #38bdf8; font-size: 0.95rem;">Section 4 : Sécurité SI & Zero-Trust</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 4.1 :</strong> Post-mortem PocketOS & Asymétrie d'attention</li>
+                  <li><strong>Mod. 4.2 :</strong> Triade Fatale (Simon Willison) & Sandboxing</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+                <strong style="color: #38bdf8; font-size: 0.95rem;">Section 5 : Industrialisation, Évals & Pattern Juge</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li><strong>Mod. 5.1 :</strong> Pattern Générateur-Juge & Volant de Qualité</li>
+                  <li><strong>Mod. 5.2 :</strong> Grille de réversibilité, Congélation de session & Human-in-the-Loop (HITL)</li>
+                </ul>
+              </div>
+            </div>
+            <div style="margin-top: 15px; text-align: right;">
+              <a href="mailto:bguarisma@qognito.io?subject=Demande%20Syllabus%20Detaille%20SAGA-IA" style="color: #38bdf8; font-size: 0.85rem; text-decoration: underline;">Demander la Fiche Programme Détaillée par Module (Syllabus SAGA-IA) →</a>
+            </div>
+          </div>
+
+          <div style="background-color: #0A1628; padding: 20px; border-radius: 6px; border: 1px solid #38bdf8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+              <h4 style="color: #f8fafc; margin: 0;">Inscrire le Module SAGA-IA (14h à 21h) dans votre Maquette</h4>
+            </div>
+            <a href="mailto:bguarisma@qognito.io?subject=Partenariat%20SAGA-IA" class="btn-primary" style="font-size: 0.85rem;">Échanger avec Boris Guarisma →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FICHE 3 : REASON-IA -->
+    <section id="fiche-reason-ia" class="section" style="padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B;">
+      <div class="container">
+        <div style="background-color: #1E293B; border: 1px solid #10b981; padding: 35px; border-radius: 8px;">
+          <span style="background-color: #10b981; color: #0A1628; padding: 4px 12px; border-radius: 16px; font-size: 0.8rem; font-weight: bold;">FICHE PARTENARIALE INSTITUTIONNELLE — PROGRAMME 3</span>
+          <h2 style="color: #f8fafc; font-size: 1.8rem; margin-top: 15px;">REASON-IA : Raisonnement, Émergence & RLVR (40h)</h2>
+          <p style="color: #38bdf8; font-size: 1.1rem; margin-bottom: 25px;">
+            Parcours Deep Tech pour M2 IA/MLOps, Élèves-Ingénieurs Recherche & Doctorants (PhD).
+          </p>
+
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #10b981; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">1. Diagnostic & Apports Pédagogiques de la Formation REASON-IA</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">KV Cache & Inférence Autoregressives :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Écriture bas niveau de la mémoire tensorielle PyTorch/R et décodage stochastique (Top-p, Température, <em>Self-Consistency</em>).</p>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">RLVR & Algorithme GRPO :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Apprentissage par renforcement à récompenses vérifiables : normalisation des avantages relatifs et pénalité KL.</p>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px;">
+                <strong style="color: #f8fafc;">Distillation & Sober AI :</strong>
+                <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 5px;">Capture des chaînes de pensée (Thought) et distillation par <em>Masked Cross-Entropy</em> vers modèles compacts embarqués.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Part 2 Architecture & Sobriété Hybride REASON-IA -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #10b981; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">2. Stack Technique & Sobriété Hybride (R & PyTorch via reticulate)</h3>
+            <div style="background-color: #0A1628; padding: 20px; border-left: 4px solid #10b981; border-radius: 6px; margin-top: 15px;">
+              <p style="color: #38bdf8; font-size: 1rem; font-weight: bold; margin-bottom: 12px;">
+                Sobriété Hybride : Utiliser <code>reticulate</code> permet d'exploiter les tenseurs lourds PyTorch tout en conservant une orchestration R-native légère, fluide et testable.
+              </p>
+              <h4 style="color: #f8fafc; font-size: 0.95rem; margin-top: 15px; margin-bottom: 8px;">Pourquoi l'Alliance de R & <code>{"{reticulate}"}</code> est une Bonne Pratique ?</h4>
+              <ul style="color: #cbd5e1; font-size: 0.85rem; line-height: 1.6; padding-left: 20px; margin: 0;">
+                <li style="margin-bottom: 8px;">
+                  <strong style="color: #f8fafc;">Le syndrome du "Python-Only Overkill" :</strong> Vouloir tout coder en Python (analyse statistique, modélisation budgétaire, tests unitaires, data visualisation) mène à une sur-complexité inutile face à la puissance native de R.
+                </li>
+                <li style="margin-bottom: 8px;">
+                  <strong style="color: #f8fafc;">L'approche hybride optimisée :</strong>
+                  <ul style="padding-left: 18px; margin-top: 4px;">
+                    <li><strong style="color: #10b981;">Laisser le lourd au lourd (Python/CUDA) :</strong> Les tenseurs PyTorch et les calculs de réseaux de neurones s'exécutent en C++/GPU côté Python.</li>
+                    <li><strong style="color: #10b981;">Laisser le contrôle au rigoureux (R/Tidyverse) :</strong> L'I/O (téléchargements), l'analyse des logits, les visualisations de latence (<code>{"{ggplot2}"}</code>), les tests de conformité (<code>{"{testthat}"}</code>) et l'orchestration s'écrivent en R.</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong style="color: #38bdf8;">Bilan :</strong> Une communication IPC (<em>Inter-Process Communication</em>) ultra-fluide avec un overhead négligeable face au temps d'inférence du LLM.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Part 3 Sommaire REASON-IA -->
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #10b981; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 8px;">3. Sommaire Pédagogique & Programme Détaillé (8 Sections / 32 Modules / 40h)</h3>
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-top: 10px; margin-bottom: 15px;">
+              Programme Deep Tech intensif de 5 jours couvrant la chaîne complète du raisonnement au RLVR :
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 1 : Fondations du Raisonnement</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Tokens system & Logits bruts</li>
+                  <li>Sampling glouton vs multinomial</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 2 : Autoregressif & KV Cache</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Boucles de rollouts & Inférence</li>
+                  <li>KV Cache <em>from scratch</em> en PyTorch/R</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 3 : Évaluation Symbolique</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Parseur d'accolades & SymPy</li>
+                  <li>Benchmark MATH-500 parallèle</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 4 : Inference-Time Compute</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Filtering Top-p & Température</li>
+                  <li>Self-Consistency & Vote majoritaire</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 5 : Auto-Raffinement</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Logprobs & Incertitude sémantique</li>
+                  <li>Feedback & Correction itérative</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 6 : Renforcement (GRPO)</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>RLHF vs RLVR (récompenses exactes)</li>
+                  <li>Normalisation GRPO & Policy Gradient</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 7 : Stabilisation GRPO</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Entropie, Clipped Ratios & Divergence KL</li>
+                  <li>Format Rewards & Anti-reward hacking</li>
+                </ul>
+              </div>
+              <div style="background-color: #0A1628; padding: 15px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong style="color: #10b981; font-size: 0.95rem;">Section 8 : Distillation & Sober AI</strong>
+                <ul style="color: #cbd5e1; font-size: 0.85rem; margin-top: 8px; padding-left: 18px; line-height: 1.5;">
+                  <li>Curation Enseignant & Answer-Only SFT</li>
+                  <li>Masked Cross-Entropy & Modèles sobres</li>
+                </ul>
+              </div>
+            </div>
+            <div style="margin-top: 15px; text-align: right;">
+              <a href="mailto:bguarisma@qognito.io?subject=Demande%20Syllabus%20Detaille%20REASON-IA" style="color: #38bdf8; font-size: 0.85rem; text-decoration: underline;">Demander la Fiche Programme Détaillée par Module (Syllabus REASON-IA) →</a>
+            </div>
+          </div>
+
+          <div style="background-color: #0A1628; padding: 20px; border-radius: 6px; border: 1px solid #10b981; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+              <h4 style="color: #f8fafc; margin: 0;">Inscrire le Bootcamp REASON-IA (40h) dans votre Maquette</h4>
+            </div>
+            <a href="mailto:bguarisma@qognito.io?subject=Partenariat%20REASON-IA" class="btn-primary" style="font-size: 0.85rem;">Échanger avec Boris Guarisma →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
