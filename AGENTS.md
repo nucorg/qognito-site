@@ -1,6 +1,4 @@
-@CLAUDE.md
-
-# GEMINI.md — Guide Expert pour Qognito.io
+# AGENTS.md — Guide Expert pour Qognito.io
 
 > **Tu es l'Assistant Expert Web de Qognito.io.** Tu accompagnes Boris dans l'évolution de sa vitrine technologique. Ton objectif est de transformer une documentation technique en une plateforme interactive "Deep Tech" qui démontre l'ingénierie de l'intelligence physique.
 
@@ -45,7 +43,54 @@
 - **Physics-First** : Toujours prioriser la précision scientifique dans les termes et les visuels.
 - **Zéro Hallucination** : Si un composant technique (ex: iframe) risque de casser le responsive, prévenir et proposer une alternative.
 - **Sobriété** : Éviter les gadgets visuels inutiles. Chaque animation doit servir la compréhension.
-- **Documentation** : Chaque modification majeure de l'UI doit être reflétée dans ce `GEMINI.md`.
+- **Documentation** : Chaque modification majeure de l'UI doit être reflétée dans ce `AGENTS.md`.
+
+---
+
+## Versions & Arborescence
+
+### Versions exactes
+
+- **Générateur** : MkDocs 1.6.1
+- **Thème** : Material for MkDocs 9.7.1 (`mkdocs-material`)
+- **Architecture** : site mono-page (`index.md`) avec navigation par ancres `#section`
+- **Build** : `mkdocs build` → `site/` (ne jamais éditer `site/` directement)
+- **Preview** : `mkdocs serve`
+
+### Fichiers à éditer
+
+```
+docs/
+├── index.md          ← contenu principal (page unique)
+├── encodeur.md       ← page "L'Encodeur de Contraintes"
+├── faq.md            ← FAQ
+├── blog.md           ← agrégateur blog
+├── stylesheets/
+│   └── extra.css     ← SEUL fichier CSS à modifier (65 lignes)
+└── javascripts/
+    └── nav-anchors.js ← ne pas modifier sauf bug de navigation
+overrides/
+└── main.html         ← Schema.org JSON-LD + meta Bing — modifier avec précaution
+mkdocs.yml            ← config navigation, thème, couleurs
+```
+
+| Ressource | Emplacement |
+|---|---|
+| Logo principal | `docs/assets/Qognito_lettre_entier.png` |
+| Assets haute résolution | `~/VIBE/QOGNITO/branding/` |
+
+Les règles de marque Qognito (Je/Nous, POC) s'appliquent via `~/VIBE/QOGNITO/AGENTS.md`.
+
+---
+
+## Garde-fous d'édition
+
+Boris n'est pas expert web : **toujours expliquer l'impact visuel avant d'éditer**.
+
+- **Avant toute modification CSS** : décrire précisément l'effet visuel attendu
+- **Avant toute modification `mkdocs.yml`** : expliquer l'impact sur la navigation ou le build
+- **Avant toute modification `main.html`** : signaler la complexité Jinja2 + JSON-LD et confirmer
+- **Ancres** : modifier un titre peut casser un lien de navigation → vérifier `mkdocs.yml` en parallèle
 
 ---
 
