@@ -29,7 +29,7 @@ theme:
   custom_dir: overrides
   language: fr
   logo: assets/Qognito_lettre_entier.png
-  favicon: assets/Qognito_lettre_entier.png
+  favicon: assets/LOGO_Q.png
   palette:
     # Mode sombre (Navy Qognito)
     - media: "(prefers-color-scheme: dark)"
