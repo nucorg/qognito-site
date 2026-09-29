@@ -68,9 +68,11 @@ tags:
     *   **Compétence Validée :** Gestion d'état immuable (`ExecutionContext`), isolation de sous-agents (*Agent-as-a-Tool*) et résilience face aux évasions agentiques.
 
 === "3. Supervision FinOps"
-    *   **Principe :** Capture des métadonnées de consommation de tokens et Trace IDs.
-    *   **Compétence Validée :** Mesure empirique du coût d'inférence par tâche :
-        $$\text{Efficience } C_{task} = \frac{\text{Coût Tokens} + \text{Latence Réseau}}{\text{Tâches Exécutées Sans Hallucination}}$$
+    *   **Principe :** Capture des métadonnées de consommation de tokens et Trace IDs, puis reconstitution du coût complet — l'inférence n'en représente que 13 à 29 %.
+    *   **Compétence Validée :** Mesure empirique du **coût complet par tâche réussie**, sur ses trois couches :
+        $$C_{task} = \frac{C_1^{\text{inférence}} + C_2^{\text{orchestration}} + C_3^{\text{maintenance humaine}}}{\text{Tâches réussies}}$$
+    *   **Ce que l'étudiant apprend à ne pas faire :** omettre $C_3$ — la revue des sorties, le débogage des dérives, la recompilation du contexte — qui pèse à elle seule **47 à 60 %** du total ; et comparer au **salaire chargé** plutôt qu'au **coût marginal** de l'heure libérée. Ces deux erreurs surestiment la rentabilité d'un ordre de grandeur.
+    *   **Seuil enseigné :** en dessous de **20 heures par mois** de travail humain effectivement remplacé, $C_2$ et $C_3$ ne s'amortissent pas — l'agent ne se justifie pas, quel que soit le coût du token.
 
 === "4. Audit & Evaluation (EU AI Act)"
     *   **Principe :** CI/CD Sémantique et tests automatisés.

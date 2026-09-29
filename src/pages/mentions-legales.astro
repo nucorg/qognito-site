@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Mentions Légales - Qognito.io" description="Mentions légales du site Qognito.io">
+  <section class="container legal-section">
+    <h1>Mentions Légales</h1>
+    
+    <div class="legal-content">
+      <h2>1. Éditeur du service</h2>
+      <p>
+        <strong>Raison sociale :</strong> QOGNITO (SASU)<br/>
+        <strong>Nom commercial / Marque :</strong> Qognito.io<br/>
+        <strong>Capital social :</strong> 1 000,00 €<br/>
+        <strong>Siège social :</strong> 151 Avenue Félix Faure, 92800 Puteaux, France<br/>
+        <strong>RCS :</strong> RCS Nanterre 130 175 730<br/>
+        <strong>SIREN / SIRET (siège) :</strong> 130 175 730 / 130 175 730 00018<br/>
+        <strong>TVA Intracommunautaire :</strong> FR07130175730<br/>
+        <strong>Code APE / NAF :</strong> 62.02A — Conseil en systèmes et logiciels informatiques<br/>
+        <strong>Directeur de la publication / Président :</strong> Boris Eduardo GUARISMA NAVARRO<br/>
+        <strong>Contact :</strong> <a href="mailto:contact@qognito.io">contact@qognito.io</a> | <a href="https://qognito.io">https://qognito.io</a>
+      </p>
+
+      <h2>2. Hébergement & Données</h2>
+      <p>
+        L'hébergement de ce site web est assuré par <strong>Vercel Inc.</strong><br/>
+        440 N Barranca Ave #4133<br/>
+        Covina, CA 91723<br/>
+        États-Unis
+      </p>
+      <p>
+        Les données personnelles collectées via nos formulaires de contact sont destinées uniquement à QOGNITO SASU pour le traitement de votre demande. Conformément à la réglementation (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression de vos données en contactant : <a href="mailto:contact@qognito.io">contact@qognito.io</a>.
+      </p>
+
+      <h2>3. Propriété Intellectuelle</h2>
+      <p>
+        Tous les contenus présents sur ce site (textes, images, logos, architecture, etc.) sont la propriété exclusive de QOGNITO SASU, sauf mention contraire explicite. 
+        Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable de QOGNITO SASU.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
+  
+  .legal-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-primary);
+    font-family: var(--font-title, 'Manrope', sans-serif);
+    text-align: center;
+  }
+  
+  .legal-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+  
+  .legal-content p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body, 'Inter', sans-serif);
+  }
+  
+  .legal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+  }
+
+  .legal-content a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+  }
+</style>
