@@ -1,0 +1,45 @@
+---
+import { whitepaper, collectionEnabled } from '../config/whitepaper';
+
+interface Props {
+  lang?: 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props;
+const copy = {
+  fr: {
+    label: 'Livre blanc Qognito',
+    audience: 'LIVRE BLANC · DG, DAF & DSI',
+    title: whitepaper.title,
+    description: 'Supervision humaine, coûts complets, temps réaffecté : examinez les angles morts du ROI de vos projets IA.',
+    download: 'Télécharger le livre blanc',
+    discover: 'Découvrir le livre blanc',
+  },
+  en: {
+    label: 'Qognito white paper',
+    audience: 'WHITE PAPER · CEOs, CFOs & CIOs',
+    title: 'The Hidden AI Bill',
+    description: 'Human oversight, total costs and reallocated time: examine the blind spots in your AI projects’ ROI.',
+    download: 'Download the white paper',
+    discover: 'Explore the white paper',
+  },
+}[lang];
+---
+<aside class="whitepaper-callout" aria-label={copy.label} lang={lang}>
+  <div>
+    <span>{copy.audience}</span>
+    <h2>{copy.title}</h2>
+    <p>{copy.description}</p>
+    {lang === 'en' && <p class="language-note">White paper and download page in French.</p>}
+  </div>
+  <a class="btn-primary" href={whitepaper.path} hreflang="fr">{collectionEnabled ? copy.download : copy.discover} →</a>
+</aside>
+<style>
+  .whitepaper-callout { margin: 2rem auto; padding: clamp(1.3rem, 4vw, 2.5rem); background: #0F2035; border: 1px solid #334155; border-left: 4px solid #D4850F; border-radius: 12px; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .whitepaper-callout div { flex: 1 1 320px; }
+  span { color: #D4850F; font-size: .8rem; letter-spacing: .08em; }
+  h2 { font-size: 1.65rem; margin: .6rem 0; }
+  p { margin: 0; color: #E2E8F0; }
+  .language-note { margin-top: .6rem; font-size: .85rem; color: #CBD5E1; }
+  a { flex-shrink: 0; white-space: normal; }
+</style>

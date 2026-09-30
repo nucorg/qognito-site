@@ -1,0 +1,26 @@
+---
+import { positioning } from '../content/positioning';
+import WhitepaperCallout from './WhitepaperCallout.astro';
+interface Props { lang?: 'fr' | 'en'; }
+const { lang = 'fr' } = Astro.props;
+const copy = positioning[lang];
+const coursesPath = lang === 'en' ? '/en/formations/' : '/formations/';
+---
+<section id="accueil" class="home-positioning">
+  <div class="container">
+    <h1>{copy.headline}</h1>
+    <p class="mission">{copy.mission}</p>
+    <p>{copy.audiences}</p>
+    <p>{copy.approach}</p>
+    <a class="btn-primary" href={coursesPath}>{copy.explore} →</a>
+    <WhitepaperCallout lang={lang} />
+  </div>
+</section>
+<style>
+  .home-positioning { padding: 3.5rem 0 1rem; overflow-wrap: anywhere; }
+  h1 { max-width: 1000px; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1.5rem; }
+  p { max-width: 900px; color: #E2E8F0; }
+  .mission { font-size: 1.2rem; }
+  a { margin-top: .5rem; color: #050B14; text-align: center; }
+  a:focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+</style>

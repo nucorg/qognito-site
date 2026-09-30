@@ -1,0 +1,7 @@
+[Unit]
+Description=Sauvegarde chiffrée du suivi prospects Qognito
+
+[Service]
+Type=oneshot
+UMask=0077
+ExecStart=/usr/bin/python3 %h/VIBE/projets/qognito-site/scripts/crm-backup.py backup

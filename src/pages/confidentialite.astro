@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { whitepaper, collectionEnabled, mailProvider, mailLocation, mailSafeguards } from '../config/whitepaper';
+---
+<Layout title="Confidentialité et données personnelles — Qognito" description="Utilisation des données du formulaire du livre blanc, prestataires, conservation et exercice de vos droits auprès de Qognito.">
+  <article class="container privacy">
+    <h1>Confidentialité et données personnelles</h1>
+    <p>Notice du 29 septembre 2026 · Version {whitepaper.noticeVersion}</p>
+    {!collectionEnabled && <p class="notice">Le formulaire de téléchargement du livre blanc n’est pas encore activé. Les dispositions ci-dessous décrivent le parcours prévu ; les informations sur la messagerie seront précisées avant son ouverture.</p>}
+    <h2>Responsable du traitement</h2>
+    <p>QOGNITO SASU, 151 Avenue Félix Faure, 92800 Puteaux, France, est responsable du traitement des demandes qui lui sont adressées. Contact pour vos données : <a href="mailto:contact@qognito.io">contact@qognito.io</a>.</p>
+    <h2>Formulaire du livre blanc</h2>
+    <p>Votre email est nécessaire pour enregistrer votre demande et permettre un suivi en cas de difficulté. Le prénom, l’entreprise et la fonction sont facultatifs. Le formulaire enregistre également votre choix de contact, la version de cette notice, un identifiant de demande, la date de soumission et, lorsqu’elle est indiquée, la campagne à l’origine de la demande.</p>
+    <p>La gestion de cette demande repose sur notre intérêt légitime à diffuser nos travaux professionnels et à assurer le suivi des demandes. Vous pouvez vous opposer à ce traitement en nous écrivant. Vous pouvez également demander le document directement par email.</p>
+    <p>Un échange commercial n’est engagé que si vous le demandez en cochant la case dédiée ou en nous contactant directement. Pour la case du formulaire, le fondement est votre consentement, retirable à tout moment sans remettre en cause le traitement antérieur. Le téléchargement reste possible sans cette case. Aucune inscription automatique à une newsletter n’est effectuée.</p>
+    <h2>Destinataires et prestataires</h2>
+    <p>Les demandes sont consultées par le dirigeant de Qognito. Le suivi commercial est tenu dans un fichier local à accès restreint. Ce stockage local ne signifie pas que les données restent exclusivement sur notre ordinateur :</p>
+    <ul>
+      <li><strong>Cloudflare</strong> assure l’hébergement et la distribution du site et traite des données techniques de connexion et de sécurité. <a href="https://www.cloudflare.com/privacypolicy/">Politique Cloudflare</a>.</li>
+      <li><strong>Web3Forms, exploité par Web3Creative</strong>, reçoit les champs du formulaire et transmet la demande à notre messagerie. Il traite aussi des informations techniques et de lutte contre les abus, notamment l’adresse IP. Sa politique indique le recours à AWS, Cloudflare et Hetzner ; l’adresse IP et l’email peuvent être transmis à CleanTalk et Akismet pour l’antispam. <a href="https://web3forms.com/privacy">Politique Web3Forms</a> et <a href="https://web3forms.com/dpa">accord de sous-traitance</a>.</li>
+      <li><strong>Messagerie professionnelle :</strong> {mailProvider || 'prestataire à préciser avant activation du formulaire'}. {mailLocation && `Localisation de traitement : ${mailLocation}.`} {mailSafeguards && `Encadrement des transferts : ${mailSafeguards}.`}</li>
+      <li><strong>Google Fonts</strong> fournit actuellement les polices du site ; le navigateur contacte ses serveurs pour les charger. <a href="https://developers.google.com/fonts/faq/privacy">Informations sur les données traitées</a>.</li>
+    </ul>
+    <p>Web3Creative opère depuis l’Inde et utilise des infrastructures internationales. Son accord de sous-traitance prévoit notamment les clauses contractuelles types pour les transferts concernés hors de l’Espace économique européen. Le recours à ces prestataires ne constitue pas une garantie de stockage exclusivement européen.</p>
+    <h2>Durées de conservation</h2>
+    <ul>
+      <li><strong>Chez Qognito :</strong> demandes de téléchargement sans échange souhaité supprimées du suivi et de la messagerie sous 30 jours. Si vous demandez un échange, conservation jusqu’à 12 mois après votre dernière interaction, sauf relation contractuelle relevant d’autres obligations.</li>
+      <li><strong>Sauvegardes locales :</strong> historique prévu de 90 jours maximum ; accès limité à la restauration. Les suppressions et oppositions sont réappliquées avant toute reprise du suivi après restauration.</li>
+      <li><strong>Chez Web3Forms :</strong> sa politique du 13 juillet 2026 prévoit une conservation pouvant atteindre trois ans, sauf durée plus courte liée à l’offre ou suppression anticipée. Cette durée est distincte de celle appliquée par Qognito. Nous relayons les demandes d’effacement qui concernent les copies détenues par ce prestataire.</li>
+    </ul>
+    <p>Les informations minimales nécessaires au respect d’une opposition à la prospection sont conservées séparément pendant trois ans et ne servent pas à vous recontacter. Les journaux techniques des prestataires relèvent de leurs politiques respectives.</p>
+    <h2>Vos droits</h2>
+    <p>Vous pouvez demander l’accès, la rectification, l’effacement ou la limitation du traitement de vos données, vous opposer aux traitements fondés sur l’intérêt légitime, retirer votre consentement et, lorsque les conditions sont réunies, demander la portabilité. Écrivez à <a href="mailto:contact@qognito.io">contact@qognito.io</a>. Nous répondons en principe sous un mois et pouvons demander les éléments strictement nécessaires à la vérification de votre identité.</p>
+    <p>Vous pouvez déposer une réclamation auprès de la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>. Aucune décision automatisée produisant des effets juridiques ni aucun profilage commercial automatisé n’est effectué par ce formulaire.</p>
+    <h2>Cookies et mesure d’audience</h2>
+    <p>Ce formulaire n’ajoute aucun pixel publicitaire, cookie marketing ni suivi des ouvertures d’emails. Il n’enregistre pas vos champs dans le stockage du navigateur. Les paramètres de campagne reconnus servent uniquement à identifier l’origine d’une demande, sans suivi individuel de navigation. Les prestataires peuvent traiter les données techniques nécessaires à la sécurité de leurs services.</p>
+  </article>
+</Layout>
+<style>
+  .privacy { max-width: 850px; padding-top: 4rem; padding-bottom: 5rem; overflow-wrap: anywhere; }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.5rem; }
+  h2 { margin: 2rem 0 1rem; }
+  p, li { color: #E2E8F0; }
+  ul { padding-left: 1.3rem; }
+  li { margin-bottom: 1rem; }
+  a { text-decoration: underline; }
+  .notice { border-left: 3px solid #D4850F; padding: 1rem; background: #0F2035; }
+</style>

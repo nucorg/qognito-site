@@ -1,0 +1,55 @@
+---
+interface Props {
+  lang?: 'fr' | 'en';
+}
+const { lang = 'fr' } = Astro.props;
+const label = lang === 'en' ? 'Back to top' : 'Retour en haut de page';
+---
+
+<button type="button" class="back-to-top" aria-label={label} title={label} hidden>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m6 11 6-6 6 6M12 5v14" />
+  </svg>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.back-to-top');
+  if (button) {
+    const updateVisibility = () => { button.hidden = window.scrollY < 400; };
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    window.addEventListener('pageshow', updateVisibility);
+    updateVisibility();
+    button.addEventListener('click', () => {
+      // Move keyboard focus back to navigation before the button disappears.
+      document.querySelector<HTMLElement>('.header .logo')?.focus({ preventScroll: true });
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      });
+    });
+  }
+</script>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    right: calc(1rem + env(safe-area-inset-right, 0px));
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    z-index: 900;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    background: var(--color-bg-card);
+    color: var(--color-primary);
+    box-shadow: 0 4px 16px #0008;
+    cursor: pointer;
+  }
+  .back-to-top[hidden] { display: none; }
+  .back-to-top:hover { background: var(--color-primary); color: #050B14; }
+  .back-to-top:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4px; }
+  @media print { .back-to-top { display: none; } }
+</style>

@@ -9,9 +9,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:form": "node tests/whitepaper.mjs",
+    "test:crm": "python3 tests/crm.py"
   },
   "dependencies": {
     "astro": "^6.4.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
   }
 }

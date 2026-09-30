@@ -1,0 +1,97 @@
+---
+import { sagaContent } from '../content/saga';
+import { whitepaper } from '../config/whitepaper';
+interface Props { lang?: 'fr' | 'en'; }
+const { lang = 'fr' } = Astro.props;
+const copy = sagaContent[lang];
+const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.contactSubject)}&body=${encodeURIComponent(copy.contactBody)}`;
+const institutionHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.institutionSubject)}&body=${encodeURIComponent(copy.institutionBody)}`;
+---
+<section id="fiche-saga-ia" class="saga-programme" aria-labelledby="saga-title">
+  <div class="container">
+    <div class="saga-panel">
+      <header class="saga-intro">
+        <span class="eyebrow">{copy.audienceLabel}</span>
+        <h2 id="saga-title">{copy.name}</h2>
+        <p class="saga-promise">{copy.promise}</p>
+        <p>{copy.introduction}</p>
+        <p class="saga-audience">{copy.audience}</p>
+        <a href={contactHref} class="btn-primary">{copy.contact} →</a>
+      </header>
+
+      <aside class="saga-institution" aria-labelledby="saga-institution-title">
+        <h3 id="saga-institution-title">{copy.institutionTitle}</h3>
+        <p>{copy.institutionAudience}</p>
+        <p>{copy.institutionDescription}</p>
+        <p>{copy.institutionExamples}</p>
+        <a href={institutionHref}>{copy.institutionContact} →</a>
+      </aside>
+
+      <h3 class="sections-title">{copy.sectionsTitle}</h3>
+      <ol class="saga-sections">
+        {copy.sections.map((section, index) => (
+          <li>
+            <span class="eyebrow">{copy.sectionLabel} {index + 1}</span>
+            <h4>{section.title}</h4>
+            <ul>{section.objectives.map(objective => <li>{objective}</li>)}</ul>
+            <details>
+              <summary>{copy.evidenceLabel}</summary>
+              <p>{section.evidence}</p>
+            </details>
+          </li>
+        ))}
+      </ol>
+
+      <div class="saga-method">
+        <h3>{copy.methodTitle}</h3>
+        <p>{copy.method}</p>
+        <p class="saga-note">{copy.methodNote}</p>
+      </div>
+
+      <aside class="saga-whitepaper" aria-labelledby="saga-whitepaper-title">
+        <h3 id="saga-whitepaper-title">{copy.whitepaperTitle}</h3>
+        <p>{copy.whitepaperDescription}</p>
+        <a href={whitepaper.path} hreflang="fr">{copy.whitepaperLink} →</a>
+      </aside>
+
+      <div class="saga-contact">
+        <h3>{copy.nextTitle}</h3>
+        <p>{copy.nextDescription}</p>
+        <a href={contactHref} class="btn-primary">{copy.contact} →</a>
+        <p class="saga-note availability">{copy.availability}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .saga-programme { padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B; scroll-margin-top: 5rem; }
+  .saga-panel { padding: clamp(1.25rem, 4vw, 2.5rem); border: 1px solid #D4850F; border-radius: 12px; background: #0F2035; }
+  .eyebrow { color: #D4850F; font-size: .8rem; letter-spacing: .06em; font-weight: 600; }
+  h2, h3, h4 { font-weight: 600; }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 1rem 0; }
+  h3 { font-size: 1.35rem; margin-bottom: .8rem; }
+  h4 { font-size: 1.2rem; margin: .6rem 0 1rem; }
+  p { color: #E2E8F0; }
+  .saga-intro { max-width: 780px; }
+  .saga-promise { font-family: var(--font-title); font-size: clamp(1.3rem, 2.5vw, 1.8rem); color: #FFFFFF; }
+  .saga-audience { color: #CBD5E1; }
+  .saga-institution { margin-top: 2rem; padding: clamp(1rem, 3vw, 1.5rem); border-left: 3px solid #D4850F; background: #050B14; }
+  .saga-institution a { display: inline-block; text-decoration: underline; }
+  .sections-title { margin-top: 2.5rem; }
+  .saga-sections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 0; margin: 1.2rem 0 2rem; list-style: none; }
+  .saga-sections > li { padding: 1.4rem; background: #050B14; border: 1px solid #334155; border-radius: 8px; }
+  .saga-sections > li:last-child { grid-column: 1 / -1; }
+  .saga-sections ul { padding-left: 1.15rem; margin: 0 0 1rem; color: #E2E8F0; }
+  .saga-sections ul li + li { margin-top: .6rem; }
+  summary { cursor: pointer; color: #D4850F; font-size: .9rem; }
+  details p { margin: .8rem 0 0; font-size: .95rem; }
+  .saga-method, .saga-whitepaper, .saga-contact { margin-top: 2rem; }
+  .saga-note { color: #CBD5E1; font-size: .9rem; }
+  .saga-whitepaper { padding: 1.4rem; border-left: 3px solid #D4850F; background: #050B14; }
+  .saga-whitepaper a { text-decoration: underline; }
+  .saga-contact { padding-top: 2rem; border-top: 1px solid #334155; }
+  .availability { margin: 1rem 0 0; }
+  .btn-primary { color: #050B14; font-weight: 600; white-space: normal; text-align: center; }
+  :is(a, summary):focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+  @media (max-width: 700px) { .saga-sections { grid-template-columns: 1fr; } .saga-sections > li { padding: 1.1rem; } }
+</style>

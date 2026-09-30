@@ -1,0 +1,11 @@
+[Unit]
+Description=Sauvegarde quotidienne du suivi Qognito
+
+[Timer]
+OnCalendar=*-*-* 19:00:00
+Persistent=true
+OnBootSec=10min
+Unit=qognito-crm-backup.service
+
+[Install]
+WantedBy=timers.target

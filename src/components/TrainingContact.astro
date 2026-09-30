@@ -1,0 +1,25 @@
+---
+import { positioning } from '../content/positioning';
+interface Props { lang?: 'fr' | 'en'; }
+const { lang = 'fr' } = Astro.props;
+const copy = positioning[lang];
+const href = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.contactSubject)}&body=${encodeURIComponent(copy.contactBody)}`;
+---
+<section class="training-contact" aria-labelledby="training-contact-title">
+  <div class="container">
+    <div class="contact-panel">
+      <h2 id="training-contact-title">{copy.contactTitle}</h2>
+      <p>{copy.contactIntroduction}</p>
+      <p>{copy.contactDescription}</p>
+      <a href={href} class="btn-primary">{copy.contactLabel} →</a>
+    </div>
+  </div>
+</section>
+<style>
+  .training-contact { margin-top: 3rem; }
+  .contact-panel { padding: clamp(1.25rem, 4vw, 2.5rem); background: #0F2035; border: 1px solid #D4850F; border-radius: 12px; overflow-wrap: anywhere; }
+  h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+  p { color: #E2E8F0; max-width: 800px; }
+  a { color: #050B14; text-align: center; }
+  a:focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+</style>

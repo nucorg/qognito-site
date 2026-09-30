@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BackToTop from '../components/BackToTop.astro';
 
 interface Props {
   title: string;
@@ -22,7 +23,7 @@ const menus = {
     blog: "Blog",
     faq: "FAQ",
     contact: "Me Contacter",
-    footerDesc: "Architectures d'IA Déterministes, Formations Agentiques Certifiantes & Cadrage sous Fortes Contraintes.",
+    footerDesc: "Formations et ressources pédagogiques pour décider, construire et approfondir les usages de l’IA.",
     copyright: "Tous droits réservés."
   },
   en: {
@@ -32,7 +33,7 @@ const menus = {
     blog: "Blog",
     faq: "FAQ",
     contact: "Contact Me",
-    footerDesc: "Deterministic AI Architectures, Certifying Agentic Training & Scoping under Heavy Constraints.",
+    footerDesc: "Courses and learning resources to make decisions, build applications and explore AI in depth.",
     copyright: "All rights reserved."
   }
 };
@@ -51,6 +52,9 @@ if (lang === 'fr') {
   togglePath = cleanPath;
 }
 const toggleLabel = lang === 'en' ? 'FR' : 'EN';
+// Les ressources et les pages juridiques n'ont pas encore de traduction anglaise.
+const frenchOnly = ['/livres-blancs/', '/confidentialite', '/mentions-legales'].some(path => currentPath.startsWith(path));
+if (frenchOnly) togglePath = '/en/';
 ---
 
 <!DOCTYPE html>
@@ -115,14 +119,15 @@ const toggleLabel = lang === 'en' ? 'FR' : 'EN';
       </div>
       <div class="container footer-bottom">
         <div class="footer-legal-links">
-          <a href={`${prefix}/mentions-legales`} class="legal-link">Mentions Légales</a>
+          <a href="/mentions-legales/" class="legal-link">Mentions Légales</a>
           <span class="legal-separator">•</span>
-          <a href={`${prefix}/faq`} class="legal-link">Confidentialité / RGPD</a>
+          <a href="/confidentialite/" class="legal-link">Confidentialité / RGPD</a>
         </div>
         <p class="footer-short-notice">QOGNITO SASU — RCS Nanterre 130 175 730</p>
         <p>&copy; {new Date().getFullYear()} Qognito.io v1.0. {t.copyright}</p>
       </div>
     </footer>
+    <BackToTop lang={lang} />
     
     <!-- Script block for mobile menu link interaction auto-collapse -->
     <script>
@@ -385,5 +390,12 @@ const toggleLabel = lang === 'en' ? 'FR' : 'EN';
       flex-direction: column;
       gap: 1.5rem;
     }
+  }
+  @media (max-width: 400px) {
+    .header-container { padding-inline: 1rem; gap: .25rem; }
+    .header .logo { font-size: 1.25rem; }
+    .actions { gap: .4rem; }
+    .lang-toggle { padding-inline: .5rem; }
+    .btn-sm { padding-inline: .6rem !important; font-size: .8rem !important; }
   }
 </style>

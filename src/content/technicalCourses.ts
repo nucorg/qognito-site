@@ -1,0 +1,83 @@
+// Sources pédagogiques :
+// formation_baa_r/docs/programme_global_charte_baa.md
+// formation_rm_r/docs/Syllabus_Reasoning_Models_Hybrid.md
+export const technicalCourses = {
+  fr: {
+    prerequisiteLabel: 'Prérequis',
+    outcomesTitle: '1. Ce que vous apprendrez à faire',
+    requestLabel: 'Demander le programme',
+    requestDescription: 'Découvrez la progression, les exercices et les modalités d’évaluation. Présentez-moi votre contexte pour vérifier l’adéquation du parcours à votre niveau, à votre équipe ou à votre cursus.',
+    requestBody: 'Bonjour Boris,\n\nJe souhaite recevoir le programme détaillé de {course}.\nMon contexte (activité, équipe ou cursus) :\nLe public concerné et son expérience technique :\nLes compétences recherchées :\nLe calendrier envisagé :\n\nMerci.',
+    bootag: {
+      name: 'BOOTAG-IA',
+      title: 'Ingénierie du Harnais Agentique',
+      duration: '28 heures · 4 jours de 7 heures ou blocs alternés',
+      prerequisite: 'Pratique avancée de la programmation orientée objet en R ou Python, maîtrise des API REST et du format JSON, et bases en formulation d’instructions pour les modèles (prompting).',
+      outcomes: [
+        { title: 'Construire le cadre d’exécution', description: 'Relier un modèle à des outils, organiser son contexte et définir les étapes de travail de l’agent.' },
+        { title: 'Diagnostiquer et réparer', description: 'Analyser les traces pour corriger les pannes réseau, les pertes de contexte et les erreurs d’orchestration.' },
+        { title: 'Assembler et évaluer', description: 'Réunir les composants dans un harnais exécutable, suivre les consommations et tester son fonctionnement de bout en bout.' },
+      ],
+      approachTitle: '2. Construire, tester et comprendre chaque composant',
+      approach: 'Le harnais est l’ensemble du code qui organise les appels au modèle, les outils, la mémoire et les contrôles. Vous le construisez progressivement, sans framework d’orchestration, pour comprendre les choix d’architecture et savoir intervenir lorsqu’un composant échoue.',
+      technical: 'Les ateliers s’appuient sur R et R6, avec des appels directs aux API REST. Ils relient gestion du contexte, accès aux connaissances, outils et coordination entre agents.',
+      practiceTitle: 'La pratique au cœur du parcours',
+      practice: 'Des exercices de dépannage vous confrontent à du code volontairement défectueux. Le projet de synthèse consiste à assembler un harnais complet, à produire ses traces d’exécution et à le soumettre à un banc d’évaluation.',
+    },
+    reason: {
+      name: 'REASON-IA',
+      title: 'Raisonnement, Émergence & Apprentissage par Renforcement',
+      duration: '40 heures · 5 jours de 8 heures',
+      prerequisite: 'Bases de programmation en R ou Python et compréhension élémentaire de l’apprentissage profond : réseaux de neurones, rétropropagation et PyTorch.',
+      outcomes: [
+        { title: 'Comprendre la génération des réponses', description: 'Expérimenter la génération de texte, la mémoire de calcul du modèle et les différentes stratégies de sélection des réponses.' },
+        { title: 'Mesurer avant de comparer', description: 'Construire une évaluation vérifiable et comparer plusieurs méthodes de raisonnement, de vote et de correction des réponses.' },
+        { title: 'Entraîner et examiner les compromis', description: 'Expérimenter l’apprentissage par renforcement et la distillation vers un modèle compact, en examinant exactitude, stabilité et ressources de calcul.' },
+      ],
+      approachTitle: '2. Explorer le moteur des modèles par l’expérimentation',
+      approach: 'Vous programmez les mécanismes étudiés pour observer leurs effets : génération, évaluation, amélioration des réponses et entraînement. L’objectif est de comprendre dans quelles conditions une méthode apporte un bénéfice, et à quel coût de calcul.',
+      technical: 'Le parcours associe R pour l’analyse et le pilotage des expériences à Python et PyTorch pour les calculs, via reticulate. Il aborde notamment l’apprentissage par renforcement à récompenses vérifiables (RLVR, avec GRPO) et la distillation.',
+      practiceTitle: 'Un projet pour mettre les choix à l’épreuve',
+      practice: 'Les exercices conduisent à un projet d’entraînement et de distillation d’un modèle compact sur des problèmes de logique comptable ou financière. Vous justifiez les choix d’évaluation, de récompense et d’infrastructure à partir des résultats observés.',
+    },
+  },
+  en: {
+    prerequisiteLabel: 'Prerequisites',
+    outcomesTitle: '1. What you will learn to do',
+    requestLabel: 'Request the programme for',
+    requestDescription: 'Explore the learning sequence, exercises and assessment methods. Tell me about your context so we can check how the course fits your experience, team or curriculum.',
+    requestBody: 'Hello Boris,\n\nI would like to receive the detailed programme for {course}.\nMy context (business, team or curriculum):\nThe intended audience and their technical experience:\nThe skills to develop:\nPreferred dates:\n\nThank you.',
+    bootag: {
+      name: 'BOOTAG-IA',
+      title: 'Agentic Harness Engineering',
+      duration: '28 hours · Four 7-hour days or staggered sessions',
+      prerequisite: 'Advanced object-oriented programming practice in R or Python, proficiency with REST APIs and JSON, and foundational prompting skills.',
+      outcomes: [
+        { title: 'Build the execution environment', description: 'Connect a model to tools, organise its context and define the steps through which the agent works.' },
+        { title: 'Diagnose and repair', description: 'Use execution traces to investigate network failures, context loss and orchestration errors.' },
+        { title: 'Assemble and evaluate', description: 'Combine the components into an executable harness, monitor resource use and test its behaviour from end to end.' },
+      ],
+      approachTitle: '2. Build, test and understand each component',
+      approach: 'The harness is the code that organises model calls, tools, memory and controls. You build it progressively without an orchestration framework, to understand architectural choices and intervene when a component fails.',
+      technical: 'Workshops use R and R6 with direct REST API calls. They connect context management, knowledge access, tools and coordination between agents.',
+      practiceTitle: 'Learning through practice',
+      practice: 'Debugging exercises challenge you with deliberately faulty code. The capstone involves assembling a complete harness, producing execution traces and running it through an evaluation suite.',
+    },
+    reason: {
+      name: 'REASON-IA',
+      title: 'Reasoning, Emergence & Reinforcement Learning',
+      duration: '40 hours · Five 8-hour days',
+      prerequisite: 'Basic programming skills in R or Python and an elementary understanding of deep learning: neural networks, backpropagation and PyTorch.',
+      outcomes: [
+        { title: 'Understand response generation', description: 'Experiment with text generation, the model’s computational memory and different strategies for selecting responses.' },
+        { title: 'Measure before comparing', description: 'Build a verifiable evaluation process and compare methods for reasoning, voting and correcting responses.' },
+        { title: 'Train and examine trade-offs', description: 'Experiment with reinforcement learning and distillation into a compact model, examining accuracy, stability and compute requirements.' },
+      ],
+      approachTitle: '2. Explore how models work through experimentation',
+      approach: 'You implement the mechanisms under study to observe their effects: generation, evaluation, response improvement and training. The aim is to understand when a method helps and how much computation it requires.',
+      technical: 'The course combines R for analysis and experiment control with Python and PyTorch for computation, through reticulate. Topics include reinforcement learning with verifiable rewards (RLVR, using GRPO) and distillation.',
+      practiceTitle: 'A project that puts your choices to the test',
+      practice: 'Exercises lead to a project involving the training and distillation of a compact model on accounting or financial logic problems. You justify evaluation, reward and infrastructure choices using observed results.',
+    },
+  },
+} as const;

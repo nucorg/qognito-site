@@ -1,0 +1,73 @@
+---
+import { technicalCourses } from '../content/technicalCourses';
+import { positioning } from '../content/positioning';
+interface Props { lang?: 'fr' | 'en'; course: 'bootag' | 'reason'; }
+const { lang = 'fr', course } = Astro.props;
+const labels = technicalCourses[lang];
+const copy = labels[course];
+const audience = positioning[lang][course];
+const titleId = `${course}-title`;
+const request = `${labels.requestLabel} ${copy.name}`;
+const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(request)}&body=${encodeURIComponent(labels.requestBody.replace('{course}', copy.name))}`;
+---
+<section id={`fiche-${course}-ia`} class:list={['technical-course', `${course}-course`]} aria-labelledby={titleId}>
+  <div class="container">
+    <div class="course-panel">
+      <header>
+        <span class="course-label">{audience.label}</span>
+        <h2 id={titleId}>{copy.name} : {copy.title}</h2>
+        <p class="course-duration">{copy.duration}</p>
+        <p>{audience.audience}</p>
+        <p class="course-prerequisite"><strong>{labels.prerequisiteLabel} :</strong> {copy.prerequisite}</p>
+      </header>
+
+      <h3>{labels.outcomesTitle}</h3>
+      <div class="course-outcomes">
+        {copy.outcomes.map(outcome => (
+          <div>
+            <h4>{outcome.title}</h4>
+            <p>{outcome.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="course-approach">
+        <h3>{copy.approachTitle}</h3>
+        <p>{copy.approach}</p>
+        <p>{copy.technical}</p>
+        <h4>{copy.practiceTitle}</h4>
+        <p>{copy.practice}</p>
+      </div>
+
+      <div class="course-request">
+        <h3>{audience.contactTitle}</h3>
+        <p>{labels.requestDescription}</p>
+        <a href={contactHref} class="btn-primary">{request} →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .technical-course { padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B; scroll-margin-top: 5rem; overflow-wrap: anywhere; }
+  .bootag-course { --color-primary: #38bdf8; --color-primary-rgb: 56, 189, 248; }
+  .reason-course { --color-primary: #10b981; --color-primary-rgb: 16, 185, 129; }
+  .course-panel { padding: clamp(1.25rem, 4vw, 2.5rem); background: #1E293B; border: 1px solid var(--color-primary); border-radius: 12px; }
+  .course-label { color: var(--color-primary); font-size: .8rem; font-weight: 600; letter-spacing: .04em; }
+  h2 { font-size: clamp(1.5rem, 3vw, 1.8rem); margin: 1rem 0; }
+  h3 { color: var(--color-primary); font-size: 1.2rem; margin: 1.8rem 0 1rem; }
+  h4 { font-size: 1rem; margin-bottom: .6rem; }
+  p { color: #E2E8F0; }
+  .course-duration { color: var(--color-primary); font-family: monospace; }
+  .course-prerequisite { font-size: .9rem; color: #CBD5E1; }
+  .course-outcomes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .course-outcomes > div { padding: 1.2rem; border-radius: 6px; background: #0A1628; }
+  .course-outcomes p { font-size: .95rem; margin: 0; }
+  .course-approach { margin-top: 1.8rem; padding: clamp(1rem, 3vw, 1.5rem); border-left: 3px solid var(--color-primary); background: #0A1628; }
+  .course-approach h3 { margin-top: 0; }
+  .course-approach p:last-child { margin-bottom: 0; }
+  .course-request { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #334155; }
+  .course-request h3 { margin-top: 0; color: #FFFFFF; }
+  .btn-primary { color: #050B14; text-align: center; }
+  a:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 4px; }
+  @media (max-width: 700px) { .course-outcomes { grid-template-columns: 1fr; } }
+</style>

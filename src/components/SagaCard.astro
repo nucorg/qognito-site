@@ -1,0 +1,31 @@
+---
+import { sagaContent } from '../content/saga';
+interface Props {
+  lang?: 'fr' | 'en';
+  variant?: 'catalogue' | 'audience';
+}
+const { lang = 'fr', variant = 'catalogue' } = Astro.props;
+const copy = sagaContent[lang];
+---
+<div class="glow-card saga-card" data-saga-card={variant}>
+  <div>
+    <span class="saga-label">{copy.audienceLabel}</span>
+    <span class="saga-format">{copy.formatLabel}</span>
+    <h3>SAGA-IA</h3>
+    <p class="saga-subtitle">{copy.subtitle}</p>
+    <p>{variant === 'catalogue' ? copy.summary : copy.audienceSummary}</p>
+    <p class="saga-prerequisite">{copy.prerequisite}</p>
+  </div>
+  <a href="#fiche-saga-ia" class="course-discover">{copy.discover} ↓</a>
+</div>
+<style>
+  .saga-card { border: 1px solid #D4850F; background: #0F2035; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; gap: 1.3rem; }
+  .saga-label { display: inline-block; color: #D4850F; font-size: .8rem; font-weight: 600; letter-spacing: .04em; }
+  .saga-format { display: block; margin-top: .4rem; color: #D4850F; font-family: monospace; font-size: .9rem; }
+  h3 { font-size: 1.4rem; margin: .8rem 0 .4rem; font-weight: 600; }
+  p { color: #E2E8F0; font-size: .95rem; }
+  .saga-subtitle { font-size: .85rem; color: #CBD5E1; }
+  .saga-prerequisite { margin: 0; color: #CBD5E1; font-size: .85rem; }
+  a { text-align: center; white-space: normal; }
+  a:focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+</style>
