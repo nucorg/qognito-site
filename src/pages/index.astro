@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ParcoursTeaser from '../components/ParcoursTeaser.astro';
 ---
 
 <Layout title="Qognito.io | Formations & Architectures d'IA Agentique" lang="fr">
@@ -99,15 +100,5 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Section Bannière vers l'Expertise / Réalisations -->
-  <section class="section" style="background-color: #0d1B2A; padding: 80px 0; margin-top: 60px; border-top: 1px solid #1E293B;">
-    <div class="container" style="text-align: center;">
-      <span class="monospace-label" style="display: inline-block; margin-bottom: 10px;">PARCOURS & PREUVES</span>
-      <h2 style="color: #f8fafc; font-size: 1.7rem; margin-top: 10px; margin-bottom: 15px;">Vous souhaitez consulter nos Etudes et Réalisations ?</h2>
-      <p style="color: #cbd5e1; max-width: 720px; margin: 0 auto 30px auto; font-size: 0.98rem; line-height: 1.6;">
-        Consultez la page dédiée à notre expertise historique, la méthodologie de l'Étude de Faisabilité en 7 Sections et nos résultats en industrie critique.
-      </p>
-      <a href="/expertise" class="btn-secondary" style="padding: 14px 28px; font-size: 0.95rem;">Voir la Page Expertise & Réalisations →</a>
-    </div>
-  </section>
+  <ParcoursTeaser lang="fr" />
 </Layout>

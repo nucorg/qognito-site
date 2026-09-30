@@ -18,7 +18,6 @@ const menus = {
   fr: {
     home: "Accueil",
     formations: "Formations",
-    expertise: "Expertise",
     parcours: "Parcours",
     blog: "Blog",
     faq: "FAQ",
@@ -29,8 +28,7 @@ const menus = {
   en: {
     home: "Home",
     formations: "Courses",
-    expertise: "Expertise",
-    parcours: "Experience",
+    parcours: "Background",
     blog: "Blog",
     faq: "FAQ",
     contact: "Contact Me",
@@ -83,7 +81,6 @@ const toggleLabel = lang === 'en' ? 'FR' : 'EN';
         <nav class="nav">
           <a href={`${prefix}/`} class="nav-link">{t.home}</a>
           <a href={`${prefix}/formations`} class="nav-link">{t.formations}</a>
-          <a href={`${prefix}/expertise`} class="nav-link">{t.expertise}</a>
           <a href={`${prefix}/parcours`} class="nav-link">{t.parcours}</a>
           <a href={`${prefix}/faq`} class="nav-link">{t.faq}</a>
           <a href={`${prefix}/blog`} class="nav-link">{t.blog}</a>

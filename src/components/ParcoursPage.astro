@@ -1,0 +1,128 @@
+---
+import { parcours } from '../content/parcours';
+interface Props { lang: 'fr' | 'en'; }
+const { lang } = Astro.props;
+const copy = parcours[lang];
+const prefix = lang === 'en' ? '/en' : '';
+const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.contactSubject)}&body=${encodeURIComponent(copy.contactBody)}`;
+---
+<div class="parcours">
+  <section class="intro section" aria-labelledby="parcours-title">
+    <div class="container intro-grid">
+      <div>
+        <span class="monospace-label">{copy.label}</span>
+        <h1 id="parcours-title" class="text-glow">{copy.headline}</h1>
+        <p class="lead">{copy.introduction}</p>
+        <p>{copy.background}</p>
+        <a href={`${prefix}/formations`} class="btn-primary">{copy.courses} <span aria-hidden="true">→</span></a>
+      </div>
+      <img class="portrait" src="/assets/PHOTO.jpg" alt="Boris Guarisma" width="200" height="200" />
+    </div>
+  </section>
+  <section class="section contributions" aria-labelledby="contributions-title">
+    <div class="container">
+      <span class="monospace-label">{copy.contributionLabel}</span>
+      <h2 id="contributions-title">{copy.contributionTitle}</h2>
+      <div class="card-grid">
+        {copy.contributions.map((item, i) => (
+          <article class="glow-card">
+            <span class="card-number" aria-hidden="true">0{i + 1}</span>
+            <h3>{item.title}</h3><p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="experience-title">
+    <div class="container">
+      <span class="monospace-label">{copy.experienceLabel}</span>
+      <h2 id="experience-title">{copy.experienceTitle}</h2>
+      <ol class="timeline">
+        {copy.experiences.map((item, i) => (
+          <li class:list={['milestone', { current: i === 0 }]}>
+            <div class="milestone-meta"><span class="date">{item.date}</span><span class="company">{item.company}</span></div>
+            <div><h3>{item.role}</h3><p>{item.text}</p></div>
+          </li>
+        ))}
+      </ol>
+      <aside class="mission" aria-labelledby="mission-title">
+        <span class="monospace-label">{copy.missionLabel}</span>
+        <h3 id="mission-title">{copy.missionTitle}</h3>
+        <p>{copy.mission}</p><p>{copy.missionLesson}</p>
+      </aside>
+    </div>
+  </section>
+  <section class="section foundations" aria-labelledby="education-title">
+    <div class="container foundations-grid">
+      <div>
+        <h2 id="education-title">{copy.educationTitle}</h2>
+        <ul class="education">
+          {copy.education.map(item => (
+            <li><span class="date">{item.year}</span><div><strong>{item.degree}</strong><span>{item.institution}</span></div></li>
+          ))}
+        </ul>
+      </div>
+      <div class="languages"><h2>{copy.languagesTitle}</h2><p>{copy.languages}</p></div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="parcours-contact-title">
+    <div class="container">
+      <div class="contact-panel">
+        <h2 id="parcours-contact-title">{copy.contactTitle}</h2>
+        <p>{copy.contactText}</p><p>{copy.schoolText}</p>
+        <div class="contact-actions">
+          <a href={contactHref} class="btn-primary">{copy.contactLabel} <span aria-hidden="true">→</span></a>
+          <a href={`${prefix}/formations`} class="course-link">{copy.courses} <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<style>
+  .section { padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .parcours { overflow-wrap: anywhere; }
+  .parcours h1, .parcours h2, .parcours h3 { font-weight: 600; }
+  .parcours p { color: #E2E8F0; }
+  .intro { padding-top: clamp(3rem, 7vw, 5rem); }
+  .intro-grid { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 3rem; align-items: center; }
+  h1 { font-size: clamp(2rem, 4vw, 3rem); max-width: 800px; margin-bottom: 1.5rem; }
+  .lead { font-size: 1.15rem; line-height: 1.75; }
+  .intro .btn-primary { margin-top: .75rem; }
+  .portrait { width: 200px; height: 200px; object-fit: cover; border-radius: 16px; border: 1px solid #D4850F; box-shadow: 0 0 35px rgba(212, 133, 15, .12); }
+  .contributions, .foundations { background: rgba(15, 32, 53, .35); border-block: 1px solid var(--color-border); }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  h3 { font-size: 1.2rem; margin-bottom: .75rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .glow-card { padding: 1.5rem; }
+  .card-number { display: block; font-family: var(--font-mono); color: #D4850F; margin-bottom: 1.25rem; }
+  .glow-card p, .milestone p, .mission p:last-child { margin-bottom: 0; }
+  .timeline { list-style: none; margin-top: 2rem; }
+  .milestone { display: grid; grid-template-columns: 235px minmax(0, 1fr); gap: 2rem; padding: 1.5rem; border-left: 2px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+  .current { background: #0F2035; border-left-color: #D4850F; border-radius: 0 8px 0 0; }
+  .milestone-meta { display: flex; flex-direction: column; gap: .5rem; }
+  .date { color: #D4850F; font-family: var(--font-mono); font-size: .85rem; }
+  .company { color: #FFFFFF; font-weight: 600; }
+  .mission { margin-top: 2rem; padding: clamp(1.25rem, 3vw, 2rem); background: #0F2035; border-left: 3px solid #D4850F; border-radius: 0 8px 8px 0; }
+  .foundations-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 3rem; }
+  .education { list-style: none; }
+  .education li { display: flex; gap: 1.25rem; padding-block: .75rem; }
+  .education .date { flex-shrink: 0; }
+  .education strong { color: #E2E8F0; font-weight: 500; }
+  .education div > span { display: block; color: var(--color-text-muted); margin-top: .25rem; }
+  .languages { border-left: 1px solid var(--color-border); padding-left: 2rem; }
+  .contact-panel { background: #0F2035; padding: clamp(1.25rem, 4vw, 2.5rem); border: 1px solid #D4850F; border-radius: 12px; }
+  .contact-panel p { max-width: 800px; }
+  .contact-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 1.5rem; }
+  .btn-primary { color: #050B14; gap: .5rem; text-align: center; }
+  .course-link { padding-block: .75rem; }
+  a:focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+  @media (max-width: 800px) {
+    .intro-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .portrait { grid-row: 1; width: 130px; height: 130px; }
+    .card-grid, .foundations-grid { grid-template-columns: minmax(0, 1fr); }
+    .milestone { grid-template-columns: minmax(0, 1fr); gap: .75rem; padding: 1.25rem; }
+    .languages { padding: 1.5rem 0 0; border-left: 0; border-top: 1px solid var(--color-border); }
+  }
+  @media (max-width: 400px) { .container { padding-inline: 1rem; } }
+  @media (prefers-reduced-motion: reduce) { .glow-card:hover, .btn-primary:hover { transform: none; } }
+</style>

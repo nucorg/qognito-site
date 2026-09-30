@@ -1,0 +1,5 @@
+# Permanent redirects on Cloudflare Pages; Astro supplies an HTML fallback for previews.
+/expertise /parcours/ 301
+/expertise/ /parcours/ 301
+/en/expertise /en/parcours/ 301
+/en/expertise/ /en/parcours/ 301
