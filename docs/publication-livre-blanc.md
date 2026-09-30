@@ -8,6 +8,12 @@ La clé Web3Forms est publique par conception. La boîte destinataire est associ
 
 Sources vérifiées le 29 septembre 2026 : [documentation](https://docs.web3forms.com/), [honeypot](https://docs.web3forms.com/getting-started/customizations/spam-protection/spam-protection), [politique](https://web3forms.com/privacy), [DPA](https://web3forms.com/dpa).
 
+## Parcours en français et en anglais
+
+La page de téléchargement existe en français (`/livres-blancs/la-facture-fantome-ia/`) et en anglais (`/en/livres-blancs/la-facture-fantome-ia/`). Les liens de l’accueil et de SAGA-IA respectent la langue de la page ; le sélecteur FR/EN passe d’une version du formulaire à l’autre. Le PDF reste identique et en français, ce qui est annoncé sur la page anglaise. La politique de confidentialité reste en français, avec cette précision dans le lien anglais.
+
+Les deux pages partagent `src/components/WhitepaperPage.astro`, les traductions dans `src/content/whitepaper.ts` et le script du formulaire. Une même clé Web3Forms suffit. Les notifications contiennent `form_language` (`fr` ou `en`) et le texte exact de la demande de contact affiché au lecteur (`contact_statement`). `contact_requested` conserve les valeurs `oui` ou `non` dans les deux langues pour faciliter le suivi.
+
 ## Activation
 
 1. Exporter et vérifier le PDF final depuis le manuscrit corrigé. Copier le fichier dans `public/livres-blancs/la-facture-fantome-ia-v1.pdf` ; ne pas publier de PDF provisoire.
@@ -55,6 +61,6 @@ Ne pas utiliser les formulaires publics pour des tests d’envoi sans accord exp
 
 ## Tests reproductibles
 
-`npm run test:form` crée une copie temporaire isolée du projet, un PDF de test et des réponses Web3Forms simulées. La configuration de production n’est pas modifiée. Chrome installé localement est utilisé lorsqu’il est disponible ; sinon installer Chromium avec `npx playwright install chromium`, ou définir `CHROME_BIN` vers un navigateur compatible. Les captures sont écrites dans `/tmp/qognito-livre-blanc-desktop.png` et `/tmp/qognito-livre-blanc-mobile.png`.
+`npm run test:form` crée une copie temporaire isolée du projet, un PDF de test et des réponses Web3Forms simulées. La configuration de production n’est pas modifiée. Chrome installé localement est utilisé lorsqu’il est disponible ; sinon installer Chromium avec `npx playwright install chromium`, ou définir `CHROME_BIN` vers un navigateur compatible. Les captures sont écrites dans `/tmp/qognito-livre-blanc-fr-desktop.png`, `/tmp/qognito-livre-blanc-fr-mobile.png` et leurs variantes `en`.
 
 `npm run test:crm` vérifie le tableur vierge, ses permissions, la préservation de données existantes et le refus de sauvegarde sans configuration. Cela ne remplace pas un test de restauration avec les supports réels.

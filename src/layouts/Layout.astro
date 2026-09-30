@@ -21,7 +21,7 @@ const menus = {
     formations: "Formations",
     parcours: "Parcours",
     blog: "Blog",
-    contact: "Me Contacter",
+    contact: "Je prends contact",
     footerDesc: "Formations et ressources pédagogiques pour décider, construire et approfondir les usages de l’IA.",
     copyright: "Tous droits réservés."
   },
@@ -30,7 +30,7 @@ const menus = {
     formations: "Courses",
     parcours: "Background",
     blog: "Blog",
-    contact: "Contact Me",
+    contact: "Discuss my project",
     footerDesc: "Courses and learning resources to make decisions, build applications and explore AI in depth.",
     copyright: "All rights reserved."
   }
@@ -50,8 +50,8 @@ if (lang === 'fr') {
   togglePath = cleanPath;
 }
 const toggleLabel = lang === 'en' ? 'FR' : 'EN';
-// Les ressources et les pages juridiques n'ont pas encore de traduction anglaise.
-const frenchOnly = ['/livres-blancs/', '/confidentialite', '/mentions-legales'].some(path => currentPath.startsWith(path));
+// Les pages juridiques n’ont pas encore de traduction anglaise.
+const frenchOnly = ['/confidentialite', '/mentions-legales'].some(path => currentPath.startsWith(path));
 if (frenchOnly) togglePath = '/en/';
 ---
 

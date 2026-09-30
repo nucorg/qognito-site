@@ -5,7 +5,7 @@ export const technicalCourses = {
   fr: {
     prerequisiteLabel: 'Prérequis',
     outcomesTitle: '1. Ce que vous apprendrez à faire',
-    requestLabel: 'Demander le programme',
+    requestLabel: 'Je demande le programme',
     requestDescription: 'Découvrez la progression, les exercices et les modalités d’évaluation. Présentez-moi votre contexte pour vérifier l’adéquation du parcours à votre niveau, à votre équipe ou à votre cursus.',
     requestBody: 'Bonjour Boris,\n\nJe souhaite recevoir le programme détaillé de {course}.\nMon contexte (activité, équipe ou cursus) :\nLe public concerné et son expérience technique :\nLes compétences recherchées :\nLe calendrier envisagé :\n\nMerci.',
     bootag: {
@@ -44,7 +44,7 @@ export const technicalCourses = {
   en: {
     prerequisiteLabel: 'Prerequisites',
     outcomesTitle: '1. What you will learn to do',
-    requestLabel: 'Request the programme for',
+    requestLabel: 'Send me the programme for',
     requestDescription: 'Explore the learning sequence, exercises and assessment methods. Tell me about your context so we can check how the course fits your experience, team or curriculum.',
     requestBody: 'Hello Boris,\n\nI would like to receive the detailed programme for {course}.\nMy context (business, team or curriculum):\nThe intended audience and their technical experience:\nThe skills to develop:\nPreferred dates:\n\nThank you.',
     bootag: {

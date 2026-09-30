@@ -1,6 +1,6 @@
 ---
 import { sagaContent } from '../content/saga';
-import { whitepaper } from '../config/whitepaper';
+import { whitepaperPath } from '../config/whitepaper';
 interface Props { lang?: 'fr' | 'en'; }
 const { lang = 'fr' } = Astro.props;
 const copy = sagaContent[lang];
@@ -51,7 +51,7 @@ const institutionHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponen
       <aside class="saga-whitepaper" aria-labelledby="saga-whitepaper-title">
         <h3 id="saga-whitepaper-title">{copy.whitepaperTitle}</h3>
         <p>{copy.whitepaperDescription}</p>
-        <a href={whitepaper.path} hreflang="fr">{copy.whitepaperLink} →</a>
+        <a href={whitepaperPath(lang)} hreflang={lang}>{copy.whitepaperLink} →</a>
       </aside>
 
       <div class="saga-contact">

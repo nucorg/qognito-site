@@ -10,7 +10,7 @@ import { chromium } from '@playwright/test';
 const root = resolve(import.meta.dirname, '..');
 const sandbox = await mkdtemp(join(tmpdir(), 'qognito-whitepaper-test-'));
 const fixture = join(sandbox, 'site');
-const pagePath = '/livres-blancs/la-facture-fantome-ia/';
+const frenchPath = '/livres-blancs/la-facture-fantome-ia/';
 const pdfPath = '/livres-blancs/la-facture-fantome-ia-v1.pdf';
 const browser = await chromium.launch({
   ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : existsSync('/opt/google/chrome/chrome') ? { executablePath: '/opt/google/chrome/chrome' } : {}),
@@ -30,9 +30,11 @@ try {
     assert.equal(result.status, expected, result.stdout + result.stderr);
   };
   build(baseEnv);
-  const inactive = await readFile(join(fixture, 'dist', pagePath, 'index.html'), 'utf8');
-  assert.ok(!inactive.includes('id="whitepaper-form"'));
-  assert.ok(!inactive.includes('name="access_key"'));
+  for (const path of [frenchPath, '/en' + frenchPath]) {
+    const inactive = await readFile(join(fixture, 'dist', path, 'index.html'), 'utf8');
+    assert.ok(!inactive.includes('id="whitepaper-form"'));
+    assert.ok(!inactive.includes('name="access_key"'));
+  }
   check('Sans configuration : aucun formulaire ni clé dans le HTML.');
   build({ ...baseEnv, PUBLIC_WHITEPAPER_ENABLED: 'true' }, 1);
   check('Activation incomplète : build refusé.');
@@ -73,91 +75,123 @@ try {
     if (mode === 'html') return route.fulfill({ status: 503, contentType: 'text/html', body: 'Unavailable' });
     return route.fulfill({ status: mode === 'http' ? 403 : 200, contentType: 'application/json', body: JSON.stringify({ success: !['http', 'refused'].includes(mode) }) });
   });
-  const load = async (suffix = '') => {
-    await page.goto(origin + pagePath + suffix);
-    await page.waitForFunction(() => !document.querySelector('#submit-lead').disabled);
-  };
-  await load();
-  assert.equal(await page.locator('input[name=contact_requested]').isChecked(), false);
-  await page.fill('#lead-email', 'invalid');
-  await page.click('#submit-lead');
-  assert.equal(requests.length, 0);
-  check('Email invalide bloqué, demande d’échange décochée par défaut.');
-
-  await page.fill('#lead-email', 'lecteur@example.test');
-  await page.evaluate(() => document.querySelector('[name=botcheck]').checked = true);
-  await page.click('#submit-lead');
-  assert.equal(requests.length, 0);
-  assert.ok(await page.locator('#download-success').isHidden());
-  check('Honeypot rempli : aucun envoi ni accès présenté au PDF.');
-
-  for (const failure of ['http', 'refused', 'html', 'network']) {
-    await load(); mode = failure;
-    await page.fill('#lead-email', 'lecteur@example.test');
-    await page.fill('#lead-company', 'Entreprise test');
+  for (const lang of ['fr', 'en']) {
+    requests = [];
+    mode = 'success';
+    const pagePath = (lang === 'en' ? '/en' : '') + frenchPath;
+    const failureText = lang === 'en' ? 'could not confirm' : 'pas pu';
+    const load = async (suffix = '') => {
+      await page.goto(origin + pagePath + suffix);
+      await page.waitForFunction(() => !document.querySelector('#submit-lead').disabled);
+    };
+    await page.goto(origin + (lang === 'en' ? '/en/' : '/'));
+    await page.locator('.whitepaper-callout a').click();
+    assert.equal(new URL(page.url()).pathname, pagePath);
+    assert.equal(await page.locator('html').getAttribute('lang'), lang);
+    await page.locator('.lang-toggle').click();
+    assert.equal(new URL(page.url()).pathname.replace(/\/$/, ''), (lang === 'en' ? frenchPath : '/en' + frenchPath).replace(/\/$/, ''));
+    assert.equal(await page.locator('html').getAttribute('lang'), lang === 'en' ? 'fr' : 'en');
+    await page.goto(origin + (lang === 'en' ? '/en/formations/' : '/formations/'));
+    await page.locator('.saga-whitepaper a').click();
+    assert.equal(new URL(page.url()).pathname, pagePath);
+    check(`Liens accueil/SAGA et sélecteur de langue : parcours ${lang} conservé.`);
+    await load();
+    const statement = await page.locator('.checkbox span').innerText();
+    const expectedStatement = lang === 'en' ? 'I would like Qognito to contact me to discuss the profitability and governance of my AI project.' : 'Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA.';
+    assert.equal(statement, expectedStatement);
+    if (lang === 'en') {
+      assert.equal(await page.locator('label[for=lead-name]').innerText(), 'First name (optional)');
+      assert.ok((await page.locator('.intro').innerText()).includes('The downloadable PDF is in French.'));
+    }
+    assert.equal(await page.locator('input[name=contact_requested]').isChecked(), false);
+    await page.fill('#lead-email', 'invalid');
     await page.click('#submit-lead');
-    await page.waitForFunction(() => document.querySelector('#form-status').textContent.includes('pas pu'));
-    assert.equal(await page.inputValue('#lead-email'), 'lecteur@example.test');
-    assert.equal(await page.inputValue('#lead-company'), 'Entreprise test');
-    assert.ok(await page.locator('#submit-lead').isEnabled());
+    assert.equal(requests.length, 0);
+    check('Email invalide bloqué, demande d’échange décochée par défaut.');
+
+    await page.fill('#lead-email', 'lecteur@example.test');
+    await page.evaluate(() => document.querySelector('[name=botcheck]').checked = true);
+    await page.click('#submit-lead');
+    assert.equal(requests.length, 0);
     assert.ok(await page.locator('#download-success').isHidden());
-    check(`Échec ${failure} : champs conservés, nouvelle tentative possible, PDF masqué.`);
+    assert.ok((await page.locator('#form-status').innerText()).includes(lang === 'en' ? 'Your request was not sent' : 'La demande n’a pas été transmise'));
+    check('Honeypot rempli : aucun envoi ni accès présenté au PDF.');
+
+    for (const failure of ['http', 'refused', 'html', 'network']) {
+      await load(); mode = failure;
+      await page.fill('#lead-email', 'lecteur@example.test');
+      await page.fill('#lead-company', 'Entreprise test');
+      await page.click('#submit-lead');
+      await page.waitForFunction(text => document.querySelector('#form-status').textContent.includes(text), failureText);
+      assert.equal(await page.inputValue('#lead-email'), 'lecteur@example.test');
+      assert.equal(await page.inputValue('#lead-company'), 'Entreprise test');
+      assert.ok(await page.locator('#submit-lead').isEnabled());
+      assert.ok(await page.locator('#download-success').isHidden());
+      check(`Échec ${failure} : champs conservés, nouvelle tentative possible, PDF masqué.`);
+    }
+    // Simule un délai dépassé sans attendre 20 secondes.
+    await load(); mode = 'slow';
+    await page.evaluate(() => AbortSignal.timeout = () => AbortSignal.abort(new DOMException('Timeout', 'TimeoutError')));
+    await page.fill('#lead-email', 'lecteur@example.test');
+    await page.click('#submit-lead');
+    await page.waitForFunction(text => document.querySelector('#form-status').textContent.includes(text), failureText);
+    assert.ok(await page.locator('#download-success').isHidden());
+    check('Timeout : pas de faux succès.');
+
+    await load('?source=linkedin-j4'); mode = 'slow';
+    await page.fill('#lead-email', 'lecteur@example.test');
+    const before = requests.length;
+    await page.evaluate(() => { const form = document.querySelector('#whitepaper-form'); form.requestSubmit(); form.requestSubmit(); });
+    await page.locator('#download-success').waitFor({ state: 'visible' });
+    assert.equal(requests.length, before + 1);
+    const sent = requests.at(-1);
+    assert.equal(sent.contact_requested, 'non');
+    assert.equal(sent.form_language, lang);
+    assert.equal(sent.contact_statement, statement);
+    assert.ok(!sent.subject.includes('{copy.'));
+    assert.equal(await page.locator('html').getAttribute('lang'), lang);
+    assert.equal(await page.locator('#download-success h3').innerText(), lang === 'en' ? 'Your request has been submitted.' : 'Votre demande a été transmise.');
+    assert.equal(sent.source, 'linkedin-j4');
+    assert.equal(sent.notice_version, '2026-09-29-v1');
+    assert.ok(sent.request_id);
+    assert.equal(await page.locator('#pdf-download').getAttribute('href'), pdfPath);
+    assert.ok(await page.locator('#whitepaper-form').isHidden());
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'download-success');
+    const pdfResponse = await context.request.get(origin + pdfPath);
+    assert.equal(pdfResponse.status(), 200);
+    assert.ok((await pdfResponse.body()).subarray(0, 5).toString() === '%PDF-');
+    assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0);
+    check('Double envoi bloqué ; succès sans opt-in, PDF valide, focus et aucun stockage navigateur.');
+
+    await load('?source=email-prive@example.test'); mode = 'success';
+    await page.fill('#lead-email', 'lecteur@example.test');
+    await page.check('input[name=contact_requested]');
+    await page.click('#submit-lead');
+    await page.locator('#download-success').waitFor({ state: 'visible' });
+    assert.equal(requests.at(-1).contact_requested, 'oui');
+    assert.equal(requests.at(-1).contact_statement, statement);
+    assert.equal(requests.at(-1).form_language, lang);
+    assert.equal(requests.at(-1).source, 'site');
+    check('Demande d’échange explicite et provenance inconnue non transmise.');
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await load();
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    assert.ok(await page.locator('#lead-email').isVisible());
+    await page.screenshot({ path: `/tmp/qognito-livre-blanc-${lang}-mobile.png`, fullPage: true });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.screenshot({ path: `/tmp/qognito-livre-blanc-${lang}-desktop.png`, fullPage: true });
+    assert.ok(await page.locator('a[href="/confidentialite/"]').count() > 0);
+    check('Rendu mobile sans débordement et lien de confidentialité présent.');
+    const nojs = await browser.newContext({ javaScriptEnabled: false });
+    const nojsPage = await nojs.newPage();
+    await nojsPage.goto(origin + pagePath);
+    assert.ok(await nojsPage.locator('#submit-lead').isDisabled());
+    assert.ok(await nojsPage.locator('noscript').isVisible());
+    await nojs.close();
+    assert.deepEqual(errors, []);
+    check('Sans JavaScript : aucune collecte accidentelle, contact email disponible.');
   }
-  // Simule un délai dépassé sans attendre 20 secondes.
-  await load(); mode = 'slow';
-  await page.evaluate(() => AbortSignal.timeout = () => AbortSignal.abort(new DOMException('Timeout', 'TimeoutError')));
-  await page.fill('#lead-email', 'lecteur@example.test');
-  await page.click('#submit-lead');
-  await page.waitForFunction(() => document.querySelector('#form-status').textContent.includes('pas pu'));
-  assert.ok(await page.locator('#download-success').isHidden());
-  check('Timeout : pas de faux succès.');
-
-  await load('?source=linkedin-j4'); mode = 'slow';
-  await page.fill('#lead-email', 'lecteur@example.test');
-  const before = requests.length;
-  await page.evaluate(() => { const form = document.querySelector('#whitepaper-form'); form.requestSubmit(); form.requestSubmit(); });
-  await page.locator('#download-success').waitFor({ state: 'visible' });
-  assert.equal(requests.length, before + 1);
-  const sent = requests.at(-1);
-  assert.equal(sent.contact_requested, 'non');
-  assert.equal(sent.source, 'linkedin-j4');
-  assert.equal(sent.notice_version, '2026-09-29-v1');
-  assert.ok(sent.request_id);
-  assert.equal(await page.locator('#pdf-download').getAttribute('href'), pdfPath);
-  assert.ok(await page.locator('#whitepaper-form').isHidden());
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'download-success');
-  const pdfResponse = await context.request.get(origin + pdfPath);
-  assert.equal(pdfResponse.status(), 200);
-  assert.ok((await pdfResponse.body()).subarray(0, 5).toString() === '%PDF-');
-  assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0);
-  check('Double envoi bloqué ; succès sans opt-in, PDF valide, focus et aucun stockage navigateur.');
-
-  await load('?source=email-prive@example.test'); mode = 'success';
-  await page.fill('#lead-email', 'lecteur@example.test');
-  await page.check('input[name=contact_requested]');
-  await page.click('#submit-lead');
-  await page.locator('#download-success').waitFor({ state: 'visible' });
-  assert.equal(requests.at(-1).contact_requested, 'oui');
-  assert.equal(requests.at(-1).source, 'site');
-  check('Demande d’échange explicite et provenance inconnue non transmise.');
-
-  await page.setViewportSize({ width: 390, height: 844 });
-  await load();
-  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
-  assert.ok(await page.locator('#lead-email').isVisible());
-  await page.screenshot({ path: '/tmp/qognito-livre-blanc-mobile.png', fullPage: true });
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.screenshot({ path: '/tmp/qognito-livre-blanc-desktop.png', fullPage: true });
-  assert.ok(await page.locator('a[href="/confidentialite/"]').count() > 0);
-  check('Rendu mobile sans débordement et lien de confidentialité présent.');
-  const nojs = await browser.newContext({ javaScriptEnabled: false });
-  const nojsPage = await nojs.newPage();
-  await nojsPage.goto(origin + pagePath);
-  assert.ok(await nojsPage.locator('#submit-lead').isDisabled());
-  assert.ok(await nojsPage.locator('noscript').isVisible());
-  await nojs.close();
-  assert.deepEqual(errors, []);
-  check('Sans JavaScript : aucune collecte accidentelle, contact email disponible.');
   console.log(`${checks} contrôles réussis ; aucun email réel envoyé. Captures dans /tmp/qognito-livre-blanc-*.png`);
 } finally {
   if (server) await new Promise(done => server.close(done));

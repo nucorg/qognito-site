@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { whitepaper, accessKey, collectionEnabled } from '../config/whitepaper';
+import { whitepaperContent } from '../content/whitepaper';
+interface Props { lang?: 'fr' | 'en'; }
+const { lang = 'fr' } = Astro.props;
+const copy = whitepaperContent[lang];
+---
+<Layout title={copy.pageTitle} description={copy.description} lang={lang}>
+  <article class="container whitepaper">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">{copy.audience}</p>
+        <h1>{copy.title}<span>.</span></h1>
+        <p class="lead">{copy.lead}</p>
+        <p>{copy.introduction}</p>
+        {lang === 'en' && <p class="language-note">The downloadable PDF is in French.</p>}
+        <a href="#telecharger" class="btn-primary">{collectionEnabled ? copy.download : copy.discover} ↓</a>
+      </div>
+      <div class="cover" aria-label={copy.coverLabel} lang="fr">
+        <img src="/assets/LOGO_Q.png" width="64" height="64" alt="" />
+        <span class="eyebrow">QOGNITO · LIVRE BLANC</span>
+        <p class="cover-title">La facture<br />fantôme<br />de l’IA<span>.</span></p>
+        <p>Du temps gagné<br />à la valeur démontrée.</p>
+        <span>Boris Guarisma · SAGA-IA</span>
+      </div>
+    </div>
+
+    <section aria-labelledby="benefices">
+      <h2 id="benefices">{copy.benefitsTitle}</h2>
+      <div class="cards">
+        <div><span class="number">01</span><h3>{copy.question1}</h3><p>{copy.answer1}</p></div>
+        <div><span class="number">02</span><h3>{copy.question2}</h3><p>{copy.answer2}</p></div>
+        <div><span class="number">03</span><h3>{copy.question3}</h3><p>{copy.answer3}</p></div>
+      </div>
+    </section>
+
+    <section class="excerpt" aria-labelledby="extrait">
+      <p class="eyebrow">{copy.excerptLabel}</p>
+      <h2 id="extrait">{copy.excerptTitle}</h2>
+      <blockquote>{copy.quote}</blockquote>
+      <p>{copy.example}</p>
+    </section>
+
+    <div class="download-grid">
+      <section aria-labelledby="sommaire">
+        <h2 id="sommaire">{copy.contentsTitle}</h2>
+        <ol>
+          <li><strong>{copy.finding}</strong> {copy.findingDetail}</li>
+          <li><strong>{copy.model}</strong> {copy.modelDetail}</li>
+          <li><strong>{copy.decision}</strong> {copy.decisionDetail}</li>
+        </ol>
+        <h3>{copy.authorTitle}</h3>
+        <p>{copy.author}</p>
+        <p>{copy.preparation}</p>
+      </section>
+
+      <section id="telecharger" class="download-panel" aria-labelledby="download-title">
+        <h2 id="download-title">{collectionEnabled ? copy.downloadTitle : copy.pendingTitle}</h2>
+        {collectionEnabled ? (
+          <>
+            <p>{copy.emailNotice}</p>
+            {lang === 'en' && <p class="language-note">PDF language: French.</p>}
+            <form id="whitepaper-form" action="https://api.web3forms.com/submit" method="POST" data-download={whitepaper.pdfPath}>
+              <input type="hidden" name="access_key" value={accessKey} />
+              <input type="hidden" name="subject" value={lang === 'en' ? 'Qognito — white paper request: The Hidden AI Bill' : 'Qognito — demande du livre blanc La facture fantôme de l’IA'} />
+              <input type="hidden" name="from_name" value={lang === 'en' ? 'Qognito — White paper' : 'Qognito — Livre blanc'} />
+              <input type="hidden" name="livre_blanc_version" value={whitepaper.version} />
+              <input type="hidden" name="notice_version" value={whitepaper.noticeVersion} />
+              <input type="hidden" name="form_language" value={lang} />
+              <input type="hidden" name="contact_statement" value={copy.contactStatement} />
+              <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true" />
+              <fieldset id="lead-fields">
+                <legend class="sr-only">{copy.details}</legend>
+                <label for="lead-email">Email <span aria-hidden="true">*</span></label>
+                <input id="lead-email" type="email" name="email" required autocomplete="email" maxlength="254" />
+                <label for="lead-name">{copy.name} <span>{copy.optional}</span></label>
+                <input id="lead-name" name="name" autocomplete="given-name" maxlength="80" />
+                <label for="lead-company">{copy.company} <span>{copy.optional}</span></label>
+                <input id="lead-company" name="entreprise" autocomplete="organization" maxlength="120" />
+                <label for="lead-role">{copy.role} <span>{copy.optional}</span></label>
+                <input id="lead-role" name="fonction" autocomplete="organization-title" maxlength="120" />
+                <label class="checkbox"><input type="checkbox" name="contact_requested" value="oui" /><span>{copy.contactStatement}</span></label>
+                <p class="notice">{copy.privacy} <a href="/confidentialite/" hreflang="fr">{copy.privacyLink}</a>.</p>
+                <button type="submit" class="btn-primary" id="submit-lead" disabled>{copy.download}</button>
+              </fieldset>
+              <noscript><p>{copy.nojs} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'AI white paper' : 'Livre blanc IA')}`} >contact@qognito.io</a>.</p></noscript>
+            </form>
+            <p id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+            <div id="download-success" hidden tabindex="-1">
+              <h3>{copy.successTitle}</h3>
+              <p>{copy.successText}</p>
+              <a id="pdf-download" class="btn-primary" download>{copy.downloadPdf}</a>
+              <p class="followup">{copy.followup} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'Discuss my AI project' : 'Echange sur mon projet IA')}`} >{copy.emailQuestion}</a>.</p>
+            </div>
+          </>
+        ) : (
+          <><p>{copy.pending}</p><p>{copy.pendingQuestion}</p><a class="btn-primary" href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'Discuss my AI project' : 'Echange sur mon projet IA')}`} >{copy.contact}</a></>
+        )}
+      </section>
+    </div>
+  </article>
+</Layout>
+<script>
+  import { setupWhitepaperForm } from '../scripts/whitepaper-form';
+  setupWhitepaperForm();
+</script>
+<style>
+  .whitepaper { padding-top: clamp(2rem, 6vw, 5rem); padding-bottom: 5rem; }
+  .intro { display: grid; grid-template-columns: 1.45fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; margin-bottom: 4rem; }
+  .eyebrow { color: #D4850F; font-size: .78rem; letter-spacing: .1em; font-weight: 600; }
+  h1 { font-size: clamp(2.5rem, 5vw, 4.3rem); font-weight: 600; margin: 1rem 0 1.5rem; }
+  h1 span, .cover-title span, .number { color: #D4850F; }
+  .language-note { color: #CBD5E1; font-size: .9rem; }
+  .lead { font-size: 1.25rem; color: #E2E8F0; }
+  .cover { background: #0F2035; padding: 2rem; border: 1px solid #334155; border-bottom: 6px solid #D4850F; border-radius: 5px; box-shadow: 12px 16px 0 #050B14; display: flex; flex-direction: column; align-items: flex-start; gap: 1.3rem; }
+  .cover img { object-fit: contain; }
+  .cover-title { font-family: var(--font-title); font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; font-weight: 600; color: white; }
+  .cover p { margin: 0; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .cards > div { padding: 1.5rem; background: #0F2035; border: 1px solid #334155; border-radius: 10px; }
+  .cards h3 { margin: .8rem 0; }
+  .cards p { margin: 0; }
+  .number { font-size: 1.5rem; font-family: var(--font-title); }
+  .excerpt { margin: 3rem 0; padding: 2rem; border-left: 3px solid #D4850F; background: #0F2035; }
+  blockquote { font-size: 1.3rem; margin-bottom: 1.5rem; color: #FFFFFF; }
+  .download-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  ol { padding-left: 1.4rem; margin-bottom: 2rem; }
+  li { padding-bottom: 1rem; }
+  .download-grid h3 { margin-bottom: 1rem; }
+  .download-panel { padding: 2rem; background: #0F2035; border: 1px solid #334155; border-radius: 12px; scroll-margin-top: 7rem; }
+  fieldset { border: 0; min-width: 0; }
+  label { display: block; margin-bottom: .4rem; }
+  label > span { color: #CBD5E1; }
+  input:not([type="checkbox"]):not([type="hidden"]) { display: block; width: 100%; margin-bottom: 1rem; padding: .75rem; border: 1px solid #64748B; border-radius: 5px; color: #FFFFFF; background: #050B14; font: inherit; }
+  .checkbox { display: flex; gap: .75rem; align-items: flex-start; margin: 1.5rem 0; }
+  .checkbox input { margin-top: .35rem; accent-color: #D4850F; flex-shrink: 0; }
+  .notice { font-size: .85rem; }
+  .notice a, .followup a { text-decoration: underline; }
+  button { font: inherit; cursor: pointer; width: 100%; }
+  button:disabled { opacity: .65; cursor: wait; }
+  :is(input, button, a):focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+  #form-status:not(:empty), .followup { margin-top: 1.25rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  [hidden] { display: none !important; }
+  @media (max-width: 760px) { .intro, .download-grid, .cards { grid-template-columns: 1fr; } .cover { max-width: 360px; width: 100%; justify-self: center; } .download-panel { padding: 1.3rem; } }
+  @media (prefers-reduced-motion: reduce) { :global(html) { scroll-behavior: auto; } }
+</style>

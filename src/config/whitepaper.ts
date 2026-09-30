@@ -7,7 +7,6 @@ export const whitepaper = {
   pdfPath: '/livres-blancs/la-facture-fantome-ia-v1.pdf',
   version: '1.0',
   noticeVersion: '2026-09-29-v1',
-  contactStatement: 'Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA.',
 };
 
 // Ces contrôles ont lieu au build. Une clé Web3Forms est publique par conception.
@@ -22,3 +21,5 @@ export const mailSafeguards = (import.meta.env.PUBLIC_MAIL_SAFEGUARDS || '').tri
 if (collectionEnabled && (!accessKey || !pdfAvailable || !mailProvider || !mailLocation || !mailSafeguards)) {
   throw new Error('Livre blanc : clé Web3Forms, PDF final et informations de messagerie requis avant activation. Voir docs/publication-livre-blanc.md.');
 }
+
+export const whitepaperPath = (lang: 'fr' | 'en') => `${lang === 'en' ? '/en' : ''}${whitepaper.path}`;
