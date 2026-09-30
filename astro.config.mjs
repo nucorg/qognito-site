@@ -6,6 +6,8 @@ export default defineConfig({
   redirects: {
     '/expertise': { destination: '/parcours/', status: 301 },
     '/en/expertise': { destination: '/en/parcours/', status: 301 },
+    '/faq': { destination: '/formations/', status: 301 },
+    '/en/faq': { destination: '/en/formations/', status: 301 },
   },
   build: {
     inlineStylesheets: 'always',
