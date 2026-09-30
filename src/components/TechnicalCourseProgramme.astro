@@ -15,10 +15,10 @@ const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(re
     <div class="course-panel">
       <header>
         <span class="course-label">{audience.label}</span>
-        <h2 id={titleId}>{copy.name} : {copy.title}</h2>
+        <h2 id={titleId}>{copy.name}{lang === 'fr' ? '\u00a0:' : ':'} {copy.title}</h2>
         <p class="course-duration">{copy.duration}</p>
         <p>{audience.audience}</p>
-        <p class="course-prerequisite"><strong>{labels.prerequisiteLabel} :</strong> {copy.prerequisite}</p>
+        <p class="course-prerequisite"><strong>{labels.prerequisiteLabel}{lang === 'fr' ? '\u00a0:' : ':'}</strong> {copy.prerequisite}</p>
       </header>
 
       <h3>{labels.outcomesTitle}</h3>

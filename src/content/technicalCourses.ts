@@ -1,4 +1,4 @@
-// Sources pédagogiques :
+// Sources pédagogiques :
 // formation_baa_r/docs/programme_global_charte_baa.md
 // formation_rm_r/docs/Syllabus_Reasoning_Models_Hybrid.md
 export const technicalCourses = {
@@ -7,7 +7,7 @@ export const technicalCourses = {
     outcomesTitle: '1. Ce que vous apprendrez à faire',
     requestLabel: 'Demander le programme',
     requestDescription: 'Découvrez la progression, les exercices et les modalités d’évaluation. Présentez-moi votre contexte pour vérifier l’adéquation du parcours à votre niveau, à votre équipe ou à votre cursus.',
-    requestBody: 'Bonjour Boris,\n\nJe souhaite recevoir le programme détaillé de {course}.\nMon contexte (activité, équipe ou cursus) :\nLe public concerné et son expérience technique :\nLes compétences recherchées :\nLe calendrier envisagé :\n\nMerci.',
+    requestBody: 'Bonjour Boris,\n\nJe souhaite recevoir le programme détaillé de {course}.\nMon contexte (activité, équipe ou cursus) :\nLe public concerné et son expérience technique :\nLes compétences recherchées :\nLe calendrier envisagé :\n\nMerci.',
     bootag: {
       name: 'BOOTAG-IA',
       title: 'Ingénierie du Harnais Agentique',
@@ -28,14 +28,14 @@ export const technicalCourses = {
       name: 'REASON-IA',
       title: 'Raisonnement, Émergence & Apprentissage par Renforcement',
       duration: '40 heures · 5 jours de 8 heures',
-      prerequisite: 'Bases de programmation en R ou Python et compréhension élémentaire de l’apprentissage profond : réseaux de neurones, rétropropagation et PyTorch.',
+      prerequisite: 'Bases de programmation en R ou Python et compréhension élémentaire de l’apprentissage profond : réseaux de neurones, rétropropagation et PyTorch.',
       outcomes: [
         { title: 'Comprendre la génération des réponses', description: 'Expérimenter la génération de texte, la mémoire de calcul du modèle et les différentes stratégies de sélection des réponses.' },
         { title: 'Mesurer avant de comparer', description: 'Construire une évaluation vérifiable et comparer plusieurs méthodes de raisonnement, de vote et de correction des réponses.' },
         { title: 'Entraîner et examiner les compromis', description: 'Expérimenter l’apprentissage par renforcement et la distillation vers un modèle compact, en examinant exactitude, stabilité et ressources de calcul.' },
       ],
       approachTitle: '2. Explorer le moteur des modèles par l’expérimentation',
-      approach: 'Vous programmez les mécanismes étudiés pour observer leurs effets : génération, évaluation, amélioration des réponses et entraînement. L’objectif est de comprendre dans quelles conditions une méthode apporte un bénéfice, et à quel coût de calcul.',
+      approach: 'Vous programmez les mécanismes étudiés pour observer leurs effets : génération, évaluation, amélioration des réponses et entraînement. L’objectif est de comprendre dans quelles conditions une méthode apporte un bénéfice, et à quel coût de calcul.',
       technical: 'Le parcours associe R pour l’analyse et le pilotage des expériences à Python et PyTorch pour les calculs, via reticulate. Il aborde notamment l’apprentissage par renforcement à récompenses vérifiables (RLVR, avec GRPO) et la distillation.',
       practiceTitle: 'Un projet pour mettre les choix à l’épreuve',
       practice: 'Les exercices conduisent à un projet d’entraînement et de distillation d’un modèle compact sur des problèmes de logique comptable ou financière. Vous justifiez les choix d’évaluation, de récompense et d’infrastructure à partir des résultats observés.',
