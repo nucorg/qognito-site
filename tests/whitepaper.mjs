@@ -100,7 +100,7 @@ try {
     const expectedStatement = lang === 'en' ? 'I would like Qognito to contact me to discuss the profitability and governance of my AI project.' : 'Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA.';
     assert.equal(statement, expectedStatement);
     if (lang === 'en') {
-      assert.equal(await page.locator('label[for=lead-name]').innerText(), 'First name (optional)');
+      assert.equal(await page.locator('label[for=lead-name]').innerText(), 'Name (optional)');
       assert.ok((await page.locator('.intro').innerText()).includes('The downloadable PDF is in French.'));
     }
     assert.equal(await page.locator('input[name=contact_requested]').isChecked(), false);
