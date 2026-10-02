@@ -64,7 +64,7 @@ const edition = whitepaper.editions[lang];
             <p class="language-note">{copy.pdfLanguage}</p>
             <form id="whitepaper-form" action="https://api.web3forms.com/submit" method="POST" data-download={edition.pdfPath}>
               <input type="hidden" name="access_key" value={accessKey} />
-              <input type="hidden" name="subject" value={lang === 'en' ? 'Qognito — white paper request: AI’s Phantom Bill' : 'Qognito — demande du livre blanc La facture fantôme de l’IA'} />
+              <input type="hidden" name="subject" value={lang === 'en' ? 'Qognito — white paper request: The AI Costs You Don’t See' : 'Qognito — demande du livre blanc La facture fantôme de l’IA'} />
               <input type="hidden" name="from_name" value={lang === 'en' ? 'Qognito — White paper' : 'Qognito — Livre blanc'} />
               <input type="hidden" name="livre_blanc_version" value={edition.version} />
               <input type="hidden" name="notice_version" value={whitepaper.noticeVersion} />

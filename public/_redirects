@@ -7,3 +7,6 @@
 /faq/ /formations/ 301
 /en/faq /en/formations/ 301
 /en/faq/ /en/formations/ 301
+
+# Retired English PDF: preserve previously shared download links.
+/livres-blancs/ais-phantom-bill-en-v1.pdf /livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf 301

@@ -6,7 +6,7 @@ export const whitepaper = {
   path: '/livres-blancs/la-facture-fantome-ia/',
   editions: {
     fr: { pdfPath: '/livres-blancs/la-facture-fantome-ia-v2.pdf', version: '2.0' },
-    en: { pdfPath: '/livres-blancs/ais-phantom-bill-en-v1.pdf', version: '1.0' },
+    en: { pdfPath: '/livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf', version: '2.0' },
   },
   noticeVersion: '2026-09-29-v1',
 };

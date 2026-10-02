@@ -63,10 +63,10 @@ export const whitepaperContent = {
     "pdfLanguage": "PDF en français."
   },
   "en": {
-    "pageTitle": "AI’s Phantom Bill — Qognito White Paper",
+    "pageTitle": "The AI Costs You Don’t See — Qognito White Paper",
     "description": "Human oversight, total costs and reallocated time: examine the blind spots in your AI projects’ ROI. A white paper for CEOs, CFOs and CIOs.",
     "audience": "WHITE PAPER · CEOs, CFOs & CIOs",
-    "title": "AI’s Phantom Bill",
+    "title": "The AI Costs You Don’t See",
     "lead": "Human oversight, total costs and time actually reallocated: three blind spots in your AI projects’ ROI.",
     "introduction": "An impressive demo is not enough to justify an investment. This white paper helps you examine what the API bill leaves out.",
     "download": "Get my white paper",
@@ -114,9 +114,9 @@ export const whitepaperContent = {
     "contact": "Discuss my project with Qognito",
     "contactStatement": "I would like Qognito to contact me to discuss the profitability and governance of my AI project.",
     "coverLines": [
-      "AI’s",
-      "Phantom",
-      "Bill"
+      "The AI Costs",
+      "You Don’t",
+      "See"
     ],
     "coverTagline": [
       "From time saved",

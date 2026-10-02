@@ -13,7 +13,7 @@ const fixture = join(sandbox, 'site');
 const frenchPath = '/livres-blancs/la-facture-fantome-ia/';
 const editions = {
   fr: { pdfPath: '/livres-blancs/la-facture-fantome-ia-v2.pdf', version: '2.0' },
-  en: { pdfPath: '/livres-blancs/ais-phantom-bill-en-v1.pdf', version: '1.0' },
+  en: { pdfPath: '/livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf', version: '2.0' },
 };
 const browser = await chromium.launch({
   ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : existsSync('/opt/google/chrome/chrome') ? { executablePath: '/opt/google/chrome/chrome' } : {}),
@@ -63,6 +63,15 @@ try {
   build(activeEnv);
 
   const dist = join(fixture, 'dist');
+  for (const path of ['/en/', '/en/formations/', '/en' + frenchPath]) {
+    const html = await readFile(join(dist, path, 'index.html'), 'utf8');
+    assert.ok(!/phantom/i.test(html), `Ancien titre présent dans ${path}`);
+    assert.ok(html.includes('The AI Costs You Don’t See'), `Nouveau titre absent de ${path}`);
+  }
+  assert.ok(!existsSync(join(dist, 'livres-blancs/ais-phantom-bill-en-v1.pdf')));
+  const redirects = await readFile(join(dist, '_redirects'), 'utf8');
+  assert.ok(redirects.includes('/livres-blancs/ais-phantom-bill-en-v1.pdf /livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf 301'));
+  check('Titre anglais harmonisé ; ancien PDF retiré du build et règle de redirection présente.');
   server = createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://localhost');
@@ -167,6 +176,7 @@ try {
     assert.equal(sent.livre_blanc_version, version);
     assert.equal(sent.contact_statement, statement);
     assert.ok(!sent.subject.includes('{copy.'));
+    if (lang === 'en') assert.equal(sent.subject, 'Qognito — white paper request: The AI Costs You Don’t See');
     assert.equal(await page.locator('html').getAttribute('lang'), lang);
     assert.equal(await page.locator('#download-success h3').innerText(), lang === 'en' ? 'Your request has been submitted.' : 'Votre demande a été transmise.');
     assert.equal(sent.source, 'linkedin-j4');
