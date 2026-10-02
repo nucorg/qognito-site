@@ -11,7 +11,10 @@ const root = resolve(import.meta.dirname, '..');
 const sandbox = await mkdtemp(join(tmpdir(), 'qognito-whitepaper-test-'));
 const fixture = join(sandbox, 'site');
 const frenchPath = '/livres-blancs/la-facture-fantome-ia/';
-const pdfPath = '/livres-blancs/la-facture-fantome-ia-v1.pdf';
+const editions = {
+  fr: { pdfPath: '/livres-blancs/la-facture-fantome-ia-v2.pdf', version: '2.0' },
+  en: { pdfPath: '/livres-blancs/ais-phantom-bill-en-v1.pdf', version: '1.0' },
+};
 const browser = await chromium.launch({
   ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : existsSync('/opt/google/chrome/chrome') ? { executablePath: '/opt/google/chrome/chrome' } : {}),
 });
@@ -40,11 +43,24 @@ try {
   check('Activation incomplète : build refusé.');
 
   const pdfPage = await browser.newPage();
-  await pdfPage.setContent('<h1>PDF de test uniquement</h1>');
   await mkdir(join(fixture, 'public/livres-blancs'), { recursive: true });
-  await pdfPage.pdf({ path: join(fixture, 'public', pdfPath) });
+  for (const [lang, edition] of Object.entries(editions)) {
+    await pdfPage.setContent(`<h1>PDF de test ${lang} — version ${edition.version}</h1>`);
+    await pdfPage.pdf({ path: join(fixture, 'public', edition.pdfPath) });
+  }
   await pdfPage.close();
-  build({ ...baseEnv, PUBLIC_WHITEPAPER_ENABLED: 'true', PUBLIC_WEB3FORMS_ACCESS_KEY: '00000000-0000-4000-8000-000000000000', PUBLIC_MAIL_PROVIDER: 'Messagerie de test', PUBLIC_MAIL_LOCATION: 'UE (test)', PUBLIC_MAIL_SAFEGUARDS: 'Configuration de test' });
+  const activeEnv = { ...baseEnv, PUBLIC_WHITEPAPER_ENABLED: 'true', PUBLIC_WEB3FORMS_ACCESS_KEY: '00000000-0000-4000-8000-000000000000', PUBLIC_MAIL_PROVIDER: 'Messagerie de test', PUBLIC_MAIL_LOCATION: 'UE (test)', PUBLIC_MAIL_SAFEGUARDS: 'Configuration de test' };
+  for (const [lang, { pdfPath }] of Object.entries(editions)) {
+    const path = join(fixture, 'public', pdfPath);
+    const original = await readFile(path);
+    await rm(path);
+    build(activeEnv, 1);
+    await writeFile(path, 'Not a PDF');
+    build(activeEnv, 1);
+    await writeFile(path, original);
+    check(`PDF ${lang} absent ou invalide : activation refusée même si l’autre PDF est disponible.`);
+  }
+  build(activeEnv);
 
   const dist = join(fixture, 'dist');
   server = createServer(async (req, res) => {
@@ -78,6 +94,7 @@ try {
   for (const lang of ['fr', 'en']) {
     requests = [];
     mode = 'success';
+    const { pdfPath, version } = editions[lang];
     const pagePath = (lang === 'en' ? '/en' : '') + frenchPath;
     const failureText = lang === 'en' ? 'could not confirm' : 'pas pu';
     const load = async (suffix = '') => {
@@ -101,7 +118,7 @@ try {
     assert.equal(statement, expectedStatement);
     if (lang === 'en') {
       assert.equal(await page.locator('label[for=lead-name]').innerText(), 'Name (optional)');
-      assert.ok((await page.locator('.intro').innerText()).includes('The downloadable PDF is in French.'));
+      assert.ok((await page.locator('.intro').innerText()).includes('PDF in English.'));
     }
     assert.equal(await page.locator('input[name=contact_requested]').isChecked(), false);
     await page.fill('#lead-email', 'invalid');
@@ -147,6 +164,7 @@ try {
     const sent = requests.at(-1);
     assert.equal(sent.contact_requested, 'non');
     assert.equal(sent.form_language, lang);
+    assert.equal(sent.livre_blanc_version, version);
     assert.equal(sent.contact_statement, statement);
     assert.ok(!sent.subject.includes('{copy.'));
     assert.equal(await page.locator('html').getAttribute('lang'), lang);
@@ -160,6 +178,16 @@ try {
     const pdfResponse = await context.request.get(origin + pdfPath);
     assert.equal(pdfResponse.status(), 200);
     assert.ok((await pdfResponse.body()).subarray(0, 5).toString() === '%PDF-');
+    const expectedPdf = await readFile(join(fixture, 'public', pdfPath));
+    assert.deepEqual(await pdfResponse.body(), expectedPdf);
+    assert.equal(await page.locator('#pdf-download').getAttribute('hreflang'), lang);
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.locator('#pdf-download').click(),
+    ]);
+    assert.equal(download.suggestedFilename(), pdfPath.split('/').at(-1));
+    assert.deepEqual(await readFile(await download.path()), expectedPdf);
+    check(`Téléchargement ${lang} : fichier distinct et version ${version} exacts, contenu vérifié.`);
     assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0);
     check('Double envoi bloqué ; succès sans opt-in, PDF valide, focus et aucun stockage navigateur.');
 

@@ -150,7 +150,7 @@ export const sagaContent = {
     nextDescription: 'Describe your context and needs. We can discuss available materials, relevant sections and arrangements for a teaching session.',
     availability: 'Course in preparation: the first two sections have been written. The final syllabus and presentation materials are still being developed.',
     whitepaperTitle: 'Start with the white paper',
-    whitepaperDescription: '“La facture fantôme de l’IA” introduces sections 1 and 2: delegation decisions and AI economics. The full course then addresses reusable assets, security and deployment.',
-    whitepaperLink: 'Show me the white paper (French PDF)',
+    whitepaperDescription: '“AI’s Phantom Bill” introduces sections 1 and 2: delegation decisions and AI economics. The full course then addresses reusable assets, security and deployment.',
+    whitepaperLink: 'Show me the white paper',
   },
 } as const;

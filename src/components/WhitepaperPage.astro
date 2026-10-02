@@ -5,6 +5,7 @@ import { whitepaperContent } from '../content/whitepaper';
 interface Props { lang?: 'fr' | 'en'; }
 const { lang = 'fr' } = Astro.props;
 const copy = whitepaperContent[lang];
+const edition = whitepaper.editions[lang];
 ---
 <Layout title={copy.pageTitle} description={copy.description} lang={lang}>
   <article class="container whitepaper">
@@ -14,14 +15,14 @@ const copy = whitepaperContent[lang];
         <h1>{copy.title}<span>.</span></h1>
         <p class="lead">{copy.lead}</p>
         <p>{copy.introduction}</p>
-        {lang === 'en' && <p class="language-note">The downloadable PDF is in French.</p>}
+        <p class="language-note">{copy.pdfLanguage}</p>
         <a href="#telecharger" class="btn-primary">{collectionEnabled ? copy.download : copy.discover} ↓</a>
       </div>
-      <div class="cover" aria-label={copy.coverLabel} lang="fr">
+      <div class="cover" aria-label={copy.coverLabel} lang={lang}>
         <img src="/assets/LOGO_Q.png" width="64" height="64" alt="" />
-        <span class="eyebrow">QOGNITO · LIVRE BLANC</span>
-        <p class="cover-title">La facture<br />fantôme<br />de l’IA<span>.</span></p>
-        <p>Du temps gagné<br />à la valeur démontrée.</p>
+        <span class="eyebrow">{copy.coverEyebrow}</span>
+        <p class="cover-title">{copy.coverLines.map((line, index) => <>{index > 0 && <br />}{line}</>)}<span>.</span></p>
+        <p>{copy.coverTagline.map((line, index) => <>{index > 0 && <br />}{line}</>)}</p>
         <span>Boris Guarisma · SAGA-IA</span>
       </div>
     </div>
@@ -60,12 +61,12 @@ const copy = whitepaperContent[lang];
         {collectionEnabled ? (
           <>
             <p>{copy.emailNotice}</p>
-            {lang === 'en' && <p class="language-note">PDF language: French.</p>}
-            <form id="whitepaper-form" action="https://api.web3forms.com/submit" method="POST" data-download={whitepaper.pdfPath}>
+            <p class="language-note">{copy.pdfLanguage}</p>
+            <form id="whitepaper-form" action="https://api.web3forms.com/submit" method="POST" data-download={edition.pdfPath}>
               <input type="hidden" name="access_key" value={accessKey} />
-              <input type="hidden" name="subject" value={lang === 'en' ? 'Qognito — white paper request: The Hidden AI Bill' : 'Qognito — demande du livre blanc La facture fantôme de l’IA'} />
+              <input type="hidden" name="subject" value={lang === 'en' ? 'Qognito — white paper request: AI’s Phantom Bill' : 'Qognito — demande du livre blanc La facture fantôme de l’IA'} />
               <input type="hidden" name="from_name" value={lang === 'en' ? 'Qognito — White paper' : 'Qognito — Livre blanc'} />
-              <input type="hidden" name="livre_blanc_version" value={whitepaper.version} />
+              <input type="hidden" name="livre_blanc_version" value={edition.version} />
               <input type="hidden" name="notice_version" value={whitepaper.noticeVersion} />
               <input type="hidden" name="form_language" value={lang} />
               <input type="hidden" name="contact_statement" value={copy.contactStatement} />
@@ -90,7 +91,7 @@ const copy = whitepaperContent[lang];
             <div id="download-success" hidden tabindex="-1">
               <h3>{copy.successTitle}</h3>
               <p>{copy.successText}</p>
-              <a id="pdf-download" class="btn-primary" download>{copy.downloadPdf}</a>
+              <a id="pdf-download" class="btn-primary" download hreflang={lang}>{copy.downloadPdf}</a>
               <p class="followup">{copy.followup} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'Discuss my AI project' : 'Echange sur mon projet IA')}`} >{copy.emailQuestion}</a>.</p>
             </div>
           </>

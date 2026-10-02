@@ -49,18 +49,29 @@ export const whitepaperContent = {
     "pending": "La version à télécharger sera disponible ici prochainement.",
     "pendingQuestion": "Vous souhaitez échanger sur les coûts cachés de votre projet IA ?",
     "contact": "Je prends contact avec Qognito",
-    "contactStatement": "Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA."
+    "contactStatement": "Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA.",
+    "coverLines": [
+      "La facture",
+      "fantôme",
+      "de l’IA"
+    ],
+    "coverTagline": [
+      "Du temps gagné",
+      "à la valeur démontrée."
+    ],
+    "coverEyebrow": "QOGNITO · LIVRE BLANC",
+    "pdfLanguage": "PDF en français."
   },
   "en": {
-    "pageTitle": "The Hidden AI Bill — Qognito White Paper",
+    "pageTitle": "AI’s Phantom Bill — Qognito White Paper",
     "description": "Human oversight, total costs and reallocated time: examine the blind spots in your AI projects’ ROI. A white paper for CEOs, CFOs and CIOs.",
     "audience": "WHITE PAPER · CEOs, CFOs & CIOs",
-    "title": "The Hidden AI Bill",
+    "title": "AI’s Phantom Bill",
     "lead": "Human oversight, total costs and time actually reallocated: three blind spots in your AI projects’ ROI.",
     "introduction": "An impressive demo is not enough to justify an investment. This white paper helps you examine what the API bill leaves out.",
     "download": "Get my white paper",
     "discover": "Show me what’s inside",
-    "coverLabel": "Cover of the French white paper",
+    "coverLabel": "White paper cover",
     "benefitsTitle": "Three questions for your next decision meeting",
     "question1": "Who checks the result?",
     "answer1": "Make visible the review, correction and oversight work that AI generation shifts to people.",
@@ -68,9 +79,9 @@ export const whitepaperContent = {
     "answer2": "Distinguish model spending, infrastructure costs and the human work that remains.",
     "question3": "What happens to the time saved?",
     "answer3": "Assess how saved time needs to be reallocated to create economic value.",
-    "excerptLabel": "EXCERPT · TRANSLATED FROM FRENCH",
+    "excerptLabel": "EXCERPT",
     "excerptTitle": "€600 in API costs is not the cost of the service",
-    "quote": "“Comparing raw inference costs with a full payroll is like comparing the price of jet fuel with the total cost of an aircraft fleet.”",
+    "quote": "“Comparing the raw cost of inference with a full payroll bill is like comparing the price of jet fuel with the total cost of an airline fleet.”",
     "example": "In the SAGA teaching case, €600 in API costs sits within a total cost of €16,500, including €12,000 in human work. These figures are simulation assumptions, not observed market averages.",
     "contentsTitle": "Inside the white paper",
     "finding": "The finding:",
@@ -94,13 +105,24 @@ export const whitepaperContent = {
     "privacyLink": "Purposes, retention and your rights (in French)",
     "nojs": "Enable JavaScript to use this form, or request the document by emailing",
     "successTitle": "Your request has been submitted.",
-    "successText": "You can now download the white paper. The PDF is in French.",
+    "successText": "You can now download the white paper.",
     "downloadPdf": "I'm downloading the PDF",
     "followup": "Have a question about your project?",
     "emailQuestion": "Send my question by email",
     "pending": "The downloadable version will be available here soon.",
     "pendingQuestion": "Would you like to discuss the hidden costs of your AI project?",
     "contact": "Discuss my project with Qognito",
-    "contactStatement": "I would like Qognito to contact me to discuss the profitability and governance of my AI project."
+    "contactStatement": "I would like Qognito to contact me to discuss the profitability and governance of my AI project.",
+    "coverLines": [
+      "AI’s",
+      "Phantom",
+      "Bill"
+    ],
+    "coverTagline": [
+      "From time saved",
+      "to demonstrated value."
+    ],
+    "coverEyebrow": "QOGNITO · WHITE PAPER",
+    "pdfLanguage": "PDF in English."
   }
 } as const;

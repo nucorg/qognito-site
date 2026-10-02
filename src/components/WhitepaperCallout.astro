@@ -18,7 +18,7 @@ const copy = {
   en: {
     label: 'Qognito white paper',
     audience: 'WHITE PAPER · CEOs, CFOs & CIOs',
-    title: 'The Hidden AI Bill',
+    title: 'AI’s Phantom Bill',
     description: 'Human oversight, total costs and reallocated time: examine the blind spots in your AI projects’ ROI.',
     download: 'Get my white paper',
     discover: 'Show me the white paper',
@@ -30,7 +30,7 @@ const copy = {
     <span>{copy.audience}</span>
     <h2>{copy.title}</h2>
     <p>{copy.description}</p>
-    {lang === 'en' && <p class="language-note">PDF available in French.</p>}
+    {lang === 'en' && <p class="language-note">PDF available in English.</p>}
   </div>
   <a class="btn-primary" href={whitepaperPath(lang)} hreflang={lang}>{collectionEnabled ? copy.download : copy.discover} →</a>
 </aside>

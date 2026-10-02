@@ -4,3 +4,6 @@
 
 /livres-blancs/la-facture-fantome-ia/
   Referrer-Policy: strict-origin-when-cross-origin
+
+/en/livres-blancs/la-facture-fantome-ia/
+  Referrer-Policy: strict-origin-when-cross-origin

@@ -10,20 +10,22 @@ Sources vérifiées le 29 septembre 2026 : [documentation](https://docs.web3form
 
 ## Parcours en français et en anglais
 
-La page de téléchargement existe en français (`/livres-blancs/la-facture-fantome-ia/`) et en anglais (`/en/livres-blancs/la-facture-fantome-ia/`). Les liens de l’accueil et de SAGA-IA respectent la langue de la page ; le sélecteur FR/EN passe d’une version du formulaire à l’autre. Le PDF reste identique et en français, ce qui est annoncé sur la page anglaise. La politique de confidentialité reste en français, avec cette précision dans le lien anglais.
+La page de téléchargement existe en français (`/livres-blancs/la-facture-fantome-ia/`) et en anglais (`/en/livres-blancs/la-facture-fantome-ia/`). Les liens de l’accueil et de SAGA-IA respectent la langue de la page ; le sélecteur FR/EN passe d’une version du formulaire à l’autre. Chaque page fournit son propre PDF : français version 2.0 sur FR, anglais version 1.0 sur EN. Les chemins et versions sont définis par langue dans `src/config/whitepaper.ts`. La politique de confidentialité reste en français, avec cette précision dans le lien anglais.
 
-Les deux pages partagent `src/components/WhitepaperPage.astro`, les traductions dans `src/content/whitepaper.ts` et le script du formulaire. Une même clé Web3Forms suffit. Les notifications contiennent `form_language` (`fr` ou `en`) et le texte exact de la demande de contact affiché au lecteur (`contact_statement`). `contact_requested` conserve les valeurs `oui` ou `non` dans les deux langues pour faciliter le suivi.
+Les deux pages partagent `src/components/WhitepaperPage.astro`, les traductions dans `src/content/whitepaper.ts` et le script du formulaire. Une même clé Web3Forms suffit. Les notifications contiennent `livre_blanc_version` (`2.0` en FR, `1.0` en EN), `form_language` (`fr` ou `en`) et le texte exact de la demande de contact affiché au lecteur (`contact_statement`). `contact_requested` conserve les valeurs `oui` ou `non` dans les deux langues pour faciliter le suivi.
 
 ## Activation
 
-1. Exporter et vérifier le PDF final depuis le manuscrit corrigé. Copier le fichier dans `public/livres-blancs/la-facture-fantome-ia-v1.pdf` ; ne pas publier de PDF provisoire.
+1. Exporter et vérifier le PDF final depuis le manuscrit corrigé. Copier le PDF français dans `public/livres-blancs/la-facture-fantome-ia-v2.pdf` et le PDF anglais dans `public/livres-blancs/ais-phantom-bill-en-v1.pdf` ; ne pas publier de PDF provisoire.
 2. Créer le formulaire dans le compte Web3Forms de Qognito et associer la bonne boîte. Vérifier ses quotas, l’antispam et la réception effective des notifications.
 3. Examiner le DPA et les transferts avec Web3Forms ; déterminer comment demander/suivre les suppressions. Sa politique prévoit jusqu’à **trois ans de conservation**, distincts des 30 jours / 12 mois chez Qognito. Ne pas déclarer que ce prestataire ne stocke aucune donnée. Si cette durée n’est pas acceptable, demander une durée plus courte au fournisseur avant ouverture.
 4. Dans Cloudflare Pages, configurer les variables publiques de `.env.example` : clé de formulaire, fournisseur/localisation/garanties de la messagerie. Ne jamais mettre de mot de passe dans ces variables publiques.
 5. Préparer le fichier local et une sauvegarde restaurable ; effectuer les contrôles ci-dessous.
-6. Passer `PUBLIC_WHITEPAPER_ENABLED=true`, recompiler et déployer. Le build échoue si la clé, le PDF ou les informations de messagerie manquent. Sans activation, la page reste informative et **aucun champ de collecte ni clé n’est rendu**.
+6. Passer `PUBLIC_WHITEPAPER_ENABLED=true`, recompiler et déployer. Le build échoue si la clé, l’un des deux PDF ou les informations de messagerie manquent. Les deux fichiers doivent commencer par la signature PDF attendue. Sans activation, la page reste informative et **aucun champ de collecte ni clé n’est rendu**.
 
 Le site se compile avec `npm run build` vers `dist/`. `_headers` est prévu pour Cloudflare Pages : les PDF reçoivent `X-Robots-Tag: noindex, noarchive`. Vérifier ces en-têtes sur la réponse HTTP du déploiement. Cela limite l’indexation ; le lien PDF reste accessible et partageable. La collecte n’est pas un contrôle d’accès.
+
+L’ancien fichier `la-facture-fantome-ia-v1.pdf` reste accessible pour les liens déjà partagés ; aucun formulaire courant ne le propose. Les fichiers sont copiés depuis les PDF fournis, sans recompression ni modification du contenu. Les deux fichiers courants sont sous `/livres-blancs/` et bénéficient des mêmes en-têtes Cloudflare PDF.
 
 ## Suivi local et sauvegarde
 
