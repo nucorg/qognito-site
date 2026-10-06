@@ -36,10 +36,10 @@ export const sagaContent = {
       {
         title: 'Évaluer le coût réel et la viabilité',
         objectives: [
-          'Comparer les coûts complets pour une même qualité et un même périmètre de service.',
-          'Calculer les conditions de viabilité, y compris dans un scénario défavorable.',
+          'Construire les hypothèses pour comparer les coûts à qualité et périmètre équivalents.',
+          'Éprouver le scénario et ses seuils pour déterminer les conditions de viabilité.',
         ],
-        evidence: 'Un comparatif chiffré et une décision conditionnelle. Le temps libéré est distingué des économies réellement possibles.',
+        evidence: 'Un comparatif chiffré et une décision conditionnelle. Un solde positif ne suffit pas à autoriser le déploiement.',
       },
       {
         title: 'Réutiliser ce qui mérite de l’être',
@@ -113,10 +113,10 @@ export const sagaContent = {
       {
         title: 'Assess full costs and viability',
         objectives: [
-          'Compare full costs at equivalent quality and service coverage.',
-          'Calculate the conditions for viability, including an adverse scenario.',
+          'Build assumptions to compare costs at equal quality and scope.',
+          'Test the scenario and its thresholds to establish conditions for viability.',
         ],
-        evidence: 'A cost comparison and a conditional decision. Freed capacity is distinguished from savings that can actually be realised.',
+        evidence: 'A cost comparison and a conditional decision. A positive balance alone does not justify deployment.',
       },
       {
         title: 'Reuse what is worth keeping',
