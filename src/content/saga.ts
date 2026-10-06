@@ -10,7 +10,7 @@ export const sagaContent = {
     discover: 'Je découvre SAGA-IA',
     promise: 'Investir dans l’IA avec des décisions que vous pouvez justifier.',
     introduction: 'Que déléguer ? À quel coût ? Avec quelles limites ? SAGA-IA vous aide à examiner un projet, à questionner une proposition et à décider de poursuivre, de réduire le périmètre ou de renoncer.',
-    audience: 'Pour les indépendants, les dirigeants d’entreprises de une ou deux personnes, les responsables métier et les directions générales, financières ou informatiques. Aucune compétence en programmation n’est requise.',
+    audience: 'Pour les indépendants, les dirigeants d’entreprises de une ou deux personnes, les responsables métier et les directions générales, financières ou informatiques. Aucune compétence en programmation n’est requise. Les sections 1 et 2 supposent des bases usuelles en économie et gestion et demandent de lire des tableaux, de suivre des calculs simples et de justifier ses conclusions.',
     contact: 'Je parle de mon projet SAGA-IA',
     contactSubject: 'SAGA-IA — supports et interventions',
     contactBody: 'Bonjour Boris,\n\nJe souhaite échanger sur les supports ou les interventions SAGA-IA.\nMon contexte (activité, équipe ou programme de formation) :\nMon besoin :\nLe public concerné :\n\nMerci.',
@@ -26,7 +26,7 @@ export const sagaContent = {
     evidenceLabel: 'Comment mettre votre décision à l’épreuve',
     sections: [
       {
-        title: 'Choisir ce que l’on délègue',
+        title: 'Diagnostiquer une délégation à l’IA',
         objectives: [
           'Comparer la délégation à une solution sans IA et définir les conditions pour poursuivre.',
           'Comprendre pourquoi certaines corrections se répètent avant de choisir un remède.',
@@ -34,7 +34,7 @@ export const sagaContent = {
         evidence: 'Une décision argumentée et un diagnostic des reprises : faits, hypothèses, causes possibles et preuves encore manquantes.',
       },
       {
-        title: 'Évaluer le coût réel et la viabilité',
+        title: 'Éprouver la viabilité d’un projet d’IA',
         objectives: [
           'Construire les hypothèses pour comparer les coûts à qualité et périmètre équivalents.',
           'Éprouver le scénario et ses seuils pour déterminer les conditions de viabilité.',
@@ -87,7 +87,7 @@ export const sagaContent = {
     discover: 'Show me SAGA-IA',
     promise: 'Invest in AI with decisions you can justify.',
     introduction: 'What should you delegate? At what cost? Within which limits? SAGA-IA helps you assess a project, question a proposal and decide whether to proceed, narrow the scope or stop.',
-    audience: 'For independent professionals, owners of one- or two-person businesses, business managers, and executive, finance or IT leaders. No programming skills are required.',
+    audience: 'For independent professionals, owners of one- or two-person businesses, business managers, and executive, finance or IT leaders. No programming skills are required. Sections 1 and 2 assume familiarity with basic economic and business management concepts and involve reading tables, following simple calculations and justifying your conclusions.',
     contact: 'Discuss my SAGA-IA project',
     contactSubject: 'SAGA-IA — learning materials and teaching sessions',
     contactBody: 'Hello Boris,\n\nI would like to discuss SAGA-IA materials or teaching sessions.\nMy context (business, team or education programme):\nMy needs:\nThe intended audience:\n\nThank you.',
@@ -103,7 +103,7 @@ export const sagaContent = {
     evidenceLabel: 'How to put your decision to the test',
     sections: [
       {
-        title: 'Choose what to delegate',
+        title: 'Assess delegation to AI',
         objectives: [
           'Compare delegation with an option that does not use AI and set conditions for proceeding.',
           'Understand why corrections recur before choosing a remedy.',
@@ -111,7 +111,7 @@ export const sagaContent = {
         evidence: 'A reasoned decision and a diagnosis of rework: facts, assumptions, possible causes and missing evidence.',
       },
       {
-        title: 'Assess full costs and viability',
+        title: 'Test the viability of an AI project',
         objectives: [
           'Build assumptions to compare costs at equal quality and scope.',
           'Test the scenario and its thresholds to establish conditions for viability.',
