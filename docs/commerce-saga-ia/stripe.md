@@ -60,6 +60,15 @@ Sources consultées : [Checkout](https://docs.stripe.com/checkout/quickstart),
    npm run dev:commerce
    ```
 
+   `wrangler.jsonc` est la configuration de déploiement Pages du projet
+   `qognito-site` : le commerce y est désactivé et aucune base D1 n’est liée.
+   `wrangler.local.jsonc` sert uniquement aux migrations locales. La commande
+   `dev:commerce` ajoute la liaison D1 locale et l’origine `localhost` au runtime,
+   car `wrangler pages dev` ne permet pas de sélectionner un fichier de
+   configuration personnalisé avec `--config`. Le fichier privé `.dev.vars`
+   conserve les paramètres de recette. Ces commandes n’accèdent pas à une base
+   distante et ne déploient pas le site.
+
 4. Avec Stripe CLI installé et connecté au bon environnement de test :
 
    ```sh

@@ -13,8 +13,8 @@
     "test:form": "node tests/whitepaper.mjs",
     "test:crm": "python3 tests/crm.py",
     "test:commerce": "node tests/commerce-pricing.mjs && node tests/stripe-commerce.mjs",
-    "dev:commerce": "wrangler pages dev dist",
-    "db:commerce:local": "wrangler d1 migrations apply qognito-commerce-local --local"
+    "dev:commerce": "wrangler pages dev dist --d1 COMMERCE_DB=00000000-0000-0000-0000-000000000000 --binding COMMERCE_ORIGIN=http://localhost:8788",
+    "db:commerce:local": "wrangler d1 migrations apply qognito-commerce-local --local --config wrangler.local.jsonc"
   },
   "dependencies": {
     "astro": "^6.4.4",

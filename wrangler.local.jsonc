@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "qognito-commerce-local",
+  // Configuration des migrations D1 locales uniquement. Ne pas utiliser pour un déploiement.
+  // Le runtime local reçoit la même liaison via npm run dev:commerce.
+  "compatibility_date": "2026-10-06",
+  "d1_databases": [
+    {
+      "binding": "COMMERCE_DB",
+      "database_name": "qognito-commerce-local",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
