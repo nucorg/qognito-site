@@ -11,12 +11,17 @@
     "preview": "astro preview",
     "astro": "astro",
     "test:form": "node tests/whitepaper.mjs",
-    "test:crm": "python3 tests/crm.py"
+    "test:crm": "python3 tests/crm.py",
+    "test:commerce": "node tests/commerce-pricing.mjs && node tests/stripe-commerce.mjs",
+    "dev:commerce": "wrangler pages dev dist",
+    "db:commerce:local": "wrangler d1 migrations apply qognito-commerce-local --local"
   },
   "dependencies": {
-    "astro": "^6.4.4"
+    "astro": "^6.4.4",
+    "stripe": "^23.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "wrangler": "^4.147.0"
   }
 }

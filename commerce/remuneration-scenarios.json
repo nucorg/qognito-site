@@ -1,0 +1,32 @@
+{
+  "status": "illustrative_scenarios_no_price_or_remuneration_adopted",
+  "scope": "volume-01-fr-plus-en-and-projected-four-fr-volumes-plus-volume-01-en",
+  "inputs": {
+    "initial_reported_human_hours_volume_01": 35,
+    "excluded_waiting_hours_volume_01": 5,
+    "completed_human_hours_volume_01": 30,
+    "volume_01_hours_include_initial_setup": true,
+    "remaining_fr_volume_count": 3,
+    "planned_human_hours_per_remaining_fr_volume": 27,
+    "remaining_en_translation_review_hours": 8,
+    "remaining_en_translation_review_hours_scope": "volume_01_only",
+    "en_translation_review_hours_other_volumes": null,
+    "allocated_openai_spend_eur": 256,
+    "website_spend_eur_not_allocated": 64,
+    "inference_api_equivalent_usd_incomplete_not_added_to_spend": 199.88,
+    "consulting_reference_daily_rate_eur": 820,
+    "illustrative_hours_per_consulting_day": 7,
+    "es_translation_review_hours": null,
+    "launch_hours": null,
+    "communication_hours": null,
+    "arbitre_cost": null,
+    "payment_fees": null,
+    "tax_qualification": null
+  },
+  "illustrative_order_counts_not_sales_forecasts": [50, 100, 250],
+  "scenarios": [
+    { "id": "hourly_30", "hourly_target_eur": 30, "human_remuneration_target_eur": 1140, "recovery_and_remuneration_target_eur": 1396, "collection_partial_human_remuneration_target_eur": 3570, "collection_partial_recovery_and_remuneration_target_eur": 3826 },
+    { "id": "hourly_60", "hourly_target_eur": 60, "human_remuneration_target_eur": 2280, "recovery_and_remuneration_target_eur": 2536, "collection_partial_human_remuneration_target_eur": 7140, "collection_partial_recovery_and_remuneration_target_eur": 7396 },
+    { "id": "consulting_reference", "hourly_target_eur": null, "rate_formula": "820 / 7", "human_remuneration_target_eur": 4451.43, "recovery_and_remuneration_target_eur": 4707.43, "collection_partial_human_remuneration_target_eur": 13940, "collection_partial_recovery_and_remuneration_target_eur": 14196 }
+  ]
+}

@@ -1,0 +1,12 @@
+# Serveur local uniquement. Copier dans .dev.vars (ignoré par Git).
+# Aucune variable Stripe ne doit commencer par PUBLIC_.
+COMMERCE_MODE="disabled"
+COMMERCE_ORIGIN="http://localhost:8788"
+STRIPE_SECRET_KEY=""
+STRIPE_WEBHOOK_SECRET=""
+SAGA_TEST_PRICE_ID=""
+# Tax reste désactivé tant que le scénario fiscal sandbox n’est pas configuré.
+COMMERCE_TAX_MODE="disabled"
+# Copier un code exact validé dans Stripe ; aucun code du pack n’est présumé.
+SAGA_TEST_TAX_CODE=""
+COMMERCE_COLLECT_TAX_IDS="false"

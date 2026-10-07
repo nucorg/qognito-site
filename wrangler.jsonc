@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "qognito-commerce-local",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-10-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": { "COMMERCE_MODE": "disabled", "COMMERCE_ORIGIN": "http://localhost:8788" },
+  "d1_databases": [
+    {
+      "binding": "COMMERCE_DB",
+      "database_name": "qognito-commerce-local",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

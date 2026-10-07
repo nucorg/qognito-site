@@ -1,0 +1,14 @@
+{
+  "fixed_cost_eur": null,
+  "expected_sales": null,
+  "variable_cost_per_buyer_eur": null,
+  "arbitre": {
+    "annual_cost_per_buyer_eur": [],
+    "tail_reserve_per_buyer_eur": null
+  },
+  "fee_rate_of_gross": null,
+  "fee_fixed_eur": null,
+  "tax_components": [],
+  "target_margin_rate_of_net": null,
+  "candidate_prices_gross_eur": []
+}

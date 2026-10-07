@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "offer_id": "saga-ia-volume-01-pdf-arbitre-personal",
+  "editorial_product_id": "saga-ia-volume-01",
+  "publication_manifest": "../qognito-content/formations/saga-ia/volume-01/publication.yml",
+  "status": "draft",
+  "site_languages": ["fr", "en"],
+  "sellable_editions": [],
+  "seller_country_from_site": "FR",
+  "target_markets": [],
+  "price": { "currency": "EUR", "amount_minor": null, "approved_by": null, "approved_at": null },
+  "tax": { "status": "unresolved", "qualification_reference": null, "components": [] },
+  "contents": {
+    "pdf_count": 1,
+    "cover_included": true,
+    "sections": [1, 2],
+    "full_pdf_visibility": "private",
+    "public_previews": [],
+    "private_pdf_candidate": {
+      "edition_id": "saga-ia-volume-01-fr-v1.0",
+      "language": "fr",
+      "version": "1.0",
+      "source_path": "../qognito-content/formations/saga-ia/volume-01/editions/fr/1.0/saga-ia-volume-01-fr-v1.0.pdf",
+      "source_path_base": "repository_root",
+      "size_bytes": 1698109,
+      "sha256": "71b0cd2784b44ac7a6ce56e50941651a991a27153c47de878d7a1e4ab17562f5",
+      "manifest_status_observed": "preparation"
+    }
+  },
+  "rights": {
+    "persons_per_purchase": 1,
+    "arbitre": { "assignment": "email", "access": "durable", "buyer_subscription": false, "contract_terms_reference": null, "provisioning_status": "unverified" },
+    "coaching": false,
+    "certification": false,
+    "automatic_future_editions": false
+  },
+  "delivery": { "status": "unimplemented", "private_storage": null, "entitlement_backend": null },
+  "channels": {
+    "direct": { "enabled": false },
+    "chatgpt": { "enabled": false, "admission": "unconfirmed" },
+    "google_ucp": { "enabled": false, "admission": "unconfirmed" },
+    "stripe_acs": { "enabled": false, "admission": "unconfirmed" }
+  }
+}
