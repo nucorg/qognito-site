@@ -1,7 +1,8 @@
 ---
 import { sagaContent } from '../content/saga';
+import type { SiteLocale } from '../config/locales';
 interface Props {
-  lang?: 'fr' | 'en';
+  lang?: SiteLocale;
   variant?: 'catalogue' | 'audience';
 }
 const { lang = 'fr', variant = 'catalogue' } = Astro.props;

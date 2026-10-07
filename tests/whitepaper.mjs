@@ -14,7 +14,9 @@ const frenchPath = '/livres-blancs/la-facture-fantome-ia/';
 const editions = {
   fr: { pdfPath: '/livres-blancs/la-facture-fantome-ia-v2.pdf', version: '2.0' },
   en: { pdfPath: '/livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf', version: '3.0' },
+  es: { pdfPath: '/livres-blancs/la-factura-fantasma-ia-v1.pdf', version: '1.0' },
 };
+const prefixes = { fr: '', en: '/en', es: '/es' };
 const browser = await chromium.launch({
   ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : existsSync('/opt/google/chrome/chrome') ? { executablePath: '/opt/google/chrome/chrome' } : {}),
 });
@@ -33,7 +35,7 @@ try {
     assert.equal(result.status, expected, result.stdout + result.stderr);
   };
   build(baseEnv);
-  for (const path of [frenchPath, '/en' + frenchPath]) {
+  for (const path of [frenchPath, '/en' + frenchPath, '/es' + frenchPath]) {
     const inactive = await readFile(join(fixture, 'dist', path, 'index.html'), 'utf8');
     assert.ok(!inactive.includes('id="whitepaper-form"'));
     assert.ok(!inactive.includes('name="access_key"'));
@@ -63,10 +65,13 @@ try {
   build(activeEnv);
 
   const dist = join(fixture, 'dist');
-  for (const path of ['/en/', '/en/formations/', '/en' + frenchPath]) {
+  for (const path of ['/en/', '/en/formations/', '/en' + frenchPath, '/es/', '/es/formations/', '/es' + frenchPath]) {
     const html = await readFile(join(dist, path, 'index.html'), 'utf8');
-    assert.ok(!/phantom/i.test(html), `Ancien titre présent dans ${path}`);
-    assert.ok(html.includes('The AI Costs You Don’t See'), `Nouveau titre absent de ${path}`);
+    if (path.startsWith('/es')) assert.ok(html.includes('La factura fantasma de la IA'), `Titre espagnol absent de ${path}`);
+    else {
+      assert.ok(!/phantom/i.test(html), `Ancien titre présent dans ${path}`);
+      assert.ok(html.includes('The AI Costs You Don’t See'), `Nouveau titre absent de ${path}`);
+    }
   }
   assert.ok(!existsSync(join(dist, 'livres-blancs/ais-phantom-bill-en-v1.pdf')));
   assert.ok(!existsSync(join(dist, 'livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf')));
@@ -93,6 +98,25 @@ try {
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
+  await page.setViewportSize({ width: 390, height: 844 });
+  const spanishRoutes = [
+    '/es/', '/es/blog/', '/es/graphe-des-procedes/', '/es/formations/', '/es/parcours/',
+    '/es/encodeur/', '/es/livres-blancs/la-facture-fantome-ia/', '/es/mentions-legales/', '/es/confidentialite/',
+  ];
+  for (const route of spanishRoutes) {
+    const response = await page.goto(origin + route);
+    assert.equal(response.status(), 200, `Route ES indisponible : ${route}`);
+    assert.equal(await page.locator('html').getAttribute('lang'), 'es', `Langue HTML incorrecte : ${route}`);
+    const canonicalPath = new URL(await page.locator('link[rel=canonical]').getAttribute('href')).pathname.replace(/\/$/, '') || '/';
+    assert.equal(canonicalPath, route.replace(/\/$/, '') || '/');
+    assert.ok(await page.locator('.language-switcher a[hreflang="es"][aria-current="page"]').count());
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Débordement mobile : ${route}`);
+  }
+  await page.goto(origin + '/es/confidentialite/');
+  assert.ok(await page.locator('.language-switcher a[href="/en/"]').count());
+  assert.equal(await page.locator('.footer-legal-links a').nth(0).getAttribute('href'), '/es/mentions-legales');
+  await page.setViewportSize({ width: 1280, height: 1000 });
+  check('Neuf routes ES, métadonnées, sélecteur trilingue, liens juridiques et rendu mobile contrôlés.');
   let requests = [];
   let mode = 'success';
   await page.route('https://api.web3forms.com/submit', async route => {
@@ -102,34 +126,38 @@ try {
     if (mode === 'html') return route.fulfill({ status: 503, contentType: 'text/html', body: 'Unavailable' });
     return route.fulfill({ status: mode === 'http' ? 403 : 200, contentType: 'application/json', body: JSON.stringify({ success: !['http', 'refused'].includes(mode) }) });
   });
-  for (const lang of ['fr', 'en']) {
+  for (const lang of ['fr', 'en', 'es']) {
     requests = [];
     mode = 'success';
     const { pdfPath, version } = editions[lang];
-    const pagePath = (lang === 'en' ? '/en' : '') + frenchPath;
-    const failureText = lang === 'en' ? 'could not confirm' : 'pas pu';
+    const pagePath = prefixes[lang] + frenchPath;
+    const failureText = lang === 'en' ? 'could not confirm' : lang === 'es' ? 'confirmar el envío' : 'pas pu';
     const load = async (suffix = '') => {
       await page.goto(origin + pagePath + suffix);
       await page.waitForFunction(() => !document.querySelector('#submit-lead').disabled);
     };
-    await page.goto(origin + (lang === 'en' ? '/en/' : '/'));
+    await page.goto(origin + prefixes[lang] + '/');
     await page.locator('.whitepaper-callout a').click();
     assert.equal(new URL(page.url()).pathname, pagePath);
     assert.equal(await page.locator('html').getAttribute('lang'), lang);
-    await page.locator('.lang-toggle').click();
-    assert.equal(new URL(page.url()).pathname.replace(/\/$/, ''), (lang === 'en' ? frenchPath : '/en' + frenchPath).replace(/\/$/, ''));
-    assert.equal(await page.locator('html').getAttribute('lang'), lang === 'en' ? 'fr' : 'en');
-    await page.goto(origin + (lang === 'en' ? '/en/formations/' : '/formations/'));
+    const nextLang = lang === 'fr' ? 'es' : lang === 'es' ? 'fr' : 'es';
+    await page.locator(`.language-switcher a[hreflang="${nextLang}"]`).click();
+    assert.equal(new URL(page.url()).pathname.replace(/\/$/, ''), (prefixes[nextLang] + frenchPath).replace(/\/$/, ''));
+    assert.equal(await page.locator('html').getAttribute('lang'), nextLang);
+    await page.goto(origin + prefixes[lang] + '/formations/');
     await page.locator('.saga-whitepaper a').click();
     assert.equal(new URL(page.url()).pathname, pagePath);
     check(`Liens accueil/SAGA et sélecteur de langue : parcours ${lang} conservé.`);
     await load();
     const statement = await page.locator('.checkbox span').innerText();
-    const expectedStatement = lang === 'en' ? 'I would like Qognito to contact me to discuss the profitability and governance of my AI project.' : 'Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA.';
+    const expectedStatement = lang === 'en' ? 'I would like Qognito to contact me to discuss the profitability and governance of my AI project.' : lang === 'es' ? 'Quiero que Qognito se ponga en contacto conmigo para hablar sobre la rentabilidad y la gobernanza de mi proyecto de IA.' : 'Je souhaite être contacté par Qognito pour échanger sur la rentabilité et la gouvernance de mon projet IA.';
     assert.equal(statement, expectedStatement);
     if (lang === 'en') {
       assert.equal(await page.locator('label[for=lead-name]').innerText(), 'Name (optional)');
       assert.ok((await page.locator('.intro').innerText()).includes('PDF in English.'));
+    } else if (lang === 'es') {
+      assert.equal(await page.locator('label[for=lead-name]').innerText(), 'Nombre (opcional)');
+      assert.ok((await page.locator('.intro').innerText()).includes('PDF en español.'));
     }
     assert.equal(await page.locator('input[name=contact_requested]').isChecked(), false);
     await page.fill('#lead-email', 'invalid');
@@ -142,7 +170,7 @@ try {
     await page.click('#submit-lead');
     assert.equal(requests.length, 0);
     assert.ok(await page.locator('#download-success').isHidden());
-    assert.ok((await page.locator('#form-status').innerText()).includes(lang === 'en' ? 'Your request was not sent' : 'La demande n’a pas été transmise'));
+    assert.ok((await page.locator('#form-status').innerText()).includes(lang === 'en' ? 'Your request was not sent' : lang === 'es' ? 'No se ha enviado su solicitud' : 'La demande n’a pas été transmise'));
     check('Honeypot rempli : aucun envoi ni accès présenté au PDF.');
 
     for (const failure of ['http', 'refused', 'html', 'network']) {
@@ -179,8 +207,9 @@ try {
     assert.equal(sent.contact_statement, statement);
     assert.ok(!sent.subject.includes('{copy.'));
     if (lang === 'en') assert.equal(sent.subject, 'Qognito — white paper request: The AI Costs You Don’t See');
+    if (lang === 'es') assert.equal(sent.subject, 'Qognito — solicitud del libro blanco La factura fantasma de la IA');
     assert.equal(await page.locator('html').getAttribute('lang'), lang);
-    assert.equal(await page.locator('#download-success h3').innerText(), lang === 'en' ? 'Your request has been submitted.' : 'Votre demande a été transmise.');
+    assert.equal(await page.locator('#download-success h3').innerText(), lang === 'en' ? 'Your request has been submitted.' : lang === 'es' ? 'Su solicitud se ha enviado.' : 'Votre demande a été transmise.');
     assert.equal(sent.source, 'linkedin-j4');
     assert.equal(sent.notice_version, '2026-09-29-v1');
     assert.ok(sent.request_id);
@@ -221,7 +250,8 @@ try {
     await page.screenshot({ path: `/tmp/qognito-livre-blanc-${lang}-mobile.png`, fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.screenshot({ path: `/tmp/qognito-livre-blanc-${lang}-desktop.png`, fullPage: true });
-    assert.ok(await page.locator('a[href="/confidentialite/"]').count() > 0);
+    const privacyPath = lang === 'es' ? '/es/confidentialite' : '/confidentialite';
+    assert.ok(await page.locator(`a[href="${privacyPath}"]`).count() > 0);
     check('Rendu mobile sans débordement et lien de confidentialité présent.');
     const nojs = await browser.newContext({ javaScriptEnabled: false });
     const nojsPage = await nojs.newPage();

@@ -1,0 +1,65 @@
+---
+import '../../styles/formations.css';
+import Layout from '../../layouts/Layout.astro';
+import SagaCard from '../../components/SagaCard.astro';
+import TechnicalCourseProgramme from '../../components/TechnicalCourseProgramme.astro';
+import SagaProgramme from '../../components/SagaProgramme.astro';
+import TrainingContact from '../../components/TrainingContact.astro';
+import { positioning } from '../../content/positioning';
+const copy = positioning.es;
+---
+
+<Layout title="Qognito.io | Formaciones de IA: SAGA-IA, BOOTAG-IA y REASON-IA" description={copy.courseIntroduction} lang="es">
+  <section class="hero-section" style="padding-bottom: 30px;">
+    <div class="container hero-container">
+      <span class="monospace-label">ACADEMIA Y CATÁLOGO DE FORMACIONES</span>
+      <h1 class="hero-title text-glow">Formaciones Qognito<span class="logo-dot">.</span></h1>
+      <p class="course-lead">{copy.courseLead}</p>
+      <p class="hero-subtitle">{copy.courseContext}</p>
+      <p class="hero-subtitle">{copy.courseIntroduction}</p>
+    </div>
+  </section>
+
+  <section id="catalogue" class="section">
+    <div class="container">
+      <span class="monospace-label">Catálogo de formaciones</span>
+      <h2 class="section-title">Tres itinerarios complementarios</h2>
+      <p class="section-subtitle">{copy.courseChoice}</p>
+      <div class="grid-3" style="margin-top: 30px;">
+        <SagaCard lang="es" variant="catalogue" />
+        <div class="glow-card bootag-course" style="border: 1px solid var(--color-primary); background-color: #1E293B; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 5px;">
+              <span class="course-audience" style="color: var(--color-primary);">{copy.bootag.label}</span>
+              <span style="color: #38bdf8; font-family: monospace; font-size: 0.9rem;">28 h (4 días)</span>
+            </div>
+            <h3 class="card-title" style="color: #f8fafc; font-size: 1.4rem; margin-bottom: 5px;">BOOTAG-IA</h3>
+            <p style="color: #94a3b8; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;">Ingeniería del marco operativo de agentes</p>
+            <p class="card-text" style="color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.5;">{copy.bootag.summary}</p>
+            <p class="course-readership">{copy.bootag.audience}</p>
+          </div>
+          <a href="#fiche-bootag-ia" class="course-discover">Descubrir BOOTAG-IA ↓</a>
+        </div>
+        <div class="glow-card" style="border: 1px solid #10b981; background-color: #1E293B; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 5px;">
+              <span class="course-audience" style="color: #10b981;">{copy.reason.label}</span>
+              <span style="color: #10b981; font-family: monospace; font-size: 0.9rem;">40 h (5 días)</span>
+            </div>
+            <h3 class="card-title" style="color: #f8fafc; font-size: 1.4rem; margin-bottom: 5px;">REASON-IA</h3>
+            <p style="color: #94a3b8; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;">Razonamiento, emergencia y aprendizaje por refuerzo</p>
+            <p class="card-text" style="color: #cbd5e1; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.5;">{copy.reason.summary}</p>
+            <p class="course-readership">{copy.reason.audience}</p>
+          </div>
+          <a href="#fiche-reason-ia" class="course-discover" style="--color-primary: #10b981; --color-primary-rgb: 16, 185, 129;">Descubrir REASON-IA ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <TrainingContact lang="es" />
+  <div id="fiches-institutionnelles">
+    <SagaProgramme lang="es" />
+    <TechnicalCourseProgramme lang="es" course="bootag" />
+    <TechnicalCourseProgramme lang="es" course="reason" />
+  </div>
+</Layout>

@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { pathForRoute, type SiteLocale } from './locales';
 
 export const whitepaper = {
   title: 'La facture fantôme de l’IA',
@@ -7,6 +8,7 @@ export const whitepaper = {
   editions: {
     fr: { pdfPath: '/livres-blancs/la-facture-fantome-ia-v2.pdf', version: '2.0' },
     en: { pdfPath: '/livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf', version: '3.0' },
+    es: { pdfPath: '/livres-blancs/la-factura-fantasma-ia-v1.pdf', version: '1.0' },
   },
   noticeVersion: '2026-09-29-v1',
 };
@@ -24,7 +26,7 @@ export const mailLocation = (import.meta.env.PUBLIC_MAIL_LOCATION || '').trim();
 export const mailSafeguards = (import.meta.env.PUBLIC_MAIL_SAFEGUARDS || '').trim();
 
 if (collectionEnabled && (!accessKey || !pdfAvailable || !mailProvider || !mailLocation || !mailSafeguards)) {
-  throw new Error(`Livre blanc : clé Web3Forms, PDF finaux FR/EN et informations de messagerie requis avant activation.${missingPdfs.length ? ` PDF absents ou invalides : ${missingPdfs.map(({ pdfPath }) => pdfPath).join(', ')}.` : ''} Voir docs/publication-livre-blanc.md.`);
+  throw new Error(`Livre blanc : clé Web3Forms, PDF finaux FR/EN/ES et informations de messagerie requis avant activation.${missingPdfs.length ? ` PDF absents ou invalides : ${missingPdfs.map(({ pdfPath }) => pdfPath).join(', ')}.` : ''} Voir docs/publication-livre-blanc.md.`);
 }
 
-export const whitepaperPath = (lang: 'fr' | 'en') => `${lang === 'en' ? '/en' : ''}${whitepaper.path}`;
+export const whitepaperPath = (lang: SiteLocale) => `${pathForRoute('whitepaper', lang)}/`;

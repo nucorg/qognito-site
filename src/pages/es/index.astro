@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomePositioning from '../../components/HomePositioning.astro';
+import ParcoursTeaser from '../../components/ParcoursTeaser.astro';
+import TrainingContact from '../../components/TrainingContact.astro';
+import { positioning } from '../../content/positioning';
+---
+
+<Layout title="Qognito.io | Formaciones y arquitectura de agentes de IA" description={positioning.es.mission} lang="es">
+  <HomePositioning lang="es" />
+  <TrainingContact lang="es" />
+  <ParcoursTeaser lang="es" />
+</Layout>

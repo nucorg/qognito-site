@@ -2,10 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import { whitepaper, accessKey, collectionEnabled } from '../config/whitepaper';
 import { whitepaperContent } from '../content/whitepaper';
-interface Props { lang?: 'fr' | 'en'; }
+import { legalPath, type SiteLocale } from '../config/locales';
+interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
 const copy = whitepaperContent[lang];
 const edition = whitepaper.editions[lang];
+const requestSubject = lang === 'en' ? 'Qognito — white paper request: The AI Costs You Don’t See' : lang === 'es' ? 'Qognito — solicitud del libro blanco La factura fantasma de la IA' : 'Qognito — demande du livre blanc La facture fantôme de l’IA';
+const fromName = lang === 'en' ? 'Qognito — White paper' : lang === 'es' ? 'Qognito — Libro blanco' : 'Qognito — Livre blanc';
+const fallbackSubject = lang === 'en' ? 'AI white paper' : lang === 'es' ? 'Libro blanco de IA' : 'Livre blanc IA';
+const followupSubject = lang === 'en' ? 'Discuss my AI project' : lang === 'es' ? 'Hablar sobre mi proyecto de IA' : 'Echange sur mon projet IA';
 ---
 <Layout title={copy.pageTitle} description={copy.description} lang={lang}>
   <article class="container whitepaper">
@@ -64,8 +69,8 @@ const edition = whitepaper.editions[lang];
             <p class="language-note">{copy.pdfLanguage}</p>
             <form id="whitepaper-form" action="https://api.web3forms.com/submit" method="POST" data-download={edition.pdfPath}>
               <input type="hidden" name="access_key" value={accessKey} />
-              <input type="hidden" name="subject" value={lang === 'en' ? 'Qognito — white paper request: The AI Costs You Don’t See' : 'Qognito — demande du livre blanc La facture fantôme de l’IA'} />
-              <input type="hidden" name="from_name" value={lang === 'en' ? 'Qognito — White paper' : 'Qognito — Livre blanc'} />
+              <input type="hidden" name="subject" value={requestSubject} />
+              <input type="hidden" name="from_name" value={fromName} />
               <input type="hidden" name="livre_blanc_version" value={edition.version} />
               <input type="hidden" name="notice_version" value={whitepaper.noticeVersion} />
               <input type="hidden" name="form_language" value={lang} />
@@ -82,21 +87,21 @@ const edition = whitepaper.editions[lang];
                 <label for="lead-role">{copy.role} <span>{copy.optional}</span></label>
                 <input id="lead-role" name="fonction" autocomplete="organization-title" maxlength="120" />
                 <label class="checkbox"><input type="checkbox" name="contact_requested" value="oui" /><span>{copy.contactStatement}</span></label>
-                <p class="notice">{copy.privacy} <a href="/confidentialite/" hreflang="fr">{copy.privacyLink}</a>.</p>
+                <p class="notice">{copy.privacy} <a href={legalPath(lang, 'privacy')} hreflang={lang === 'en' ? 'fr' : lang}>{copy.privacyLink}</a>.</p>
                 <button type="submit" class="btn-primary" id="submit-lead" disabled>{copy.download}</button>
               </fieldset>
-              <noscript><p>{copy.nojs} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'AI white paper' : 'Livre blanc IA')}`} >contact@qognito.io</a>.</p></noscript>
+              <noscript><p>{copy.nojs} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(fallbackSubject)}`} >contact@qognito.io</a>.</p></noscript>
             </form>
             <p id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
             <div id="download-success" hidden tabindex="-1">
               <h3>{copy.successTitle}</h3>
               <p>{copy.successText}</p>
               <a id="pdf-download" class="btn-primary" download hreflang={lang}>{copy.downloadPdf}</a>
-              <p class="followup">{copy.followup} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'Discuss my AI project' : 'Echange sur mon projet IA')}`} >{copy.emailQuestion}</a>.</p>
+              <p class="followup">{copy.followup} <a href={`mailto:contact@qognito.io?subject=${encodeURIComponent(followupSubject)}`} >{copy.emailQuestion}</a>.</p>
             </div>
           </>
         ) : (
-          <><p>{copy.pending}</p><p>{copy.pendingQuestion}</p><a class="btn-primary" href={`mailto:contact@qognito.io?subject=${encodeURIComponent(lang === 'en' ? 'Discuss my AI project' : 'Echange sur mon projet IA')}`} >{copy.contact}</a></>
+          <><p>{copy.pending}</p><p>{copy.pendingQuestion}</p><a class="btn-primary" href={`mailto:contact@qognito.io?subject=${encodeURIComponent(followupSubject)}`} >{copy.contact}</a></>
         )}
       </section>
     </div>

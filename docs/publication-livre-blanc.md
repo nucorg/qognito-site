@@ -8,24 +8,24 @@ La clé Web3Forms est publique par conception. La boîte destinataire est associ
 
 Sources vérifiées le 29 septembre 2026 : [documentation](https://docs.web3forms.com/), [honeypot](https://docs.web3forms.com/getting-started/customizations/spam-protection/spam-protection), [politique](https://web3forms.com/privacy), [DPA](https://web3forms.com/dpa).
 
-## Parcours en français et en anglais
+## Parcours en français, anglais et espagnol
 
-La page de téléchargement existe en français (`/livres-blancs/la-facture-fantome-ia/`) et en anglais (`/en/livres-blancs/la-facture-fantome-ia/`). Les liens de l’accueil et de SAGA-IA respectent la langue de la page ; le sélecteur FR/EN passe d’une version du formulaire à l’autre. Chaque page fournit son propre PDF : français version 2.0 sur FR, anglais version 3.0 sur EN. Les chemins et versions sont définis par langue dans `src/config/whitepaper.ts`. La politique de confidentialité reste en français, avec cette précision dans le lien anglais.
+La page de téléchargement existe en français (`/livres-blancs/la-facture-fantome-ia/`), en anglais (`/en/livres-blancs/la-facture-fantome-ia/`) et en espagnol (`/es/livres-blancs/la-facture-fantome-ia/`). Les liens de l’accueil et de SAGA-IA respectent la langue de la page ; le sélecteur FR/EN/ES ouvre la page équivalente lorsqu’elle existe. Chaque page fournit son PDF : français version 2.0, anglais version 3.0 et espagnol version 1.0. Les chemins et versions sont définis par langue dans `src/config/whitepaper.ts`. La politique de confidentialité existe en français et en espagnol ; la page anglaise renvoie vers la version française.
 
-Les deux pages partagent `src/components/WhitepaperPage.astro`, les traductions dans `src/content/whitepaper.ts` et le script du formulaire. Une même clé Web3Forms suffit. Les notifications contiennent `livre_blanc_version` (`2.0` en FR, `3.0` en EN), `form_language` (`fr` ou `en`) et le texte exact de la demande de contact affiché au lecteur (`contact_statement`). `contact_requested` conserve les valeurs `oui` ou `non` dans les deux langues pour faciliter le suivi.
+Les trois pages partagent `src/components/WhitepaperPage.astro`, les traductions dans `src/content/whitepaper.ts` et le script du formulaire. Une même clé Web3Forms suffit. Les notifications contiennent `livre_blanc_version` (`2.0` en FR, `3.0` en EN, `1.0` en ES), `form_language` (`fr`, `en` ou `es`) et le texte exact de la demande de contact affiché au lecteur (`contact_statement`). `contact_requested` conserve les valeurs `oui` ou `non` dans les trois langues pour faciliter le suivi.
 
 ## Activation
 
-1. Exporter et vérifier le PDF final depuis le manuscrit corrigé. Copier le PDF français dans `public/livres-blancs/la-facture-fantome-ia-v2.pdf` et le PDF anglais dans `public/livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf` ; ne pas publier de PDF provisoire.
+1. Exporter et vérifier les PDF finaux depuis les manuscrits corrigés. Copier le PDF français dans `public/livres-blancs/la-facture-fantome-ia-v2.pdf`, le PDF anglais dans `public/livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf` et le PDF espagnol dans `public/livres-blancs/la-factura-fantasma-ia-v1.pdf` ; ne pas publier de PDF provisoire. La version ES v1.0 fournie par Qognito Content a été déclarée prête à publier par Boris le 7 octobre 2026.
 2. Créer le formulaire dans le compte Web3Forms de Qognito et associer la bonne boîte. Vérifier ses quotas, l’antispam et la réception effective des notifications.
 3. Examiner le DPA et les transferts avec Web3Forms ; déterminer comment demander/suivre les suppressions. Sa politique prévoit jusqu’à **trois ans de conservation**, distincts des 30 jours / 12 mois chez Qognito. Ne pas déclarer que ce prestataire ne stocke aucune donnée. Si cette durée n’est pas acceptable, demander une durée plus courte au fournisseur avant ouverture.
 4. Dans Cloudflare Pages, configurer les variables publiques de `.env.example` : clé de formulaire, fournisseur/localisation/garanties de la messagerie. Ne jamais mettre de mot de passe dans ces variables publiques.
 5. Préparer le fichier local et une sauvegarde restaurable ; effectuer les contrôles ci-dessous.
-6. Passer `PUBLIC_WHITEPAPER_ENABLED=true`, recompiler et déployer. Le build échoue si la clé, l’un des deux PDF ou les informations de messagerie manquent. Les deux fichiers doivent commencer par la signature PDF attendue. Sans activation, la page reste informative et **aucun champ de collecte ni clé n’est rendu**.
+6. Passer `PUBLIC_WHITEPAPER_ENABLED=true`, recompiler et déployer. Le build échoue si la clé, l’un des trois PDF ou les informations de messagerie manquent. Les trois fichiers doivent commencer par la signature PDF attendue. Sans activation, la page reste informative et **aucun champ de collecte ni clé n’est rendu**.
 
 Le site se compile avec `npm run build` vers `dist/`. `_headers` est prévu pour Cloudflare Pages : les PDF reçoivent `X-Robots-Tag: noindex, noarchive`. Vérifier ces en-têtes sur la réponse HTTP du déploiement. Cela limite l’indexation ; le lien PDF reste accessible et partageable. La collecte n’est pas un contrôle d’accès.
 
-L’ancien fichier `la-facture-fantome-ia-v1.pdf` reste accessible pour les liens déjà partagés ; aucun formulaire courant ne le propose. Les fichiers sont copiés depuis les PDF fournis, sans recompression ni modification du contenu. Les deux fichiers courants sont sous `/livres-blancs/` et bénéficient des mêmes en-têtes Cloudflare PDF.
+L’ancien fichier français `la-facture-fantome-ia-v1.pdf` reste accessible pour les liens déjà partagés ; aucun formulaire courant ne le propose. Les fichiers sont copiés depuis les PDF fournis, sans recompression ni modification du contenu. Les trois fichiers courants sont sous `/livres-blancs/` et bénéficient des mêmes en-têtes Cloudflare PDF.
 
 ## Suivi local et sauvegarde
 
@@ -63,7 +63,7 @@ Ne pas utiliser les formulaires publics pour des tests d’envoi sans accord exp
 
 ## Tests reproductibles
 
-`npm run test:form` crée une copie temporaire isolée du projet, un PDF de test et des réponses Web3Forms simulées. La configuration de production n’est pas modifiée. Chrome installé localement est utilisé lorsqu’il est disponible ; sinon installer Chromium avec `npx playwright install chromium`, ou définir `CHROME_BIN` vers un navigateur compatible. Les captures sont écrites dans `/tmp/qognito-livre-blanc-fr-desktop.png`, `/tmp/qognito-livre-blanc-fr-mobile.png` et leurs variantes `en`.
+`npm run test:form` crée une copie temporaire isolée du projet, des PDF de test et des réponses Web3Forms simulées. La configuration de production n’est pas modifiée. Chrome installé localement est utilisé lorsqu’il est disponible ; sinon installer Chromium avec `npx playwright install chromium`, ou définir `CHROME_BIN` vers un navigateur compatible. Les captures sont écrites dans `/tmp/qognito-livre-blanc-{fr,en,es}-{desktop,mobile}.png`.
 
 `npm run test:crm` vérifie le tableur vierge, ses permissions, la préservation de données existantes et le refus de sauvegarde sans configuration. Cela ne remplace pas un test de restauration avec les supports réels.
 
@@ -71,4 +71,4 @@ Ne pas utiliser les formulaires publics pour des tests d’envoi sans accord exp
 
 Titre EN retenu par Boris : **The AI Costs You Don’t See**. Le fichier fourni `the-ai-costs-you-dont-see-en-v3.pdf` est intégré à l’identique dans `public/livres-blancs/`. Sa couverture porte le titre attendu et ses pieds de page indiquent « Version 3.0 ». Cette version remplace l’export v2 qui conservait un titre différent et des pieds de page « Version 1.0 ».
 
-Les notifications EN indiquent désormais `livre_blanc_version=3.0`. Le PDF français et sa version `2.0` restent inchangés. Les anciennes adresses des PDF anglais v1 et v2 sont redirigées directement vers la v3 par Cloudflare (301) ; ces anciens fichiers ne sont plus présents dans le dossier public. Les pages web FR/EN conservent leurs adresses. Le serveur `astro preview` ne reproduit pas les règles `_redirects` de Cloudflare.
+Les notifications EN indiquent désormais `livre_blanc_version=3.0`. Le PDF français et sa version `2.0` restent inchangés. Les anciennes adresses des PDF anglais v1 et v2 sont redirigées directement vers la v3 par Cloudflare (301) ; ces anciens fichiers ne sont plus présents dans le dossier public. Les pages web FR/EN/ES conservent leurs adresses. Le serveur `astro preview` ne reproduit pas les règles `_redirects` de Cloudflare.

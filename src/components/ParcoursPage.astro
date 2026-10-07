@@ -1,9 +1,9 @@
 ---
 import { parcours } from '../content/parcours';
-interface Props { lang: 'fr' | 'en'; }
+import { pathForRoute, type SiteLocale } from '../config/locales';
+interface Props { lang: SiteLocale; }
 const { lang } = Astro.props;
 const copy = parcours[lang];
-const prefix = lang === 'en' ? '/en' : '';
 const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.contactSubject)}&body=${encodeURIComponent(copy.contactBody)}`;
 ---
 <div class="parcours">
@@ -14,7 +14,7 @@ const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(co
         <h1 id="parcours-title" class="text-glow">{copy.headline}</h1>
         <p class="lead">{copy.introduction}</p>
         <p>{copy.background}</p>
-        <a href={`${prefix}/formations`} class="btn-primary">{copy.courses} <span aria-hidden="true">→</span></a>
+        <a href={pathForRoute('formations', lang)} class="btn-primary">{copy.courses} <span aria-hidden="true">→</span></a>
       </div>
       <img class="portrait" src="/assets/PHOTO.jpg" alt="Boris Guarisma" width="200" height="200" />
     </div>
@@ -72,7 +72,7 @@ const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(co
         <p>{copy.contactText}</p><p>{copy.schoolText}</p>
         <div class="contact-actions">
           <a href={contactHref} class="btn-primary">{copy.contactLabel} <span aria-hidden="true">→</span></a>
-          <a href={`${prefix}/formations`} class="course-link">{copy.courses} <span aria-hidden="true">→</span></a>
+          <a href={pathForRoute('formations', lang)} class="course-link">{copy.courses} <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>

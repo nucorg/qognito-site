@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ParcoursPage from '../../components/ParcoursPage.astro';
+import { parcours } from '../../content/parcours';
+---
+
+<Layout title={parcours.es.title} description={parcours.es.description} lang="es">
+  <ParcoursPage lang="es" />
+</Layout>

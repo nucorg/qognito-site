@@ -1,7 +1,8 @@
 ---
 import { sagaContent } from '../content/saga';
 import { whitepaperPath } from '../config/whitepaper';
-interface Props { lang?: 'fr' | 'en'; }
+import type { SiteLocale } from '../config/locales';
+interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
 const copy = sagaContent[lang];
 const contactHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.contactSubject)}&body=${encodeURIComponent(copy.contactBody)}`;

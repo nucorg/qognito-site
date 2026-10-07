@@ -1,9 +1,8 @@
 ---
-interface Props {
-  lang?: 'fr' | 'en';
-}
+import type { SiteLocale } from '../config/locales';
+interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
-const label = lang === 'en' ? 'Back to top' : 'Retour en haut de page';
+const label = lang === 'en' ? 'Back to top' : lang === 'es' ? 'Volver arriba' : 'Retour en haut de page';
 ---
 
 <button type="button" class="back-to-top" aria-label={label} title={label} hidden>

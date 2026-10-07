@@ -1,16 +1,16 @@
 ---
 import { parcours } from '../content/parcours';
-interface Props { lang: 'fr' | 'en'; }
+import { pathForRoute, type SiteLocale } from '../config/locales';
+interface Props { lang: SiteLocale; }
 const { lang } = Astro.props;
 const copy = parcours[lang];
-const prefix = lang === 'en' ? '/en' : '';
 ---
 <section class="parcours-teaser" aria-labelledby="parcours-teaser-title">
   <div class="container">
     <span class="monospace-label">{copy.teaserLabel}</span>
     <h2 id="parcours-teaser-title">{copy.teaserTitle}</h2>
     <p>{copy.teaserText}</p>
-    <a href={`${prefix}/parcours`}>{copy.teaserLink} <span aria-hidden="true">→</span></a>
+    <a href={pathForRoute('parcours', lang)}>{copy.teaserLink} <span aria-hidden="true">→</span></a>
   </div>
 </section>
 <style>

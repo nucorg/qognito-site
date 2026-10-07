@@ -1,7 +1,8 @@
 ---
 import { technicalCourses } from '../content/technicalCourses';
 import { positioning } from '../content/positioning';
-interface Props { lang?: 'fr' | 'en'; course: 'bootag' | 'reason'; }
+import type { SiteLocale } from '../config/locales';
+interface Props { lang?: SiteLocale; course: 'bootag' | 'reason'; }
 const { lang = 'fr', course } = Astro.props;
 const labels = technicalCourses[lang];
 const copy = labels[course];

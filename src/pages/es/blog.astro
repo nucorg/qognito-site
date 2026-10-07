@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const layers = [
+  {
+    num: '01', title: 'Capa 1 — Los datos', subtitle: 'Pipelines de datos y semántica',
+    desc: 'Pipelines de datos, grafos de conocimiento y arquitectura de datos fiable para la IA empresarial. Lo que conviene construir y validar metódicamente antes de conectar cualquier modelo probabilístico.',
+    link: 'https://blog.bguarisma.com/series/couche-1-les-donnees', cta: 'Explorar la capa 1',
+  },
+  {
+    num: '02', title: 'Capa 2 — La optimización', subtitle: 'Algoritmos y optimización avanzada',
+    desc: 'Inteligencia de enjambre, restricciones multiobjetivo, optimización matemática y lógica compleja. Algoritmos aplicados a problemas de gran escala que la fuerza bruta no puede resolver.',
+    link: 'https://blog.bguarisma.com/series/couche-2-optimisation', cta: 'Explorar la capa 2',
+  },
+  {
+    num: '03', title: 'Capa 3 — La física', subtitle: 'Aprendizaje automático y sistemas reales',
+    desc: 'Aprendizaje automático aplicado a fenómenos físicos y a la seguridad de los sistemas. La teoría que sustenta la práctica: por qué funciona un pipeline de depuración de sensores y qué leyes físicas y matemáticas lo rigen.',
+    link: 'https://blog.bguarisma.com/series/couche-3-la-physique', cta: 'Explorar la capa 3',
+  },
+  {
+    num: '04', title: 'Capa 4 — La lucidez', subtitle: 'Análisis crítico, límites e IAG',
+    desc: 'Análisis crítico de la carrera hacia la IAG. Fracturas físicas, financieras y operativas de la IA generativa. Lo que la experiencia en sectores industriales críticos revela sobre los límites reales de la IA empresarial.',
+    link: 'https://blog.bguarisma.com/series/couche-4-la-lucidite', cta: 'Explorar la capa 4',
+  },
+];
+---
+
+<Layout title="Qognito.io | Blog Foundations" description="Análisis metódico de la inteligencia artificial en cuatro capas: datos, optimización, física y pensamiento crítico." lang="es">
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Publicaciones y reflexiones</span>
+      <h1 class="intro-title text-glow">Foundations</h1>
+      <p class="intro-subtitle">Un análisis metódico y sin jerga de la inteligencia artificial, organizado en cuatro capas de conocimiento independientes y basado en la experiencia práctica bajo restricciones críticas.</p>
+    </div>
+  </section>
+  <section class="section section-layers">
+    <div class="container grid-2">
+      {layers.map(layer => (
+        <article class="glow-card layer-card">
+          <div class="layer-header">
+            <span class="layer-num">{layer.num}</span>
+            <div><h2 class="layer-title">{layer.title}</h2><span class="monospace-label layer-subtitle">{layer.subtitle}</span></div>
+          </div>
+          <p class="layer-desc">{layer.desc}</p>
+          <a href={layer.link} hreflang="fr" target="_blank" rel="noopener noreferrer" class="btn-primary layer-btn">{layer.cta} ➔</a>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section section-blog-promo">
+    <div class="container promo-container glow-card">
+      <h2 class="promo-title text-glow">Siga la actualidad estratégica</h2>
+      <p class="promo-desc">Publico periódicamente síntesis tecnológicas, experiencias de definición de proyectos y análisis críticos del estado del arte de la IA industrial en mi espacio externo de publicación.</p>
+      <p class="language-note">Las publicaciones se encuentran en un sitio externo; consulte el idioma indicado en cada artículo.</p>
+      <a href="https://blog.bguarisma.com" target="_blank" rel="noopener noreferrer" class="btn-primary">Visitar el blog</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section { padding-block: 4rem; }
+  .monospace-label { font-family: var(--font-mono); color: var(--color-primary); font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: .5rem; display: block; }
+  .section-intro { padding-top: 6rem; padding-bottom: 2rem; }
+  .intro-container { max-width: 800px; }
+  .intro-title { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; }
+  .intro-subtitle { font-size: 1.25rem; color: var(--color-text-muted); line-height: 1.6; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .layer-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; min-height: 100%; padding: 2rem; }
+  .layer-header { display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1rem; width: 100%; }
+  .layer-num { font-family: var(--font-mono); color: var(--color-primary); font-size: 1.5rem; font-weight: 800; border: 1px solid var(--color-primary); padding: .4rem; border-radius: 4px; }
+  .layer-title { font-size: 1.25rem; color: #fff; margin: 0 0 .25rem; }
+  .layer-subtitle { margin-bottom: 0; }
+  .layer-desc { color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+  .layer-btn { padding: .65rem 1.25rem !important; font-size: .9rem !important; }
+  .section-blog-promo { padding-block: 5rem; text-align: center; }
+  .promo-container { max-width: 800px; margin: auto; padding: 3rem 2rem !important; }
+  .promo-title { font-size: 2rem; margin-bottom: 1rem; }
+  .promo-desc { font-size: 1.05rem; color: var(--color-text-muted); max-width: 650px; margin: 0 auto 2rem; line-height: 1.6; }
+  .language-note { color: var(--color-text-muted); font-size: .9rem; margin: -1rem auto 1.5rem; }
+  @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } .intro-title { font-size: 2.25rem; } .layer-card { padding: 1.5rem; } }
+</style>

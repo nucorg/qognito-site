@@ -1,10 +1,15 @@
 export function setupWhitepaperForm() {
   const form = document.querySelector<HTMLFormElement>('#whitepaper-form');
   if (!form) return;
-  const messages = document.documentElement.lang === 'en' ? {
+  const language = document.documentElement.lang;
+  const messages = language === 'en' ? {
     blocked: 'Your request was not sent. Contact contact@qognito.io if the problem persists.',
     sending: 'Submitting your request…',
     failed: 'We could not confirm submission. Your details have been kept: please try again or email contact@qognito.io. If you already submitted a request, it may have been received.',
+  } : language === 'es' ? {
+    blocked: 'No se ha enviado su solicitud. Si el problema persiste, escriba a contact@qognito.io.',
+    sending: 'Enviando su solicitud…',
+    failed: 'No hemos podido confirmar el envío. Sus datos se han conservado: inténtelo de nuevo o escriba a contact@qognito.io. Si ya envió una solicitud, es posible que la hayamos recibido.',
   } : {
     blocked: 'La demande n’a pas été transmise. Contactez contact@qognito.io si le problème persiste.',
     sending: 'Transmission en cours…',

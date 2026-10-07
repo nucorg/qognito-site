@@ -1,8 +1,9 @@
 ---
 import { whitepaper, whitepaperPath, collectionEnabled } from '../config/whitepaper';
+import type { SiteLocale } from '../config/locales';
 
 interface Props {
-  lang?: 'fr' | 'en';
+  lang?: SiteLocale;
 }
 
 const { lang = 'fr' } = Astro.props;
@@ -23,6 +24,14 @@ const copy = {
     download: 'Get my white paper',
     discover: 'Show me the white paper',
   },
+  es: {
+    label: 'Libro blanco de Qognito',
+    audience: 'LIBRO BLANCO · DIRECCIÓN GENERAL, FINANCIERA Y DE SISTEMAS',
+    title: 'La factura fantasma de la IA',
+    description: 'Supervisión humana, costes completos y tiempo reasignado: examine los puntos ciegos del ROI de sus proyectos de IA.',
+    download: 'Descargar el libro blanco',
+    discover: 'Ver el libro blanco',
+  },
 }[lang];
 ---
 <aside class="whitepaper-callout" aria-label={copy.label} lang={lang}>
@@ -30,7 +39,7 @@ const copy = {
     <span>{copy.audience}</span>
     <h2>{copy.title}</h2>
     <p>{copy.description}</p>
-    {lang === 'en' && <p class="language-note">PDF available in English.</p>}
+    {lang !== 'fr' && <p class="language-note">{lang === 'en' ? 'PDF available in English.' : 'PDF disponible en español.'}</p>}
   </div>
   <a class="btn-primary" href={whitepaperPath(lang)} hreflang={lang}>{collectionEnabled ? copy.download : copy.discover} →</a>
 </aside>

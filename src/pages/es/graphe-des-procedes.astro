@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Qognito.io | Grafo de procesos" description="Explore el grafo de conocimiento que relaciona medidas físicas, reglas de coherencia y fases operativas." lang="es">
+  <section class="section section-intro">
+    <div class="container intro-container">
+      <span class="monospace-label">Visualización interactiva</span>
+      <h1 class="intro-title text-glow">El grafo de procesos</h1>
+      <p class="intro-subtitle">Explore el mapa semántico en tiempo real de nuestra ontología física y nuestro motor de seguridad. Este grafo de conocimiento determinista actúa como capa de referencia que restringe y guía al asistente de IA para garantizar la ausencia total de alucinaciones.</p>
+    </div>
+  </section>
+  <section class="section section-graph">
+    <div class="container">
+      <div class="graph-window glow-card">
+        <div class="window-header">
+          <div class="window-buttons"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+          <span class="window-title">knowledge_graph_es.html (Interactivo: arrastre para mover y desplácese para ampliar)</span>
+        </div>
+        <div class="iframe-wrapper"><iframe src="/assets/knowledge_graph_es.html" class="graph-iframe" title="Grafo de conocimiento interactivo de Qognito.io"></iframe></div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-legend">
+    <div class="container">
+      <span class="monospace-label">Comprender la estructura</span>
+      <h2 class="section-title">Anatomía del grafo de procesos</h2>
+      <p class="section-subtitle">El grafo relaciona magnitudes físicas reales de la instalación industrial con restricciones lógicas de seguridad y permite auditar el razonamiento de la IA al 100 %:</p>
+      <div class="grid-3">
+        <article class="glow-card legend-card"><div class="legend-color-tag physique"></div><h3 class="card-title">Sistema físico</h3><p class="card-text">Representa la infraestructura real (por ejemplo, el reactor N4 y la serie 1300). Estos nodos describen los componentes estructurales estables de la instalación, en los que se anclan todas las mediciones.</p></article>
+        <article class="glow-card legend-card"><div class="legend-color-tag capteur"></div><h3 class="card-title">Mediciones de sensores</h3><p class="card-text">Nodos de flujos de datos sin procesar (potencia RPN, temperatura RCP, boro REN y barras de control RGL). Representan series temporales que se analizan y depuran en tiempo real.</p></article>
+        <article class="glow-card legend-card"><div class="legend-color-tag regle"></div><h3 class="card-title">Reglas de coherencia</h3><p class="card-text">Ecuaciones de la física y límites de seguridad (reglas de acotación o de coherencia cruzada). La IA no inventa nada: evalúa formalmente estas relaciones geométricas y lógicas.</p></article>
+      </div>
+      <div class="grid-2 mt-4">
+        <article class="glow-card legend-card"><div class="legend-color-tag phase"></div><h3 class="card-title">Fases operativas</h3><p class="card-text">Regímenes de funcionamiento del sistema (por ejemplo, la fase EPN). Aportan el contexto necesario para adaptar dinámicamente los umbrales de tolerancia y las reglas de cálculo físico.</p></article>
+        <article class="glow-card legend-card"><div class="legend-color-tag ia"></div><h3 class="card-title">Asistente de IA y motor cognitivo</h3><p class="card-text">La interfaz semántica de usuario. El asistente de IA nunca consulta directamente los datos brutos de los sensores: utiliza exclusivamente este grafo relacional de restricciones, lo que garantiza la trazabilidad total para los operadores de seguridad.</p></article>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section { padding-block: 4rem; }
+  .section-intro { padding-top: 6rem; padding-bottom: 2rem; }
+  .intro-container { max-width: 800px; }
+  .monospace-label { display: block; color: var(--color-primary); font-family: var(--font-mono); font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: .5rem; }
+  .intro-title { font-size: clamp(2.25rem, 5vw, 3rem); margin-bottom: 1.5rem; }
+  .intro-subtitle, .section-subtitle { color: var(--color-text-muted); font-size: 1.1rem; line-height: 1.6; }
+  .section-graph { padding-top: 0; }
+  .graph-window { overflow: hidden; background: #0A1628; border: 1px solid var(--color-border); border-radius: 8px; }
+  .window-header { display: flex; align-items: center; padding: .75rem 1.25rem; background: rgba(15,32,53,.8); border-bottom: 1px solid var(--color-border); }
+  .window-buttons { display: flex; gap: .5rem; margin-right: 1rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.red { background: #ef4444; } .dot.yellow { background: #eab308; } .dot.green { background: #22c55e; }
+  .window-title { font-family: var(--font-mono); font-size: .8rem; color: var(--color-text-muted); }
+  .iframe-wrapper { height: 550px; } .graph-iframe { width: 100%; height: 100%; border: 0; background: #0A1628; }
+  .section-title { font-size: 2rem; margin-bottom: 1rem; }
+  .section-subtitle { max-width: 850px; margin-bottom: 2rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.25rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.25rem; }
+  .legend-card { position: relative; padding: 2rem 1.5rem 1.5rem; }
+  .legend-color-tag { position: absolute; top: 1rem; left: 1.5rem; width: 16px; height: 16px; border-radius: 50%; }
+  .legend-color-tag.physique { background: #0A1628; border: 1px solid #fff; } .legend-color-tag.capteur { background: #6B7B8D; }
+  .legend-color-tag.regle { background: #D4850F; } .legend-color-tag.phase { background: #add8e6; } .legend-color-tag.ia { background: #0A1628; box-shadow: 0 0 10px #D4850F; }
+  .mt-4 { margin-top: 1.5rem; }
+  @media (max-width: 900px) { .iframe-wrapper { height: 400px; } .grid-3, .grid-2 { grid-template-columns: 1fr; } .mt-4 { margin-top: 0; } }
+</style>

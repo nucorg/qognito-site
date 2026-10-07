@@ -1,6 +1,7 @@
 ---
 import { positioning } from '../content/positioning';
-interface Props { lang?: 'fr' | 'en'; }
+import type { SiteLocale } from '../config/locales';
+interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
 const copy = positioning[lang];
 const href = `mailto:bguarisma@qognito.io?subject=${encodeURIComponent(copy.contactSubject)}&body=${encodeURIComponent(copy.contactBody)}`;

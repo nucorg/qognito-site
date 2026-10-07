@@ -1,11 +1,12 @@
 ---
 import '../styles/global.css';
 import BackToTop from '../components/BackToTop.astro';
+import { languageLinks, localesForRoute, pathForRoute, routeForPath, legalPath, type SiteLocale } from '../config/locales';
 
 interface Props {
   title: string;
   description?: string;
-  lang?: 'fr' | 'en';
+  lang?: SiteLocale;
 }
 
 const { 
@@ -22,6 +23,9 @@ const menus = {
     parcours: "Parcours",
     blog: "Blog",
     contact: "Je prends contact",
+    languageMenu: "Langue",
+    legal: "Mentions légales",
+    privacy: "Confidentialité / RGPD",
     footerDesc: "Formations et ressources pédagogiques pour décider, construire et approfondir les usages de l’IA.",
     copyright: "Tous droits réservés."
   },
@@ -31,28 +35,33 @@ const menus = {
     parcours: "Background",
     blog: "Blog",
     contact: "Discuss my project",
+    languageMenu: "Language",
+    legal: "Legal notice",
+    privacy: "Privacy / GDPR",
     footerDesc: "Courses and learning resources to make decisions, build applications and explore AI in depth.",
     copyright: "All rights reserved."
+  },
+  es: {
+    home: "Inicio",
+    formations: "Formaciones",
+    parcours: "Trayectoria",
+    blog: "Blog",
+    contact: "Contacto",
+    languageMenu: "Idioma",
+    legal: "Aviso legal",
+    privacy: "Privacidad / RGPD",
+    footerDesc: "Formaciones y recursos didácticos para decidir, construir y profundizar en los usos de la IA.",
+    copyright: "Todos los derechos reservados."
   }
 };
 
 const t = menus[lang];
-
-// Navigation links with translation paths
-const prefix = lang === 'en' ? '/en' : '';
 const currentPath = Astro.url.pathname;
-let togglePath = '/';
-if (lang === 'fr') {
-  const cleanPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
-  togglePath = cleanPath === '/' ? '/en/' : `/en${cleanPath}`;
-} else {
-  const cleanPath = currentPath.replace(/^\/en(\/|$)/, '/') || '/';
-  togglePath = cleanPath;
-}
-const toggleLabel = lang === 'en' ? 'FR' : 'EN';
-// Les pages juridiques n’ont pas encore de traduction anglaise.
-const frenchOnly = ['/confidentialite', '/mentions-legales'].some(path => currentPath.startsWith(path));
-if (frenchOnly) togglePath = '/en/';
+const currentRoute = routeForPath(currentPath);
+const alternatives = localesForRoute(currentRoute);
+const languageChoices = languageLinks(currentPath, lang);
+const canonicalUrl = `https://qognito.io${pathForRoute(currentRoute, lang)}`;
+const frenchCanonical = `https://qognito.io${pathForRoute(currentRoute, 'fr')}`;
 ---
 
 <!DOCTYPE html>
@@ -61,6 +70,9 @@ if (frenchOnly) togglePath = '/en/';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternatives.map(locale => <link rel="alternate" hreflang={locale} href={`https://qognito.io${pathForRoute(currentRoute, locale)}`} />)}
+    <link rel="alternate" hreflang="x-default" href={frenchCanonical} />
     <link rel="icon" type="image/png" href="/assets/LOGO_Q.png" />
     <title>{title}</title>
   </head>
@@ -68,7 +80,7 @@ if (frenchOnly) togglePath = '/en/';
     <!-- Sticky Semi-Transparent Header -->
     <header class="header">
       <div class="container header-container">
-        <a href={`${prefix}/`} class="logo">
+        <a href={pathForRoute('home', lang)} class="logo">
           Qognito<span class="logo-dot">.io</span>
         </a>
         
@@ -81,17 +93,21 @@ if (frenchOnly) togglePath = '/en/';
         </label>
         
         <nav class="nav">
-          <a href={`${prefix}/`} class="nav-link">{t.home}</a>
-          <a href={`${prefix}/formations`} class="nav-link">{t.formations}</a>
-          <a href={`${prefix}/parcours`} class="nav-link">{t.parcours}</a>
-          <a href={`${prefix}/blog`} class="nav-link">{t.blog}</a>
+          <a href={pathForRoute('home', lang)} class="nav-link">{t.home}</a>
+          <a href={pathForRoute('formations', lang)} class="nav-link">{t.formations}</a>
+          <a href={pathForRoute('parcours', lang)} class="nav-link">{t.parcours}</a>
+          <a href={pathForRoute('blog', lang)} class="nav-link">{t.blog}</a>
         </nav>
         
         <div class="actions">
-          <!-- Language Toggle Button -->
-          <a href={togglePath} class="lang-toggle btn-secondary" title={lang === 'fr' ? "Switch to English" : "Passer en Français"}>
-            {toggleLabel}
-          </a>
+          <nav class="language-switcher" aria-label={t.languageMenu}>
+            {languageChoices.map(choice => (
+              <a href={choice.href} lang={choice.locale} hreflang={choice.locale} title={choice.title}
+                aria-current={choice.current ? 'page' : undefined} class:list={['language-link', { 'is-current': choice.current }]}>
+                {choice.label}
+              </a>
+            ))}
+          </nav>
           <a href="mailto:bguarisma@qognito.io" class="btn-primary btn-sm">{t.contact}</a>
         </div>
       </div>
@@ -106,7 +122,7 @@ if (frenchOnly) togglePath = '/en/';
     <footer class="footer">
       <div class="container footer-container">
         <div class="footer-brand">
-          <a href={`${prefix}/`} class="logo footer-logo">Qognito<span>.io</span></a>
+          <a href={pathForRoute('home', lang)} class="logo footer-logo">Qognito<span>.io</span></a>
           <p class="footer-desc">{t.footerDesc}</p>
         </div>
         <div class="footer-socials">
@@ -116,9 +132,9 @@ if (frenchOnly) togglePath = '/en/';
       </div>
       <div class="container footer-bottom">
         <div class="footer-legal-links">
-          <a href="/mentions-legales/" class="legal-link">Mentions Légales</a>
+          <a href={legalPath(lang, 'legal')} class="legal-link">{t.legal}</a>
           <span class="legal-separator">•</span>
-          <a href="/confidentialite/" class="legal-link">Confidentialité / RGPD</a>
+          <a href={legalPath(lang, 'privacy')} class="legal-link">{t.privacy}</a>
         </div>
         <p class="footer-short-notice">QOGNITO SASU — RCS Nanterre 130 175 730</p>
         <p>&copy; {new Date().getFullYear()} Qognito.io v1.0. {t.copyright}</p>
@@ -198,7 +214,12 @@ if (frenchOnly) togglePath = '/en/';
     gap: 1rem;
   }
   
-  .lang-toggle {
+  .language-switcher {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+  }
+  .language-link {
     font-family: var(--font-mono);
     font-weight: 600;
     font-size: 0.85rem;
@@ -207,14 +228,14 @@ if (frenchOnly) togglePath = '/en/';
     background: transparent;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    cursor: pointer;
     transition: all 0.2s ease;
   }
-  .lang-toggle:hover {
+  .language-link:hover, .language-link.is-current {
     border-color: var(--color-primary);
     color: #FFFFFF;
     box-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.2);
   }
+  .language-link.is-current { background: rgba(var(--color-primary-rgb), 0.08); }
 
   .btn-sm {
     padding: 0.5rem 1rem !important;
@@ -392,7 +413,8 @@ if (frenchOnly) togglePath = '/en/';
     .header-container { padding-inline: 1rem; gap: .25rem; }
     .header .logo { font-size: 1.25rem; }
     .actions { gap: .4rem; }
-    .lang-toggle { padding-inline: .5rem; }
+    .language-switcher { gap: .15rem; }
+    .language-link { padding-inline: .4rem; }
     .btn-sm { padding-inline: .6rem !important; font-size: .8rem !important; }
   }
 </style>
