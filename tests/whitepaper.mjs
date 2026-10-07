@@ -14,7 +14,7 @@ const frenchPath = '/livres-blancs/la-facture-fantome-ia/';
 const editions = {
   fr: { pdfPath: '/livres-blancs/la-facture-fantome-ia-v2.pdf', version: '2.0' },
   en: { pdfPath: '/livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf', version: '3.0' },
-  es: { pdfPath: '/livres-blancs/la-factura-fantasma-ia-v1.pdf', version: '1.0' },
+  es: { pdfPath: '/livres-blancs/la-factura-fantasma-ia-v2.pdf', version: '2.0' },
 };
 const prefixes = { fr: '', en: '/en', es: '/es' };
 const browser = await chromium.launch({
@@ -75,10 +75,12 @@ try {
   }
   assert.ok(!existsSync(join(dist, 'livres-blancs/ais-phantom-bill-en-v1.pdf')));
   assert.ok(!existsSync(join(dist, 'livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf')));
+  assert.ok(!existsSync(join(dist, 'livres-blancs/la-factura-fantasma-ia-v1.pdf')));
   const redirects = await readFile(join(dist, '_redirects'), 'utf8');
   assert.ok(redirects.includes('/livres-blancs/ais-phantom-bill-en-v1.pdf /livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf 301'));
   assert.ok(redirects.includes('/livres-blancs/the-ai-costs-you-dont-see-en-v2.pdf /livres-blancs/the-ai-costs-you-dont-see-en-v3.pdf 301'));
-  check('Titre anglais harmonisé ; ancien PDF retiré du build et règle de redirection présente.');
+  assert.ok(redirects.includes('/livres-blancs/la-factura-fantasma-ia-v1.pdf /livres-blancs/la-factura-fantasma-ia-v2.pdf 301'));
+  check('PDF espagnol v1 retiré au profit de la v2 ; redirections des anciens PDF vérifiées.');
   server = createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://localhost');
