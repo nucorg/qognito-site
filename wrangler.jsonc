@@ -3,6 +3,16 @@
   "name": "qognito-site",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-10-06",
-  "compatibility_flags": ["nodejs_compat"],
-  "vars": { "COMMERCE_MODE": "disabled", "COMMERCE_ORIGIN": "https://qognito.io" }
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    "COMMERCE_MODE": "disabled",
+    "COMMERCE_ORIGIN": "https://qognito.io",
+    "PUBLIC_WHITEPAPER_ENABLED": "true",
+    "PUBLIC_WEB3FORMS_ACCESS_KEY": "d57234ac-87d7-44e8-8b19-6f15a693bcdd",
+    "PUBLIC_MAIL_PROVIDER": "Google Workspace (Gmail professionnel)",
+    "PUBLIC_MAIL_LOCATION": "Traitement possible dans les pays où Google et ses sous-traitants disposent d’infrastructures, y compris hors de l’Espace économique européen",
+    "PUBLIC_MAIL_SAFEGUARDS": "Avenant Google relatif au traitement des données et mécanismes de transfert qu’il prévoit, dont les clauses contractuelles types lorsqu’elles sont applicables"
+  }
 }
