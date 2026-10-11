@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+  // Preserve Astro 6 whitespace handling between inline elements.
+  compressHTML: true,
   redirects: {
     '/expertise': { destination: '/parcours/', status: 301 },
     '/en/expertise': { destination: '/en/parcours/', status: 301 },

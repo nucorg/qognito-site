@@ -17,7 +17,7 @@
     "db:commerce:local": "wrangler d1 migrations apply qognito-commerce-local --local --config wrangler.local.jsonc"
   },
   "dependencies": {
-    "astro": "^6.4.4",
+    "astro": "^7.3.8",
     "stripe": "^23.0.0"
   },
   "devDependencies": {
