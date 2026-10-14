@@ -18,6 +18,9 @@ export const routePaths = {
     en: '/en/livres-blancs/la-facture-fantome-ia',
     es: '/es/livres-blancs/la-facture-fantome-ia',
   },
+  volume: { fr: '/formations/saga-ia/volume-1', en: '/en/formations/saga-ia/volume-1', es: '/es/formations/saga-ia/volume-1' },
+  terms: { fr: '/conditions-de-vente' },
+  confirmation: { fr: '/achat/confirmation' },
   legal: { fr: '/mentions-legales', es: '/es/mentions-legales' },
   privacy: { fr: '/confidentialite', es: '/es/confidentialite' },
 } as const;

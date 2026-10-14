@@ -2,7 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { whitepaper, accessKey, collectionEnabled } from '../config/whitepaper';
 import { whitepaperContent } from '../content/whitepaper';
-import { legalPath, type SiteLocale } from '../config/locales';
+import { volumeContent } from '../content/volume';
+import { legalPath, pathForRoute, type SiteLocale } from '../config/locales';
 interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
 const copy = whitepaperContent[lang];
@@ -105,6 +106,7 @@ const followupSubject = lang === 'en' ? 'Discuss my AI project' : lang === 'es' 
         )}
       </section>
     </div>
+    <section aria-label={volumeContent[lang].title}><h2>{volumeContent[lang].title}</h2><p>{volumeContent[lang].introduction}</p><p>{lang === 'fr' ? '49,99 € TTC · édition française' : volumeContent[lang].status}</p><a href={pathForRoute('volume',lang)}>{volumeContent[lang].learnMore} →</a></section>
   </article>
 </Layout>
 <script>

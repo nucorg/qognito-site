@@ -1,0 +1,35 @@
+export const volumeContent = {
+ fr: {
+  title: 'SAGA-IA — Volume 1', subtitle: 'Décider de déléguer à l’IA et éprouver la viabilité du projet',
+  introduction: 'Un PDF pour examiner les conséquences d’une délégation à l’IA, construire ses hypothèses économiques et justifier une décision.',
+  edition: 'Édition française · sections 1 et 2 · licence pour un lecteur',
+  lessons: ['Comparer une délégation à une solution sans IA et définir les preuves nécessaires.', 'Évaluer le travail humain, les coûts complets et les conditions d’utilisation du temps gagné.', 'Mettre les hypothèses à l’épreuve avec des cas, des exercices et leurs corrigés.'],
+  prerequisites: 'Sans programmation. Des bases usuelles en économie et gestion sont nécessaires pour lire les tableaux et suivre les calculs. Une calculatrice ou un tableur suffit pour les exercices.',
+  license: 'Lecture hors ligne, impression, sauvegarde et étude avec un assistant IA privé autorisées. Pas de redistribution. Les autres volumes, traductions, nouvelles éditions, coaching et certification ne sont pas inclus.',
+  preview: 'Découvrir le livre blanc gratuit', status: 'Ouverture prochaine de la vente',
+  companionTitle: 'Arbitre, un compagnon facultatif', companion: 'Le PDF est autonome. Arbitre permet de prolonger certains exercices avec une application gratuite à installer sur votre ordinateur. Interface en français ; aucun compte lié à votre achat.',
+  github: 'Voir le code et le guide d’installation sur GitHub', learnMore: 'Découvrir le volume 1',
+ },
+ en: {
+  title: 'SAGA-IA — Volume 1', subtitle: 'Deciding what to delegate to AI and assessing project viability',
+  introduction: 'A PDF to examine the consequences of delegating to AI, build economic assumptions and justify a decision.',
+  edition: 'English edition · sections 1 and 2',
+  lessons: ['Compare delegation with a solution that does not use AI and define the evidence needed.', 'Assess human work, full costs and the conditions for putting saved time to use.', 'Test assumptions through case studies, exercises and worked answers.'],
+  prerequisites: 'No programming required. A working knowledge of economics and management is needed to read tables and follow the calculations. A calculator or spreadsheet is enough for the exercises.',
+  license: 'The English edition is being prepared. No release date or pre-order is offered.',
+  preview: 'Explore the free white paper', status: 'Available soon',
+  companionTitle: 'Arbitre, an optional companion', companion: 'The PDF is self-contained. Arbitre lets you explore some exercises further with a free application you can install on your computer. Its interface is currently in French; no purchase-linked account is required.',
+  github: 'View the code and installation guide on GitHub', learnMore: 'Explore Volume 1',
+ },
+ es: {
+  title: 'SAGA-IA — Volumen 1', subtitle: 'Decidir qué delegar a la IA y evaluar la viabilidad del proyecto',
+  introduction: 'Un PDF para examinar las consecuencias de delegar a la IA, formular hipótesis económicas y justificar una decisión.',
+  edition: 'Edición en español · secciones 1 y 2',
+  lessons: ['Comparar la delegación con una solución sin IA y definir las pruebas necesarias.', 'Evaluar el trabajo humano, los costes completos y las condiciones para aprovechar el tiempo ahorrado.', 'Poner a prueba las hipótesis con casos, ejercicios y soluciones explicadas.'],
+  prerequisites: 'Sin programación. Se necesitan conocimientos habituales de economía y gestión para leer las tablas y seguir los cálculos. Una calculadora o una hoja de cálculo basta para los ejercicios.',
+  license: 'La edición en español está en preparación. No se anuncia una fecha de publicación ni se aceptan reservas.',
+  preview: 'Descubrir el libro blanco gratuito', status: 'Pronto disponible',
+  companionTitle: 'Arbitre, un complemento opcional', companion: 'El PDF es autónomo. Arbitre permite profundizar en algunos ejercicios con una aplicación gratuita que puede instalar en su ordenador. La interfaz está actualmente en francés; no requiere una cuenta vinculada a la compra.',
+  github: 'Ver el código y la guía de instalación en GitHub', learnMore: 'Descubrir el volumen 1',
+ }
+} as const;

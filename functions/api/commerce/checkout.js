@@ -1,2 +1,2 @@
-import { checkout } from '../../../server/commerce/stripe.mjs';
+import { checkout } from '../../../server/commerce/sales.mjs';
 export const onRequest = ({ request, env }) => checkout(request, env);

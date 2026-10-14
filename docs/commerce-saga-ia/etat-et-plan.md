@@ -1,5 +1,8 @@
 # SAGA-IA — préparation du commerce, 6 octobre 2026
 
+> État historique. Pour la vente française à 49,99 € TTC préparée le 14 octobre 2026, consulter le [dossier courant](release/README.md).
+
+
 Périmètre : Axe II, Cible I. Dossier interne de décision, sans publication ni activation.
 Rôles Frontend-Qognito et Copywriter-B2B ; workflow `localiser-site-qognito`.
 Les sources de formation et le manifeste éditorial ont été laissés intacts.

@@ -10,3 +10,8 @@
 
 /es/livres-blancs/la-facture-fantome-ia/
   Referrer-Policy: strict-origin-when-cross-origin
+
+/achat/*
+  X-Robots-Tag: noindex, noarchive
+  Referrer-Policy: no-referrer
+  Cache-Control: no-store

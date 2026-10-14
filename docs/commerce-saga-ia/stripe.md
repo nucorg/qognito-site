@@ -1,5 +1,8 @@
 # Stripe — intégration préparée en mode test
 
+> État historique. Pour la vente française à 49,99 € TTC préparée le 14 octobre 2026, consulter le [dossier courant](release/README.md).
+
+
 6 octobre 2026 · Axe II, Cible I · vente directe prioritaire, ACP/UCP différés par Boris.
 
 ## Choix technique

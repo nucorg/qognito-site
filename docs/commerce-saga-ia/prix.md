@@ -1,5 +1,8 @@
 # Prix du pack — données attendues et méthode
 
+> État historique. Pour la vente française à 49,99 € TTC préparée le 14 octobre 2026, consulter le [dossier courant](release/README.md).
+
+
 6 octobre 2026 · Axe II, Cible I · simulation interne, aucun prix adopté.
 
 Les anciennes hypothèses 49 € TTC au lancement et 69 € TTC ensuite ne sont ni un

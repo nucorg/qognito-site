@@ -1,5 +1,8 @@
 # Contrôles de la préparation commerciale initiale
 
+> État historique. Pour la vente française à 49,99 € TTC préparée le 14 octobre 2026, consulter le [dossier courant](release/README.md).
+
+
 6 octobre 2026 · périmètre local `qognito-site`, sans déploiement.
 
 Cette page décrit la première tranche, avant intégration Stripe. Les contrôles et

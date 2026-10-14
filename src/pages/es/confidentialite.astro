@@ -1,4 +1,5 @@
 ---
+import CommercePrivacy from '../../components/CommercePrivacy.astro';
 import Layout from '../../layouts/Layout.astro';
 import { whitepaper, collectionEnabled, mailProvider, mailLocation, mailSafeguards } from '../../config/whitepaper';
 ---
@@ -35,6 +36,7 @@ import { whitepaper, collectionEnabled, mailProvider, mailLocation, mailSafeguar
     <p>Puede presentar una reclamación ante la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>. Este formulario no toma decisiones automatizadas con efectos jurídicos ni realiza perfiles comerciales automatizados.</p>
     <h2>Cookies y medición de audiencia</h2>
     <p>Este formulario no instala píxeles publicitarios ni cookies de marketing y no registra las aperturas de correos electrónicos. Tampoco almacena sus campos en el navegador. Los parámetros de campaña reconocidos solo sirven para identificar el origen de una solicitud, sin seguimiento individual de la navegación. Los proveedores pueden tratar los datos técnicos necesarios para la seguridad de sus servicios.</p>
+    <CommercePrivacy lang="es" />
   </article>
 </Layout>
 

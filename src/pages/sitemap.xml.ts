@@ -3,7 +3,7 @@ import { localesForRoute, pathForRoute, routePaths, type SiteRoute } from '../co
 const origin = 'https://qognito.io';
 
 export function GET() {
-  const routes = Object.keys(routePaths) as SiteRoute[];
+  const routes = (Object.keys(routePaths) as SiteRoute[]).filter(route => route !== 'confirmation');
   const urls = routes.flatMap(route => localesForRoute(route).map(locale => {
     const alternates = localesForRoute(route).map(alternateLocale =>
       `<xhtml:link rel="alternate" hreflang="${alternateLocale}" href="${origin}${pathForRoute(route, alternateLocale)}" />`,

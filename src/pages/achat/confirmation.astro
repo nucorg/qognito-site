@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Votre commande SAGA-IA | Qognito.io" lang="fr" description="Confirmation de votre commande du volume 1.">
+ <section class="container confirmation"><h1>Votre commande SAGA-IA</h1><p id="order-message" role="status">Vérification du paiement…</p><p id="order-reference"></p><p><a id="download" class="btn-primary" hidden>Télécharger le PDF français</a></p><p><a id="invoice" hidden>Consulter le justificatif Stripe</a></p><p>Le lien est également envoyé à l’email de commande. Pour toute difficulté : <a href="mailto:contact@qognito.io">contact@qognito.io</a>.</p><a href="/formations/saga-ia/volume-1/">Revenir au volume 1</a></section>
+</Layout>
+<script>
+const message=document.querySelector<HTMLElement>('#order-message')!;
+const ref=document.querySelector<HTMLElement>('#order-reference')!;
+const link=document.querySelector<HTMLAnchorElement>('#download')!;
+const invoice=document.querySelector<HTMLAnchorElement>('#invoice')!;
+let tries=0;
+async function poll(){
+ try{
+  const response=await fetch('/api/commerce/order');const data=await response.json();
+  if(!response.ok){message.textContent=response.status===401 ? 'Cette page ne retrouve pas votre commande dans ce navigateur. Consultez votre email ou contactez l’assistance.' : 'La vérification est momentanément indisponible. Votre email de confirmation permettra de retrouver le PDF.';return;}
+  ref.textContent=`Référence : ${data.reference}`;
+  const messages:Record<string,string>={created:'Nous attendons la confirmation de Stripe.',authorized:'Le paiement est autorisé. Nous vérifions la commande avant encaissement.',paid:'Votre paiement est confirmé.',refunded:'La commande a été remboursée. Le téléchargement est désactivé.',disputed:'Cette commande fait l’objet d’un litige. Contactez l’assistance.',market_rejected:'L’adresse de facturation n’est pas dans le territoire desservi. L’autorisation de paiement a été annulée.',canceled:'Le paiement a été annulé.',expired:'La session de paiement a expiré.'};
+  message.textContent=messages[data.status]||'Commande en cours de vérification.';
+  link.hidden=true;invoice.hidden=true;
+  if(data.download_url){const url=new URL(data.download_url);if(url.origin===location.origin){link.href=url.href;link.hidden=false;}}
+  if(data.invoice_url){const url=new URL(data.invoice_url);if(url.protocol==='https:' && url.hostname==='invoice.stripe.com'){invoice.href=url.href;invoice.hidden=false;}}
+  if(data.status==='paid'&&!data.download_url)message.textContent+=' Le lien a expiré ; contactez l’assistance pour le renouveler.';
+  if((['created','authorized'].includes(data.status)||(data.status==='paid'&&!data.invoice_url))&&tries++<120)setTimeout(poll,3000);
+ }catch{message.textContent='La connexion a été interrompue. Consultez votre email de confirmation ou contactez l’assistance.';}
+}
+poll();
+</script>
+<style>.confirmation{max-width:850px;padding:4rem 1rem;line-height:1.8}.confirmation p{margin:1rem 0}.confirmation [hidden]{display:none}.confirmation a{color:#D4850F}</style>

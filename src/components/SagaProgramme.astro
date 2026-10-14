@@ -1,4 +1,6 @@
 ---
+import { volumeContent } from '../content/volume';
+import { pathForRoute } from '../config/locales';
 import { sagaContent } from '../content/saga';
 import { whitepaperPath } from '../config/whitepaper';
 import type { SiteLocale } from '../config/locales';
@@ -20,6 +22,7 @@ const institutionHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponen
         <a href={contactHref} class="btn-primary">{copy.contact} →</a>
       </header>
 
+      <section class="saga-institution"><h3>{volumeContent[lang].title}</h3><p>{volumeContent[lang].introduction}</p><p>{lang === 'fr' ? '49,99 € TTC · édition française' : volumeContent[lang].status}</p><a href={pathForRoute('volume',lang)}>{volumeContent[lang].learnMore} →</a></section>
       <aside class="saga-institution" aria-labelledby="saga-institution-title">
         <h3 id="saga-institution-title">{copy.institutionTitle}</h3>
         <p>{copy.institutionAudience}</p>

@@ -17,7 +17,7 @@ export const parcours = {
     experienceLabel: 'Quelques repères',
     experienceTitle: 'Un parcours d’ingénierie, de direction et de formation',
     experiences: [
-      { date: 'Aujourd’hui', company: 'Qognito', role: 'Développement de formations et de ressources pédagogiques', text: 'Trois parcours complémentaires : SAGA-IA pour la décision et la gouvernance, BOOTAG-IA pour l’ingénierie des agents, REASON-IA pour approfondir les mécanismes du raisonnement et de l’apprentissage.' },
+      { date: 'Aujourd’hui', company: 'Qognito', role: 'Développement de formations et de ressources pédagogiques', text: 'SAGA-IA : des ressources pédagogiques pour décider de l’usage de l’IA, examiner ses conséquences humaines et économiques et justifier ses choix.' },
       { date: 'Octobre 2025 – juin 2026', company: 'Qognito', role: 'Consultant indépendant', text: 'Poursuite en indépendant de la mission industrielle engagée chez Ippon Technologies, jusqu’à sa fin en juin 2026.' },
       { date: 'Juin 2024 – septembre 2025', company: 'Ippon Technologies', role: 'CTO / Consultant', text: 'Direction technique de l’agence parisienne, accompagnement des équipes et cadrage de projets d’IA.' },
       { date: 'Mars 2019 – mai 2024', company: 'Avanade', role: 'Practice Lead France — Intelligence Artificielle', text: 'Structuration et pilotage de la practice IA France, accompagnement de projets et formation d’équipes de grands comptes aux usages de l’IA.' },
@@ -67,7 +67,7 @@ export const parcours = {
     experienceLabel: 'Selected milestones',
     experienceTitle: 'A background in engineering, leadership and teaching',
     experiences: [
-      { date: 'Today', company: 'Qognito', role: 'Developing courses and learning resources', text: 'Three complementary courses: SAGA-IA for decisions and governance, BOOTAG-IA for agent engineering, and REASON-IA for a deeper understanding of reasoning and learning mechanisms.' },
+      { date: 'Today', company: 'Qognito', role: 'Developing courses and learning resources', text: 'SAGA-IA: learning resources to decide how to use AI, examine its human and economic consequences and justify those decisions.' },
       { date: 'October 2025 – June 2026', company: 'Qognito', role: 'Independent consultant', text: 'Continued the industrial assignment begun at Ippon Technologies as an independent consultant, through its completion in June 2026.' },
       { date: 'June 2024 – September 2025', company: 'Ippon Technologies', role: 'CTO / Consultant', text: 'Technical leadership of the Paris branch, support for teams and scoping of AI projects.' },
       { date: 'March 2019 – May 2024', company: 'Avanade', role: 'France Practice Lead — Artificial Intelligence', text: 'Built and led the French AI practice, supported projects and trained enterprise teams in AI applications.' },
@@ -117,7 +117,7 @@ export const parcours = {
     experienceLabel: 'Algunos hitos',
     experienceTitle: 'Trayectoria en ingeniería, dirección y formación',
     experiences: [
-      { date: 'Actualidad', company: 'Qognito', role: 'Desarrollo de formaciones y recursos didácticos', text: 'Tres itinerarios complementarios: SAGA-IA para la toma de decisiones y la gobernanza, BOOTAG-IA para la ingeniería de agentes y REASON-IA para profundizar en los mecanismos del razonamiento y el aprendizaje.' },
+      { date: 'Actualidad', company: 'Qognito', role: 'Desarrollo de formaciones y recursos didácticos', text: 'SAGA-IA: recursos didácticos para decidir cómo utilizar la IA, examinar sus consecuencias humanas y económicas y justificar las decisiones.' },
       { date: 'Octubre de 2025 – junio de 2026', company: 'Qognito', role: 'Consultor independiente', text: 'Continuación como consultor independiente de la misión industrial iniciada en Ippon Technologies, hasta su finalización en junio de 2026.' },
       { date: 'Junio de 2024 – septiembre de 2025', company: 'Ippon Technologies', role: 'CTO / Consultor', text: 'Dirección técnica de la oficina de París, acompañamiento a los equipos y definición del alcance de proyectos de IA.' },
       { date: 'Marzo de 2019 – mayo de 2024', company: 'Avanade', role: 'Responsable de la práctica de IA en Francia', text: 'Creación y dirección de la práctica francesa de IA, acompañamiento de proyectos y formación de equipos de grandes empresas en sus usos.' },

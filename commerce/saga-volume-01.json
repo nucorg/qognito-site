@@ -1,44 +1,103 @@
 {
-  "schema_version": 1,
-  "offer_id": "saga-ia-volume-01-pdf-arbitre-personal",
+  "schema_version": 2,
+  "offer_id": "saga-ia-volume-01-fr-pdf",
   "editorial_product_id": "saga-ia-volume-01",
   "publication_manifest": "../qognito-content/formations/saga-ia/volume-01/publication.yml",
-  "status": "draft",
-  "site_languages": ["fr", "en"],
-  "sellable_editions": [],
+  "status": "ready_for_testing",
+  "site_languages": [
+    "fr",
+    "en",
+    "es"
+  ],
+  "sellable_editions": [
+    "saga-ia-volume-01-fr-v1.1"
+  ],
   "seller_country_from_site": "FR",
-  "target_markets": [],
-  "price": { "currency": "EUR", "amount_minor": null, "approved_by": null, "approved_at": null },
-  "tax": { "status": "unresolved", "qualification_reference": null, "components": [] },
+  "target_markets": [
+    "FR-metropolitan"
+  ],
+  "price": {
+    "currency": "EUR",
+    "amount_minor": 4999,
+    "tax_inclusive": true,
+    "approved_by": "Boris",
+    "approved_at": "2026-10-14"
+  },
+  "tax": {
+    "status": "confirmed_by_Boris",
+    "rate_percent": 5.5,
+    "territory": "FR-metropolitan",
+    "inclusive": true
+  },
   "contents": {
     "pdf_count": 1,
     "cover_included": true,
-    "sections": [1, 2],
+    "sections": [
+      1,
+      2
+    ],
     "full_pdf_visibility": "private",
     "public_previews": [],
     "private_pdf_candidate": {
-      "edition_id": "saga-ia-volume-01-fr-v1.0",
+      "edition_id": "saga-ia-volume-01-fr-v1.1",
       "language": "fr",
-      "version": "1.0",
-      "source_path": "../qognito-content/formations/saga-ia/volume-01/editions/fr/1.0/saga-ia-volume-01-fr-v1.0.pdf",
+      "version": "1.1",
+      "source_path": "../qognito-content/formations/saga-ia/volume-01/editions/fr/1.1/saga-ia-volume-01-fr-v1.1.pdf",
       "source_path_base": "repository_root",
-      "size_bytes": 1698109,
-      "sha256": "71b0cd2784b44ac7a6ce56e50941651a991a27153c47de878d7a1e4ab17562f5",
-      "manifest_status_observed": "preparation"
-    }
+      "size_bytes": 1079172,
+      "sha256": "6ac5920802ac4cfd0a5efa4820accf9f6ce8ce4ecabd4cca3b7ff092216d0add",
+      "manifest_status_observed": "edition_retenue"
+    },
+    "pages": 93
   },
   "rights": {
     "persons_per_purchase": 1,
-    "arbitre": { "assignment": "email", "access": "durable", "buyer_subscription": false, "contract_terms_reference": null, "provisioning_status": "unverified" },
+    "print": true,
+    "backup": true,
+    "private_ai_study": true,
+    "redistribution": false,
+    "arbitre": {
+      "optional": true,
+      "repository": "https://github.com/nucorg/app_saga_arbitre",
+      "license": "MIT",
+      "buyer_account_required": false
+    },
     "coaching": false,
     "certification": false,
     "automatic_future_editions": false
   },
-  "delivery": { "status": "unimplemented", "private_storage": null, "entitlement_backend": null },
+  "delivery": {
+    "status": "implementation_for_acceptance",
+    "private_storage": "R2",
+    "entitlement_backend": "D1",
+    "link_validity_days": 7,
+    "recovery": "contact@qognito.io"
+  },
   "channels": {
-    "direct": { "enabled": false },
-    "chatgpt": { "enabled": false, "admission": "unconfirmed" },
-    "google_ucp": { "enabled": false, "admission": "unconfirmed" },
-    "stripe_acs": { "enabled": false, "admission": "unconfirmed" }
+    "direct": {
+      "enabled": false
+    },
+    "chatgpt": {
+      "enabled": false,
+      "admission": "unconfirmed"
+    },
+    "google_ucp": {
+      "enabled": false,
+      "admission": "unconfirmed"
+    },
+    "stripe_acs": {
+      "enabled": false,
+      "admission": "unconfirmed"
+    }
+  },
+  "launch": {
+    "approved": false,
+    "remaining": [
+      "Validation des textes et CGV",
+      "Désignation du médiateur",
+      "Création et vérification de Resend",
+      "Recette distante Cloudflare/Stripe/Resend",
+      "Autorisation finale d’ouverture"
+    ]
   }
 }

@@ -1,0 +1,73 @@
+---
+import CommercePrivacy from './CommercePrivacy.astro';
+import Layout from '../layouts/Layout.astro';
+import { volumeContent } from '../content/volume';
+import { pathForRoute, type SiteLocale } from '../config/locales';
+import { OFFER } from '../../server/commerce/offer.mjs';
+const { lang = 'fr' } = Astro.props as {lang?: SiteLocale};
+const t = volumeContent[lang];
+---
+<Layout title={`${t.title} | Qognito.io`} description={t.introduction} lang={lang}>
+ <article class="volume container">
+  <header><p class="eyebrow">{t.edition}</p><h1>{t.title}</h1><h2>{t.subtitle}</h2><p>{t.introduction}</p></header>
+  <ul>{t.lessons.map(text => <li>{text}</li>)}</ul>
+  <p>{t.prerequisites}</p>
+  <p>{t.license}</p>
+  <p><a href={pathForRoute('whitepaper',lang)}>{t.preview} →</a></p>
+  {lang === 'fr' ? <section class="purchase" aria-labelledby="purchase-title">
+   <h2 id="purchase-title">Le volume 1 en français</h2>
+   <p class="price">49,99 € <span>TTC · paiement unique</span></p>
+   <p>TVA à 5,5 % incluse. Vente en France métropolitaine. Téléchargement après paiement confirmé ; lien également envoyé par email.</p>
+   <p id="sale-state" role="status">{t.status}</p>
+   <form id="purchase-form" data-edition={OFFER.edition} data-terms={OFFER.termsVersion} hidden>
+    <label>Vous achetez <select name="buyer_kind"><option value="individual">À titre personnel</option><option value="business">Pour une entreprise</option></select></label>
+    <label>Prénom et nom du lecteur <input name="name" autocomplete="name" required maxlength="160" /></label>
+    <label>Entreprise (si achat professionnel) <input name="company" autocomplete="organization" maxlength="160" /></label>
+    <label>Code postal de facturation en France métropolitaine <input name="postal_code" inputmode="numeric" autocomplete="billing postal-code" required pattern="[0-9]{5}" maxlength="5" /></label>
+    <p>L’adresse complète et l’email seront recueillis par Stripe. Une adresse hors du territoire desservi entraîne l’annulation de l’autorisation de paiement.</p>
+    <label class="check"><input type="checkbox" name="accept_terms" required /> <span>J’accepte les <a href="/conditions-de-vente/" target="_blank" rel="noopener">conditions de vente et la licence du PDF</a>.</span></label>
+    <label class="check"><input type="checkbox" name="immediate_delivery" required /> <span>Je demande expressément la fourniture du PDF avant la fin du délai de rétractation.</span></label>
+    <label class="check"><input type="checkbox" name="acknowledge_withdrawal" required /> <span>Je reconnais perdre mon droit de rétractation dès le commencement de cette fourniture.</span></label>
+    <button type="submit" class="btn-primary">Commander et payer 49,99 €</button>
+    <p id="purchase-error" role="alert"></p>
+   </form>
+  </section> : <p class="pending" role="status">{t.status}</p>}
+  <section class="companion"><h2>{t.companionTitle}</h2><p>{t.companion}</p><a href="https://github.com/nucorg/app_saga_arbitre" target="_blank" rel="noopener noreferrer">{t.github} ↗</a></section>
+  <details><summary>{lang === 'fr' ? 'Données de commande et confidentialité' : lang === 'en' ? 'Order data and privacy' : 'Datos del pedido y privacidad'}</summary><CommercePrivacy lang={lang} /></details>
+ </article>
+</Layout>
+<script>
+const form = document.querySelector<HTMLFormElement>('#purchase-form');
+if (form) {
+ const state = document.querySelector<HTMLElement>('#sale-state')!;
+ const error = document.querySelector<HTMLElement>('#purchase-error')!;
+ let requestId = crypto.randomUUID();
+ let previousBody = '';
+ const company = form.elements.namedItem('company') as HTMLInputElement;
+ const kind = form.elements.namedItem('buyer_kind') as HTMLSelectElement;
+ kind.addEventListener('change', () => { company.required = kind.value === 'business'; });
+ fetch('/api/commerce/availability').then(r=>r.json()).then(data=>{
+  if(data.enabled){ form.hidden=false; state.textContent=data.test ? 'Environnement de test : utilisez uniquement une carte fictive Stripe.' : 'Paiement sécurisé par Stripe.'; }
+ }).catch(()=>{ state.textContent='La vente est momentanément indisponible. Réessayez plus tard.'; });
+ form.addEventListener('submit', async event=>{
+  event.preventDefault();error.textContent='';
+  const button=form.querySelector<HTMLButtonElement>('button')!;button.disabled=true;
+  const data=new FormData(form);
+  const values={edition:form.dataset.edition,terms_version:form.dataset.terms,buyer_kind:data.get('buyer_kind'),name:data.get('name'),company:data.get('company'),country:'FR',postal_code:data.get('postal_code'),accept_terms:data.has('accept_terms'),immediate_delivery:data.has('immediate_delivery'),acknowledge_withdrawal:data.has('acknowledge_withdrawal')};
+  const fingerprint=JSON.stringify(values);if(previousBody && previousBody!==fingerprint) requestId=crypto.randomUUID();previousBody=fingerprint;
+  try{
+   const response=await fetch('/api/commerce/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...values,request_id:requestId})});
+   const result=await response.json();if(!response.ok){
+    const messages:Record<string,string>={market_unavailable:'La vente est limitée à la France métropolitaine.',invalid_request:'Vérifiez les champs et les trois accords demandés.',too_many_requests:'Veuillez patienter une minute avant de réessayer.',session_unavailable:'Cette session a expiré. Réessayez pour en créer une nouvelle.',order_already_processed:'Cette commande est déjà traitée. Consultez votre email de confirmation.'};
+    if(response.status===409) requestId=crypto.randomUUID();
+    throw new Error(messages[result.error] || 'Le paiement est indisponible. Aucun nouvel encaissement n’a été demandé. Réessayez plus tard.');
+   }
+   const url=new URL(result.url);if(url.protocol!=='https:' || url.hostname!=='checkout.stripe.com')throw new Error('Adresse de paiement invalide.');
+   window.location.assign(url.href);
+  }catch(e){error.textContent=e instanceof Error ? e.message : 'Le paiement est indisponible.';button.disabled=false;}
+ });
+}
+</script>
+<style>
+.volume{max-width:850px;padding-top:3rem;padding-bottom:4rem;line-height:1.75}.volume h1{font-size:clamp(2rem,6vw,3rem)}.volume h2{font-size:1.5rem;line-height:1.4}.volume p,.volume ul{margin:1rem 0}.volume a{color:var(--color-primary,#D4850F);text-decoration:underline}.purchase,.companion{background:#0F2035;padding:1.5rem;border-radius:12px;margin-top:2rem}.price{font-size:2rem;color:white;font-weight:700}.price span{font-size:1rem;font-weight:400}.pending{font-weight:700;font-size:1.5rem;color:#D4850F}form label{display:block;margin:1rem 0}input:not([type=checkbox]),select{display:block;width:100%;padding:.65rem;background:#050B14;color:#E2E8F0;border:1px solid #758298;border-radius:4px;font:inherit;box-sizing:border-box}.check{display:flex;gap:.75rem;align-items:start}.check input{margin-top:.45rem;min-width:1.1rem;min-height:1.1rem}button{font:inherit;cursor:pointer;max-width:100%;white-space:normal}button:disabled{opacity:.6}#purchase-error{color:#ffb4a8}form[hidden]{display:none}a:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #D4850F;outline-offset:3px}
+</style>
