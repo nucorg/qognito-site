@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { checkoutDiagnostic } from './stripe.mjs';
 import { OFFER, termsText } from './offer.mjs';
+import { invoiceFields } from './invoice.mjs';
 const encoder = new TextEncoder();
 const now = () => Math.floor(Date.now() / 1000);
 export const securityHeaders = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, noarchive', 'Referrer-Policy': 'no-referrer', 'X-Content-Type-Options': 'nosniff' };
@@ -27,7 +28,7 @@ export function config(env, purchasing = false) {
  if (!['test', 'live'].includes(env.COMMERCE_MODE) || !env.COMMERCE_DB || !env.COMMERCE_PDF
      || (env.COMMERCE_TOKEN_SECRET || '').length < 32) throw new Error('configuration');
  const live = env.COMMERCE_MODE === 'live';
- if (!env.STRIPE_SECRET_KEY?.startsWith(live ? 'sk_live_' : 'sk_test_') || !env.STRIPE_WEBHOOK_SECRET?.startsWith('whsec_')) throw new Error('credentials');
+ if (!(live ? /^(sk|rk)_live_/ : /^(sk|rk)_test_/).test(env.STRIPE_SECRET_KEY || '') || !env.STRIPE_WEBHOOK_SECRET?.startsWith('whsec_')) throw new Error('credentials');
  const url = new URL(env.COMMERCE_ORIGIN);
  if (url.pathname !== '/' || url.search || url.hash || url.username || url.password || !['https:', 'http:'].includes(url.protocol)
      || (url.protocol !== 'https:' && (live || !['localhost', '127.0.0.1'].includes(url.hostname)))) throw new Error('origin');
@@ -190,7 +191,21 @@ export async function webhook(request, env, stripe = null) {
   }
   if (!id) return json({ received: true, unrelated: true });
   const order = await orderById(env, id);
-  if (!order) return json({ error: 'order_missing' }, 503);
+  if (!order) {
+   // Multiple sites can share a Stripe sandbox. Do not retry another site's
+   // signed event forever, but preserve 503 for an order missing on this origin.
+   const elsewhere = session => {
+    try { return session.metadata?.qognito_order_id === id && new URL(session.success_url).origin !== cfg.origin; }
+    catch { return false; }
+   };
+   if (object.object === 'checkout.session' && elsewhere(object)) return json({ received: true, unrelated: true });
+   const piId = object.object === 'payment_intent' ? object.id : typeof object.payment_intent === 'string' ? object.payment_intent : object.payment_intent?.id;
+   if (piId) {
+    const sessions = await stripe.checkout.sessions.list({ payment_intent: piId, limit: 2 });
+    if (sessions.data.length === 1 && elsewhere(sessions.data[0])) return json({ received: true, unrelated: true });
+   }
+   return json({ error: 'order_missing' }, 503);
+  }
   // Recover a session whose API response was lost before local persistence.
   if (!order.session_id && object.object === 'checkout.session') await query(env, 'UPDATE sales_orders SET session_id=? WHERE id=?', object.id, id).run();
   await reconcile(env, id, stripe);
@@ -279,7 +294,7 @@ export async function terms(request, env) { return new Response(termsText(env), 
 export async function ensureInvoice(env, order, stripe) {
  if (!order.stripe_customer_id || !order.payment_intent_id) throw new Error('invoice_customer');
  let invoice;
- if (order.buyer_kind === 'business' && order.company_name) await stripe.customers.update(order.stripe_customer_id, { name: order.company_name });
+ await stripe.customers.update(order.stripe_customer_id, { preferred_locales: ['fr'], ...(order.buyer_kind === 'business' && order.company_name ? { name: order.company_name } : {}) });
  if (order.invoice_id) invoice = await stripe.invoices.retrieve(order.invoice_id);
  else {
   // Recover a successful create whose response was lost, including after 24 h.
@@ -288,7 +303,7 @@ export async function ensureInvoice(env, order, stripe) {
   }
   invoice ||= await stripe.invoices.create({customer:order.stripe_customer_id,collection_method:'send_invoice',days_until_due:0,
    auto_advance:false,pending_invoice_items_behavior:'exclude',automatic_tax:{enabled:false},
-   metadata:{qognito_order_id:order.id},description:OFFER.title}, {idempotencyKey:`invoice:${order.id}`});
+   metadata:{qognito_order_id:order.id},...invoiceFields(order)}, {idempotencyKey:`invoice:${order.id}`});
   await query(env, 'UPDATE sales_orders SET invoice_id=? WHERE id=?', invoice.id, order.id).run();
  }
  if (invoice.status === 'draft') {

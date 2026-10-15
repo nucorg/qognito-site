@@ -1,0 +1,24 @@
+---
+import { volumeContent } from '../content/volume';
+import { pathForRoute, type SiteLocale } from '../config/locales';
+
+interface Props {
+  lang?: SiteLocale;
+  heading?: 'h2' | 'h3';
+}
+const { lang = 'fr', heading: Heading = 'h2' } = Astro.props;
+const copy = volumeContent[lang];
+---
+<section class="volume-callout" aria-label={copy.title}>
+  <Heading>{copy.title}</Heading>
+  <p>{copy.introduction}</p>
+  <p>{lang === 'fr' ? '49,99 € TTC · édition française' : copy.status}</p>
+  <a href={pathForRoute('volume', lang)}>{copy.learnMore} →</a>
+</section>
+<style>
+  .volume-callout { margin-top: 2rem; padding: clamp(1rem, 3vw, 1.5rem); border-left: 3px solid #D4850F; background: #050B14; overflow-wrap: anywhere; }
+  h2, h3 { font-size: 1.35rem; font-weight: 600; margin: 0 0 .8rem; }
+  p { color: #E2E8F0; }
+  a { display: inline-block; text-decoration: underline; }
+  a:focus-visible { outline: 3px solid #D4850F; outline-offset: 4px; }
+</style>

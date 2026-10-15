@@ -3,10 +3,12 @@ import { DatabaseSync } from 'node:sqlite';
 import { readFile } from 'node:fs/promises';
 import Stripe from 'stripe';
 import { OFFER } from '../server/commerce/offer.mjs';
+import { monitorSales } from '../server/commerce/alerts.mjs';
+import { INVOICE_FOOTER } from '../server/commerce/invoice.mjs';
 import { checkout, webhook, reconcile, runJobs, orderStatus, download, digest, metropolitan, config, ensureInvoice } from '../server/commerce/sales.mjs';
 const sql = new DatabaseSync(':memory:');
 sql.exec('PRAGMA foreign_keys=ON');
-for (const name of ['0001_commerce.sql','0002_commerce_tax.sql','0003_sales.sql','0004_sales_invoice.sql']) sql.exec(await readFile(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
+for (const name of ['0001_commerce.sql','0002_commerce_tax.sql','0003_sales.sql','0004_sales_invoice.sql','0005_sales_alerts.sql']) sql.exec(await readFile(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
 const db = { prepare(statement) { return { bind(...args) { return {
  first: async () => sql.prepare(statement).get(...args) || null,
  run: async () => ({ meta: { changes: Number(sql.prepare(statement).run(...args).changes) } }),
@@ -20,6 +22,10 @@ const env = { COMMERCE_MODE:'test', COMMERCE_ORIGIN:'http://localhost:8788', COM
  STRIPE_SECRET_KEY:'sk_test_fixture',STRIPE_WEBHOOK_SECRET:'whsec_fixture',SAGA_PRICE_ID:'price_sale',SAGA_TAX_RATE_ID:'txr_fr',
  STRIPE_PAYMENT_METHOD_CONFIGURATION:'pmc_cards', RESEND_API_KEY:'fake-resend',COMMERCE_FROM:'Qognito <commandes@transaction.qognito.io>' };
 const stripe = new Stripe(env.STRIPE_SECRET_KEY); let captureCount=0,cancelCount=0;
+assert.equal(config({...env,STRIPE_SECRET_KEY:'rk_test_fixture'}).live,false);
+assert.throws(()=>config({...env,STRIPE_SECRET_KEY:'rk_live_fixture'}),/credentials/);
+assert.equal(config({...env,COMMERCE_MODE:'live',COMMERCE_ORIGIN:'https://qognito.io',STRIPE_SECRET_KEY:'rk_live_fixture'}).live,true);
+assert.throws(()=>config({...env,COMMERCE_MODE:'live',COMMERCE_ORIGIN:'https://qognito.io',STRIPE_SECRET_KEY:'rk_live_fixture'},true),/not_approved/);
 const sessions = new Map();
 stripe.prices.retrieve = async id => ({ id,active:true,livemode:false,type:'one_time',currency:'eur',unit_amount:4999,tax_behavior:'inclusive',product:{active:true,metadata:{qognito_edition:OFFER.edition}} });
 stripe.taxRates.retrieve = async id => ({id,active:true,livemode:false,percentage:5.5,inclusive:true,country:'FR'});
@@ -109,6 +115,15 @@ const concurrent=await Promise.allSettled([reconcile(env,d.order.id,stripe),reco
 assert.equal(concurrent.filter(r=>r.status==='rejected').length,1);await reconcile(env,d.order.id,stripe);assert.equal(row(d.order.id).status,'paid');
 assert.equal((await event('payment_intent.succeeded',ds.payment_intent,crypto.randomUUID(),true)).status,400);
 assert.equal((await webhook(new Request(env.COMMERCE_ORIGIN+'/api/commerce/webhook',{method:'POST',body:'bad'}),env,stripe)).status,400);
+// A signed event from another sandbox origin is unrelated; a missing local
+// order must still raise an error, so restoration incidents remain visible.
+const unknownId=crypto.randomUUID();
+const foreignSession={id:'cs_other_site',object:'checkout.session',metadata:{qognito_order_id:unknownId},success_url:'https://other-staging.example/achat/confirmation/'};
+assert.equal((await event('checkout.session.completed',foreignSession)).status,200);
+assert.equal((await event('checkout.session.completed',{...foreignSession,success_url:env.COMMERCE_ORIGIN+'/achat/confirmation/'})).status,503);
+stripe.checkout.sessions.list=async p=>{assert.equal(p.payment_intent,'pi_other_site');return {data:[foreignSession]};};
+assert.equal((await event('payment_intent.succeeded',{id:'pi_other_site',object:'payment_intent',metadata:{qognito_order_id:unknownId}})).status,200);
+assert.equal(sql.prepare('SELECT count(*) AS n FROM sales_orders WHERE id=?').get(unknownId).n,0);
 // Snapshot uses the purchased price after the active price is changed.
 await reconcile({...env,SAGA_PRICE_ID:'price_next'},d.order.id,stripe);assert.equal(row(d.order.id).price_id,'price_sale');
 // Closing a won dispute restores access even though charge.disputed stays true.
@@ -128,10 +143,10 @@ const expiredStatus=await (await orderStatus(new Request(env.COMMERCE_ORIGIN+'/a
 assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM commerce_orders').get().n,0,'legacy ledger unchanged');
 // Invoice uses the captured payment; retries recover the same invoice without collection.
 let createdInvoices=0, invoiceLines=0, attached=0, namedCompany=null;
-stripe.customers.update=async(id,p)=>{namedCompany=p.name;};
+stripe.customers.update=async(id,p)=>{assert.deepEqual(p.preferred_locales,['fr']);namedCompany=p.name;};
 const invoice={id:'in_fixture',status:'draft',total:4999,currency:'eur',livemode:false,metadata:{qognito_order_id:d.order.id}};
 stripe.invoices.list=()=>({async *[Symbol.asyncIterator](){if(createdInvoices)yield structuredClone(invoice);}});
-stripe.invoices.create=async p=>{assert.equal(p.auto_advance,false);assert.equal(p.collection_method,'send_invoice');assert.equal(p.pending_invoice_items_behavior,'exclude');createdInvoices++;return structuredClone(invoice);};
+stripe.invoices.create=async p=>{assert.equal(p.auto_advance,false);assert.equal(p.collection_method,'send_invoice');assert.equal(p.pending_invoice_items_behavior,'exclude');assert.equal(p.footer,INVOICE_FOOTER);assert.equal(p.rendering.amount_tax_display,'exclude_tax');assert.equal(p.custom_fields[0].value,d.order.id);assert.match(p.description,/Paiement encaissé le/);createdInvoices++;return structuredClone(invoice);};
 stripe.invoices.retrieve=async()=>structuredClone(invoice);
 stripe.invoices.listLineItems=async()=>({data:invoiceLines?[{id:'il_fixture'}]:[]});
 stripe.invoiceItems.create=async p=>{assert.equal(p.pricing.price,'price_sale');assert.deepEqual(p.tax_rates,['txr_fr']);invoiceLines++;};
@@ -144,4 +159,29 @@ assert.equal(createdInvoices,1);assert.equal(invoiceLines,1);assert.equal(attach
 assert.equal(row(d.order.id).invoice_url,'https://invoice.stripe.com/i/settled');
 await ensureInvoice(env,{...invoiced,buyer_kind:'business',company_name:'Société test'},stripe);assert.equal(namedCompany,'Société test');
 invoice.total=5000;await assert.rejects(ensureInvoice(env,invoiced,stripe),/invoice_total/);
+// Incident outbox survives provider outage, deduplicates parallel passes and
+// distinguishes a later incident from the resolved first occurrence.
+const monitored={...env,COMMERCE_ALERT_TO:'owner@example.test'};
+sql.prepare("UPDATE sales_orders SET job_attempts=5,last_error='retry_required' WHERE id=?").run(d.order.id);
+let alertsSent=0;const alertKeys=new Set();
+const alertSend=async(url,options)=>{const body=JSON.parse(options.body);assert.deepEqual(body.to,['owner@example.test']);assert.ok(!body.text.includes('token='));alertKeys.add(options.headers['Idempotency-Key']);alertsSent++;return Response.json({id:'alert_'+alertsSent});};
+await monitorSales(monitored,async()=>new Response('',{status:503}));
+assert.equal(sql.prepare('SELECT failure_email_id FROM sales_alerts').get().failure_email_id,null);
+await Promise.all([monitorSales(monitored,alertSend),monitorSales(monitored,alertSend)]);
+assert.equal(alertsSent,1);await monitorSales(monitored,alertSend);assert.equal(alertsSent,1);
+sql.prepare('UPDATE sales_orders SET job_attempts=0,last_error=NULL WHERE id=?').run(d.order.id);
+await monitorSales(monitored,alertSend);assert.equal(alertsSent,2);
+await monitorSales(monitored,alertSend);assert.equal(alertsSent,2);
+sql.prepare("UPDATE sales_orders SET job_attempts=5,last_error='retry_required' WHERE id=?").run(d.order.id);
+await monitorSales(monitored,alertSend);assert.equal(alertsSent,3);assert.equal(alertKeys.size,3);
+assert.equal(sql.prepare('SELECT count(*) AS n FROM sales_alerts').get().n,2);
+await monitorSales({...monitored,COMMERCE_MODE:'live'},alertSend);assert.equal(alertsSent,3,'no cross-environment alert');
+// A lost provider response followed by incident resolution must keep an identical
+// failure payload for the same idempotency key (Resend rejects changed payloads).
+sql.prepare('UPDATE sales_alerts SET failure_email_id=NULL WHERE resolved_at IS NULL').run();
+let acceptedBody,acceptedKey;
+await monitorSales(monitored,async(url,options)=>{acceptedBody=options.body;acceptedKey=options.headers['Idempotency-Key'];throw Error('response lost');});
+sql.prepare('UPDATE sales_orders SET job_attempts=0,last_error=NULL WHERE id=?').run(d.order.id);
+await monitorSales(monitored,async(url,options)=>{assert.equal(options.body,acceptedBody);assert.equal(options.headers['Idempotency-Key'],acceptedKey);return Response.json({id:'recovered-accepted-response'});});
+assert.equal(sql.prepare('SELECT failure_email_id FROM sales_alerts ORDER BY id DESC').get().failure_email_id,'recovered-accepted-response');
 console.log('OK ventes : 49,99 TTC, consentements, FR métropolitaine, autorisation/capture, signatures, concurrence, prix figé, reprise, PDF privé, intégrité, emails, renouvellement, remboursements.');

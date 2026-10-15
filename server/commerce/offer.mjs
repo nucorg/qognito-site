@@ -1,5 +1,6 @@
 import { guaranteeText } from './guarantee.mjs';
 import catalogue from '../../commerce/saga-volume-01.json' with { type: 'json' };
+export const MEDIATOR_CONTACT = 'CM2C (Centre de la Médiation de la Consommation de Conciliateurs de Justice), 49 rue de Ponthieu, 75008 Paris. Site : https://www.cm2c.net/ ; saisine en ligne : https://www.cm2c.net/declarer-un-litige.php ; courriel : declarer-un-litige@cm2c.net';
 export const OFFER = Object.freeze({
  id: catalogue.offer_id, edition: catalogue.contents.private_pdf_candidate.edition_id,
  title: 'SAGA-IA — Volume 1 : décision de délégation et viabilité économique',
@@ -8,7 +9,7 @@ export const OFFER = Object.freeze({
  version: catalogue.contents.private_pdf_candidate.version,
  sourcePath: catalogue.contents.private_pdf_candidate.source_path,
  pdfKey: `saga-ia/volume-01/fr/${catalogue.contents.private_pdf_candidate.version}/${catalogue.contents.private_pdf_candidate.edition_id}.pdf`,
- filename: `${catalogue.contents.private_pdf_candidate.edition_id}.pdf`, termsVersion: '2026-10-14-v1',
+ filename: `${catalogue.contents.private_pdf_candidate.edition_id}.pdf`, termsVersion: '2026-10-14-v2',
 });
 export function termsText(env = {}) {
  return `Conditions de vente — ${OFFER.termsVersion}
@@ -22,7 +23,7 @@ Commande : le client vérifie ses informations et les trois accords avant de pou
 Exécution immédiate : le client demande expressément la fourniture avant la fin du délai de rétractation et reconnaît perdre ce droit dès le commencement de la fourniture. Ces accords sont recueillis séparément avant le paiement et confirmés par email. Sans ces accords, aucune commande immédiate n'est créée.
 Garanties : contacter QOGNITO aux coordonnées ci-dessus. Les garanties légales et les mises à jour nécessaires au maintien de la conformité restent applicables, indépendamment des nouvelles éditions commerciales et de l'accord de fourniture immédiate.
 Réclamations et remboursements : contact@qognito.io, en indiquant la référence. Un remboursement accepté utilise le moyen de paiement initial ; les accès futurs sont révoqués en cas de remboursement total. Un remboursement ne peut effacer un fichier déjà sauvegardé.
-Médiation : après réclamation écrite préalable restée sans solution, le consommateur peut recourir gratuitement au médiateur désigné : ${env.COMMERCE_MEDIATOR || '[À renseigner avant ouverture]'}.
+Médiation : après réclamation écrite préalable adressée à Qognito et restée sans solution, le consommateur peut recourir gratuitement au médiateur désigné : ${env.COMMERCE_MEDIATOR || MEDIATOR_CONTACT}.
 Données : les informations nécessaires à la commande, à la livraison, aux justificatifs et au traitement des incidents sont traitées par Qognito avec Stripe, Cloudflare et Resend. Les données de carte sont traitées par Stripe. Les pièces comptables sont conservées selon les obligations légales ; les journaux techniques sont limités à leur utilité. Droits et contact : contact@qognito.io ; informations complémentaires : https://qognito.io/confidentialite/.
 ${guaranteeText}
 Droit applicable : droit français, sans privation des protections impératives applicables aux consommateurs. Aucun règlement de différend ne restreint leurs voies de recours légales.`;

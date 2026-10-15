@@ -1,0 +1,51 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "qognito-commerce-jobs-production",
+  "account_id": "10434902b076f59013c4ec2189997cdd",
+  "main": "workers/commerce-jobs.mjs",
+  "compatibility_date": "2026-10-06",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    "COMMERCE_MODE": "live",
+    "COMMERCE_ORIGIN": "https://qognito.io",
+    "PUBLIC_WHITEPAPER_ENABLED": "true",
+    "PUBLIC_WEB3FORMS_ACCESS_KEY": "d57234ac-87d7-44e8-8b19-6f15a693bcdd",
+    "PUBLIC_MAIL_PROVIDER": "Google Workspace (Gmail professionnel)",
+    "PUBLIC_MAIL_LOCATION": "Traitement possible dans les pays où Google et ses sous-traitants disposent d’infrastructures, y compris hors de l’Espace économique européen",
+    "PUBLIC_MAIL_SAFEGUARDS": "Avenant Google relatif au traitement des données et mécanismes de transfert qu’il prévoit, dont les clauses contractuelles types lorsqu’elles sont applicables",
+    "COMMERCE_CHECKOUT_ENABLED": "false",
+    "SAGA_PRICE_ID": "price_1UQUDMLSrIVlLS58pUO2CRTF",
+    "SAGA_TAX_RATE_ID": "txr_1UQUDMLSrIVlLS58SHNNYB9F",
+    "STRIPE_PAYMENT_METHOD_CONFIGURATION": "pmc_1UQUDNLSrIVlLS58iqzzavXv",
+    "COMMERCE_FROM": "Qognito <commandes@transaction.qognito.io>",
+    "COMMERCE_ALERT_TO": "bguarisma@qognito.io",
+    "COMMERCE_PHONE": "+33 7 62 64 05 06",
+    "COMMERCE_MEDIATOR": "CM2C (Centre de la Médiation de la Consommation de Conciliateurs de Justice), 49 rue de Ponthieu, 75008 Paris. Site : https://www.cm2c.net/ ; saisine en ligne : https://www.cm2c.net/declarer-un-litige.php ; courriel : declarer-un-litige@cm2c.net"
+  },
+  "d1_databases": [
+    {
+      "binding": "COMMERCE_DB",
+      "database_name": "qognito-commerce-production",
+      "database_id": "73e36ed0-aea8-48a7-9606-aadbbe7496d5",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "COMMERCE_PDF",
+      "bucket_name": "qognito-commerce-production"
+    }
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true
+  },
+  "triggers": {
+    "crons": [
+      "*/5 * * * *"
+    ]
+  }
+}

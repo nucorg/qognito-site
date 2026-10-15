@@ -1,4 +1,4 @@
-// Explicit sandbox refund after the successful browser test; local endpoint only.
+// Explicit sandbox refund after the successful browser test; local or dedicated staging only.
 import assert from 'node:assert/strict';
 import Stripe from 'stripe';
 import {readFile} from 'node:fs/promises';
@@ -6,8 +6,10 @@ import {OFFER} from '../server/commerce/offer.mjs';
 import {digest} from '../server/commerce/sales.mjs';
 assert.ok(process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_'));
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY);
-const order=JSON.parse(await readFile('/tmp/qognito-sale-success.json','utf8'));
-assert.equal(new URL(order.download_url).origin,'http://localhost:8788');
+const origin=process.env.QOGNITO_SALES_TEST_ORIGIN || 'http://localhost:8788';
+assert.ok(['http://localhost:8788','https://qognito-commerce-staging.pages.dev'].includes(origin));
+const order=JSON.parse(await readFile(origin.startsWith('https:')?'.wrangler/sales-staging/browser-sale-success.json':'/tmp/qognito-sale-success.json','utf8'));
+assert.equal(new URL(order.download_url).origin,origin);
 const before=await fetch(order.download_url);assert.equal(before.status,200);assert.equal(await digest(await before.arrayBuffer()),OFFER.sha256);
 const session=(await stripe.checkout.sessions.list({limit:100})).data.find(s=>s.client_reference_id===order.reference);
 assert.ok(session);assert.equal(session.livemode,false);

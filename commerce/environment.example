@@ -10,8 +10,9 @@ STRIPE_PAYMENT_METHOD_CONFIGURATION=pmc_REPLACE
 COMMERCE_TOKEN_SECRET=REPLACE_WITH_32_RANDOM_BYTES_OR_MORE
 RESEND_API_KEY=re_REPLACE
 COMMERCE_FROM="Qognito <commandes@transaction.qognito.io>"
+COMMERCE_ALERT_TO="bguarisma@qognito.io"
 COMMERCE_PHONE="+33 7 62 64 05 06"
-COMMERCE_MEDIATOR="REPLACE_WITH_REGISTERED_MEDIATOR_NAME_ADDRESS_URL"
+COMMERCE_MEDIATOR="CM2C (Centre de la Médiation de la Consommation de Conciliateurs de Justice), 49 rue de Ponthieu, 75008 Paris. Site : https://www.cm2c.net/ ; saisine en ligne : https://www.cm2c.net/declarer-un-litige.php ; courriel : declarer-un-litige@cm2c.net"
 # Only after complete approval of pages, terms, PDF, mail and remote test:
 COMMERCE_LIVE_APPROVED=
 COMMERCE_PDF_APPROVED_SHA256=

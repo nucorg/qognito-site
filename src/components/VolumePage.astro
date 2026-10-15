@@ -4,8 +4,10 @@ import Layout from '../layouts/Layout.astro';
 import { volumeContent } from '../content/volume';
 import { pathForRoute, type SiteLocale } from '../config/locales';
 import { OFFER } from '../../server/commerce/offer.mjs';
+import catalogue from '../../commerce/saga-volume-01.json';
 const { lang = 'fr' } = Astro.props as {lang?: SiteLocale};
 const t = volumeContent[lang];
+const sample = catalogue.contents.public_previews[0];
 ---
 <Layout title={`${t.title} | Qognito.io`} description={t.introduction} lang={lang}>
  <article class="volume container">
@@ -14,9 +16,12 @@ const t = volumeContent[lang];
   <p>{t.prerequisites}</p>
   <p>{t.license}</p>
   <p><a href={pathForRoute('whitepaper',lang)}>{t.preview} →</a></p>
+  <p class="sample"><a href={sample.public_url} type="application/pdf" hreflang="fr" target="_blank" rel="noopener noreferrer" aria-label={`${t.sample} — ${t.sampleDetails}. ${t.sampleNewTab}`}><strong>{t.sample}</strong> — {t.sampleDetails} <span aria-hidden="true">↗</span></a></p>
   {lang === 'fr' ? <section class="purchase" aria-labelledby="purchase-title">
    <h2 id="purchase-title">Le volume 1 en français</h2>
    <p class="price">49,99 € <span>TTC · paiement unique</span></p>
+   <p><strong>Achetez-le une fois. Consultez-le à volonté. Sans abonnement.</strong></p>
+   <p>Téléchargez votre PDF, sauvegardez-le et retrouvez-le hors ligne, quand vous en avez besoin.</p>
    <p>TVA à 5,5 % incluse. Vente en France métropolitaine. Téléchargement après paiement confirmé ; lien également envoyé par email.</p>
    <p id="sale-state" role="status">{t.status}</p>
    <form id="purchase-form" data-edition={OFFER.edition} data-terms={OFFER.termsVersion} hidden>

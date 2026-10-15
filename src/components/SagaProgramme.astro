@@ -1,6 +1,5 @@
 ---
-import { volumeContent } from '../content/volume';
-import { pathForRoute } from '../config/locales';
+import VolumeCallout from './VolumeCallout.astro';
 import { sagaContent } from '../content/saga';
 import { whitepaperPath } from '../config/whitepaper';
 import type { SiteLocale } from '../config/locales';
@@ -22,7 +21,7 @@ const institutionHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponen
         <a href={contactHref} class="btn-primary">{copy.contact} →</a>
       </header>
 
-      <section class="saga-institution"><h3>{volumeContent[lang].title}</h3><p>{volumeContent[lang].introduction}</p><p>{lang === 'fr' ? '49,99 € TTC · édition française' : volumeContent[lang].status}</p><a href={pathForRoute('volume',lang)}>{volumeContent[lang].learnMore} →</a></section>
+      <VolumeCallout lang={lang} heading="h3" />
       <aside class="saga-institution" aria-labelledby="saga-institution-title">
         <h3 id="saga-institution-title">{copy.institutionTitle}</h3>
         <p>{copy.institutionAudience}</p>
@@ -68,7 +67,7 @@ const institutionHref = `mailto:bguarisma@qognito.io?subject=${encodeURIComponen
   </div>
 </section>
 <style>
-  .saga-programme { padding-top: 60px; margin-top: 60px; border-top: 1px solid #1E293B; scroll-margin-top: 5rem; }
+  .saga-programme { padding-top: 60px; margin-top: 0; border-top: 1px solid #1E293B; scroll-margin-top: 5rem; }
   .saga-panel { padding: clamp(1.25rem, 4vw, 2.5rem); border: 1px solid #D4850F; border-radius: 12px; background: #0F2035; }
   .eyebrow { color: #D4850F; font-size: .8rem; letter-spacing: .06em; font-weight: 600; }
   h2, h3, h4 { font-weight: 600; }

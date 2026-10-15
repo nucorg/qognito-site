@@ -8,7 +8,8 @@
   "vars": {
     "COMMERCE_MODE": "test",
     "COMMERCE_ORIGIN": "https://REPLACE-STAGING-ORIGIN",
-    "COMMERCE_FROM": "Qognito <commandes@transaction.qognito.io>"
+    "COMMERCE_FROM": "Qognito <commandes@transaction.qognito.io>",
+    "COMMERCE_ALERT_TO": "bguarisma@qognito.io"
   },
   "d1_databases": [{ "binding": "COMMERCE_DB", "database_name": "qognito-commerce-staging", "database_id": "REPLACE-D1-ID" }],
   "r2_buckets": [{ "binding": "COMMERCE_PDF", "bucket_name": "qognito-commerce-staging" }]

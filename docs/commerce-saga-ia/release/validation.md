@@ -1,6 +1,8 @@
 # Recette du 14 octobre 2026
 
-Périmètre : code local, ressources Cloudflare locales, Stripe en **sandbox uniquement**. Aucune commande réelle. Les IDs ci-dessous sont des objets fictifs ; aucun token de livraison ni secret n’est publié.
+Périmètre de ce premier rapport : code local, ressources Cloudflare locales, Stripe en **sandbox uniquement**. Aucune commande réelle. Les IDs ci-dessous sont des objets fictifs ; aucun token de livraison ni secret n’est publié. Les essais effectués ensuite sur Cloudflare sont consignés séparément dans la [recette distante du 14 octobre](recette-distante-2026-10-14.md).
+
+**Mise à jour — étape 2** : les reprises après panne email/webhook, le renouvellement, le remboursement partiel avec avoir, les alertes reçues par Boris et la restauration D1/R2 sont désormais validés à distance. Voir le [rapport des reprises](recette-reprises-2026-10-14.md), qui remplace les réserves techniques historiques ci-dessous. Les rebonds après acceptation email et la surveillance indépendante de Cloudflare/Resend ne sont pas couverts ; la relecture commerciale finale reste attendue.
 
 | Vérification | Résultat |
 |---|---|
@@ -23,7 +25,7 @@ L’assemblage PDF est reproductible par `qognito-content/formations/saga-ia/vol
 
 ## Vérifications encore requises avant ouverture
 
-- Déploiement de recette distant Pages + worker cron, D1 et R2 privés ; secrets et webhook propres à cette origine.
+- Déploiement distant réalisé ensuite : voir le [rapport dédié](recette-distante-2026-10-14.md), qui distingue les contrôles exécutés des vérifications restantes.
 - Réception email réelle, bounces, alertes, restauration D1, renouvellement opérationnel et facture complète relue.
 - Sur cette origine distante : 3DS, refus, retour annulé/expiration, doublon/panne webhook et récupération, pays/DOM refusés, remboursement partiel/total et avoir sans second remboursement.
 - Médiateur effectivement désigné, CGV et pages relues ; identité et mentions de facture confirmées.

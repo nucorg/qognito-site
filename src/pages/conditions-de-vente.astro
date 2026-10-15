@@ -7,4 +7,4 @@ import { termsText } from '../../server/commerce/offer.mjs';
  <section class="container conditions"><h1>Conditions de vente du PDF SAGA-IA</h1><div id="terms">{termsText().replace(guaranteeText, '')}</div><aside class="guarantee" aria-label="Garanties légales">{guaranteeText}</aside><p><a href="/formations/saga-ia/volume-1/">Revenir au volume 1</a></p></section>
 </Layout>
 <script>fetch('/api/commerce/terms').then(r=>{if(!r.ok)throw new Error();return r.text();}).then(text=>{const guarantee=document.querySelector('.guarantee')!.textContent!;document.querySelector('#terms')!.textContent=text.replace(guarantee,'');}).catch(()=>{});</script>
-<style>.conditions{max-width:850px;padding:3rem 1rem;line-height:1.8}#terms,.guarantee{white-space:pre-wrap}.guarantee{border:1px solid #758298;padding:1rem;margin-top:2rem}.conditions a{color:#D4850F}</style>
+<style>.conditions{max-width:850px;padding:3rem 1rem;line-height:1.8}#terms,.guarantee{white-space:pre-wrap;overflow-wrap:anywhere}.guarantee{border:1px solid #758298;padding:1rem;margin-top:2rem}.conditions a{color:#D4850F}</style>
