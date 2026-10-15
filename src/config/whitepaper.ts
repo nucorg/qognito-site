@@ -29,4 +29,4 @@ if (collectionEnabled && (!accessKey || !pdfAvailable || !mailProvider || !mailL
   throw new Error(`Livre blanc : clé Web3Forms, PDF finaux FR/EN/ES et informations de messagerie requis avant activation.${missingPdfs.length ? ` PDF absents ou invalides : ${missingPdfs.map(({ pdfPath }) => pdfPath).join(', ')}.` : ''} Voir docs/publication-livre-blanc.md.`);
 }
 
-export const whitepaperPath = (lang: SiteLocale) => `${pathForRoute('whitepaper', lang)}/`;
+export const whitepaperPath = (lang: SiteLocale) => pathForRoute('whitepaper', lang);

@@ -6,7 +6,7 @@ import { pathForRoute, type SiteLocale } from '../config/locales';
 interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
 const copy = positioning[lang];
-const coursesPath = `${pathForRoute('formations', lang)}/`;
+const coursesPath = pathForRoute('formations', lang);
 ---
 <section id="accueil" class="home-positioning">
   <div class="container">

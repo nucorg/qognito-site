@@ -13,7 +13,7 @@ try {
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
    assert.ok((await page.locator('main').textContent()).includes(text));
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),`https://qognito.io${path.replace(/\/$/,'')}`);
+   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),`https://qognito.io${path}`);
    assert.equal(await page.locator('a[href="https://github.com/nucorg/app_saga_arbitre"]').count(),1);
    if(lang!=='fr')assert.equal(await page.locator('#purchase-form').count(),0);
    await page.screenshot({path:`/tmp/qognito-volume-${lang}-${width}.png`,fullPage:true});

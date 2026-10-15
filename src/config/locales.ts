@@ -6,23 +6,24 @@ export const localeLabels: Record<SiteLocale, string> = {
   es: 'Español',
 };
 
+// HTML page URLs use the trailing slash served by Cloudflare Pages.
 export const routePaths = {
   home: { fr: '/', en: '/en/', es: '/es/' },
-  blog: { fr: '/blog', en: '/en/blog', es: '/es/blog' },
-  graph: { fr: '/graphe-des-procedes', en: '/en/graphe-des-procedes', es: '/es/graphe-des-procedes' },
-  formations: { fr: '/formations', en: '/en/formations', es: '/es/formations' },
-  parcours: { fr: '/parcours', en: '/en/parcours', es: '/es/parcours' },
-  encodeur: { fr: '/encodeur', en: '/en/encodeur', es: '/es/encodeur' },
+  blog: { fr: '/blog/', en: '/en/blog/', es: '/es/blog/' },
+  graph: { fr: '/graphe-des-procedes/', en: '/en/graphe-des-procedes/', es: '/es/graphe-des-procedes/' },
+  formations: { fr: '/formations/', en: '/en/formations/', es: '/es/formations/' },
+  parcours: { fr: '/parcours/', en: '/en/parcours/', es: '/es/parcours/' },
+  encodeur: { fr: '/encodeur/', en: '/en/encodeur/', es: '/es/encodeur/' },
   whitepaper: {
-    fr: '/livres-blancs/la-facture-fantome-ia',
-    en: '/en/livres-blancs/la-facture-fantome-ia',
-    es: '/es/livres-blancs/la-facture-fantome-ia',
+    fr: '/livres-blancs/la-facture-fantome-ia/',
+    en: '/en/livres-blancs/la-facture-fantome-ia/',
+    es: '/es/livres-blancs/la-facture-fantome-ia/',
   },
-  volume: { fr: '/formations/saga-ia/volume-1', en: '/en/formations/saga-ia/volume-1', es: '/es/formations/saga-ia/volume-1' },
-  terms: { fr: '/conditions-de-vente' },
-  confirmation: { fr: '/achat/confirmation' },
-  legal: { fr: '/mentions-legales', es: '/es/mentions-legales' },
-  privacy: { fr: '/confidentialite', es: '/es/confidentialite' },
+  volume: { fr: '/formations/saga-ia/volume-1/', en: '/en/formations/saga-ia/volume-1/', es: '/es/formations/saga-ia/volume-1/' },
+  terms: { fr: '/conditions-de-vente/' },
+  confirmation: { fr: '/achat/confirmation/' },
+  legal: { fr: '/mentions-legales/', es: '/es/mentions-legales/' },
+  privacy: { fr: '/confidentialite/', es: '/es/confidentialite/' },
 } as const;
 
 export type SiteRoute = keyof typeof routePaths;

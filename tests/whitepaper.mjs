@@ -109,14 +109,14 @@ try {
     const response = await page.goto(origin + route);
     assert.equal(response.status(), 200, `Route ES indisponible : ${route}`);
     assert.equal(await page.locator('html').getAttribute('lang'), 'es', `Langue HTML incorrecte : ${route}`);
-    const canonicalPath = new URL(await page.locator('link[rel=canonical]').getAttribute('href')).pathname.replace(/\/$/, '') || '/';
-    assert.equal(canonicalPath, route.replace(/\/$/, '') || '/');
+    const canonicalPath = new URL(await page.locator('link[rel=canonical]').getAttribute('href')).pathname;
+    assert.equal(canonicalPath, route);
     assert.ok(await page.locator('.language-switcher a[hreflang="es"][aria-current="page"]').count());
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Débordement mobile : ${route}`);
   }
   await page.goto(origin + '/es/confidentialite/');
   assert.ok(await page.locator('.language-switcher a[href="/en/"]').count());
-  assert.equal(await page.locator('.footer-legal-links a').nth(0).getAttribute('href'), '/es/mentions-legales');
+  assert.equal(await page.locator('.footer-legal-links a').nth(0).getAttribute('href'), '/es/mentions-legales/');
   await page.setViewportSize({ width: 1280, height: 1000 });
   check('Neuf routes ES, métadonnées, sélecteur trilingue, liens juridiques et rendu mobile contrôlés.');
   let requests = [];
@@ -252,7 +252,7 @@ try {
     await page.screenshot({ path: `/tmp/qognito-livre-blanc-${lang}-mobile.png`, fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.screenshot({ path: `/tmp/qognito-livre-blanc-${lang}-desktop.png`, fullPage: true });
-    const privacyPath = lang === 'es' ? '/es/confidentialite' : '/confidentialite';
+    const privacyPath = lang === 'es' ? '/es/confidentialite/' : '/confidentialite/';
     assert.ok(await page.locator(`a[href="${privacyPath}"]`).count() > 0);
     check('Rendu mobile sans débordement et lien de confidentialité présent.');
     const nojs = await browser.newContext({ javaScriptEnabled: false });
