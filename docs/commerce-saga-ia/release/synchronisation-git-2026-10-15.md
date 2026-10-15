@@ -29,3 +29,13 @@ La configuration Cloudflare vérifiée le 15 octobre relie le projet `qognito-si
 Le push de cette version doit être suivi jusqu’au succès du déploiement correspondant au SHA Git, puis contrôlé sur le domaine technique de production : disponibilité fermée, refus de checkout, extraits et pages attendus. Les quatre secrets, les bindings D1/R2 et les variables de fermeture doivent rester présents. Les références finales et les réponses sont consignées dans les preuves privées `.wrangler/sales-production/git-reconciliation-*.json` et dans les manuels personnel et technique de Boris.
 
 La synchronisation Git n’active pas les ventes. L’ISBN et le PDF final devront être intégrés au catalogue et au stockage privé avant la décision d’ouverture. Aucun provisionnement Stripe, migration de production ou redéploiement du Worker n’est requis pour cette synchronisation des sources du site.
+
+## Compatibilité de la construction Cloudflare
+
+Le premier push (`ba01ec6`) a déclenché `aef322f5`, dont Astro a réussi la construction. La compilation automatique des Functions a ensuite échoué : le Wrangler 3.114.17 de la plateforme ne reconnaît pas l’attribut d’import JSON `with { type: 'json' }` dans `offer.mjs`. Ce déploiement n’a pas remplacé la production précédente.
+
+`npm run build` compile désormais les Functions avec le Wrangler du projet, verrouillé par `package-lock.json`, dans `dist/_worker.js/index.js`. Cloudflare déploie ce module déjà généré au lieu de recompiler le dossier `functions` avec son ancien outil. Le routeur est toujours généré depuis les mêmes Functions ; il conserve le service de repli `ASSETS`, et `public/_routes.json` conserve le périmètre des API. Ce fonctionnement utilise le [mode avancé documenté par Cloudflare](https://developers.cloudflare.com/pages/functions/advanced-mode/).
+
+Le fichier `.node-version` fixe Node 22.22.0, déjà utilisé localement. Le minimum déclaré dans `package.json` est 22.19.0, cohérent avec la dépendance Undici du Wrangler installé ; le Node 22.16.0 par défaut chez Cloudflare produisait un avertissement de compatibilité. Cloudflare documente la [sélection de Node par `.node-version`](https://developers.cloudflare.com/pages/configuration/build-image/).
+
+Cette correction porte sur la fabrication et ne modifie ni le code marchand, ni les textes, ni les variables d’ouverture. Les fichiers statiques sont comparés au paquet publié ; le module compilé fait l’objet d’un contrôle local de routage avant le nouveau push.

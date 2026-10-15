@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.19.0"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && wrangler pages functions build --outdir dist/_worker.js --compatibility-date 2026-10-06 --compatibility-flags nodejs_compat",
     "preview": "astro preview",
     "astro": "astro",
     "test:form": "node tests/whitepaper.mjs",
