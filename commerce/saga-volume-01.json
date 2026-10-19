@@ -41,13 +41,14 @@
       {
         "edition_id": "saga-ia-volume-01-fr-v1.1",
         "language": "fr",
-        "source_path": "../qognito-content/formations/saga-ia/volume-01/apercus/fr/1.1/extrait.pdf",
+        "source_path": "../qognito-content/formations/saga-ia/volume-01/apercus/fr/1.1/extrait_v1.1.pdf",
         "source_path_base": "repository_root",
         "public_url": "/extraits/saga-ia-volume-01-fr-v1.1.pdf",
-        "pages": 3,
-        "printed_pages": [17, 18, 19],
-        "size_bytes": 91227,
-        "sha256": "6dfeabd1b485c2ebc0a01905de3693d0605cb0bb56f42955e5dcf7eb79186998"
+        "pages": 7,
+        "printed_pages": [1, 2, 17, 18, 19, 50],
+        "cover_included": true,
+        "size_bytes": 278060,
+        "sha256": "3642286ac3129e944dbc937e32e745bcc148c5eac7395550e8f008e89e2aad7e"
       }
     ],
     "private_pdf_candidate": {
