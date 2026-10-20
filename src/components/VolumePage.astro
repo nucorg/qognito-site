@@ -38,6 +38,7 @@ const sample = catalogue.contents.public_previews[0];
     <p id="purchase-error" role="alert"></p>
    </form>
   </section> : <p class="pending" role="status">{t.status}</p>}
+  <section class="corrections" aria-labelledby="corrections-title"><h2 id="corrections-title">{t.correctionsTitle}</h2><p>{t.corrections}</p><a href="mailto:contact@qognito.io">{t.correctionsContact}</a></section>
   <section class="companion"><h2>{t.companionTitle}</h2><p>{t.companion}</p><a href="https://github.com/nucorg/app_saga_arbitre" target="_blank" rel="noopener noreferrer">{t.github} ↗</a></section>
   <details><summary>{lang === 'fr' ? 'Données de commande et confidentialité' : lang === 'en' ? 'Order data and privacy' : 'Datos del pedido y privacidad'}</summary><CommercePrivacy lang={lang} /></details>
  </article>

@@ -1,14 +1,18 @@
-// Focused browser checks. Production checks require closed purchases and never submit a payment.
+// No payment is submitted. Production is expected closed unless explicitly requested.
 import assert from 'node:assert/strict';
 import { chromium } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import catalogue from '../commerce/saga-volume-01.json' with { type: 'json' };
+import { volumeContent } from '../src/content/volume.ts';
 
 const origin=process.env.QOGNITO_VOLUME_ORIGIN||'http://127.0.0.1:4399';
 assert.ok(['http://127.0.0.1:4399','https://qognito-commerce-staging.pages.dev','https://qognito-site.pages.dev'].includes(origin));
 const local=origin.startsWith('http://127.0.0.1');
 const production=origin==='https://qognito-site.pages.dev';
+const expected=process.env.QOGNITO_VOLUME_EXPECT||((local||production)?'closed':'open');
+assert.ok(['closed','open'].includes(expected));
+const enabled=expected==='open';
 const directory=`${process.env.QOGNITO_VOLUME_EVIDENCE_DIR||'.wrangler/isbn-2026-10-20'}/${local?'local':production?'production':'staging'}-browser`;
 await mkdir(directory,{recursive:true});
 const sample=catalogue.contents.public_previews[0];
@@ -16,12 +20,12 @@ const browser=await chromium.launch({executablePath:'/opt/google/chrome/chrome'}
 const results=[];
 try{
  const context=await browser.newContext();
- if(local)await context.route('**/api/commerce/availability',r=>r.fulfill({json:{enabled:false,test:false,terms_version:'2026-10-14-v2'}}));
+ if(local)await context.route('**/api/commerce/availability',r=>r.fulfill({json:{enabled,test:false,terms_version:'2026-10-14-v2'}}));
  const response=await context.request.get(origin+sample.public_url);
  assert.equal(response.status(),200);assert.match(response.headers()['content-type'],/application\/pdf/);
  assert.equal(createHash('sha256').update(await response.body()).digest('hex'),sample.sha256);
- if(!local){const r=await context.request.get(origin+'/api/commerce/availability');const a=await r.json();assert.equal(a.test,!production);assert.equal(a.enabled,!production);assert.equal(a.terms_version,'2026-10-14-v2');
- if(production){const refusal=await context.request.post(origin+'/api/commerce/checkout',{data:{}});assert.equal(refusal.status(),503);}}
+ if(!local){const r=await context.request.get(origin+'/api/commerce/availability');const a=await r.json();assert.equal(a.test,!production);assert.equal(a.enabled,enabled);assert.equal(a.terms_version,'2026-10-14-v2');
+ if(production&&!enabled){const refusal=await context.request.post(origin+'/api/commerce/checkout',{data:{}});assert.equal(refusal.status(),503);}}
  for(const [lang,prefix,label] of [['fr','','ISBN de l’édition française PDF'],['en','/en','ISBN of the French PDF edition'],['es','/es','ISBN de la edición francesa en PDF']]){
   for(const width of [390,1280]){
    const page=await context.newPage();await page.setViewportSize({width,height:900});
@@ -38,8 +42,14 @@ try{
    assert.equal(await link.getAttribute('hreflang'),'fr');assert.equal(await link.getAttribute('target'),'_blank');
    assert.match(await link.innerText(),lang==='es'?/7 páginas/:/7 pages/);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-   if(lang==='fr')assert.equal(await page.locator('#purchase-form').isVisible(),!local&&!production);
+   if(lang==='fr')assert.equal(await page.locator('#purchase-form').isVisible(),enabled);
    else assert.equal(await page.locator('#purchase-form').count(),0);
+   if(process.env.QOGNITO_VOLUME_CHECK_CORRECTIONS==='1'){
+    assert.equal(await page.locator('.corrections h2').innerText(),({fr:'Corrections de l’édition française',en:'Corrections to the French edition',es:'Correcciones de la edición francesa'})[lang]);
+    assert.equal(await page.locator('.corrections p').innerText(),volumeContent[lang].corrections);
+    assert.equal(await page.locator('.corrections a').innerText(),volumeContent[lang].correctionsContact);
+    assert.equal(await page.locator('.corrections a').getAttribute('href'),'mailto:contact@qognito.io');
+   }
    assert.deepEqual(pdfRequests,[]);
    await page.screenshot({path:`${directory}/${lang}-${width}.png`,fullPage:true});
    const popupPromise=page.waitForEvent('popup');
@@ -49,6 +59,6 @@ try{
    results.push({lang,width,label,pdf_new_tab:true,no_pdf_before_click:true,errors});await page.close();
   }
  }
- await writeFile(`${directory}/checks.json`,JSON.stringify({date:new Date().toISOString(),origin,availability_mocked:local,sha256:sample.sha256,results},null,2)+'\n');
+ await writeFile(`${directory}/checks.json`,JSON.stringify({date:new Date().toISOString(),origin,expected,availability_mocked:local,sha256:sample.sha256,results},null,2)+'\n');
  console.log(`OK navigateur : ${origin}, six parcours FR/EN/ES, ISBN qualifié, extrait, liens, mobile/bureau.`);
 }finally{await browser.close();}

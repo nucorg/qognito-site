@@ -1,0 +1,10 @@
+[Unit]
+Description=Sauvegarde chiffrée du commerce Qognito
+After=network-online.target
+
+[Service]
+Type=oneshot
+UMask=0077
+Environment=PATH=/home/boris/.nvm/versions/node/v22.22.0/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 %h/Qognito-Commerce/bin/commerce-backup.py backup-if-due
+TimeoutStartSec=45min

@@ -1,0 +1,12 @@
+[Unit]
+Description=Sauvegarde commerce à 20 h Paris et rattrapage horaire
+
+[Timer]
+OnCalendar=*-*-* 20:00:00 Europe/Paris
+OnCalendar=*-*-* *:15:00 Europe/Paris
+OnBootSec=10min
+Persistent=true
+Unit=qognito-commerce-backup.service
+
+[Install]
+WantedBy=timers.target

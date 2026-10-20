@@ -1,8 +1,8 @@
 # Volume 1 — proposition de politique de correction
 
-Axe II · Cible I. Préparée le 14 octobre 2026 pour Boris. **Proposition à adopter ; aucune nouvelle clause publiée ni modification du PDF.** La relecture des pages, des CGV v2 et du PDF 1.1 est déclarée terminée par Boris ; l’activation des achats reste une étape distincte.
+Axe II · Cible I. Préparée le 14 octobre 2026 pour Boris. **Règle de service retenue par Boris le 20 octobre 2026 : corrections gratuites, remise manuelle et mention sur les pages produit. Les blocs FR/EN/ES sont intégrés en brouillon ; leur relecture et leur publication restent à valider. Aucun changement du PDF ni des CGV v2.** La relecture des pages, des CGV v2 et du PDF 1.1 est déclarée terminée par Boris ; l’activation des achats reste une étape distincte.
 
-## Règle proposée
+## Règle retenue
 
 > Les corrections de l’édition achetée sont fournies sans frais : coquilles, erreurs de calcul, liens internes défectueux ou problèmes de fichier. Elles sont accompagnées d’un relevé des changements. Les nouvelles éditions enrichies, traductions et autres volumes ne sont pas inclus dans l’achat. Cette distinction ne limite pas les garanties légales applicables.
 
@@ -31,3 +31,9 @@ Aucune erreur nouvelle n’est constatée par la rédaction de cette politique. 
 ## Repères vérifiés
 
 Les mises à jour nécessaires à la conformité doivent être distinguées des enrichissements commerciaux ; leur information et fourniture dépendent du contrat et de la nature du contenu. Voir [Code de la consommation, L224-25-25](https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044133273/2026-04-20) et [mise en œuvre de la garantie pour les contenus numériques](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069565/LEGISCTA000044132879/2026-04-16), consultés le 14 octobre 2026. Cette proposition opérationnelle n’ajoute pas de durée arbitraire aux garanties déjà présentes dans les CGV.
+
+## Mise en œuvre du 20 octobre 2026
+
+Journal éditorial créé dans `qognito-content/formations/saga-ia/volume-01/corrections/journal.md`. Suivi privé des remises : `~/Qognito-Commerce/remises-corrections.csv`, initialisé sans donnée client. Aucun email de correction envoyé.
+
+Textes et relecture alignée : `qognito-content/localisations/site/2026-10-20-ouverture-commerce/relecture-bilingue.md`. Les trois blocs concernent uniquement l’édition française achetée, sans suggérer la disponibilité des éditions EN/ES. Relecture humaine des blocs attendue selon le skill `localiser-site-qognito`.

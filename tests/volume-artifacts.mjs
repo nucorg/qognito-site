@@ -36,6 +36,8 @@ for(const directory of ['public',...(process.argv.includes('--dist')?['dist']:[]
  }
  if(directory==='dist')assert.equal(hash(await readFile(new URL('dist'+sample.public_url,root))),sample.sha256);
 }
-assert.equal(catalogue.channels.direct.enabled,false);
-assert.equal(catalogue.launch.approved,false);
-console.log('OK fichiers : ISBN, PDF 93 pages, extrait 7 pages, intégrité source/catalogue/public, clé privée explicite, achats fermés.');
+const expected=process.env.QOGNITO_VOLUME_EXPECT||'closed';
+assert.ok(['closed','open'].includes(expected));
+assert.equal(catalogue.channels.direct.enabled,expected==='open');
+assert.equal(catalogue.launch.approved,expected==='open');
+console.log(`OK fichiers : ISBN, PDF 93 pages, extrait 7 pages, intégrité source/catalogue/public, clé privée explicite, état attendu ${expected}.`);
