@@ -1,6 +1,6 @@
-# Volume 1 — proposition de politique de correction
+# Volume 1 — politique de correction
 
-Axe II · Cible I. Préparée le 14 octobre 2026 pour Boris. **Règle de service retenue par Boris le 20 octobre 2026 : corrections gratuites, remise manuelle et mention sur les pages produit. Les blocs FR/EN/ES sont intégrés en brouillon ; leur relecture et leur publication restent à valider. Aucun changement du PDF ni des CGV v2.** La relecture des pages, des CGV v2 et du PDF 1.1 est déclarée terminée par Boris ; l’activation des achats reste une étape distincte.
+Axe II · Cible I. Préparée le 14 octobre 2026 pour Boris. **Règle de service retenue par Boris le 20 octobre 2026 : corrections gratuites, remise manuelle et mention sur les pages produit. Les blocs FR/EN/ES ont été relus et validés par Boris, qui autorise leur publication le 20 octobre. Aucun changement du PDF ni des CGV v2.** La relecture des pages, des CGV v2 et du PDF 1.1 est déclarée terminée par Boris ; l’activation des achats reste une étape distincte.
 
 ## Règle retenue
 
@@ -36,4 +36,4 @@ Les mises à jour nécessaires à la conformité doivent être distinguées des 
 
 Journal éditorial créé dans `qognito-content/formations/saga-ia/volume-01/corrections/journal.md`. Suivi privé des remises : `~/Qognito-Commerce/remises-corrections.csv`, initialisé sans donnée client. Aucun email de correction envoyé.
 
-Textes et relecture alignée : `qognito-content/localisations/site/2026-10-20-ouverture-commerce/relecture-bilingue.md`. Les trois blocs concernent uniquement l’édition française achetée, sans suggérer la disponibilité des éditions EN/ES. Relecture humaine des blocs attendue selon le skill `localiser-site-qognito`.
+Textes et relecture alignée : `qognito-content/localisations/site/2026-10-20-ouverture-commerce/relecture-bilingue.md`. Les trois blocs concernent uniquement l’édition française achetée, sans suggérer la disponibilité des éditions EN/ES. Relecture humaine des blocs validée par Boris le 20 octobre 2026 conformément au skill `localiser-site-qognito`.

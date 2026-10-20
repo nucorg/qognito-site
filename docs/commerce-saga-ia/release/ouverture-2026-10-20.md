@@ -1,6 +1,6 @@
 # Ouverture des achats — préparation du 20 octobre 2026
 
-Axe II · Cible I. **Préparation réalisée ; achats fermés.** L’instruction d’implémenter le plan ne vaut pas autorisation d’activation. Aucun paiement réel ou fictif n’a été créé pendant cette préparation.
+Axe II · Cible I. **Publication des blocs FR/EN/ES et ouverture explicitement autorisées par Boris le 20 octobre 2026 ; exécution en cours.** Les achats restent techniquement fermés pendant la première publication. Aucun paiement réel ou fictif n’a été créé pendant cette préparation.
 
 ## Décisions et résultat
 
@@ -9,7 +9,7 @@ Boris a retenu les corrections gratuites remises manuellement, une mention sur l
 | Élément | Résultat |
 |---|---|
 | Politique de corrections | Règle retenue, journal éditorial créé, suivi privé des remises initialisé sans donnée client. Aucun message envoyé. |
-| Information des lecteurs | Trois blocs intégrés dans la branche de préparation, alignés dans une fiche de relecture. Non publiés ; relecture des blocs par Boris attendue. |
+| Information des lecteurs | Trois blocs intégrés dans la branche de préparation, alignés dans une fiche de relecture. Relus et validés par Boris ; publication autorisée. |
 | Sauvegarde | Dépôt Restic commerce créé sur le SSD identifié par son UUID, distinct du CRM. Exports de production et restaurations isolées réussis. |
 | Planification | Service utilisateur installé avec copie stable du programme, quotidien à 20 h Paris ; rattrapage horaire et au démarrage. Exécution forcée depuis systemd réussie. |
 | Récupération | Clé locale privée, exclue des sauvegardes ; copie dans le gestionnaire confirmée par Boris. |
@@ -17,7 +17,7 @@ Boris a retenu les corrections gratuites remises manuellement, une mention sur l
 
 Le PDF complet r2 et l’extrait sont inchangés : empreintes `e723caa4…` et `6a114f94…`, édition FR 1.1, 93 pages, ISBN 979-10-990773-0-1. Le prix reste 49,99 € TTC et les CGV restent `2026-10-14-v2`.
 
-## Textes à relire
+## Textes validés
 
 Fiche complète : `qognito-content/localisations/site/2026-10-20-ouverture-commerce/relecture-bilingue.md`.
 
@@ -51,15 +51,15 @@ La protection dépend de la disponibilité du PC et du SSD. La seconde copie ind
 
 Preuves privées : `.wrangler/ouverture-2026-10-20/` ; état et logs de sauvegarde dans `~/Qognito-Commerce`. Les sorties publiques n’exposent ni secret ni lien de téléchargement signé.
 
-## Décision restant à prendre
+## Accord reçu et séquence d’exécution
 
-**Boris doit relire les trois blocs et autoriser explicitement leur publication ainsi que l’ouverture des achats.** La récupération de la clé et la restauration sont déjà confirmées. Aucun nouvel accord sur le PDF ou les validations Stripe acquises n’est demandé.
+**Boris a validé `relecture-bilingue.md` et donné son accord explicite pour publier les blocs et ouvrir les achats.** La récupération de la clé et la restauration sont déjà confirmées. Aucun nouvel accord sur le PDF ou les validations Stripe acquises n’est demandé.
 
-Après cet accord seulement :
+Séquence autorisée :
 
 1. Consigner les textes approuvés et l’accord d’ouverture. Alignement du catalogue (`channels.direct.enabled`, `launch.approved`) et des manuels ; préparer le lot sans toucher au PDF/CGV. Pour les contrôles du catalogue ouvert, utiliser `QOGNITO_VOLUME_EXPECT=open`.
 2. Publier le code et les textes approuvés via `main`, achats techniquement fermés. Vérifier ce déploiement et les blocs FR/EN/ES avant activation.
-3. Mettre à jour les variables Pages production en conservant tous les autres réglages/secrets : `COMMERCE_LIVE_APPROVED=2026-10-14-v2`, `COMMERCE_PDF_APPROVED_SHA256=e723caa4563afe7ac09dae3d06e3eadabfae98975dd4364d7ad33a4d0020c4a8`, puis `COMMERCE_CHECKOUT_ENABLED=true`. Reporter ces valeurs dans la configuration privée Pages de production et redéployer pour les appliquer. Le Worker de traitement continue de fonctionner ; aucun nouveau provisionnement Stripe.
+3. Mettre à jour les variables Pages production en conservant tous les autres réglages/secrets : `COMMERCE_LIVE_APPROVED=2026-10-14-v2`, `COMMERCE_PDF_APPROVED_SHA256=e723caa4563afe7ac09dae3d06e3eadabfae98975dd4364d7ad33a4d0020c4a8`, puis `COMMERCE_CHECKOUT_ENABLED=true`. Ces valeurs doivent être enregistrées dans `wrangler.jsonc`, source de la configuration du déploiement automatique, ainsi que dans la configuration privée Pages de production. Publier ce second commit pour les appliquer durablement. Le Worker de traitement continue de fonctionner ; aucun nouveau provisionnement Stripe.
 4. Contrôler la configuration avec `--expect=open` et le navigateur avec `QOGNITO_VOLUME_EXPECT=open`. Attendre `enabled:true`, `test:false`, consentements FR visibles, EN/ES toujours sans formulaire d’achat. Ces contrôles ne soumettent aucun paiement.
 5. En cas d’anomalie : remettre le verrou Pages à false et redéployer, vérifier HTTP 503 et formulaire masqué. Conserver Worker/webhooks et droits existants. Aligner ensuite le catalogue et consigner l’incident.
 6. Consigner commit, déploiements, accord, disponibilité et résultats dans les manuels. Un premier achat réel reste une décision séparée.
