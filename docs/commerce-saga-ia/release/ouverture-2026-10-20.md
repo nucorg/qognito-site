@@ -1,6 +1,6 @@
 # Ouverture des achats — préparation du 20 octobre 2026
 
-Axe II · Cible I. **Publication des blocs FR/EN/ES et ouverture explicitement autorisées par Boris le 20 octobre 2026 ; exécution en cours.** La première publication des textes a été vérifiée avec les achats techniquement fermés. Le second lot active la vente directe via la configuration de production ; le résultat distant est consigné dans les manuels. Aucun paiement réel ou fictif n’a été créé pendant cette préparation.
+Axe II · Cible I. **Publication des blocs FR/EN/ES et ouverture explicitement autorisées par Boris le 20 octobre 2026, puis réalisées et contrôlées.** La première publication des textes a été vérifiée avec les achats techniquement fermés. Le second lot a activé la vente directe via la configuration de production ; les contrôles distants ont réussi. Aucun paiement réel ou fictif n’a été créé pendant cette préparation.
 
 ## Décisions et résultat de la préparation
 
@@ -68,4 +68,14 @@ Séquence autorisée :
 
 Les textes approuvés ont été publiés via `main` au commit `f43616c3fa5bb32d23db4cfd796ed49e06619f91`, déploiement `331e226f-5fe0-443e-8759-a8aaa6654b4d`, terminé à 13 h 39 min 56 s Paris. Six parcours FR/EN/ES × mobile/bureau vérifient les blocs exacts, liens et extrait ; disponibilité fermée et checkout HTTP 503 confirmés avant activation.
 
-Le lot suivant inscrit les trois variables d’ouverture dans `wrangler.jsonc` et dans sa configuration privée de production. Les aperçus restent désactivés. Le déploiement automatique applique la configuration versionnée ; les contrôles de disponibilité, les trois consentements, les pages et l’extrait seront consignés dans les manuels après succès distant. Les preuves privées sont sous `.wrangler/ouverture-2026-10-20/activation/`. Aucune soumission de commande ni aucun paiement ne sont prévus pour ces contrôles.
+Le lot suivant inscrit les trois variables d’ouverture dans `wrangler.jsonc` et dans sa configuration privée de production. Les aperçus restent désactivés. Le déploiement automatique applique la configuration versionnée ; les contrôles de disponibilité, les trois consentements, les pages et l’extrait sont consignés ci-dessous et dans les manuels. Les preuves privées sont sous `.wrangler/ouverture-2026-10-20/activation/`. Aucune soumission de commande ni aucun paiement ne sont prévus pour ces contrôles.
+
+## Ouverture vérifiée à 13 h 41 min 42 s Paris
+
+Commit d’activation : `e5f519316e2d71dfbe03d4335a1774368d63b0d1`. Déploiement automatique réussi : `56447207-0e36-48c9-9a56-b474edfb10db`. Seules les trois variables attendues ont changé ; les secrets, bindings D1/R2 et paramètres des aperçus sont conservés. Le Worker de traitement reste à la version `c7af4f82-6435-49ef-9ebf-e7ea471443fc` ; aucun changement de son code de traitement n’est requis.
+
+Sur `qognito-site.pages.dev`, la disponibilité retourne `enabled:true`, `test:false`, CGV `2026-10-14-v2`. Six parcours FR/EN/ES × 390/1280 px réussissent, avec contrôle du texte exact des corrections. Le formulaire français est visible ; les trois consentements sont obligatoires et non cochés, le formulaire vide est invalide, le montant est 49,99 € TTC. EN/ES restent sans formulaire. L’extrait public conserve son empreinte validée. Aucun POST de checkout et aucun paiement n’ont été effectués pendant ces contrôles d’ouverture.
+
+`qognito.io` oppose un challenge Cloudflare HTTP 403 au navigateur automatisé de ce contrôle ; les protections sont inchangées. Les contrôles fonctionnels ont donc utilisé le domaine technique, prévu à cet effet. La publication et les réglages de production sont confirmés par Cloudflare ; ce contrôle ne prétend pas établir un paiement réel ni le rendu du domaine principal dans un navigateur humain.
+
+Un commit documentaire ultérieur peut publier ce compte rendu sans modifier l’application ni les réglages. Le dernier commit et déploiement canoniques sont consignés dans `MANUEL_SITEWEB.md`, section « Dernière publication ».
