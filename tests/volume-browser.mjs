@@ -8,7 +8,7 @@ import catalogue from '../commerce/saga-volume-01.json' with { type: 'json' };
 const origin=process.env.QOGNITO_VOLUME_ORIGIN||'http://127.0.0.1:4399';
 assert.ok(['http://127.0.0.1:4399','https://qognito-commerce-staging.pages.dev'].includes(origin));
 const local=origin.startsWith('http://127.0.0.1');
-const directory=`.wrangler/isbn-2026-10-20/${local?'local':'staging'}-browser`;
+const directory=`${process.env.QOGNITO_VOLUME_EVIDENCE_DIR||'.wrangler/isbn-2026-10-20'}/${local?'local':'staging'}-browser`;
 await mkdir(directory,{recursive:true});
 const sample=catalogue.contents.public_previews[0];
 const browser=await chromium.launch({executablePath:'/opt/google/chrome/chrome'});

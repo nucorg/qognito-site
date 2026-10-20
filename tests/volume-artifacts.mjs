@@ -20,10 +20,13 @@ assert.equal(hash(privateBytes),pdf.sha256);assert.equal(privateBytes.length,pdf
 for(const location of [new URL(sample.source_path,root),new URL('public'+sample.public_url,root)]){
  const bytes=await readFile(location);assert.equal(hash(bytes),sample.sha256);assert.equal(bytes.length,sample.size_bytes);
 }
-const report=JSON.parse(await readFile(new URL('../qognito-content/formations/saga-ia/volume-01/editions/fr/1.1/isbn-9791099077301/finalisation.json',root)));
+const report=JSON.parse(await readFile(new URL('../qognito-content/formations/saga-ia/volume-01/editions/fr/1.1/isbn-9791099077301-r2/finalisation.json',root)));
 assert.equal(report.sha256,pdf.sha256);assert.equal(report.isbn,pdf.isbn);
 assert.equal(report.sample.sha256,sample.sha256);assert.equal(report.pages,93);
 assert.deepEqual(report.sample.physical_pages,[1,2,3,18,19,20,51]);
+assert.deepEqual(report.modified_physical_pages,[2,3,51,93]);
+assert.equal(report.unmodified_page_streams,89);
+assert.deepEqual(report.internal_blocks_removed.map(b=>b.physical_page),[3,51]);
 assert.equal(report.named_destinations,41);assert.equal(report.internal_annotations_checked,72);
 for(const directory of ['public',...(process.argv.includes('--dist')?['dist']:[])]){
  for(const entry of await readdir(new URL(directory+'/',root),{recursive:true})){
