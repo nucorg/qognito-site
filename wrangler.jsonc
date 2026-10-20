@@ -26,14 +26,16 @@
         "PUBLIC_MAIL_PROVIDER": "Google Workspace (Gmail professionnel)",
         "PUBLIC_MAIL_LOCATION": "Traitement possible dans les pays où Google et ses sous-traitants disposent d’infrastructures, y compris hors de l’Espace économique européen",
         "PUBLIC_MAIL_SAFEGUARDS": "Avenant Google relatif au traitement des données et mécanismes de transfert qu’il prévoit, dont les clauses contractuelles types lorsqu’elles sont applicables",
-        "COMMERCE_CHECKOUT_ENABLED": "false",
+        "COMMERCE_CHECKOUT_ENABLED": "true",
         "SAGA_PRICE_ID": "price_1UQUDMLSrIVlLS58pUO2CRTF",
         "SAGA_TAX_RATE_ID": "txr_1UQUDMLSrIVlLS58SHNNYB9F",
         "STRIPE_PAYMENT_METHOD_CONFIGURATION": "pmc_1UQUDNLSrIVlLS58iqzzavXv",
         "COMMERCE_FROM": "Qognito <commandes@transaction.qognito.io>",
         "COMMERCE_ALERT_TO": "bguarisma@qognito.io",
         "COMMERCE_PHONE": "+33 7 62 64 05 06",
-        "COMMERCE_MEDIATOR": "CM2C (Centre de la Médiation de la Consommation de Conciliateurs de Justice), 49 rue de Ponthieu, 75008 Paris. Site : https://www.cm2c.net/ ; saisine en ligne : https://www.cm2c.net/declarer-un-litige.php ; courriel : declarer-un-litige@cm2c.net"
+        "COMMERCE_MEDIATOR": "CM2C (Centre de la Médiation de la Consommation de Conciliateurs de Justice), 49 rue de Ponthieu, 75008 Paris. Site : https://www.cm2c.net/ ; saisine en ligne : https://www.cm2c.net/declarer-un-litige.php ; courriel : declarer-un-litige@cm2c.net",
+        "COMMERCE_LIVE_APPROVED": "2026-10-14-v2",
+        "COMMERCE_PDF_APPROVED_SHA256": "e723caa4563afe7ac09dae3d06e3eadabfae98975dd4364d7ad33a4d0020c4a8"
       },
       "d1_databases": [
         {

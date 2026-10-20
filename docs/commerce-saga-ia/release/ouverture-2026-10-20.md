@@ -1,8 +1,8 @@
 # Ouverture des achats — préparation du 20 octobre 2026
 
-Axe II · Cible I. **Publication des blocs FR/EN/ES et ouverture explicitement autorisées par Boris le 20 octobre 2026 ; exécution en cours.** Les achats restent techniquement fermés pendant la première publication. Aucun paiement réel ou fictif n’a été créé pendant cette préparation.
+Axe II · Cible I. **Publication des blocs FR/EN/ES et ouverture explicitement autorisées par Boris le 20 octobre 2026 ; exécution en cours.** La première publication des textes a été vérifiée avec les achats techniquement fermés. Le second lot active la vente directe via la configuration de production ; le résultat distant est consigné dans les manuels. Aucun paiement réel ou fictif n’a été créé pendant cette préparation.
 
-## Décisions et résultat
+## Décisions et résultat de la préparation
 
 Boris a retenu les corrections gratuites remises manuellement, une mention sur les pages produit FR/EN/ES, une sauvegarde commerce chiffrée séparée sur le SSD existant, une seconde copie indépendante ultérieure et la récupération du mot de passe via son gestionnaire. **Boris a confirmé la copie dans ce gestionnaire.**
 
@@ -13,7 +13,7 @@ Boris a retenu les corrections gratuites remises manuellement, une mention sur l
 | Sauvegarde | Dépôt Restic commerce créé sur le SSD identifié par son UUID, distinct du CRM. Exports de production et restaurations isolées réussis. |
 | Planification | Service utilisateur installé avec copie stable du programme, quotidien à 20 h Paris ; rattrapage horaire et au démarrage. Exécution forcée depuis systemd réussie. |
 | Récupération | Clé locale privée, exclue des sauvegardes ; copie dans le gestionnaire confirmée par Boris. |
-| Production | Toujours au commit `33f113d`, Pages `5e7d6d11`, Worker `c7af4f82` ; achats fermés, aucune publication de cette branche. |
+| Production | État initial : commit `33f113d`, Pages `5e7d6d11`, Worker `c7af4f82`, achats fermés. Première publication des textes réussie : voir ci-dessous. |
 
 Le PDF complet r2 et l’extrait sont inchangés : empreintes `e723caa4…` et `6a114f94…`, édition FR 1.1, 93 pages, ISBN 979-10-990773-0-1. Le prix reste 49,99 € TTC et les CGV restent `2026-10-14-v2`.
 
@@ -63,3 +63,9 @@ Séquence autorisée :
 4. Contrôler la configuration avec `--expect=open` et le navigateur avec `QOGNITO_VOLUME_EXPECT=open`. Attendre `enabled:true`, `test:false`, consentements FR visibles, EN/ES toujours sans formulaire d’achat. Ces contrôles ne soumettent aucun paiement.
 5. En cas d’anomalie : remettre le verrou Pages à false et redéployer, vérifier HTTP 503 et formulaire masqué. Conserver Worker/webhooks et droits existants. Aligner ensuite le catalogue et consigner l’incident.
 6. Consigner commit, déploiements, accord, disponibilité et résultats dans les manuels. Un premier achat réel reste une décision séparée.
+
+## Publication des textes, puis activation autorisée
+
+Les textes approuvés ont été publiés via `main` au commit `f43616c3fa5bb32d23db4cfd796ed49e06619f91`, déploiement `331e226f-5fe0-443e-8759-a8aaa6654b4d`, terminé à 13 h 39 min 56 s Paris. Six parcours FR/EN/ES × mobile/bureau vérifient les blocs exacts, liens et extrait ; disponibilité fermée et checkout HTTP 503 confirmés avant activation.
+
+Le lot suivant inscrit les trois variables d’ouverture dans `wrangler.jsonc` et dans sa configuration privée de production. Les aperçus restent désactivés. Le déploiement automatique applique la configuration versionnée ; les contrôles de disponibilité, les trois consentements, les pages et l’extrait seront consignés dans les manuels après succès distant. Les preuves privées sont sous `.wrangler/ouverture-2026-10-20/activation/`. Aucune soumission de commande ni aucun paiement ne sont prévus pour ces contrôles.
