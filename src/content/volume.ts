@@ -8,6 +8,7 @@ export const volumeContent = {
   license: 'Lecture hors ligne, impression, sauvegarde et étude avec un assistant IA privé autorisées. Pas de redistribution. Les autres volumes, traductions, nouvelles éditions, coaching et certification ne sont pas inclus.',
   preview: 'Découvrir le livre blanc gratuit', status: 'Ouverture prochaine de la vente',
   sample: 'Lire un extrait', sampleDetails: 'PDF en français · 7 pages', sampleNewTab: 'S’ouvre dans un nouvel onglet',
+  isbnLabel: 'ISBN de l’édition française PDF :',
   companionTitle: 'Arbitre, un compagnon facultatif', companion: 'Le PDF est autonome. Arbitre permet de prolonger certains exercices avec une application gratuite à installer sur votre ordinateur. Interface en français ; aucun compte lié à votre achat.',
   github: 'Voir le code et le guide d’installation sur GitHub', learnMore: 'Découvrir le volume 1',
  },
@@ -20,6 +21,7 @@ export const volumeContent = {
   license: 'The English edition is being prepared. No release date or pre-order is offered.',
   preview: 'Explore the free white paper', status: 'Available soon',
   sample: 'Read a sample', sampleDetails: 'French PDF · 7 pages', sampleNewTab: 'Opens in a new tab',
+  isbnLabel: 'ISBN of the French PDF edition:',
   companionTitle: 'Arbitre, an optional companion', companion: 'The PDF is self-contained. Arbitre lets you explore some exercises further with a free application you can install on your computer. Its interface is currently in French; no purchase-linked account is required.',
   github: 'View the code and installation guide on GitHub', learnMore: 'Explore Volume 1',
  },
@@ -32,6 +34,7 @@ export const volumeContent = {
   license: 'La edición en español está en preparación. No se anuncia una fecha de publicación ni se aceptan reservas.',
   preview: 'Descubrir el libro blanco gratuito', status: 'Pronto disponible',
   sample: 'Leer un extracto', sampleDetails: 'PDF en francés · 7 páginas', sampleNewTab: 'Se abre en una pestaña nueva',
+  isbnLabel: 'ISBN de la edición francesa en PDF:',
   companionTitle: 'Arbitre, un complemento opcional', companion: 'El PDF es autónomo. Arbitre permite profundizar en algunos ejercicios con una aplicación gratuita que puede instalar en su ordenador. La interfaz está actualmente en francés; no requiere una cuenta vinculada a la compra.',
   github: 'Ver el código y la guía de instalación en GitHub', learnMore: 'Descubrir el volumen 1',
  }

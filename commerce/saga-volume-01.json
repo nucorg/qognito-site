@@ -41,25 +41,27 @@
       {
         "edition_id": "saga-ia-volume-01-fr-v1.1",
         "language": "fr",
-        "source_path": "../qognito-content/formations/saga-ia/volume-01/apercus/fr/1.1/extrait_v1.1.pdf",
+        "source_path": "../qognito-content/formations/saga-ia/volume-01/apercus/fr/1.1/extrait-isbn-9791099077301.pdf",
         "source_path_base": "repository_root",
         "public_url": "/extraits/saga-ia-volume-01-fr-v1.1.pdf",
         "pages": 7,
         "printed_pages": [1, 2, 17, 18, 19, 50],
         "cover_included": true,
-        "size_bytes": 278060,
-        "sha256": "3642286ac3129e944dbc937e32e745bcc148c5eac7395550e8f008e89e2aad7e"
+        "size_bytes": 178895,
+        "sha256": "b14694eab5336e7575f6e228787ea16ea5d6710b04121c086c457b6334577786"
       }
     ],
     "private_pdf_candidate": {
       "edition_id": "saga-ia-volume-01-fr-v1.1",
       "language": "fr",
       "version": "1.1",
-      "source_path": "../qognito-content/formations/saga-ia/volume-01/editions/fr/1.1/saga-ia-volume-01-fr-v1.1.pdf",
+      "source_path": "../qognito-content/formations/saga-ia/volume-01/editions/fr/1.1/saga-ia-volume-01-fr-v1.1-isbn-9791099077301.pdf",
       "source_path_base": "repository_root",
-      "size_bytes": 1079172,
-      "sha256": "6ac5920802ac4cfd0a5efa4820accf9f6ce8ce4ecabd4cca3b7ff092216d0add",
-      "manifest_status_observed": "edition_retenue"
+      "size_bytes": 1138174,
+      "sha256": "f0dba4497d3e9ce1647a55333a5affea2aad4aa8b6b3f9a243b060c7447d1cbe",
+      "manifest_status_observed": "edition_retenue",
+      "isbn": "979-10-990773-0-1",
+      "storage_key": "saga-ia/volume-01/fr/1.1/saga-ia-volume-01-fr-v1.1-isbn-9791099077301.pdf"
     },
     "pages": 93
   },

@@ -18,7 +18,7 @@ const bytes = await readFile(new URL('../' + OFFER.sourcePath, import.meta.url))
 assert.equal(await digest(bytes), OFFER.sha256, 'catalogue and private PDF must agree');
 const env = { COMMERCE_MODE:'test', COMMERCE_ORIGIN:'http://localhost:8788', COMMERCE_CHECKOUT_ENABLED:'true',
  COMMERCE_TOKEN_SECRET:'fixture-secret-at-least-thirty-two-characters', COMMERCE_DB:db,
- COMMERCE_PDF: { head: async () => ({ customMetadata:{sha256:OFFER.sha256} }), get: async () => ({ customMetadata:{sha256:OFFER.sha256}, arrayBuffer: async () => bytes }) },
+ COMMERCE_PDF: { head: async () => ({ customMetadata:{sha256:OFFER.sha256} }), get: async key => key===OFFER.pdfKey ? ({ customMetadata:{sha256:OFFER.sha256}, arrayBuffer: async () => bytes }) : null },
  STRIPE_SECRET_KEY:'sk_test_fixture',STRIPE_WEBHOOK_SECRET:'whsec_fixture',SAGA_PRICE_ID:'price_sale',SAGA_TAX_RATE_ID:'txr_fr',
  STRIPE_PAYMENT_METHOD_CONFIGURATION:'pmc_cards', RESEND_API_KEY:'fake-resend',COMMERCE_FROM:'Qognito <commandes@transaction.qognito.io>' };
 const stripe = new Stripe(env.STRIPE_SECRET_KEY); let captureCount=0,cancelCount=0;
@@ -67,6 +67,8 @@ assert.ok(metropolitan({country:'FR',postal_code:'20000',city:'Ajaccio',line1:'t
 assert.throws(()=>config({...env,COMMERCE_MODE:'live'},true));
 assert.equal((await checkout(post(input()),{...env,COMMERCE_PDF:{get:async()=>null}},stripe)).status,503);
 const a=await create();
+assert.equal(a.order.pdf_key,OFFER.pdfKey,'new order records the explicit artifact key');
+assert.equal(a.order.pdf_sha256,OFFER.sha256);
 assert.equal((await checkout(post(a.body),env,stripe)).status,200,'retry returns existing session');
 assert.equal((await checkout(post({...a.body,name:'Changed'}),env,stripe)).status,409);
 let s=sessions.get(a.order.session_id);s.status='complete';s.payment_intent.status='requires_capture';s.payment_status='unpaid';
@@ -81,6 +83,20 @@ assert.equal(row(a.order.id).status,'paid');
 let status=await (await orderStatus(req(),env)).json();assert.ok(status.download_url);
 assert.equal((await download(new Request(status.download_url),env)).status,200);
 assert.equal(row(a.order.id).downloads,1);
+// An earlier order keeps its own immutable artifact even after the offer changes.
+const legacyKey='saga-ia/volume-01/fr/1.1/saga-ia-volume-01-fr-v1.1.pdf';
+const legacyBytes=await readFile(new URL('../../qognito-content/formations/saga-ia/volume-01/editions/fr/1.1/saga-ia-volume-01-fr-v1.1.pdf',import.meta.url));
+const legacyHash='6ac5920802ac4cfd0a5efa4820accf9f6ce8ce4ecabd4cca3b7ff092216d0add';
+assert.equal(await digest(legacyBytes),legacyHash);
+assert.notEqual(OFFER.pdfKey,legacyKey);
+sql.prepare('UPDATE sales_orders SET pdf_key=?,pdf_sha256=? WHERE id=?').run(legacyKey,legacyHash,a.order.id);
+try{
+ const legacyEnv={...env,COMMERCE_PDF:{get:async key=>{assert.equal(key,legacyKey);return {arrayBuffer:async()=>legacyBytes};}}};
+ const legacyDownload=await download(new Request(status.download_url),legacyEnv);
+ assert.equal(legacyDownload.status,200);
+ assert.equal(await digest(await legacyDownload.arrayBuffer()),legacyHash);
+ assert.match(legacyDownload.headers.get('Content-Disposition'),/saga-ia-volume-01-fr-v1\.1\.pdf/);
+}finally{sql.prepare('UPDATE sales_orders SET pdf_key=?,pdf_sha256=? WHERE id=?').run(OFFER.pdfKey,OFFER.sha256,a.order.id);}
 assert.equal((await download(new Request(status.download_url+'broken'),env)).status,403);
 assert.equal((await orderStatus(new Request(env.COMMERCE_ORIGIN+'/api/commerce/order'),env)).status,401);
 const badR2={...env,COMMERCE_PDF:{get:async()=>({customMetadata:{sha256:OFFER.sha256},arrayBuffer:async()=>new Uint8Array([1,2,3])})}};

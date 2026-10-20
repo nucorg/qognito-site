@@ -17,6 +17,7 @@ const sample = catalogue.contents.public_previews[0];
   <p>{t.license}</p>
   <p><a href={pathForRoute('whitepaper',lang)}>{t.preview} →</a></p>
   <p class="sample"><a href={sample.public_url} type="application/pdf" hreflang="fr" target="_blank" rel="noopener noreferrer" aria-label={`${t.sample} — ${t.sampleDetails}. ${t.sampleNewTab}`}><strong>{t.sample}</strong> — {t.sampleDetails} <span aria-hidden="true">↗</span></a></p>
+  <p class="isbn">{t.isbnLabel} <span>{OFFER.isbn}</span></p>
   {lang === 'fr' ? <section class="purchase" aria-labelledby="purchase-title">
    <h2 id="purchase-title">Le volume 1 en français</h2>
    <p class="price">49,99 € <span>TTC · paiement unique</span></p>
@@ -75,4 +76,5 @@ if (form) {
 </script>
 <style>
 .volume{max-width:850px;padding-top:3rem;padding-bottom:4rem;line-height:1.75}.volume h1{font-size:clamp(2rem,6vw,3rem)}.volume h2{font-size:1.5rem;line-height:1.4}.volume p,.volume ul{margin:1rem 0}.volume a{color:var(--color-primary,#D4850F);text-decoration:underline}.purchase,.companion{background:#0F2035;padding:1.5rem;border-radius:12px;margin-top:2rem}.price{font-size:2rem;color:white;font-weight:700}.price span{font-size:1rem;font-weight:400}.pending{font-weight:700;font-size:1.5rem;color:#D4850F}form label{display:block;margin:1rem 0}input:not([type=checkbox]),select{display:block;width:100%;padding:.65rem;background:#050B14;color:#E2E8F0;border:1px solid #758298;border-radius:4px;font:inherit;box-sizing:border-box}.check{display:flex;gap:.75rem;align-items:start}.check input{margin-top:.45rem;min-width:1.1rem;min-height:1.1rem}button{font:inherit;cursor:pointer;max-width:100%;white-space:normal}button:disabled{opacity:.6}#purchase-error{color:#ffb4a8}form[hidden]{display:none}a:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #D4850F;outline-offset:3px}
+.isbn span{white-space:nowrap;display:inline-block}
 </style>

@@ -6,10 +6,11 @@ export const OFFER = Object.freeze({
  title: 'SAGA-IA — Volume 1 : décision de délégation et viabilité économique',
  amount: catalogue.price.amount_minor, tax: 261, currency: 'eur',
  sha256: catalogue.contents.private_pdf_candidate.sha256,
+ isbn: catalogue.contents.private_pdf_candidate.isbn,
  version: catalogue.contents.private_pdf_candidate.version,
  sourcePath: catalogue.contents.private_pdf_candidate.source_path,
- pdfKey: `saga-ia/volume-01/fr/${catalogue.contents.private_pdf_candidate.version}/${catalogue.contents.private_pdf_candidate.edition_id}.pdf`,
- filename: `${catalogue.contents.private_pdf_candidate.edition_id}.pdf`, termsVersion: '2026-10-14-v2',
+ pdfKey: catalogue.contents.private_pdf_candidate.storage_key,
+ filename: catalogue.contents.private_pdf_candidate.storage_key.split('/').at(-1), termsVersion: '2026-10-14-v2',
 });
 export function termsText(env = {}) {
  return `Conditions de vente — ${OFFER.termsVersion}
