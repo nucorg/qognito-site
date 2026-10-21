@@ -16,18 +16,6 @@ export const positioning = {
     contactLabel: 'Je parle de mon projet',
     contactSubject: 'Qognito — projet de formation',
     contactBody: 'Bonjour Boris,\n\nJe souhaite échanger sur un projet de formation.\nMon contexte (activité, équipe ou cursus) :\nLe public concerné :\nLes compétences recherchées :\nLe parcours envisagé, si connu :\n\nMerci.',
-    bootag: {
-      label: 'POUR LES PROFILS TECHNIQUES',
-      summary: 'Apprenez à construire des agents IA, à les connecter à des outils et à des connaissances, puis à suivre et évaluer leur fonctionnement.',
-      audience: 'Pour les développeurs, consultants techniques, ingénieurs et étudiants qui souhaitent comprendre et maîtriser les mécanismes de leurs applications.',
-      contactTitle: 'BOOTAG-IA pour vous, votre équipe ou votre cursus',
-    },
-    reason: {
-      label: 'POUR LES PROFILS TECHNIQUES AVANCÉS',
-      summary: 'Explorez comment les modèles produisent leurs réponses et comment différentes méthodes peuvent améliorer leurs résultats. Expérimentez le raisonnement, l’évaluation et l’apprentissage par renforcement pour en apprécier les performances et les limites.',
-      audience: 'Pour les professionnels de l’IA, équipes R&D, consultants spécialisés et étudiants avancés.',
-      contactTitle: 'REASON-IA pour vous, votre équipe ou votre cursus',
-    },
   },
   en: {
     headline: 'Understand AI, decide how to use it, and take control of its implementation.',
@@ -46,18 +34,6 @@ export const positioning = {
     contactLabel: 'Discuss my project',
     contactSubject: 'Qognito — training project',
     contactBody: 'Hello Boris,\n\nI would like to discuss a training project.\nMy context (business, team or curriculum):\nThe intended audience:\nThe skills to develop:\nThe course of interest, if known:\n\nThank you.',
-    bootag: {
-      label: 'FOR TECHNICAL PROFESSIONALS & STUDENTS',
-      summary: 'Learn to build AI agents, connect them to tools and knowledge, then monitor and evaluate how they work.',
-      audience: 'For developers, technical consultants, engineers and students who want to understand and control the mechanisms behind their applications.',
-      contactTitle: 'BOOTAG-IA for you, your team or your curriculum',
-    },
-    reason: {
-      label: 'FOR ADVANCED TECHNICAL LEARNERS',
-      summary: 'Explore how models produce responses and how different methods can improve their results. Experiment with reasoning, evaluation and reinforcement learning to assess their performance and limitations.',
-      audience: 'For AI professionals, R&D teams, specialist consultants and advanced students.',
-      contactTitle: 'REASON-IA for you, your team or your curriculum',
-    },
   },
   es: {
     headline: 'Comprenda la IA, decida cómo utilizarla y controle su implementación.',
@@ -76,17 +52,5 @@ export const positioning = {
     contactLabel: 'Hablemos de mi proyecto',
     contactSubject: 'Qognito — proyecto de formación',
     contactBody: 'Hola, Boris:\n\nMe gustaría hablar sobre un proyecto de formación.\nMi contexto (actividad, equipo o plan de estudios):\nPúblico destinatario:\nCompetencias que se buscan:\nFormación que me interesa, si ya la conozco:\n\nGracias.',
-    bootag: {
-      label: 'PARA PROFESIONALES TÉCNICOS',
-      summary: 'Aprenda a crear agentes de IA, conectarlos con herramientas y conocimientos, y supervisar y evaluar su funcionamiento.',
-      audience: 'Para desarrolladores, consultores técnicos, ingenieros y estudiantes que quieran comprender y controlar los mecanismos de sus aplicaciones.',
-      contactTitle: 'BOOTAG-IA para usted, su equipo o su plan de estudios',
-    },
-    reason: {
-      label: 'PARA PROFESIONALES TÉCNICOS AVANZADOS',
-      summary: 'Explore cómo generan respuestas los modelos y cómo distintos métodos pueden mejorarlas. Experimente con razonamiento, evaluación y aprendizaje por refuerzo para examinar su rendimiento y sus límites.',
-      audience: 'Para profesionales de IA, equipos de I+D, consultores especializados y estudiantes avanzados.',
-      contactTitle: 'REASON-IA para usted, su equipo o su plan de estudios',
-    },
   },
 } as const;

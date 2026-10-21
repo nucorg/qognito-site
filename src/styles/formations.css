@@ -37,31 +37,3 @@
   outline: 3px solid var(--color-primary);
   outline-offset: 4px;
 }
-
-.bootag-course {
-  --color-primary: #38bdf8;
-  --color-primary-rgb: 56, 189, 248;
-}
-
-.bootag-course .btn-primary {
-  color: #050B14;
-}
-
-.bootag-course .btn-secondary {
-  color: var(--color-primary);
-  border: 1px solid currentColor;
-  border-radius: 6px;
-  padding: .75rem 1rem;
-}
-
-.bootag-course .btn-secondary:hover {
-  color: #050B14;
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  text-shadow: none;
-}
-
-.bootag-course a:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 4px;
-}
