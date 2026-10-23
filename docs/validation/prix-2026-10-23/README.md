@@ -1,6 +1,6 @@
 # Essai des badges de prix — 23 octobre 2026
 
-Axe II · Cible I. Intégré et vérifié localement. Publication autorisée par Boris le 23 octobre 2026 ; vérification du déploiement en cours.
+Axe II · Cible I. Intégré et vérifié localement. Publication autorisée par Boris le 23 octobre 2026, réalisée et vérifiée en production.
 
 ## Aperçus
 
@@ -39,3 +39,13 @@ Le formulaire français est désormais toujours visible. Seul le paiement reste 
 Validation : build réussi ; test navigateur existant étendu aux états fermé, réseau indisponible, réponse HTML 404, HTTP 503 (même si le corps annonce enabled), requête en attente puis ouverte, et tentative de soumission forcée. Tous passent. Trente combinaisons page/langue/largeur revérifiées ; les deux bandeaux mesurent 130 px à toutes les largeurs contrôlées. Le grand badge est conservé.
 
 Vérification supplémentaire sans interception réseau sur `npm run dev` à http://127.0.0.1:4321 : formulaire visible et bouton désactivé, conformément à l’absence d’API locale. [Capture réelle Astro dev](vente-fr-astro-dev.png).
+
+## Publication vérifiée
+
+Version applicative `94e4d6da5e1056798e1371671bcf45591a49bb18`, déploiement Cloudflare `5355521b-4e56-42a7-9df3-12ec56a8011a` réussi. Configuration de production comparée avant/après : inchangée. Achats ouverts : `enabled:true`, `test:false`.
+
+Six parcours FR/EN/ES × mobile/ordinateur réussis sur `qognito-site.pages.dev`, domaine technique de la même production : bandeaux 130 px, grand prix séparé, formulaire français visible et bouton de paiement actif, trois consentements obligatoires non cochés, EN/ES sans formulaire. Aucun POST de commande ni paiement ; aucune erreur JavaScript.
+
+Le domaine public `qognito.io` oppose un challenge Cloudflare HTTP 403 au navigateur automatisé ; le rendu public dans un navigateur humain n’est donc pas attesté par ce contrôle. Aucune protection modifiée.
+
+Preuves privées : `.wrangler/prix-2026-10-23/`. Un éventuel commit documentaire ultérieur ne change pas l’application ; la dernière référence canonique figure dans `~/VIBE/MANUEL_SITEWEB.md`.
