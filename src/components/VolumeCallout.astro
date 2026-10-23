@@ -1,19 +1,25 @@
 ---
 import { volumeContent } from '../content/volume';
 import { pathForRoute, type SiteLocale } from '../config/locales';
+import PriceBadge from './PriceBadge.astro';
+import { volumePrice, frenchPriceDetail, frenchEditionLabel } from '../content/pricing';
 
 interface Props {
   lang?: SiteLocale;
   heading?: 'h2' | 'h3';
+  variant?: 'default' | 'card';
 }
-const { lang = 'fr', heading: Heading = 'h2' } = Astro.props;
+const { lang = 'fr', heading: Heading = 'h2', variant = 'default' } = Astro.props;
 const copy = volumeContent[lang];
 ---
-<section class="volume-callout" aria-label={copy.title}>
+<section class:list={['volume-callout', { 'offer-card': variant === 'card' }]} aria-label={copy.title}>
+  {variant === 'card' && <PriceBadge value={lang === 'fr' ? volumePrice : copy.status} detail={lang === 'fr' ? frenchPriceDetail : undefined} note={lang === 'fr' ? frenchEditionLabel : undefined} pending={lang !== 'fr'} />}
+  <div class:list={{ 'offer-card__body': variant === 'card' }}>
   <Heading>{copy.title}</Heading>
   <p>{copy.introduction}</p>
-  <p>{lang === 'fr' ? '49,99 € TTC · édition française' : copy.status}</p>
+  {variant === 'default' && <p>{lang === 'fr' ? '49,99 € TTC · édition française' : copy.status}</p>}
   <a href={pathForRoute('volume', lang)}>{copy.learnMore} →</a>
+  </div>
 </section>
 <style>
   .volume-callout { margin-top: 2rem; padding: clamp(1rem, 3vw, 1.5rem); border-left: 3px solid #D4850F; background: #050B14; overflow-wrap: anywhere; }

@@ -1,12 +1,15 @@
 ---
 import { whitepaper, whitepaperPath, collectionEnabled } from '../config/whitepaper';
 import type { SiteLocale } from '../config/locales';
+import PriceBadge from './PriceBadge.astro';
+import { priceLabels } from '../content/pricing';
 
 interface Props {
   lang?: SiteLocale;
+  variant?: 'default' | 'card';
 }
 
-const { lang = 'fr' } = Astro.props;
+const { lang = 'fr', variant = 'default' } = Astro.props;
 const copy = {
   fr: {
     label: 'Livre blanc Qognito',
@@ -34,18 +37,20 @@ const copy = {
   },
 }[lang];
 ---
-<aside class="whitepaper-callout" aria-label={copy.label} lang={lang}>
-  <div>
+<aside class:list={['whitepaper-callout', { 'offer-card': variant === 'card' }]} aria-label={copy.label} lang={lang}>
+  {variant === 'card' && <PriceBadge value={priceLabels[lang].free} />}
+  <div class:list={{ 'offer-card__body': variant === 'card' }}>
     <span>{copy.audience}</span>
     <h2>{copy.title}</h2>
     <p>{copy.description}</p>
     {lang !== 'fr' && <p class="language-note">{lang === 'en' ? 'PDF available in English.' : 'PDF disponible en español.'}</p>}
+    {variant === 'card' && <a href={whitepaperPath(lang)} hreflang={lang}>{collectionEnabled ? copy.download : copy.discover} →</a>}
   </div>
-  <a class="btn-primary" href={whitepaperPath(lang)} hreflang={lang}>{collectionEnabled ? copy.download : copy.discover} →</a>
+  {variant === 'default' && <a class="btn-primary" href={whitepaperPath(lang)} hreflang={lang}>{collectionEnabled ? copy.download : copy.discover} →</a>}
 </aside>
 <style>
   .whitepaper-callout { margin: 2rem auto; padding: clamp(1.3rem, 4vw, 2.5rem); background: #0F2035; border: 1px solid #334155; border-left: 4px solid #D4850F; border-radius: 12px; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-  .whitepaper-callout div { flex: 1 1 320px; }
+  .whitepaper-callout:not(.offer-card) > div { flex: 1 1 320px; }
   span { color: #D4850F; font-size: .8rem; letter-spacing: .08em; }
   h2 { font-size: 1.65rem; margin: .6rem 0; }
   p { margin: 0; color: #E2E8F0; }

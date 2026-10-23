@@ -1,0 +1,44 @@
+---
+interface Props {
+  value: string;
+  detail?: string;
+  note?: string;
+  size?: 'card' | 'large';
+  pending?: boolean;
+}
+const { value, detail, note, size = 'card', pending = false } = Astro.props;
+---
+<div class:list={['price-badge', `price-badge--${size}`, { 'price-badge--pending': pending }]}>
+  <slot />
+  <strong class="price-badge__value">{value}</strong>
+  {detail && <span class="price-badge__detail">{detail}</span>}
+  {note && <span class="price-badge__note">{note}</span>}
+</div>
+<style>
+  .price-badge {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .35rem;
+    min-height: 180px;
+    padding: 1.5rem;
+    background: var(--color-primary, #D4850F);
+    color: var(--color-bg-darker, #050B14);
+    text-align: center;
+  }
+  .price-badge__value {
+    font-family: var(--font-title, 'Manrope', sans-serif);
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .price-badge__detail, .price-badge__note { font-size: 1rem; line-height: 1.5; }
+  .price-badge__detail { font-weight: 600; }
+  .price-badge--card { min-height: 130px; padding: .75rem 1rem; gap: .2rem; }
+  .price-badge--pending .price-badge__value { font-size: clamp(24px, 3vw, 32px); white-space: normal; overflow-wrap: normal; }
+  .price-badge--large { border-radius: 12px; padding: 2rem 1rem; margin-top: 2rem; }
+  .price-badge--large .price-badge__value { font-size: clamp(40px, 7vw, 64px); }
+</style>

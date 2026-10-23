@@ -1,0 +1,187 @@
+{
+  "result": [
+    {
+      "lang": "fr",
+      "kind": "home",
+      "width": 320,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "volume",
+      "width": 320,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "home",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "volume",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "home",
+      "width": 640,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "volume",
+      "width": 640,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "home",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "volume",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "home",
+      "width": 1280,
+      "pass": true
+    },
+    {
+      "lang": "fr",
+      "kind": "volume",
+      "width": 1280,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "home",
+      "width": 320,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "volume",
+      "width": 320,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "home",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "volume",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "home",
+      "width": 640,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "volume",
+      "width": 640,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "home",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "volume",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "home",
+      "width": 1280,
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "kind": "volume",
+      "width": 1280,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "home",
+      "width": 320,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "volume",
+      "width": 320,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "home",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "volume",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "home",
+      "width": 640,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "volume",
+      "width": 640,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "home",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "volume",
+      "width": 768,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "home",
+      "width": 1280,
+      "pass": true
+    },
+    {
+      "lang": "es",
+      "kind": "volume",
+      "width": 1280,
+      "pass": true
+    }
+  ],
+  "homepageBadgeHeight": 130,
+  "formVisibleWithoutAPI": true,
+  "paymentDisabledWithoutAPI": true
+}

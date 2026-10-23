@@ -2,6 +2,7 @@
 import { positioning } from '../content/positioning';
 import WhitepaperCallout from './WhitepaperCallout.astro';
 import VolumeCallout from './VolumeCallout.astro';
+import '../styles/offer-cards.css';
 import { pathForRoute, type SiteLocale } from '../config/locales';
 interface Props { lang?: SiteLocale; }
 const { lang = 'fr' } = Astro.props;
@@ -15,8 +16,10 @@ const coursesPath = pathForRoute('formations', lang);
     <p>{copy.audiences}</p>
     <p>{copy.approach}</p>
     <a class="btn-primary" href={coursesPath}>{copy.explore} →</a>
-    <WhitepaperCallout lang={lang} />
-    <VolumeCallout lang={lang} />
+    <div class="home-offers">
+      <WhitepaperCallout lang={lang} variant="card" />
+      <VolumeCallout lang={lang} variant="card" />
+    </div>
   </div>
 </section>
 <style>

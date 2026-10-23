@@ -24,5 +24,34 @@ try {
  for(const name of ['accept_terms','immediate_delivery','acknowledge_withdrawal'])await page.locator(`[name=${name}]`).check();
  await page.locator('button[type=submit]').click();await page.locator('#purchase-error').filter({hasText:'indisponible'}).waitFor();
  assert.equal(await page.locator('button[type=submit]').isEnabled(),true);assert.deepEqual(errors,[]);
- console.log('OK navigateur : FR/EN/ES, 390/1280, prix, attente sans achat, liens et canonical, formulaire et erreur récupérable.');
+ // An unavailable API must not remove the form or allow checkout.
+ let checkoutRequests=0;
+ await page.route('**/api/commerce/checkout',r=>{checkoutRequests++;return r.fulfill({status:503,json:{error:'checkout_unavailable'}});});
+ for(const mode of ['closed','network','html','http-error','pending']) {
+  await page.unroute('**/api/commerce/availability');
+  let release;
+  const pending=new Promise(resolve=>{release=resolve;});
+  await page.route('**/api/commerce/availability',async r=>{
+   if(mode==='pending'){await pending;return r.fulfill({json:{enabled:true}});}
+   if(mode==='network')return r.abort();
+   if(mode==='html')return r.fulfill({status:404,contentType:'text/html',body:'<h1>Not found</h1>'});
+   if(mode==='http-error')return r.fulfill({status:503,json:{enabled:true}});
+   return r.fulfill({json:{enabled:false}});
+  });
+  await page.goto(origin+'/formations/saga-ia/volume-1/');
+  if(['network','html','http-error'].includes(mode))await page.locator('#sale-state').filter({hasText:'indisponible'}).waitFor();
+  if(mode==='closed')await page.waitForLoadState('networkidle');
+  assert.equal(await page.locator('#purchase-form').isVisible(),true);
+  assert.equal(await page.locator('#purchase-form button').isDisabled(),true);
+  // Even a synthetic submit must not bypass the availability guard.
+  await page.locator('#purchase-form').dispatchEvent('submit');
+  assert.equal(checkoutRequests,0);
+  if(mode==='pending') {
+   release();
+   await page.locator('#sale-state').filter({hasText:'Paiement sécurisé'}).waitFor();
+   assert.equal(await page.locator('#purchase-form button').isEnabled(),true);
+  }
+ }
+ assert.deepEqual(errors,[]);
+ console.log('OK navigateur : FR/EN/ES, 390/1280, prix, attente sans achat, formulaire visible ; paiement bloqué pendant attente, fermeture, erreurs réseau/HTTP/HTML ; reprise et erreur de commande récupérable.');
 }finally{await browser.close();}
